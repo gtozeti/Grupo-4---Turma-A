@@ -6,14 +6,14 @@
 package TestesProjeto;
 
 import java.util.Scanner;
-import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
 
 /**
  *
  * @author Matheus
  */
 public class Conversoes1 {
-
+/* Algoritmo feito para entender a lógica de conversão de bases usando o java
+*/
     public static void main(String[] args) {
         //Parte de entrada
         System.out.println("Bem-vindo ao conversor de bases");
@@ -119,7 +119,7 @@ public class Conversoes1 {
         String octaStr = Integer.toOctalString(decInt); //Convertendo para Octa
         String binStr = Integer.toBinaryString(decInt); //Conveertendo para Bin
 
-        System.out.printf("Hexadecimal: %s\nOctal: %s\nBinario: %s\n\n", toUpperCase(hexStr), octaStr, binStr);
+        System.out.printf("Hexadecimal: %S\nOctal: %s\nBinario: %s\n\n", hexStr, octaStr, binStr);
     }
 
     static void hexToAll(String numero) {
