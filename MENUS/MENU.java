@@ -6,7 +6,7 @@ public class O_Jogo {
 	public static String opcao = "";
 	
 	
-
+	//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-MAIN-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 	public static void main(String[] args) {
 
 		String opcao_Menu;
@@ -59,23 +59,25 @@ public class O_Jogo {
 				+ " avançar no jogo. A cada questão, o jogador sofrerá um dano caso erre a questão, diminuindo assim sua vida."
 				+ " O objetivo final do jogador, é avançar por todos os templos, para derrotar o último chefe, sem que perca toda sua vida");
 
+		System.out.print("\nVoltar? (S/N)\n");
+		Option_S_N();
 	}
+	
+	// PROCEDIMENTO PARA FAZER A CHAMADA DO JOGO
 	public static void Jogar() {
 
-		Texto_Formatado("\nO objetivo do jogo é auxiliar o jogador, em algumas matérias da matemática."
-				+ " Ao longo da jornada, serão apresentados conteúdos sobre a matéria em questão e "
-				+ "apresentadas perguntas ao jogador. O mesmo deverá selecionar as opções válidas para que ele possa"
-				+ " avançar no jogo. A cada questão, o jogador sofrerá um dano caso erre a questão, diminuindo assim sua vida."
-				+ " O objetivo final do jogador, é avançar por todos os templos, para derrotar o último chefe, sem que perca toda sua vida");
-
+		
 	}
+	
+	// PROCEDIMENTO PARA ARMAZENAR AS INFORMAÇÕES DOS CRÉDITOS
 	public static void Créditos() {
-
+		
+		
 		Texto_Formatado("\n-Caio Gonçalves\n\t-Gustavo Tozeti\n\t\t-Matheus Cavalcanti\n\t\t\t-Renan Kesper");
-
+		System.out.print("\nVoltar? (S/N)\n");
+		Option_S_N();
+		
 	}
-	
-	
 	
 	//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-FERRAMENTAS-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 	
@@ -122,4 +124,20 @@ public class O_Jogo {
 		return opcao;
 	}
 
+	// PROCEDIMENTO CRIADO PARA VALIDAR A VOLTA DE UM MENU
+	public static void Option_S_N () {
+		boolean cond = true;
+		do {
+			String opcao_Menu = Option();
+			switch (opcao_Menu.toUpperCase()) {
+			case "S":
+			cond = false;
+			break;
+			case "N":
+				break;
+			default:
+				System.out.println("\nOpção não é válida!\n");
+			}
+		}while(cond);
+	}
 }	
