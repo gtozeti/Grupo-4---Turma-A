@@ -27,7 +27,7 @@ public class O_Jogo {
 
 			case "2":
 				
-				System.out.print("\n\t\t\t\tJOGO EM DESENVOLVIMENTO!!!\n\n");
+				Jogar();
 				break;
 
 			case "3":
@@ -140,4 +140,8 @@ public class O_Jogo {
 			}
 		}while(cond);
 	}
+
+	//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-TEMPLOS-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+	
+
 }	
