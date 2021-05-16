@@ -28,6 +28,9 @@ public class O_Jogo {
 			case "2":
 				
 				Jogar();
+				/*
+				 * Templo_1(); Templo_2(); Templo_3(); Big_Boss();
+				 */
 				break;
 
 			case "3":
@@ -53,18 +56,20 @@ public class O_Jogo {
 	// PROCEDIMENTO PARA ARMAZENAR AS INFORMAÇÕES DAS INTRUÇÕES
 	public static void Instruções() {
 
-		Texto_Formatado("\nO objetivo do jogo é auxiliar o jogador, em algumas matérias da matemática."
+		Texto_Formatado("\nO objetivo do jogo é auxiliar o jogador em alguns conhecimentos da matemática."
 				+ " Ao longo da jornada, serão apresentados conteúdos sobre a matéria em questão e "
 				+ "apresentadas perguntas ao jogador. O mesmo deverá selecionar as opções válidas para que ele possa"
-				+ " avançar no jogo. A cada questão, o jogador sofrerá um dano caso erre a questão, diminuindo assim sua vida."
-				+ " O objetivo final do jogador, é avançar por todos os templos, para derrotar o último chefe, sem que perca toda sua vida");
+				+ " avançar no jogo e a cada questão, o jogador sofrerá um dano se errar, diminuindo assim sua vida."
+				+ " O objetivo final do jogador, é avançar por todos os templos para derrotar o último chefe, sem perder toda a sua vida");
 
-		System.out.print("\nVoltar? (S/N)\n");
-		Option_S_N();
+		Sair();
+		
 	}
 	
 	// PROCEDIMENTO PARA FAZER A CHAMADA DO JOGO
 	public static void Jogar() {
+		
+		Texto_Formatado("");
 
 		
 	}
@@ -74,8 +79,7 @@ public class O_Jogo {
 		
 		
 		Texto_Formatado("\n-Caio Gonçalves\n\t-Gustavo Tozeti\n\t\t-Matheus Cavalcanti\n\t\t\t-Renan Kesper");
-		System.out.print("\nVoltar? (S/N)\n");
-		Option_S_N();
+		Sair();
 		
 	}
 	
@@ -125,23 +129,20 @@ public class O_Jogo {
 	}
 
 	// PROCEDIMENTO CRIADO PARA VALIDAR A VOLTA DE UM MENU
-	public static void Option_S_N () {
-		boolean cond = true;
-		do {
-			String opcao_Menu = Option();
-			switch (opcao_Menu.toUpperCase()) {
-			case "S":
-			cond = false;
-			break;
-			case "N":
-				break;
-			default:
-				System.out.println("\nOpção não é válida!\n");
-			}
-		}while(cond);
-	}
+	/*
+	 * public static void Option_S_N () { boolean cond = true; do { String
+	 * opcao_Menu = Option(); switch (opcao_Menu.toUpperCase()) { case "S": cond =
+	 * false; break; case "N": break; default:
+	 * System.out.println("\nOpção não é válida!\n"); } }while(cond); }
+	 */
 
+	// PROCEDIMENTO CRIADO PARA SAIR DE UMA OPÇÃO DE UM MENU
+	public static void Sair () {
+		System.out.print("Pressione qualquer tecla para voltar!\n");
+		String sair = entrada.next();
+	}
 	//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-TEMPLOS-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+	
 	
 
 }	
