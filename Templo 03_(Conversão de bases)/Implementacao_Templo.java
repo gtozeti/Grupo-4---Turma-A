@@ -19,16 +19,47 @@ public class Implementacao_Templo {
     public static void main(String[] args) {
         //Aqui correrao apenas tres laçoes do-while para que caso a pessoa não
         //passe em um desafio ela precise fazê-lo novamente
-        int healthPoints = 100, qntPotions = 2;
 
-        healthPoints = Desafio1(healthPoints, qntPotions);
-        
-        System.out.println("Você terminou o primeiro desafio.");
+        boolean condicao = true;
+        int[] status = new int[2];
+        status[0] = 100; //Health Points
+        status[1] = 2; //Quantidade de potions
+
+        do {
+            status = Desafio1(status[0], status[1]);
+
+            if (status[0] < 0) {
+                System.out.println("Você terá que refazer o desafio.\n\n");
+            } else {
+                System.out.println("VOCÊ TERMINOU O PRIMEIRO DESAFIO.");
+                System.out.println("Você ganhou uma potion!");
+                status[1]++;
+                System.out.printf("Total HP: %d\nQuantidade de potions: %d\n\n", status[0], status[1]);
+
+                condicao = false;
+            }
+        } while (condicao);
+
+        Timer();
+        status = Desafio2(status[0], status[1]);
+
+        System.out.println("VOCÊ TERMINOU O SEGUNDO DESAFIO.");
+        System.out.println("Você ganhou uma potion!");
+        status[1]++;
+        System.out.printf("Total HP: %d\nQuantidade de potions: %d\n\n", status[0], status[1]);
+
+        Timer();
+        status = Desafio3(status[0], status[1]);
+        System.out.println("VOCÊ TERMINOU O TERCEIRO DESAFIO.");
+        System.out.println("Você ganhou uma potion!");
+        status[1]++;
+        System.out.printf("Total HP: %d\nQuantidade de potions: %d\n\n", status[0], status[1]);
+
     }
 
-    static int Desafio1(int healthPoints, int qntPotions) {
+    static int[] Desafio1(int healthPoints, int qntPotions) {
         System.out.println("Bem-vindo ao primeiro desafio.\n");
-
+        Timer();
         System.out.println("O 'player' precisa passar por este primeiro desafio para"
                 + " abrir a porta e conseguir explorar o templo.\n"
                 + "Ao se deparar com a porta o 'player' observa que existem alguns"
@@ -36,11 +67,14 @@ public class Implementacao_Templo {
 
         //**********************************************************************
         int baseInicial, baseConversao, auxNum;
-        String numeroInicial, respostaCerta, respostaPlayer;
+        String numeroInicial, respostaCerta, respostaPlayer = null;
         boolean condicao = true;
 
         ArrayList<String> respostaErrada = new ArrayList();
         String[] opcoes = new String[5];
+        int[] status = new int[2];
+        status[0] = healthPoints;
+        status[1] = qntPotions;
 
         Scanner input = new Scanner(System.in);
 
@@ -59,12 +93,12 @@ public class Implementacao_Templo {
 
         //Fazer processo das perguntas erradas
         respostaErrada.add(respostaCerta);
+
         auxNum = Integer.parseInt(numeroInicial, baseInicial);
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i <= 3; i++) {
             respostaErrada.add(DeterminaOpcoes(auxNum, baseConversao, respostaCerta));
         }
 
-        Collections.shuffle(respostaErrada);
         Collections.shuffle(respostaErrada);
         Collections.shuffle(respostaErrada);
 
@@ -74,89 +108,245 @@ public class Implementacao_Templo {
 
         //**********************************************************************
         //Fazer processo de desafio com opcoes
-        System.out.printf("\n***Texto para começar o primeiro desafio***\nConverter o numero %S que está na base %d para a base %d\n\n", numeroInicial, baseInicial, baseConversao);
-
-        System.out.printf("a) %S\nb) %S\nc) %S\nd) %S\ne) %S\n\n", opcoes[0], opcoes[1], opcoes[2], opcoes[3], opcoes[4]);
+        Timer();
+        System.out.printf("\n***\tTexto para começar o primeiro desafio\t***\nConverter o numero %S que está na base %d para a base %d\n\n", numeroInicial, baseInicial, baseConversao);
         
-        System.out.println("Resposta certa: " + respostaCerta);
+        System.out.printf("a) %S\nb) %S\nc) %S\nd) %S\ne) %S\n\n", opcoes[0], opcoes[1], opcoes[2], opcoes[3], opcoes[4]);
 
+        System.out.println("Resposta certa: " + respostaCerta.toUpperCase());
+        Timer();
+
+        do {
+            try {
+                System.out.print("\t\t\t\tEscolha uma opção: ");
+                respostaPlayer = input.next();
+                respostaPlayer = respostaPlayer.toUpperCase();
+                System.out.println(" ");
+            } catch (Exception e) {
+                System.out.println("Digite um caracter válido.\nOu algo deu errado com o codigo");
+            }
+
+            switch (respostaPlayer.charAt(0)) {
+                case 'A':
+                    if (opcoes[0].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'B':
+                    if (opcoes[1].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'C':
+                    if (opcoes[2].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'D':
+                    if (opcoes[3].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'E':
+                    if (opcoes[4].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'P':
+                    int[] aux = UsePotion(status[0], status[1]);
+
+                    status[0] = aux[0];
+                    status[1] = aux[1];
+            }
+
+        } while (condicao);
+
+        return status;
+    }
+
+    static int[] Desafio2(int healthPoints, int qntPotions) {
+        int[] status = new int[2];
+        status[0] = healthPoints;
+        status[1] = qntPotions;
+        String[] opcoes = new String[5];
+
+        int baseInicial, baseConversao, auxConv1, auxConv2;
+        String numeroInicialA, numeroInicialB, respostaCerta, respostaPlayer = null;
+        boolean condicao = true;
+
+        ArrayList<String> respostaErrada = new ArrayList();
+        Scanner input = new Scanner(System.in);
+
+        //**************************************************************************
+        //Determinando as bases para o desafio
+        baseInicial = DeterminaBase(); //A base para os primeiros numeros.
+
+        //Base para conversao
+        do {
+            baseConversao = DeterminaBase();
+        } while (baseConversao == baseInicial);
+
+        //Determinando os numeros para o desafio - Sera mostrada uma soma para o usuario converter e resolver o problema
+        numeroInicialA = DeterminaNumero(baseInicial);//Determina o primeiro numero
+
+        //Determinando o segundo numero sendo != do primeiro numero
+        do {
+            numeroInicialB = DeterminaNumero(baseInicial);
+        } while (numeroInicialB.equals(numeroInicialA));
+
+        //Efetuando a soma dos numeros e fazendo a conversao
+        auxConv1 = Integer.parseInt(numeroInicialA, baseInicial);
+        auxConv2 = Integer.parseInt(numeroInicialB, baseInicial);
+        respostaCerta = Integer.toString((auxConv1 + auxConv2), baseConversao);
+
+        //**************************************************************************
+        //Criando opcoes para o desafio
+        respostaErrada.add(respostaCerta);
+
+        for (int i = 0; i <= 3; i++) {
+            respostaErrada.add(DeterminaOpcoes((auxConv1 + auxConv2), baseConversao, respostaCerta));
+        }
+
+        Collections.shuffle(respostaErrada);
+        Collections.shuffle(respostaErrada);
+
+        //Adicionando as opcoes em String para conseguir fazer a verificação
+        for (int i = 0; i <= 4; i++) {
+            opcoes[i] = respostaErrada.get(i);
+        }
+
+        //**************************************************************************
+        //Enunciado para o segundo desafio
+        System.out.println("\n***\t É HORA DO SHOW (espaço para um texto melhor) \t***");
+        System.out.printf("Faça a soma do numero %S com o numero %S que estão na base %d e converta para a base %d\n\n", numeroInicialA, numeroInicialB, baseInicial, baseConversao);
+        System.out.printf("a) %S\nb) %S\nc) %S\nd) %S\ne) %S\n\n", opcoes[0], opcoes[1], opcoes[2], opcoes[3], opcoes[4]);
+        System.out.println("\nResposta certa: " + respostaCerta);
+
+        //Processo de entrada do player e escolha do segundo desafio
         do {
             try {
                 System.out.print("Escolha uma opção: ");
                 respostaPlayer = input.next();
                 respostaPlayer = respostaPlayer.toUpperCase();
                 System.out.println(" ");
-                
-                switch (respostaPlayer.charAt(0)) {
-                    case 'A':
-                        if (opcoes[0].equals(respostaCerta)) {
-                            AcertouResposta(healthPoints);
-                            condicao = false;
-                        } else {
-                            healthPoints = DanoRespostaErrada(healthPoints);
-                            if (healthPoints <= 0) {
-                                GameOver();
-                                condicao = false;
-                            }
-                        }
-                        break;
-                    case 'B':
-                        if (opcoes[1].equals(respostaCerta)) {
-                            AcertouResposta(healthPoints);
-                            condicao = false;
-                        } else {
-                            healthPoints = DanoRespostaErrada(healthPoints);
-                            if (healthPoints <= 0) {
-                                GameOver();
-                                condicao = false;
-                            }
-                        }
-                        break;
-                    case 'C':
-                        if (opcoes[2].equals(respostaCerta)) {
-                            AcertouResposta(healthPoints);
-                            condicao = false;
-                        } else {
-                            healthPoints = DanoRespostaErrada(healthPoints);
-                            if (healthPoints <= 0) {
-                                GameOver();
-                                condicao = false;
-                            }
-                        }
-                        break;
-                    case 'D':
-                        if (opcoes[3].equals(respostaCerta)) {
-                            AcertouResposta(healthPoints);
-                            condicao = false;
-                        } else {
-                            healthPoints = DanoRespostaErrada(healthPoints);
-                            if (healthPoints <= 0) {
-                                GameOver();
-                                condicao = false;
-                            }
-                        }
-                        break;
-                    case 'E':
-                        if (opcoes[4].equals(respostaCerta)) {
-                            AcertouResposta(healthPoints);
-                            condicao = false;
-                        } else {
-                            healthPoints = DanoRespostaErrada(healthPoints);
-                            if (healthPoints <= 0) {
-                                GameOver();
-                                condicao = false;
-                            }
-                        }
-                        break;
-                    case 'P':
-                        healthPoints = UsePotion(healthPoints, qntPotions);
-                }
             } catch (Exception e) {
                 System.out.println("Digite um caracter válido.\nOu algo deu errado com o codigo");
             }
+
+            switch (respostaPlayer.charAt(0)) {
+                case 'A':
+                    if (opcoes[0].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'B':
+                    if (opcoes[1].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'C':
+                    if (opcoes[2].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'D':
+                    if (opcoes[3].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'E':
+                    if (opcoes[4].equals(respostaCerta)) {
+                        AcertouResposta(status[0]);
+                        condicao = false;
+                    } else {
+                        status[0] = DanoRespostaErrada(status[0]);
+                        if (status[0] <= 0) {
+                            GameOver();
+                            condicao = false;
+                        }
+                    }
+                    break;
+                case 'P':
+                    int[] aux = UsePotion(status[0], status[1]);
+
+                    status[0] = aux[0];
+                    status[1] = aux[1];
+            }
+
         } while (condicao);
 
-        return healthPoints;
+        return status;
+    }
+
+    static int[] Desafio3(int healthPoints, int qntPotions) {
+        int[] status = new int[2];
+        status[0] = healthPoints;
+        status[1] = qntPotions;
+
+        return status;
     }
 
     //**************************************************************************
@@ -177,11 +367,12 @@ public class Implementacao_Templo {
 
     static String DeterminaNumero(int baseInicial) {
 
+        Random dado = new Random();
         int numRandom;
         String baseAconv = null;
 
         do {
-            numRandom = (int) (Math.random() * 1000);
+            numRandom = dado.nextInt(2000);
         } while (numRandom <= 50);
 
         switch (baseInicial) {
@@ -204,11 +395,12 @@ public class Implementacao_Templo {
 
     static String DeterminaOpcoes(int numeroInicial, int baseConversao, String respostaCerta) {
 
+        Random dado = new Random();
         String opcoesFalsas;
 
         do {
-            numeroInicial = (int) (numeroInicial + (Math.random() * 50));
-            numeroInicial = numeroInicial - 35;
+            numeroInicial = numeroInicial + dado.nextInt(30);
+            numeroInicial = numeroInicial - 15;
             opcoesFalsas = Integer.toString(numeroInicial, baseConversao);
         } while (opcoesFalsas.equals(respostaCerta));
 
@@ -243,7 +435,7 @@ public class Implementacao_Templo {
         Timer();
         System.out.println("...");
         Timer();
-        
+
         jogada = dado.nextInt(20) + 1;
 
         System.out.printf("**\t%d\t**\n", jogada);
@@ -257,35 +449,58 @@ public class Implementacao_Templo {
             System.out.println("Você tomou dano crítico!");
             healthPoints = healthPoints - 30;
         }
-        
+
         System.out.printf("Total HP: %d\n\n", healthPoints);
         return healthPoints;
     }
 
     static void GameOver() {
         System.out.println("Seu HP chegou a 0");
-        System.out.println("GAME OVER");
+
+        System.out.print("G");
+        Timer2();
+        System.out.print("A");
+        Timer2();
+        System.out.print("M");
+        Timer2();
+        System.out.print("E");
+        Timer2();
+        System.out.print(" ");
+        Timer2();
+        System.out.print("O");
+        Timer2();
+        System.out.print("V");
+        Timer2();
+        System.out.print("E");
+        Timer2();
+        System.out.print("R\n\n");
+        Timer();
     }
 
-    static int UsePotion(int healthPoints, int qntPotions) {
+    static int[] UsePotion(int healthPoints, int qntPotions) {
 
         Scanner input = new Scanner(System.in);
         boolean condicao = true;
-        char opcao;
+        char opcao = 0;
+        int[] status = new int[2];
 
-        System.out.printf("HP atual: %d\n", healthPoints);
+        System.out.printf("HP atual: %d\nQuantidade de potions: %d\n\n", healthPoints, qntPotions);
 
         do {
             try {
                 System.out.println("Você tem certeza que quer usar uma potion?\nS / N\n");
-                System.out.print("Escolha: ");
+                System.out.print("\t\t\t\tEscolha: ");
                 opcao = input.next().charAt(0);
+            } catch (Exception e) {
+                System.out.println("Caracter invalido.");
+            }
 
+            if (qntPotions > 0) {
                 switch (opcao) {
                     case 'S':
                     case 's':
                         healthPoints = healthPoints + 20;
-                        qntPotions = qntPotions - 1;
+                        qntPotions--;
 
                         if (healthPoints > 100) {
                             do {
@@ -293,7 +508,7 @@ public class Implementacao_Templo {
                             } while (healthPoints != 100);
                         }
                         System.out.println("Você usou uma potion.");
-                        System.out.printf("Quantidade potions: %d", qntPotions);
+                        System.out.printf("Quantidade potions: %d\n", qntPotions);
                         System.out.printf("Total HP: %d\n\n", healthPoints);
                         condicao = false;
                         break;
@@ -303,18 +518,30 @@ public class Implementacao_Templo {
                         condicao = false;
                         break;
                 }
-            } catch (Exception e) {
-                System.err.println("Digite uma opção válida.\n");
+            } else {
+                System.out.println("Você não tem potions");
+                condicao = false;
             }
 
         } while (condicao);
 
-        return healthPoints;
+        status[0] = healthPoints;
+        status[1] = qntPotions;
+
+        return status;
     }
 
     static void Timer() {
         try {
             Thread.sleep(1000);
+        } catch (Exception e) {
+
+        }
+    }
+
+    static void Timer2() {
+        try {
+            Thread.sleep(500);
         } catch (Exception e) {
 
         }
@@ -326,16 +553,15 @@ public class Implementacao_Templo {
         System.out.println("...");
         Timer();
         System.out.println("...");
-        System.out.println("Certa! :D");
         Timer();
-        
+        System.out.println("Certa! :D\n");
+
         if (healthPoints >= 30 && healthPoints < 65) {
             System.out.println("Parece que foi um desafio para você.");
         }
         if (healthPoints < 30) {
             System.out.println("Foi por pouco que você conseguiu passar!");
         }
-        
-        
+
     }
 }
