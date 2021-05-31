@@ -22,7 +22,7 @@ public class Teste1 {
             contador2 = 0;
             contador3 = 0;
             for (int i = 0; i <= 1000000000; i++) {
-                int[] numeroInicial = DeterminaNumeros();
+                int[] numeroInicial = DeterminaNumeros_Templo1();
                 if (numeroInicial[y] > 0) {
                     contador++;
                 } else if (numeroInicial[y] == 0) {
@@ -31,36 +31,39 @@ public class Teste1 {
                     contador3++;
                 }
             }
-
+            /*
             if (y == 0) {
                 System.out.println("A > 0: " + (contador / 1000000000) * 100 + "%");
-                System.out.println("A = 0: " + contador2  + "%");
-                System.out.println("A < 0: " + (contador3 / 1000000000) * 100   + "%");
+                System.out.println("A = 0: " + contador2 + "%");
+                System.out.println("A < 0: " + (contador3 / 1000000000) * 100 + "%");
                 System.out.println("\n");
             } else if (y == 1) {
-                System.out.println("B > 0: " + (contador / 1000000000) * 100  + "%");
+                System.out.println("B > 0: " + (contador / 1000000000) * 100 + "%");
                 System.out.println("B = 0: " + contador2 + "%");
-                System.out.println("B < 0: " + (contador3 / 1000000000) * 100  + "%");
+                System.out.println("B < 0: " + (contador3 / 1000000000) * 100 + "%");
             }
-        }
+            */        }
     }
 
-    static int[] DeterminaNumeros() {
+    static int[] DeterminaNumeros_Templo1() {
         Random dado = new Random();
         int[] numeros = new int[2];
         int detSinal;
 
-        detSinal = dado.nextInt();
-        for (int i = 0; i <= 1; i++) {
-            do {
-                if (detSinal % 2 == 0) {
-                    numeros[i] = dado.nextInt(2000);
-                } else {
-                    numeros[i] = -dado.nextInt(2000);
-                }
-            } while (numeros[i] == 0);
-        }
-
+        do {
+            detSinal = dado.nextInt();
+            for (int i = 0; i <= 1; i++) {
+                do {
+                    if (detSinal % 2 == 0) {
+                        numeros[i] = dado.nextInt(2000);
+                    } else {
+                        numeros[i] = -dado.nextInt(2000);
+                    }
+                } while (numeros[i] == 0);
+            }
+        } while (numeros[1] % numeros[0] == Math.abs(1));
+        
         return numeros;
     }
+
 }
