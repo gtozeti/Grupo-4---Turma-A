@@ -9,11 +9,12 @@ public class O_Jogo {
 	public static Scanner entrada = new Scanner(System.in);
 	public static String opcao = "";
 	public static int dificuldade = 0;
-	public static String nomeJogador = "";
+	public static String nomeJogador = "Bob";
 	public static int thread1 = 0;
 	public static int thread2 = 0;
 	public static int thread3 = 0;
 	public static int[] status = { 100, 2 };
+	public static int frases = 0;
 
 	// CORES DO TEXTO
 	public static final String RESET = "\u001B[30m";
@@ -24,6 +25,12 @@ public class O_Jogo {
 	public static final String MAGENTA = "\u001B[35m";
 	public static final String CYAN = "\u001B[36m";
 	public static final String WHITE = "\u001B[37m";
+	
+	// NEGRITO DO TEXTO 
+	public static final String RESET_BOLD = "\u001B[0m";
+	public static final String BOLD = "\u001B[1m";
+	
+	
 
 	// CORES DO FUNDO DO TEXTO
 	public static final String RESET_BACKGROUND = "\u001B[0m";
@@ -60,7 +67,10 @@ public class O_Jogo {
 
 				Jogar();
 				Hist_1();
+				//ExecutaTemplo1();
+				Hist_2();
 				ExecutaTemplo2();
+				//Hist_3();
 				ExecutaTemplo3(status);
 				
 				
@@ -183,23 +193,23 @@ public class O_Jogo {
 		Texto_Formatado(
 				
 				
-				Dialogo("Narrador",WHITE) + "\n- Aos escombros, uma leve página, parecida de um diário, pousa sobre o rosto de "+ nomeJogador +". Aos sustos, " + nomeJogador +" acorda e começa a ler a página." +
+				Dialogo("Narrador",WHITE) + "\n - Aos escombros, uma leve página, parecida de um diário, pousa sobre o rosto de "+ nomeJogador +". Aos sustos, " + nomeJogador +" acorda e começa a ler a página." +
 				
 				Dialogo(nomeJogador,WHITE)+ GREEN
-				+ "\n- \"Reza a lenda que Ariandre era um lugar próspero, cheio de magia e encanto, onde todos os seres viviam em harmonia e em paz. Um lugar tão belo,"					//TEXTO LIDO PELO PERSONAGEM
+				+ "\n - \"Reza a lenda que Ariandre era um lugar próspero, cheio de magia e encanto, onde todos os seres viviam em harmonia e em paz. Um lugar tão belo,"					
 				+ " que a matemática era a base de força para grandes magos. Mas isso é claro, antes do grande acontecimento. . .Ninguém sabe ao certo, nem ao menos como,"				
 				+ " mas naquela tarde esse lugar tão calmo e pleno, foi reduzido a cinzas e escombros, uma enorme escuridão pairou pelos céus e tomou Ariandre por inteiro "			
 				+ "e com um simples clarão. . .tudo foi destruído. Após momentos agoniantes, enfim o motivo disso tudo. . . sim, ele que era apenas uma fábula de centenas de "			
 				+ "anos, de contos muito antigos, enfim ressurgiu. . . Ancelot tinha despertado. O grande rei demônio estava presente novamente, "			
 				+ "para aprisionar toda a matemática de Ariandre e ser o detentor de toda a magia. Já se passaram alguns meses depois disso tudo, mas agora espero "					
 				+ "ter forças para enfrentá-lo, mas a cada dia que se passa nessas catedrais do abismo perco mais e mais da minha sanidade. Talvez eu seja a última esperança "			
-				+ "de Ariandre, mas caso alguém esteja lendo isso, significa que Ancelot venceu e Ariandre para sempre estará sob o seu domínio.\"" 									//TEXTO LIDO PELO PERSONAGEM
+				+ "de Ariandre, mas caso alguém esteja lendo isso, significa que Ancelot venceu e Ariandre para sempre estará sob o seu domínio.\"" 									
 				
-				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n- Mas. . . mas como? Meses? Estava tudo certo, ele estava em minhas mãos, como foi tudo isso desmoronar. Minha "					//FALA DO PERSONAGEM
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Mas. . . mas como? Meses? Estava tudo certo, ele estava em minhas mãos, como foi tudo isso desmoronar. Minha "					
 				+ "cabeça dói, são memórias que me vem, mas o que será que aconteceu? Por que eu estou nas catedrais e porque Ariandre está destruída? Será isso um sonho?"
 				+ " Eu preciso descobrir o que aconteceu, mas me sinto estranho. Parece que não tenho mais meus poderes. Será que eu consigo canalizar algo??"
 				
-				+ Dialogo("Narrador",WHITE) + "\n- "+nomeJogador+ " tenta utilizar, uma de suas magias vinda através dos poderes da matemática, mas sem sucesso! "
+				+ Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+ " tenta utilizar, uma de suas magias vinda através dos poderes da matemática, mas sem sucesso! "
 				+ "E como em um turbilhão de memórias, "+nomeJogador+" começa a se lembrar daquele fatídico dia.\n\n"
 						
 				+Tabula1(4,"Alguns meses antes...") 
@@ -207,7 +217,7 @@ public class O_Jogo {
 				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Finalmente, depois de anos de estudos e cálculos, finalmente irei despertar Ancelot e enfim obter o seu"
 				+ " poder supremo."
 				
-				+ Dialogo("Narrador",WHITE) + "\n- "+nomeJogador+ " por mais que fosse extremamente forte, jamais saberia que o terrível Ancelot portava de uma maldição, que "
+				+ Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+ " por mais que fosse extremamente forte, jamais saberia que o terrível Ancelot portava de uma maldição, que "
 				+ "quem o invoca-se traria destruição ao seu mundo. Ao passo em que o ritual de invocação se iniciava, um grande portal cheio de trevas se abriu no chão e dele "
 				+ "saía o fim dos tempos."
 				
@@ -222,31 +232,119 @@ public class O_Jogo {
 				
 				+ Dialogo("Ancelot",WHITE) +  RED + "\n - Pelo visto, você não está preparado HAHAHAHAH. Mas talvez o que eu faça aqui, sirva de lição para você."
 				
-				+ Dialogo("Narrador",WHITE) + "\n- E com uma enorme força e magia, que surpreendia até "+nomeJogador+", Ancelot conseguiu drenar todos os seus poderes. Com vários feixes de luz, "
+				+ Dialogo("Narrador",WHITE) + "\n - E com uma enorme força e magia, que surpreendia até "+nomeJogador+", Ancelot conseguiu drenar todos os seus poderes. Com vários feixes de luz, "
 				+ nomeJogador+" via seus poderes se esvaindo ao longo de si."
 				
 				+ Dialogo("Ancelot",WHITE) +  RED + "\n - "+nomeJogador+", você me parece interessante. Irei espalhar esses seus poderes nas mais profundas terras de Ariandre e caso você sobreviva, terá seus "
 				+ "poderes de volta para me enfrentar."
 				
-				+ Dialogo("Narrador",WHITE) + "\n- Com um imenso clarão, tudo ficou em silêncio. Até agora...\n\n"
+				+ Dialogo("Narrador",WHITE) + "\n - Com um imenso clarão, tudo ficou em silêncio. Até agora...\n\n"
 				
 				+Tabula1(4,"Atualmente...")
 				
 				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Droga! Preciso recuperar meus poderes e derrotar Ancelot. Mas onde estou?"
 				
-				+ Dialogo("Narrador",WHITE) + "\n- "+nomeJogador+" olha em volta e se depara com escombros e ruínas. Mas começa a perceber que existem símbolos escritos nas paredes que são familiares. "
+				+ Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" olha em volta e se depara com escombros e ruínas. Mas começa a perceber que existem símbolos escritos nas paredes que são familiares. "
 				+ "Estes símbolos remetem a algumas descrições dos templos da perdição das catedrais. É de grande espanto, pois "+nomeJogador+" ao reconhecer às escritas, lembrou que os templos eram mitos da terra "
 				+ "antiga e que eram locais responsáveis por um grande armazenamento de magia."
 				
 				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Se ele disse que meus poderes estão nas mais profundas terras de Ariandre, então só podem estar espalhados entre os três templos daqui. "
 				+ "Preciso ir em frente!"
 				
-				);
+				+Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+ "adentra no templo das "+BOLD+"Equações de 1º Grau"+RESET_BOLD+", um lugar que lhe faz relembrar dos seus inícios de treinamento de mago. "
+				+ "Tanto é, que esse conhecimento era a base dos seus grandiosos poderes."
+						
+				+ Dialogo("Narrador",WHITE) + "\n - Os templos possuem feitiços incríveis e fazem com quem adentrar ao local tenha a sabedoria para conquistar o poder armazenado nele. E não foi diferente com esse templo."
+				+ nomeJogador+" após passar por um portal mágico do templo, teve uma viagem mística até onde estavam os desafios para recuperar seu poder. Dentro dessa viagem, uma voz desconhecida lhe passou os seguintes "
+				+ "ensinamentos…"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Olá "+ nomeJogador+", que bom te ver aqui!!"
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Mas quem é você?"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Não se preocupe, sou apenas um ajudante de Ariandre e estou aqui para ajudar em sua jornada. Não temos muito tempo a frente então serei o mais rápido possível, "
+				+ "isso lhe guiará nos seus próximos desafios daqui para frente."
+				
+				+ Dialogo("Narrador",WHITE) + "\n - E parecendo uma voz familiar, "+ nomeJogador+" escutou os ensinamentos que a voz desconhecida tinha a oferecer."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - O poder deste templo são às"+BOLD(" Equações de 1º Grau",CYAN)+", elas serão a base para sua fonte de poder. Para derrotar os desafios à frente, você irá precisar dos "
+				+ "conhecimentos básicos a fim de quebrar os feitiços que serão lançados a ti. Então preste muita atenção..."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - As equações de primeiro grau são sentenças matemáticas que estabelecem relações de igualdade entre termos conhecidos e desconhecidos, "
+				+ "representadas sob a forma: "+BOLD("ax+b = 0",CYAN)+". Donde "+BOLD("a",CYAN)+" e "+BOLD("b",CYAN)+" são números reais, sendo "+BOLD("a",CYAN)+" um valor diferente de zero "+BOLD("(a != 0)",CYAN)+" e "+BOLD("x ",CYAN)+ "representa o "
+				+ "valor desconhecido. O valor desconhecido é chamado de "+BOLD("incógnita",CYAN)+" que significa \"termo a determinar\". As equações do 1º grau podem apresentar "+BOLD("uma",CYAN)+" ou "+BOLD("mais",CYAN)+" incógnitas."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - O objetivo de resolver uma equação de primeiro grau é "+BOLD("descobrir o valor desconhecido",CYAN)+", ou seja, encontrar o valor da incógnita que "+BOLD("torna a igualdade verdadeira",CYAN)+". Para isso, "
+				+ "deve-se "+BOLD("isolar os elementos desconhecidos em um dos lados do sinal de igual e os valores constantes do outro lado",CYAN)+". Contudo, é importante observar que a mudança de posição desses elementos "+BOLD("deve ser feita de forma que a igualdade "
+				+ "continue sendo verdadeira",CYAN)+". Quando um termo da equação mudar de lado do sinal de igual, devemos inverter a operação. Assim, se tiver multiplicando, passará dividindo, se tiver somando, passará subtraindo e vice-versa."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Agora você está pronto para o caminho em frente. Espero te ver logo, adeus…"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - E com essa despedida, "+ nomeJogador+" saiu de sua viagem mística e já estava em apuros."
+				
+				+ Dialogo("Ancelot",WHITE) +  RED + "\n - Parece que você sobreviveu depois de tudo aquilo e ainda conseguiu chegar até aqui. Você não terá seu poder de volta tão fácil HAHAHHA. Veremos se você é realmente capaz de enfrentar meus 3 feitiços.");
+				
+								
+				
+				
 		
 		System.out.print("\n");
 
 	}
 
+	public static void Hist_2(){
+		
+		System.out.print("\n");
+		
+		Texto_Formatado(
+				
+				Dialogo("Ancelot",WHITE) +  RED + "\n - Impossível, como você conseguiu ? Isso ainda não acabou, nós iremos nos encontrar novamente."
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Onde você estiver, eu estarei lá para te derrotar!"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - E diante de um clarão Ancelot, desapareceu… Mas no local da batalha grandiosa, uma enorme chama, surgia no meio da arena. Era o poder perdido de "+nomeJogador+",  que ao se aproximar, pode absorver novamente seu poder."
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Como é bom ter meus poderes de volta!"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - Com a grande primeira batalha travada, "+nomeJogador+" continuou em sua jornada para o próximo templo adentrando no próximo portal."
+						
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Olá "+ nomeJogador+", que bom que você sobreviveu!!"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Precisamos continuar sua batalha."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - O poder deste templo são às"+BOLD(" Equações de 2º Grau",CYAN)+", elas serão o fortalecimento do seu poder. Para derrotar os desafios à frente, você irá precisar dos "
+				+ "conhecimentos básicos a fim de quebrar os feitiços que serão lançados a ti. Então preste muita atenção..."									
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - As equações de segundo grau são caracterizadas por um "+BOLD("polinômio de grau 2",CYAN)+", ou seja, um polinômio do tipo "+BOLD("ax² + bx + c",CYAN)+", em que a, b e c "+BOLD("são números reais",CYAN)+". Ao resolvermos uma equação de grau 2, estamos "
+				+ "interessados em "+BOLD("encontrar valores para a incógnita x",CYAN)+" que torne o "+BOLD("valor da expressão igual a 0",CYAN)+", que são chamadas de raízes, isto é, "+BOLD("ax² + bx + c = 0",CYAN)+"."
+						
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - A equação do 2º grau é classificada como "+BOLD("completa",CYAN)+" quando todos os coeficientes são diferentes de 0, ou seja, a != 0, b != 0 e c != 0. A equação do 2º grau é classificada como "+BOLD("incompleta",CYAN)+" quando o valor dos coeficientes b ou c são iguais a 0, isto é, b = 0 ou c = 0."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - "+BOLD("Para solucionar equações do tipo ax² + c = 0",CYAN)+", o método para determinar a solução de equações incompletas que possuem b=0 consiste em isolar a incógnita x."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - "+BOLD("Para solucionar equações do tipo ax² + bx = 0",CYAN)+", o método para determinar as possíveis soluções de uma equação com c =0, consiste em utilizar a fatoração por evidência."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - "+BOLD("Para solucionar equações completas",CYAN)+", o método conhecido como método de Bhaskara ou fórmula de Bhaskara aponta que as raízes de uma equação do 2º grau do tipo ax² + bx + c = 0 é dada pela seguinte relação:"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Raíz 1 = "+BOLD(" (-b + (Raiz Quadrada(Delta)) / 2.a | Delta = b² - 4.a.c",CYAN) 
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Raíz 2 = "+BOLD(" (-b - (Raiz Quadrada(Delta)) / 2.a | Delta = b² - 4.a.c",CYAN) 
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Quando o "+BOLD("Delta for positivo",CYAN)+": existem duas soluções para a equação. Quando o "+BOLD("Delta for igual a zero",CYAN)+": as soluções da equação são repetidas."
+				+ " Quando o "+BOLD("Delta for negativo",CYAN)+": não admite solução real."
+										
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Agora você está pronto para o caminho em frente. Espero que consiga vencer novamente!"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - E com essa despedida, "+ nomeJogador+" saiu de sua viagem mística e já estava em apuros de novo."
+							
+				+ Dialogo("Ancelot",WHITE) +  RED + "\n - Eu me descuidei da primeira vez, mas dessa vez será diferente. Você será derrotado através desses meus novos 3 feitiços."
+				
+				
+				
+				
+				);
+	
+	}	
 	
 	// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-FERRAMENTAS DE TEXTO-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -258,7 +356,8 @@ public class O_Jogo {
 		String[] palavras = texto.split(" ");
 
 		int contadorQntLetras = 0;
-		int limiteLinha = 140;
+		int limiteLinha = 170;
+		
 
 		for (int i = 0; i < limiteLinha; i++) {
 			System.out.print(RED + "=" + RESET);
@@ -274,11 +373,13 @@ public class O_Jogo {
 
 			System.out.print(palavra + " ");
 			Timer2();
-			if (palavra.length()>20){
+			if (palavra.length()>18){
 				contadorQntLetras = 0;
 			}
 			else {
 			contadorQntLetras += palavra.length() + 1;
+			
+			
 			}
 			
 			}
@@ -346,6 +447,11 @@ public class O_Jogo {
 		return texto;
 		}
 	
+	public static String BOLD(String frase, String Cor) {
+		String texto = RESET + BOLD + frase + RESET_BOLD + Cor;
+		return texto;
+	}
+	
 	// PROCEDIMENTOS CRIADO PARA PRINTAR A MENSAGEM ANTES DO BOSS
 	static void FormataTexto1(String frase) {
 
@@ -376,7 +482,10 @@ public class O_Jogo {
 		ArrayList<String> vitoria = new ArrayList();
 		vitoria.add("Acertou novamente, droga droga droga...\n");
 		vitoria.add("Vejo que acertou mais uma...\n");
+		vitoria.add("TUDO QUE EU JOGO PARA VOCÊ, ESTÁ CONSEGUINDO RESOLVER... Bom...você é bom, faz tempo que não uso todo o meu poder," 
+				+ "agora você conhecerá a minha fúria, dúvido que irá conseguir responder as próximas questões...\n");
 		
+		Collections.shuffle(vitoria);
 		Collections.shuffle(vitoria);
 		Collections.shuffle(vitoria);
 		
@@ -385,7 +494,7 @@ public class O_Jogo {
 		
 	}
 	
-	// PROCEDIMENTOS CRIADO PARA ARMAZENAR A COLEÇÃO COLEÇÃO DE FRASES PARA ERROS
+	// PROCEDIMENTOS CRIADO PARA ARMAZENAR A COLEÇÃO DE FRASES PARA ERROS
 	static void Derrota_Frase () {
 		
 		ArrayList<String> derrota = new ArrayList();
@@ -397,6 +506,30 @@ public class O_Jogo {
 		
 		System.out.println(Dialogo("Ancelot",WHITE) +  RED + " - " + derrota.get(0) + RESET);
 	}
+
+	// FUNÇÃO CRIADA PARA ARMAZENAR A COLEÇÃO DE FRASES PARA DESAFIOS
+	static String Desafio_Frase () {
+			
+			ArrayList<String> desafio = new ArrayList();
+			desafio.add("rationem esse accelerationis");
+			desafio.add("processus arithmetica");
+			desafio.add("mindsets parallel");
+			desafio.add("periculi sensus");
+			desafio.add("sensus motus");
+			desafio.add("ignis magicae");
+			desafio.add("ventum magicae");
+			desafio.add("impulsum resistentiam");
+			desafio.add("viribus");
+			desafio.add("title heros");
+			
+			String frase =  RED + desafio.get(frases) + RESET;
+			frases++;
+			
+			Texto_Formatado(Tabula1(4,frase)+"\n" + Dialogo("Narrador",WHITE) + "\n - Você recebe essa magia. Com o seu conhecimento, é capaz"
+			+ " de absorvê-la e consegue revidar caso acerte o encanto!");
+			
+			return frase;
+		}
 	
 	// PROCEDIMENTOS CRIADO PARA MOSTRAR MENSAGEM DE ACORDO COM A VIDA 
 	// DO PERSONAGEM
@@ -408,6 +541,8 @@ public class O_Jogo {
 		System.out.println("...");
 		Timer();
 		System.out.println(GREEN + "Certa! :D\n" + RESET);
+		
+		Vitoria_Frase();
 
 		if (healthPoints >= 30 && healthPoints < 65) {
 			System.out.println("Parece que foi um desafio para você.");
@@ -416,6 +551,7 @@ public class O_Jogo {
 			System.out.println("Foi por pouco que você conseguiu passar!");
 		}
 
+		
 	}
 	
 	// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-FERRAMENTAS DE INPUT-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -474,6 +610,9 @@ public class O_Jogo {
 		}
 
 		System.out.printf("Total HP: %d\n\n", healthPoints);
+		
+		Derrota_Frase();
+		
 		return healthPoints;
 	}
 
@@ -796,7 +935,7 @@ public class O_Jogo {
 
 		////////////////////////////////////////////////////////////////////////
 		// Area de logica do game
-		Texto_Formatado(Tabula1(4, "***\tWELCOME TO THE 1ST GAME\t***\n"));
+		Desafio_Frase();
 
 		System.out.printf("\nConverta o numero %S que esta na base %d para a base %d\n\n", numeroInicial[0],
 				baseInicial, baseConversao);
@@ -845,8 +984,8 @@ public class O_Jogo {
 			opcoes[i] = respostaErrada.get(i); // Adicionando as opcoes embaralhadas numa String para fazer o desafio
 		}
 
-		Texto_Formatado(Tabula1(4, "***\tWELCOME TO THE 2ND GAME\t***\n"));
-		Timer2();
+		Desafio_Frase();
+		
 		System.out.printf("\nFaça a seguinte conversão:\n%S + %S (na base %d) = X (na base %d)\n\n", numeroInicial[0],
 				numeroInicial[1], baseInicial, baseConversao);
 		Timer2();
@@ -901,7 +1040,7 @@ public class O_Jogo {
 			opcoes[i] = respostaErrada.get(i);// Adicionando as opcoes em String para fazer o desafio
 		}
 
-		Texto_Formatado(Tabula1(4, "***\tWELCOME TO THE 3ND GAME\t***\n"));
+		Desafio_Frase();
 
 		System.out.printf("\nFaça a seguinte conversão:\n%S * %S (na base %d) = X (na base %d)\n\n", numeroInicial[0],
 				numeroInicial[1], baseInicial, baseConversao);
@@ -997,9 +1136,7 @@ public class O_Jogo {
 		Random rng = new Random();
 		String opcao, enunciado;
 		boolean repete = true;
-				
-		//Enunciado
-		System.out.println("Olá! Nesse templo nós teremos três testes relacionados a equações do segundo grau.");
+		String[] opcoes = new String[5];
 				
 		//Questão
 				
@@ -1010,64 +1147,53 @@ public class O_Jogo {
 		switch(r) {
 		//RECEBENDO A QUESTÃO RANDOMIZADA E RESOLVENDO A QUESTÃO.
 			case 0:
-				enunciado = "Primeiramente me diga, quais são os coeficiêntes dessa equação de segundo grau. 2x² + x – 3 = 0";
+				Desafio_Frase();
+				enunciado = "\nQuais são os coeficiêntes dessa equação de segundo grau. 2x² + x – 3 = 0\n";
 				System.out.println(enunciado);
-				System.out.println("a) a = -2 b = 0 c = -3 \n"
-						+ "b) a = 2 b = 1 c = 3 \n"
-						+ "c) a = 2 b = 1 c = -3 \n"
-						+ "d) a = 2 b = 0 c = -3");
+						
 				
-				opcao = Option();
-			
-				if(opcao.equalsIgnoreCase("c")) {
-					AcertouResposta(status[0]);
-					Vitoria_Frase();
-					repete = false;
-				}else {
-					DanoRespostaErrada(status[0]);
-					Derrota_Frase();
-				}
+				opcoes[0] = "a = -2  |  b = 0  |  c = -3";
+				opcoes[1] = "a =  2  |  b = 1  |  c =  3";
+				opcoes[2] = "a =  2  |  b = 1  |  c = -3";
+				opcoes[3] = "a =  2  |  b = 0  |  c = -3";
+				opcoes[4] = "a =  1  |  b = 0  |  c = -3";
+				
+				ProcessoAlternativas_Geral(opcoes,status,"a =  2  |  b = 1  |  c = -3");
+				
 				break;
 				
 			case 1:
-				enunciado = "Primeiramente me diga, quais são os coeficiêntes dessa equação de segundo grau. –3x² + 18x – 15 = 0.";
+				Desafio_Frase();
+				enunciado = "\nQuais são os coeficiêntes dessa equação de segundo grau. –3x² + 18x – 15 = 0\n";
 				System.out.println(enunciado);
-				System.out.println("a) a = -3 b = -18 c = -15 \n"
-						+ "b) a = 3 b = 18 c = -15 \n"
-						+ "c) a = -3 b = 18 c = 15 \n"
-						+ "d) a = -3 b = 18 c = -15");
 				
-				opcao = Option();
 				
-				if(opcao.equalsIgnoreCase("d")) {
-					AcertouResposta(status[0]);
-					Vitoria_Frase();
-					repete = false;
-				}else {
-					DanoRespostaErrada(status[0]);
-					Derrota_Frase();
-				}
+				
+				opcoes[0] = "a = -3  |  b = -18  |  c = -15";
+				opcoes[1] = "a =  3  |  b =  18  |  c = -15";
+				opcoes[2] = "a = -3  |  b =  18  |  c =  15";
+				opcoes[3] = "a = -3  |  b =  18  |  c = -15";
+				opcoes[4] = "a =  3  |  b =  18  |  c =   0";
+				
+				ProcessoAlternativas_Geral(opcoes,status,"a = -3  |  b =  18  |  c = -15");
+				
+				
 				break;
 				
 			case 2:
-				enunciado = "Primeiramente me diga, quais são os coeficiêntes dessa equação de segundo grau. 3x² – x – 1 = 0.";
+				Desafio_Frase();
+				enunciado = "\nQuais são os coeficiêntes dessa equação de segundo grau. 3x² – x – 1 = 0\n";
 				System.out.println(enunciado);
 				
-				System.out.println("a) a = -3 b = -1 c = -1 \n"
-						+ "b) a = 3 b = -1 c = -1 \n"
-						+ "c) a = -3 b = 0 c = 1 \n"
-						+ "d) a = 3 b = -1 c = 1");
 				
-				opcao = Option();
+				opcoes[0] = "a = -3  |  b =  -1  |  c = -1";
+				opcoes[1] = "a =  3  |  b =  -1  |  c = -1";
+				opcoes[2] = "a = -3  |  b =   0  |  c =  1";
+				opcoes[3] = "a =  3  |  b =  -1  |  c =  1";
+				opcoes[4] = "a =  1  |  b =   0  |  c = -3";
 				
-				if(opcao.equalsIgnoreCase("b")) {
-					AcertouResposta(status[0]);
-					Vitoria_Frase();
-					repete = false;
-				}else {
-					DanoRespostaErrada(status[0]);
-					Derrota_Frase();
-				}
+				ProcessoAlternativas_Geral(opcoes,status,"a =  3  |  b =  -1  |  c = -1");
+				
 				break;
 		}
 		
@@ -1091,6 +1217,7 @@ public class O_Jogo {
 			r = rng.nextInt(3);
 		switch(r) {
 		case 0:
+			Desafio_Frase();
 			enunciado = "Qual é a maior raiz da equação -2x² + 3x + 5 = 0?";
 			System.out.println(enunciado);
 			System.out.println("a) -1\n"
@@ -1103,14 +1230,15 @@ public class O_Jogo {
 			if(opcao.equalsIgnoreCase("d")) {
 				
 				AcertouResposta(status[0]);
-				Vitoria_Frase();
+				
 				repete = false;
 			}else {
 				DanoRespostaErrada(status[0]);
-				Derrota_Frase();
+				
 			}
 			break;
 		case 1:
+			Desafio_Frase();
 			enunciado = "Qual é a menor raiz da equação 2x² + 7x + 5 = 0";
 			System.out.println(enunciado);
 			System.out.println("a) -1 \n"
@@ -1122,15 +1250,16 @@ public class O_Jogo {
 			
 			if(opcao.equalsIgnoreCase("c")) {
 				AcertouResposta(status[0]);
-				Vitoria_Frase();
+				
 				repete = false;
 				}else {
 					DanoRespostaErrada(status[0]);
-					Derrota_Frase();
+					
 				
 				}
 			break;
 		case 2:
+			Desafio_Frase();
 			enunciado = "Quais são as duas raízes da equação 3x² – x – 2 = 0";
 			System.out.println(enunciado);
 			System.out.println("a) x1 = 2/3 x2 = 1\n"
@@ -1141,11 +1270,11 @@ public class O_Jogo {
 			opcao = Option();
 			if(opcao.equalsIgnoreCase("c")) {
 				AcertouResposta(status[0]);
-				Vitoria_Frase();
+				
 				repete = false;
 				}else {
 					DanoRespostaErrada(status[0]);
-					Derrota_Frase();
+					
 				
 				}
 			break;
@@ -1168,6 +1297,7 @@ public class O_Jogo {
 			r = rng.nextInt(3);
 		switch(r) {
 		case 0:
+			Desafio_Frase();
 			enunciado = "Qual é a resolução da seguinte equação do segundo grau x² – 4x – 5 = 0?";
 			System.out.println(enunciado);
 			System.out.println("a) x1 = 1 x2 = 5"
@@ -1180,14 +1310,15 @@ public class O_Jogo {
 			if(opcao.equalsIgnoreCase("b")) {
 				
 				AcertouResposta(status[0]);
-				Vitoria_Frase();
+				
 				repete = false;
 			}else {
 				DanoRespostaErrada(status[0]);
-				Derrota_Frase();
+				
 				}
 			break;
 		case 1:
+			Desafio_Frase();
 			enunciado = "Eu quero que me diga, temos na equação 10x² – 1000 = 0, duas raízes reais e distintas, a e b, que podem ser encontradas. "
 					+ "Mostre a mim que sabe! Determine a² + b²";
 			System.out.println(enunciado);
@@ -1200,15 +1331,16 @@ public class O_Jogo {
 			
 			if(opcao.equalsIgnoreCase("d")) {
 				AcertouResposta(status[0]);
-				Vitoria_Frase();
+				
 				repete = false;
 				}else {
 					DanoRespostaErrada(status[0]);
-					Derrota_Frase();
+					
 				
 				}
 			break;
 		case 2:
+			Desafio_Frase();
 			enunciado = "Quero que me diga qual será o resultado do produto das duas raízes da equação 5x² - 125 = 0";
 			System.out.println(enunciado);
 			System.out.println("a) -25\n"
@@ -1218,12 +1350,13 @@ public class O_Jogo {
 			
 			opcao = Option();
 			if(opcao.equalsIgnoreCase("a")) {
+				
 				AcertouResposta(status[0]);
-				Vitoria_Frase();
+				
 				repete = false;
 				}else {
 					DanoRespostaErrada(status[0]);
-					Derrota_Frase();
+					
 				
 				}
 			break;
