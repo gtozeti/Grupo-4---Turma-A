@@ -67,7 +67,7 @@ public class O_Jogo {
 
 				Jogar();
 				Hist_1();
-				//ExecutaTemplo1();
+				ExecutaTemplo1(status);
 				Hist_2();
 				ExecutaTemplo2();
 				//Hist_3();
@@ -1412,5 +1412,501 @@ do {
 		
 	}
 	
-	
+	// TEMPLO 1
+	static int[] ExecutaTemplo1(int[] status) {
+		Scanner sc = new Scanner(System.in);
+		boolean condicao = true, condicao2 = true;
+
+		do {
+			do {
+				status = Desafio1_Templo1(status);
+				if (status[0] > 0) {
+
+					status[1]++;
+
+				} else {
+					Texto_Formatado(
+							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					status[0] = 100;
+					break;
+				}
+				System.out.print("\nAperte ENTER para começar o próximo Desafio");
+				sc.nextLine();
+				System.out.println(" ");
+
+				status = Desafio2_Templo1(status);
+
+				if (status[0] > 0) {
+
+					status[1]++;
+
+				} else {
+					Texto_Formatado(
+							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					status[0] = 100;
+					break;
+				}
+
+				System.out.print("\nAperte ENTER para começar o último Desafio");
+				sc.nextLine();
+				System.out.println(" ");
+
+				status = Desafio3_Templo1(status);
+				if (status[0] > 0) {
+
+					status[1]++;
+
+					condicao = false;
+					condicao2 = false;
+
+				} else {
+
+					Texto_Formatado(
+							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					status[0] = 100;
+					break;
+
+				}
+			} while (condicao);
+		} while (condicao2);
+		return status;
+	}
+
+    static int[] Desafio1_Templo1(int[] status) {
+        //Area para declarar variaveis
+        int[] numeroInicial = new int[2];
+        String[] opcoes = new String[5];
+        String[] testeRespostaErrada = new String[4];
+        ArrayList<String> respostaErrada = new ArrayList();
+
+        String respostaCerta;
+
+        //Area para processos
+        numeroInicial = DeterminaNumeroInicial_Templo1(); //Determinando o numero A[0] e numero B[1]
+
+        respostaCerta = Integer.toString(-numeroInicial[1] / numeroInicial[0]); //Determinando a resposta certa
+
+        respostaErrada.add(respostaCerta); //Adicinando a resposta certa nas opcoes
+
+        testeRespostaErrada = DeterminaOpcoesErradas_Templo1Teste(respostaCerta);
+
+        for (int i = 0; i < 4; i++) {
+            respostaErrada.add(testeRespostaErrada[i]);
+            //respostaErrada.add(DeterminaOpcoesErradas_Templo1(numeroInicial, respostaCerta)); //Gerando respostas erradas para o desafio
+        }
+
+        Collections.shuffle(respostaErrada); //Deixando de forma aleatoria as opcoes
+        Collections.shuffle(respostaErrada);
+
+        for (int i = 0; i < opcoes.length; i++) {
+            opcoes[i] = respostaErrada.get(i); // Adicionando as opcoes em String para fazer o desafio
+        }
+
+        String enunciado = "";
+       
+        if (numeroInicial[1] > 0) {
+           // System.out.printf("Faça a seguinte conta:\n\n%dx + %d = 0\n\n", numeroInicial[0], numeroInicial[1]);
+            enunciado = String.valueOf("\nFaça a seguinte conta:\n\n"+numeroInicial[0]+"x + "+numeroInicial[1]+" = 0\n\n");
+        } else 
+        {
+            System.out.printf("Faça a seguinte conta:\n\n%dx + (%d) = 0\n\n", numeroInicial[0], numeroInicial[1]);
+            enunciado = String.valueOf("\nFaça a seguinte conta:\n\n"+numeroInicial[0]+"x + ("+numeroInicial[1]+") = 0\n\n");
+        }
+        
+        
+        
+        status = ProcessoAlternativas_Geral(opcoes, status, respostaCerta,enunciado);
+
+        return status;
+    }
+
+    static int[] Desafio2_Templo1(int[] status) {
+        //Area para declarar variaveis
+        int[] numeroCima = new int[4];
+        int[] numeroBaixo = new int[2];
+        String[] testeRespostaErrada = new String[4];
+        String[] opcoes = new String[5];
+        ArrayList<String> respostaErrada = new ArrayList();
+        int help1, help2, help3, help4;
+        int mmc = 0, aux1 = 0, aux2 = 0, respostaCerta = 0;
+        String respostaCertaStr;
+        boolean condicao = true;
+
+        //Area para processos
+        //Determinar os numeros (ax + b) / y = (cx + d) / z
+        do {
+            try {
+                do {
+                    do {
+                        numeroCima = DeterminaNumeroCima_Templo1(); // Determinar os numeros de cima
+                        numeroBaixo = DeterminaNumBaixo_Templo1(); // Determinar os divisores
+
+                        mmc = DeterminaMMC_Templo1(numeroBaixo[0], numeroBaixo[1]); // Determinar o MMC dos divisores
+
+                        help1 = (numeroCima[0] * mmc) / numeroBaixo[0]; // Fazer o processo de MMC com cada numero
+                        help2 = (numeroCima[1] * mmc) / numeroBaixo[0];
+                        help3 = (numeroCima[2] * mmc) / numeroBaixo[1];
+                        help4 = (numeroCima[3] * mmc) / numeroBaixo[1];
+
+                        aux1 = help1 - help3; // Isolando os numeros
+                        aux2 = help4 - help2;
+
+                        respostaCerta = aux2 / aux1; // Obtendo a resposta
+                    } while (aux1 == 0);
+                } while (aux2 % aux1 != 0);
+                if (respostaCerta != 0) {
+                    condicao = false;
+                }
+            } catch (Exception e) {
+            }
+        } while (condicao);
+
+        //////////////////////////////////
+        //Fazer a parte das opcoes
+        respostaCertaStr = Integer.toString(respostaCerta);
+
+        testeRespostaErrada = DeterminaOpcoesErradas_Templo1Teste(respostaCertaStr);
+
+        respostaErrada.add(respostaCertaStr);
+        for (int i = 0; i < 4; i++) {
+            respostaErrada.add(testeRespostaErrada[i]);
+        }
+
+        Collections.shuffle(respostaErrada);
+        Collections.shuffle(respostaErrada);
+
+        for (int i = 0; i < opcoes.length; i++) {
+            opcoes[i] = respostaErrada.get(i);
+        }
+
+        //////////////////////////////////
+        // Enunciado
+        
+        String enunciado = String.valueOf("\nFaca a seguinte conta: \n"+numeroCima[0]+"x + "+numeroCima[1]+"  =  "+numeroCima[2]+"x + "+numeroCima[3]+"\n----------    ----------\n    "+numeroBaixo[0]+"            "+numeroBaixo[1]+"\n\n");  		
+       
+        // System.out.println("***\tWELCOME TO THE 2ND GAME\t***\n");
+       // Timer2();
+       // System.out.println("Faca a seguinte conta: \n");
+       // Timer2();
+       // System.out.printf("%dx + %d  =  %dx + %d\n----------    ----------\n    %d            %d\n\n", numeroCima[0], numeroCima[1], numeroCima[2], numeroCima[3], numeroBaixo[0], numeroBaixo[1]);
+       // Timer2();
+
+        status = ProcessoAlternativas_Geral(opcoes, status, respostaCertaStr,enunciado);
+
+        return status;
+    }
+
+    static int[] Desafio3_Templo1(int[] status) {
+        int[] numMultiplicador = new int[4];
+        int[] numDivisor = new int[4];
+        int[] numAcompanha = new int[4];
+        int[] numSoma = new int[4];
+
+        int[] aux = new int[16];
+
+        int mmc;
+        boolean condicao = true;
+
+        ArrayList<String> respostaErrada = new ArrayList();
+
+        String[] respostaErradaTeste = new String[4];
+        String[] opcoes = new String[5];
+        String respostaCertaStr;
+        ////////////////////////////////////////////////////////////////////////
+        //Fazendo a resolucao do problema
+        //Parte feita para evitar que os numeros sejam divididos por zero e tambem para que o resultado seja != 0 e maior que 1
+        do {
+            try {
+                do {
+                    do {
+                        numMultiplicador = DeterminaNumeroDesafio3_Templo1(1);
+                        numAcompanha = DeterminaNumeroDesafio3_Templo1(2);
+                        numSoma = DeterminaNumeroDesafio3_Templo1(3);
+                        numDivisor = DeterminaNumeroDesafio3_Templo1(4);
+
+                        mmc = DeterminaMMC_Desafio3_Templo1(numDivisor);
+
+                        aux[0] = ((numMultiplicador[0] * numAcompanha[0]) * mmc) / numDivisor[0]; // numero com X
+                        aux[1] = ((numMultiplicador[0] * numSoma[0]) * mmc) / numDivisor[0]; // numero sem X - passa para o outro lado
+
+                        aux[2] = ((numMultiplicador[1] * numAcompanha[1]) * mmc) / numDivisor[1]; // numero com X
+                        aux[3] = ((numMultiplicador[1] * numSoma[1]) * mmc) / numDivisor[1]; // numero sem X - passa para o outro lado
+
+                        aux[4] = ((numMultiplicador[2] * numAcompanha[2]) * mmc) / numDivisor[2]; // numero com X - passa para o outro lado 
+                        aux[5] = ((numMultiplicador[2] * numSoma[2]) * mmc) / numDivisor[2]; // numero sem X
+
+                        aux[6] = aux[0] + aux[2] - aux[4]; // numero com X
+                        aux[7] = aux[5] - (aux[1] + aux[3]); // numero sem X
+
+                    } while (aux[7] % aux[6] != 0);
+
+                    aux[8] = aux[7] / aux[6]; // respostaCerta
+
+                } while (aux[8] <= 1);
+
+                condicao = false;
+            } catch (Exception e) {
+            }
+        } while (condicao);
+
+        ////////////////////////////////////////////////////////////////////////
+        //Definir a resposta certa e as opcoes para o desafio
+        respostaCertaStr = Integer.toString(aux[8]);
+
+        respostaErradaTeste = DeterminaOpcoesErradas_Templo1Teste(respostaCertaStr);
+
+        for (int i = 0; i < 4; i++) {
+            respostaErrada.add(respostaErradaTeste[i]);
+        }
+        
+        respostaErrada.add(respostaCertaStr);
+        
+        Collections.shuffle(respostaErrada);
+        Collections.shuffle(respostaErrada);
+        
+        for (int i = 0; i < 5; i++) {
+            opcoes[i] = respostaErrada.get(i);
+        }
+       
+        String enunciado = String.valueOf("\nResolva a seguinte função: \n"+numMultiplicador[0]+" ("+numAcompanha[0]+"x + "+numSoma[0]+")\t + \t"+numMultiplicador[1]
+        		+" ("+numAcompanha[1]+"x + "+ numSoma[1]+")\t = \t"+numMultiplicador[2]+" ("+numAcompanha[2]+"x + "+ numSoma[2]+")\n-------------\t\t-------------\t\t-------------\n"
+        	+"\t"+numDivisor[0]+"\t\t      "+numDivisor[1]+"\t\t      "+numDivisor[2]+"     \n\n");
+        		
+       // System.out.printf("Resolva a seguinte função: \n"
+       //        + "%d (%dx + %d)\t + \t%d (%dx + %d)\t = \t%d (%dx + %d)\n"
+       //         + "-------------\t\t-------------\t\t-------------\n"
+       //        + "\t%d\t\t      %d\t\t      %d     \n ", numMultiplicador[0], numAcompanha[0], numSoma[0], numMultiplicador[1], numAcompanha[1], numSoma[1], numMultiplicador[2], numAcompanha[2], numSoma[2], numDivisor[0], numDivisor[1], numDivisor[2]);
+        
+       //  System.out.println("\n");
+        
+        status = ProcessoAlternativas_Geral(opcoes, status, respostaCertaStr,enunciado);
+        
+        return status;
+    }
+
+    // FUNÇÕES DO TEMPLO 1
+    static int[] DeterminaNumeroCima_Templo1() {
+        int[] num = new int[4];
+        int determinaSinal;
+
+        Random dado = new Random();
+
+        ////////////////////////////////////////////////////////////////////////
+        for (int i = 0; i < 4; i++) {
+            determinaSinal = dado.nextInt(2);
+
+            switch (determinaSinal) {
+                case 0:
+                    do {
+                        num[i] = dado.nextInt(150);
+                    } while (Math.abs(num[i]) < 20);
+                    break;
+                case 1:
+                    do {
+                        num[i] = dado.nextInt(150) * -1;
+                    } while (Math.abs(num[i]) < 20);
+                    break;
+            }
+        }
+
+        return num;
+    }
+
+    static int[] DeterminaNumBaixo_Templo1() {
+        int[] num = new int[2];
+
+        Random dado = new Random();
+
+        for (int i = 0; i < 2; i++) {
+            do {
+                num[i] = dado.nextInt(15);
+            } while (num[i] <= 1);
+        }
+
+        return num;
+    }
+
+    static int DeterminaMMC_Templo1(int a, int b) {
+        int mmc;
+
+        mmc = Math.max(a, b);
+
+        while (mmc % Math.min(a, b) != 0) {
+            mmc = mmc + Math.max(a, b);
+        }
+
+        return mmc;
+    }
+
+    static int[] DeterminaNumeroInicial_Templo1() {
+        //Area para declarar variaveis
+        Random dado = new Random();
+
+        double[] numeroInicial = new double[2];
+        int[] numeroConv = new int[2];
+
+        int determinaSinal;
+
+        //Area para fazer processos
+        do {
+            do {
+                numeroInicial[0] = dado.nextInt(1000);
+                numeroInicial[1] = dado.nextInt(10000);
+            } while (numeroInicial[1] % numeroInicial[0] != 0);
+        } while (numeroInicial[0] < 10);
+
+        for (int i = 0; i < numeroInicial.length; i++) {
+            determinaSinal = dado.nextInt(2);
+
+            switch (determinaSinal) {
+                case 0:
+                    numeroConv[i] = (int) numeroInicial[i];
+                    break;
+                case 1:
+                    numeroConv[i] = (int) numeroInicial[i] * -1;
+                    break;
+            }
+
+        }
+
+        return numeroConv;
+    }
+
+    static int[] DeterminaNumeroInicial_Desafio2_Templo1() {
+        //Area para declarar valores
+        double[] numeroInicial = new double[3];
+        int[] numeroFinal = new int[3];
+
+        Random dado = new Random();
+
+        int aux;
+
+        //Area para processos
+        numeroInicial[0] = dado.nextInt(500);
+        numeroInicial[1] = dado.nextInt(600);
+        numeroInicial[2] = dado.nextInt(300);
+
+        return numeroFinal;
+    }
+
+    static String[] DeterminaOpcoesErradas_Templo1Teste(String respostaCerta) {
+        String[] respostaErrada = new String[4];
+        int[] respostaErradaNum = new int[4];
+        int aux1;
+
+        Random dado = new Random();
+        ////////////////////////////////////////////////////////////////////////
+
+        aux1 = Integer.parseInt(respostaCerta);
+
+        //Gerando opcoes erradas
+        for (int i = 0; i < 4; i++) {
+            do {
+                respostaErradaNum[i] = aux1 + dado.nextInt(15) - 4;
+            } while (respostaErradaNum[i] == aux1);
+        }
+
+        try {
+            //Checando para ver se nao tem opcao repetida
+            for (int i = 0; i < respostaErradaNum.length; i++) {
+                for (int j = 0; j < respostaErradaNum.length - 1; j++) {
+                    if (respostaErradaNum[j] == respostaErradaNum[j + 1]) {
+                        do {
+                            //System.out.println("PASSEI AQUI\n");
+                            respostaErradaNum[j] = respostaErradaNum[j] + dado.nextInt(3);
+                        } while (respostaErradaNum[j] == aux1);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Deu ruim");
+        }
+
+        for (int i = 0; i < respostaErradaNum.length; i++) {
+            respostaErrada[i] = Integer.toString(respostaErradaNum[i]);
+        }
+
+        return respostaErrada;
+    }
+
+    static int DeterminaMMC_Desafio3_Templo1(int[] numDivisor) {
+        int mmc, aux;
+        boolean condicao = true;
+
+        for (int i = 0; i < numDivisor.length; i++) {
+            for (int y = 0; y < numDivisor.length - 1; y++) {
+                if (numDivisor[y] < numDivisor[y + 1]) {
+                    aux = numDivisor[y];
+                    numDivisor[y] = numDivisor[y + 1];
+                    numDivisor[y + 1] = aux;
+                }
+            }
+        }
+
+        mmc = numDivisor[0];
+
+        while (condicao) {
+            mmc = mmc + numDivisor[0];
+
+            if (mmc % numDivisor[0] == 0) {
+                if (mmc % numDivisor[1] == 0) {
+                    if (mmc % numDivisor[2] == 0) {
+                        condicao = false;
+                    }
+                }
+            }
+        }
+
+        return mmc;
+    }
+
+    static int[] DeterminaNumeroDesafio3_Templo1(int indice) {
+        int[] num = new int[4];
+        int determinaSinal;
+        Random dado = new Random();
+
+        switch (indice) {
+            case 1: // Decidir o multiplicador
+                for (int i = 0; i < num.length; i++) {
+                    do {
+                        num[i] = dado.nextInt(20);
+                    } while (num[i] <= 2);
+                }
+                break;
+            case 2: // indicar o numero que acompanha X
+                for (int i = 0; i < num.length; i++) {
+                    do {
+                        num[i] = dado.nextInt(50);
+                    } while (num[i] <= 1);
+                }
+                break;
+            case 3: // Indicar o numero que faz a soma dentro do parenteses
+                for (int i = 0; i < num.length; i++) {
+                    do {
+                        num[i] = dado.nextInt(75);
+                    } while (num[i] <= 1);
+                }
+                break;
+            case 4: // Indicar o numero que divide a conta
+                for (int i = 0; i < num.length; i++) {
+                    do {
+                        num[i] = dado.nextInt(15);
+                    } while (num[i] <= 2);
+                }
+                break;
+        }
+
+        ////////////////////////////////////////
+        for (int i = 0; i < num.length; i++) {
+            determinaSinal = dado.nextInt(2);
+
+            if (determinaSinal == 1) {
+                num[i] = num[i] * -1;
+            }
+        }
+
+        return num;
+    }
+
+
 }
