@@ -9,7 +9,7 @@ public class O_Jogo {
 	public static Scanner entrada = new Scanner(System.in);
 	public static String opcao = "";
 	public static int dificuldade = 0;
-	public static String nomeJogador = "Bob";
+	public static String nomeJogador = "";
 	public static int thread1 = 0;
 	public static int thread2 = 0;
 	public static int thread3 = 0;
@@ -72,6 +72,7 @@ public class O_Jogo {
 				ExecutaTemplo2();
 				//Hist_3();
 				ExecutaTemplo3(status);
+				//Hist_3();
 				
 				
 				break;
@@ -251,7 +252,7 @@ public class O_Jogo {
 				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Se ele disse que meus poderes estão nas mais profundas terras de Ariandre, então só podem estar espalhados entre os três templos daqui. "
 				+ "Preciso ir em frente!"
 				
-				+Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+ "adentra no templo das "+BOLD+"Equações de 1º Grau"+RESET_BOLD+", um lugar que lhe faz relembrar dos seus inícios de treinamento de mago. "
+				+Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+ " adentra no templo das "+BOLD+"Equações de 1º Grau"+RESET_BOLD+", um lugar que lhe faz relembrar dos seus inícios de treinamento de mago. "
 				+ "Tanto é, que esse conhecimento era a base dos seus grandiosos poderes."
 						
 				+ Dialogo("Narrador",WHITE) + "\n - Os templos possuem feitiços incríveis e fazem com quem adentrar ao local tenha a sabedoria para conquistar o poder armazenado nele. E não foi diferente com esse templo."
@@ -388,6 +389,7 @@ public class O_Jogo {
 		for (int i = 0; i < limiteLinha; i++) {
 			System.out.print(RED + "=" + RESET);
 		}
+		System.out.println("\n");
 
 	}
 
@@ -483,14 +485,15 @@ public class O_Jogo {
 		vitoria.add("Acertou novamente, droga droga droga...\n");
 		vitoria.add("Vejo que acertou mais uma...\n");
 		vitoria.add("TUDO QUE EU JOGO PARA VOCÊ, ESTÁ CONSEGUINDO RESOLVER... Bom...você é bom, faz tempo que não uso todo o meu poder," 
-				+ "agora você conhecerá a minha fúria, dúvido que irá conseguir responder as próximas questões...\n");
+		+ "agora você conhecerá a minha fúria, dúvido que irá conseguir responder as próximas questões...\n");
+		vitoria.add("Aaaah, sim, vejo que você foi capaz de passar pelo meu desafio! Maravilhoso, vamos apimentar um pouco mais as coisas\n");
 		
 		Collections.shuffle(vitoria);
 		Collections.shuffle(vitoria);
 		Collections.shuffle(vitoria);
 		
 		
-		System.out.println(Dialogo("Ancelot",WHITE) +  RED + " - " + vitoria.get(0) + RESET);
+		System.out.print(Dialogo("Ancelot",WHITE) +  RED + " - " + vitoria.get(0) + RESET + Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" concluiu mais um desafio! E por uma benção divina recebeu mais uma potion!!\n");
 		
 	}
 	
@@ -523,9 +526,8 @@ public class O_Jogo {
 			desafio.add("title heros");
 			
 			String frase =  RED + desafio.get(frases) + RESET;
-			frases++;
 			
-			Texto_Formatado(Tabula1(4,frase)+"\n" + Dialogo("Narrador",WHITE) + "\n - Você recebe essa magia. Com o seu conhecimento, é capaz"
+			Texto_Formatado(Tabula1(6,frase)+"\n" + Dialogo("Narrador",WHITE) + "\n - Você recebe essa magia. Com o seu conhecimento, é capaz"
 			+ " de absorvê-la e consegue revidar caso acerte o encanto!");
 			
 			return frase;
@@ -534,22 +536,22 @@ public class O_Jogo {
 	// PROCEDIMENTOS CRIADO PARA MOSTRAR MENSAGEM DE ACORDO COM A VIDA 
 	// DO PERSONAGEM
 	static void AcertouResposta(int healthPoints) {
-		System.out.println("\nA resposta está...");
-		Timer();
-		System.out.println("...");
-		Timer();
-		System.out.println("...");
-		Timer();
-		System.out.println(GREEN + "Certa! :D\n" + RESET);
 		
-		Vitoria_Frase();
-
+		String frase_A = "";
+		
 		if (healthPoints >= 30 && healthPoints < 65) {
-			System.out.println("Parece que foi um desafio para você.");
+			frase_A = "\nParecia que tinha sido um grande desafio para "+nomeJogador+".";
 		}
 		if (healthPoints < 30) {
-			System.out.println("Foi por pouco que você conseguiu passar!");
+			frase_A = "\nTinha sido por pouco, mas "+nomeJogador+" conseguiu passar!";
 		}
+		
+		String frase =  Dialogo("Narrador",WHITE) + "\n - A resposta estava...\n...\n...\n\n"+GREEN + "Certa :D\n" + RESET + frase_A ;
+		Texto_Formatado(frase);
+	
+		Vitoria_Frase();
+
+		
 
 		
 	}
@@ -579,46 +581,59 @@ public class O_Jogo {
 	static int DanoRespostaErrada(int healthPoints) {
 		Random dado = new Random();
 		int jogada;
-
-		System.out.println("\nA resposta está...");
-		Timer();
-		System.out.println("...");
-		Timer();
-		System.out.println("...");
-		Timer();
-		System.out.println(RED + "Errada :(" + RESET);
-		System.out.println("\nAgora iremos jogar o dado para saber quanto de dano você irá tomar.");
-		System.out.println("O número que caiu no dado é...");
-		Timer();
-		System.out.println("...");
-		Timer();
-		System.out.println("...");
-		Timer();
-
+		
+		int vida  = healthPoints;
+		String frase_A = "";
+		
 		jogada = dado.nextInt(20) + 1;
-
-		System.out.printf("**\t%d\t**\n", jogada);
-
+		String jogada_ = String.valueOf(jogada);
+		
 		if (jogada <= 5) {
-			System.out.println("Parece que você deu sorte e se esquivou do dano.");
-		} else if (jogada > 5 && jogada <= 15) {
-			System.out.println("Você levou 20 de dano");
+			
+			String frase =  Dialogo("Narrador",WHITE) + "\n - Parece que o feitiço era fraco e "+nomeJogador+" conseguiu se esquivar do dano.\n";
+			Texto_Formatado(frase);
+			
+		}
+		else 
+		{
+			
+			if (jogada > 5 && jogada <= 10) {
+			frase_A = "\nSorte que o feitiço não acertou em cheio, mas acertou de raspão.\n";
+			healthPoints = healthPoints - (10 + (5 * dificuldade));
+		} else if (jogada > 10 && jogada <= 17) {
+			frase_A = "\nEsse feitiço era forte, mas não muito poderoso.\n";
 			healthPoints = healthPoints - (20 + (5 * dificuldade));
-		} else if (jogada > 15) {
-			System.out.println("Você tomou dano crítico!");
+		}
+		else {
+			frase_A = "\nEsse feitiço tinha acertado em cheio!!.\n";
 			healthPoints = healthPoints - (30 + (5 * dificuldade));
 		}
+			
+			if (healthPoints > 0) {
+			vida = vida - healthPoints;
+			String vida_ = String.valueOf(vida);
+			
+			String frase =  Dialogo("Narrador",WHITE) + "\n - A resposta estava...\n...\n...\n\n"+RED + "Errada :(\n" + RESET + "\n**\t"+nomeJogador+
+			" tinha recebido "+vida_+" de dano\t **\n\n"+frase_A+"";
+			
+				
+			Texto_Formatado(frase);
 
-		System.out.printf("Total HP: %d\n\n", healthPoints);
+				
+			Derrota_Frase();
+			}
+			
+		}
 		
-		Derrota_Frase();
 		
+		frases--;
 		return healthPoints;
 	}
 
 	// PROCEDIMENTO CRIADO PARA DAR GAME-OVER AO JOGO
 	static void GameOver() {
 		System.out.println("Seu HP chegou a 0");
+		frases = 0;
 
 		String game = "G A M E";
 		String over = "O V E R";
@@ -632,53 +647,45 @@ public class O_Jogo {
 	// FUNÇÃO CRIADA PARA USAR POTIONS
 	static int[] UsePotion(int healthPoints, int qntPotions) {
 
-		
 		boolean condicao = true;
 		char opcao = 0;
 		int[] status = new int[2];
 
-		System.out.printf("HP atual: %d\nQuantidade de potions: %d\n\n", healthPoints, qntPotions);
-
 		do {
-			try {
-				System.out.println("Você tem certeza que quer usar uma potion?\n" + GREEN + "[S]" + RESET + " ou " + RED
-						+ "[N]\n" + RESET);
-				
-				opcao = Option().toUpperCase().charAt(0);
-			} catch (Exception e) {
-				System.out.println("Caracter inválido.");
-			}
 
-			if (qntPotions > 0) {
-				switch (opcao) {
-				case 'S':
-					healthPoints = healthPoints + 20;
-					qntPotions--;
+			Texto_Formatado(Tabula1(5,"Você tem certeza que quer usar uma potion?\n")+"\n" +Tabula3(4,GREEN + "[S]" + RESET,3 ," ou ",2, RED + "[N]\n" + RESET));
 
-					if (healthPoints > 100) {
-						do {
-							healthPoints--;
-						} while (healthPoints != 100);
-					}
-					System.out.println("Você usou uma potion.");
-					System.out.printf("Quantidade potions: %d\n", qntPotions);
-					System.out.printf("Total HP: %d\n\n", healthPoints);
-					condicao = false;
-					break;
-				case 'N':
-					System.out.println("Você guardou a potion de volta na bolsa\n");
-					condicao = false;
-					break;
+			opcao = Option().toUpperCase().charAt(0);
+
+			switch (opcao) {
+			case 'S':
+				healthPoints = healthPoints + 10;
+				qntPotions--;
+
+				if (healthPoints > 100) {
+					do {
+						healthPoints--;
+					} while (healthPoints != 100);
 				}
-			} else {
-				System.out.println("Você não tem potions");
+
 				condicao = false;
+				break;
+			case 'N':
+
+				condicao = false;
+				break;
+
+			default:
+				System.out.print(RED + Tabula1(6, "Opção não é válida!\n\n") + RESET);
 			}
 
 		} while (condicao);
 
 		status[0] = healthPoints;
 		status[1] = qntPotions;
+		
+		O_Jogo.status[0] = status[0] ;
+		O_Jogo.status[1] =status[1] ;
 
 		return status;
 	}
@@ -709,34 +716,46 @@ public class O_Jogo {
 	}
 
 	// FUNÇÃO CRIADA PARA GERAR AS PERGUNTAS AO JOGADOR
-	static int[] ProcessoAlternativas_Geral(String[] opcoes, int[] status, String respostaCerta) {
+	static int[] ProcessoAlternativas_Geral(String[] opcoes, int[] status, String respostaCerta, String enunciado) {
 		// Area para declarar variaveis
 		Scanner sc = new Scanner(System.in);
 		String resposta;
 		boolean condicao = true;
 
-		System.out.printf("[ A ] %S\n", opcoes[0]);
-		Timer2();
-		System.out.printf("[ B ] %S\n", opcoes[1]);
-		Timer2();
-		System.out.printf("[ C ] %S\n", opcoes[2]);
-		Timer2();
-		System.out.printf("[ D ] %S\n", opcoes[3]);
-		Timer2();
-		System.out.printf("[ E ] %S\n\n", opcoes[4]);
-		Timer2();
-		System.out.println("Resposta certa: " + respostaCerta.toUpperCase());
-		Timer2();
+		
 
 		////////////////////////////////////////////////////////////////////////
 		// Area para processo de alternativas
 		do {
 
-			resposta = Option().toUpperCase();
+			
 			if (status[0] <= 0) {
 				GameOver();
 				condicao = false;
 			}
+			
+			else {
+				
+				Desafio_Frase();
+				frases++;
+				
+				System.out.printf(enunciado+"\n");
+				Timer2();
+				System.out.printf("[ A ] %S\n", opcoes[0]);
+				Timer2();
+				System.out.printf("[ B ] %S\n", opcoes[1]);
+				Timer2();
+				System.out.printf("[ C ] %S\n", opcoes[2]);
+				Timer2();
+				System.out.printf("[ D ] %S\n", opcoes[3]);
+				Timer2();
+				System.out.printf("[ E ] %S\n\n", opcoes[4]);
+				Timer2();
+				System.out.printf("[ P ] Caso queira utilizar uma potion.\n\nHP atual: "+GREEN+"%d"+RESET+"\t| Potions: "+RED+"%d\n"+RESET, status[0],status[1]);
+				Timer2();
+				System.out.println("Resposta certa: " + respostaCerta.toUpperCase());
+				Timer2();
+				resposta = Option().toUpperCase();
 
 			switch (resposta.charAt(0)) {
 			case 'A':
@@ -799,9 +818,25 @@ public class O_Jogo {
 						condicao = false;
 					}
 				}
+				
 				break;
 			case 'P':
-				status = UsePotion(status[0], status[1]);
+				
+				if ( status[1] == 0 ) {
+					
+					System.out.print(RED + Tabula1(7, "Você não tem potions!\n\n") + RESET);
+									
+				}
+				
+				else{
+					status = UsePotion(status[0], status[1]);
+				}
+				frases--;
+					break;
+				
+			default:
+				System.out.print(RED + Tabula1(6, "Opção não é válida!\n\n") + RESET);
+			}
 			}
 		} while (condicao);
 
@@ -814,81 +849,69 @@ public class O_Jogo {
 	// TEMPLO 3
 	static int[] ExecutaTemplo3(int[] status) {
 		Scanner sc = new Scanner(System.in);
-		boolean condicao = true;
-
+		boolean condicao = true,condicao2 = true;
+do {
 		do {
 			status = Desafio1_Templo3(status);
+			
 			if (status[0] > 0) {
-				System.out.println("\nVocê concluiu o primeiro desafio!");
-				Timer2();
-				System.out.println("Parabéns, você ganhou uma Poção!");
-				status[1]++;
-				Timer2();
-				System.out.println("HP: " + status[0]);
-				Timer2();
-				System.out.println("Poção: " + status[1]);
-				Timer();
-				System.out.println(" ");
+										
+						
+				status[1]++;			
 
-				condicao = false;
 			} else {
-				System.out.println("Você terá que refazer o desafio\n");
+				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!!");
 				status[0] = 100;
-			}
-		} while (condicao);
-
-		System.out.print("\nAperte ENTER para começar o segundo Deafio");
+				break;
+			}	
+		
+		System.out.print("\nAperte ENTER para começar o próximo Desafio");
 		sc.nextLine();
 		System.out.println(" ");
 
-		do {
+		
 			status = Desafio2_Templo3(status);
+			
+			
 			if (status[0] > 0) {
-				System.out.println("\nVocê concluiu o segundo desafio!");
-				Timer2();
-				System.out.println("Parabéns, você ganhou uma Poção!");
-				status[1]++;
-				Timer2();
-				System.out.println("HP: " + status[0]);
-				Timer2();
-				System.out.println("Poção: " + status[1]);
-				Timer();
-				System.out.println(" ");
+				
+				
+				status[1]++;			
 
-				condicao = false;
 			} else {
-				System.out.println("Você terá que refazer o desafio\n");
+				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!!");
 				status[0] = 100;
+				break;
 			}
-		} while (condicao);
+		
 
-		System.out.print("\nAperte ENTER para começar o último Deafio");
+		System.out.print("\nAperte ENTER para começar o último Desafio");
 		sc.nextLine();
 		System.out.println(" ");
 
-		do {
+	
 			status = Desafio3_Templo3(status);
+			
 			if (status[0] > 0) {
-				System.out.println("\nVocê concluiu o último desafio!");
-				Timer2();
-				System.out.println("Parabéns, você ganhou uma Poção!");
+				
+				
 				status[1]++;
-				Timer2();
-				System.out.println("HP: " + status[0]);
-				Timer2();
-				System.out.println("Poção: " + status[1]);
-				Timer();
-				System.out.println(" ");
 
 				condicao = false;
+				condicao2 = false;
+				
 			} else {
-				System.out.println("Você terá que refazer o desafio\n");
+				
+				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!!");
 				status[0] = 100;
+				break;
+			
 			}
 		} while (condicao);
+	}while (condicao2);
 
 		Timer();
-		System.out.println("Você conseguiu concluir o Templo das Conversões");
+		Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" concluiu o Templo das Conversões. Agora estava o momento para o final");
 		Timer2();
 		FormataTexto1("Você está preparado para o ");
 		FormataTexto2("F I N A L ");
@@ -935,13 +958,15 @@ public class O_Jogo {
 
 		////////////////////////////////////////////////////////////////////////
 		// Area de logica do game
-		Desafio_Frase();
+		
 
-		System.out.printf("\nConverta o numero %S que esta na base %d para a base %d\n\n", numeroInicial[0],
-				baseInicial, baseConversao);
-		Timer2();
+		String enunciado = String.valueOf("\nConverta o numero "+numeroInicial[0]+" que esta na base "+baseInicial+" para a base "+baseConversao+"\n\n");
+		
+		//  System.out.printf("\nConverta o numero %S que esta na base %d para a base %d\n\n", numeroInicial[0],
+		//	baseInicial, baseConversao);
+		//  Timer2();
 
-		status = ProcessoAlternativas_Geral(opcoes, status, respostaCerta);
+		status = ProcessoAlternativas_Geral(opcoes, status, respostaCerta,enunciado);
 
 		return status;
 	}
@@ -984,13 +1009,14 @@ public class O_Jogo {
 			opcoes[i] = respostaErrada.get(i); // Adicionando as opcoes embaralhadas numa String para fazer o desafio
 		}
 
-		Desafio_Frase();
 		
-		System.out.printf("\nFaça a seguinte conversão:\n%S + %S (na base %d) = X (na base %d)\n\n", numeroInicial[0],
-				numeroInicial[1], baseInicial, baseConversao);
-		Timer2();
+		String enunciado = String.valueOf("\nFaça a seguinte conversão:\n"+numeroInicial[0]+" + "+numeroInicial[1]+" (na base "+baseInicial +") = X (na base "+baseConversao+")\n\n" );
+		
+		//		System.out.printf("\nFaça a seguinte conversão:\n%S + %S (na base %d) = X (na base %d)\n\n", numeroInicial[0],
+		//		numeroInicial[1], baseInicial, baseConversao);
+		//		Timer2();
 
-		ProcessoAlternativas_Geral(opcoes, status, respostaCerta);
+		ProcessoAlternativas_Geral(opcoes, status, respostaCerta,enunciado);
 
 		return status;
 	}
@@ -1040,13 +1066,15 @@ public class O_Jogo {
 			opcoes[i] = respostaErrada.get(i);// Adicionando as opcoes em String para fazer o desafio
 		}
 
-		Desafio_Frase();
+		
+		String enunciado = String.valueOf("\nFaça a seguinte conversão:\n"+numeroInicial[0]+" * "+numeroInicial[1]+" (na base "+baseInicial +") = X (na base "+baseConversao+")\n\n" );
+		
 
-		System.out.printf("\nFaça a seguinte conversão:\n%S * %S (na base %d) = X (na base %d)\n\n", numeroInicial[0],
-				numeroInicial[1], baseInicial, baseConversao);
-		Timer2();
+		//			System.out.printf("\nFaça a seguinte conversão:\n%S * %S (na base %d) = X (na base %d)\n\n", numeroInicial[0],
+		//			numeroInicial[1], baseInicial, baseConversao);
+		//			Timer2();
 
-		ProcessoAlternativas_Geral(opcoes, status, respostaCerta);
+		ProcessoAlternativas_Geral(opcoes, status, respostaCerta,enunciado);
 
 		return status;
 	}
@@ -1124,9 +1152,63 @@ public class O_Jogo {
 
 	// TEMPLO 2
 	static void ExecutaTemplo2(){
-		Desafio1_Templo2();
-		Desafio2_Templo2();
-		Desafio3_Templo2();
+	
+	
+		Scanner sc = new Scanner(System.in);
+		boolean condicao = true, condicao2 = true;
+
+		do {
+
+			do {
+
+				Desafio1_Templo2();
+
+				if (status[0] > 0) {
+
+					status[1]++;
+
+				} else {
+					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					status[0] = 100;
+					break;
+				}
+
+				System.out.print("\nAperte ENTER para começar o próximo Desafio");
+				sc.nextLine();
+				System.out.println(" ");
+
+				Desafio2_Templo2();
+
+				if (status[0] > 0) {
+
+					status[1]++;
+
+				} else {
+					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					status[0] = 100;
+					break;
+				}
+
+				System.out.print("\nAperte ENTER para começar o próximo Desafio");
+				sc.nextLine();
+				System.out.println(" ");
+
+				Desafio3_Templo2();
+
+				if (status[0] > 0) {
+
+					status[1]++;
+					condicao = false;
+					condicao2 = false;
+
+				} else {
+					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					status[0] = 100;
+					break;
+				}
+			} while (condicao);
+		} while (condicao2);
+	
 }
 	
 	// FUNÇÕES DO TEMPLO 2
@@ -1134,22 +1216,21 @@ public class O_Jogo {
 		//variáveis
 		int r;
 		Random rng = new Random();
-		String opcao, enunciado;
-		boolean repete = true;
+		String enunciado;
 		String[] opcoes = new String[5];
 				
 		//Questão
 				
 		//RANDOMIZANDO A QUESTÃO E REPETINDO ATÉ O ACERTO OU VIDA = 0
 		
-		do{
+		
 			r = rng.nextInt(3);
 		switch(r) {
 		//RECEBENDO A QUESTÃO RANDOMIZADA E RESOLVENDO A QUESTÃO.
 			case 0:
-				Desafio_Frase();
+				
 				enunciado = "\nQuais são os coeficiêntes dessa equação de segundo grau. 2x² + x – 3 = 0\n";
-				System.out.println(enunciado);
+				
 						
 				
 				opcoes[0] = "a = -2  |  b = 0  |  c = -3";
@@ -1158,14 +1239,14 @@ public class O_Jogo {
 				opcoes[3] = "a =  2  |  b = 0  |  c = -3";
 				opcoes[4] = "a =  1  |  b = 0  |  c = -3";
 				
-				ProcessoAlternativas_Geral(opcoes,status,"a =  2  |  b = 1  |  c = -3");
+				ProcessoAlternativas_Geral(opcoes,status,"a =  2  |  b = 1  |  c = -3",enunciado);
 				
 				break;
 				
 			case 1:
-				Desafio_Frase();
+				
 				enunciado = "\nQuais são os coeficiêntes dessa equação de segundo grau. –3x² + 18x – 15 = 0\n";
-				System.out.println(enunciado);
+				
 				
 				
 				
@@ -1175,15 +1256,17 @@ public class O_Jogo {
 				opcoes[3] = "a = -3  |  b =  18  |  c = -15";
 				opcoes[4] = "a =  3  |  b =  18  |  c =   0";
 				
-				ProcessoAlternativas_Geral(opcoes,status,"a = -3  |  b =  18  |  c = -15");
+				
+				
+				ProcessoAlternativas_Geral(opcoes,status,"a = -3  |  b =  18  |  c = -15",enunciado);
 				
 				
 				break;
 				
 			case 2:
-				Desafio_Frase();
+				
 				enunciado = "\nQuais são os coeficiêntes dessa equação de segundo grau. 3x² – x – 1 = 0\n";
-				System.out.println(enunciado);
+			
 				
 				
 				opcoes[0] = "a = -3  |  b =  -1  |  c = -1";
@@ -1192,95 +1275,78 @@ public class O_Jogo {
 				opcoes[3] = "a =  3  |  b =  -1  |  c =  1";
 				opcoes[4] = "a =  1  |  b =   0  |  c = -3";
 				
-				ProcessoAlternativas_Geral(opcoes,status,"a =  3  |  b =  -1  |  c = -1");
+				ProcessoAlternativas_Geral(opcoes,status,"a =  3  |  b =  -1  |  c = -1",enunciado);
 				
 				break;
 		}
 		
-	}while(repete);
+	
 		}
 	
 	static void Desafio2_Templo2() {
 		//variáveis
 		int r;
 		Random rng = new Random();
-		String opcao, enunciado;
-		boolean repete = true;
+		String enunciado;
+		String[] opcoes = new String[5];
+		
 		//Enunciado
-		System.out.println("Aaaah, sim, vejo que você foi capaz de passar pelo meu primeiro teste! Maravilhoso, vamos apimentar um pouco mais as coisas");
 		
 		//Randomizando a questão
 		
 		
 		//RECEBENDO A QUESTÃO RANDOMIZADA E RESOLVENDO A QUESTÃO.
-		do {
+	
 			r = rng.nextInt(3);
 		switch(r) {
 		case 0:
-			Desafio_Frase();
-			enunciado = "Qual é a maior raiz da equação -2x² + 3x + 5 = 0?";
-			System.out.println(enunciado);
-			System.out.println("a) -1\n"
-					+ "b) -2,5\n"
-					+ "c)2\n"
-					+ "d)2,5\n");
 			
-			opcao = Option();
+			enunciado = "\nQual é a maior raiz da equação -2x² + 3x + 5 = 0?\n";
 			
-			if(opcao.equalsIgnoreCase("d")) {
-				
-				AcertouResposta(status[0]);
-				
-				repete = false;
-			}else {
-				DanoRespostaErrada(status[0]);
-				
-			}
+			
+			opcoes[0] = "-1";
+			opcoes[1] = "-2,5";
+			opcoes[2] = "2";
+			opcoes[3] = "2,5";
+			opcoes[4] = "1";
+			
+			ProcessoAlternativas_Geral(opcoes,status,"2,5",enunciado);
+			
+			
+		
 			break;
 		case 1:
-			Desafio_Frase();
-			enunciado = "Qual é a menor raiz da equação 2x² + 7x + 5 = 0";
-			System.out.println(enunciado);
-			System.out.println("a) -1 \n"
-					+ "b) 1\n"
-					+ "c) -5/2\n"
-					+ "d) -2");
 			
-			opcao = Option();	
+			enunciado = "\nQual é a menor raiz da equação 2x² + 7x + 5 = 0\n";
 			
-			if(opcao.equalsIgnoreCase("c")) {
-				AcertouResposta(status[0]);
-				
-				repete = false;
-				}else {
-					DanoRespostaErrada(status[0]);
-					
-				
-				}
+			
+			opcoes[0] = "-1";
+			opcoes[1] = "1";
+			opcoes[2] = "-5/2";
+			opcoes[3] = "-2";
+			opcoes[4] = "-2/5";
+			
+			ProcessoAlternativas_Geral(opcoes,status,"-5/2",enunciado);
+			
 			break;
-		case 2:
-			Desafio_Frase();
-			enunciado = "Quais são as duas raízes da equação 3x² – x – 2 = 0";
-			System.out.println(enunciado);
-			System.out.println("a) x1 = 2/3 x2 = 1\n"
-					+ "b) x1 = -2/3 x2 = -1 \n"
-					+ "c) x1 = -2/3 x2 = 1 \n"
-					+ "d) x1 = -1 x2 = 2/3");
 			
-			opcao = Option();
-			if(opcao.equalsIgnoreCase("c")) {
-				AcertouResposta(status[0]);
-				
-				repete = false;
-				}else {
-					DanoRespostaErrada(status[0]);
-					
-				
-				}
+		case 2:
+			
+			enunciado = "\nQuais são as duas raízes da equação 3x² – x – 2 = 0\n";
+			
+			
+			opcoes[0] = "x1 =  2/3 | x2 =  1";
+			opcoes[1] = "x1 = -2/3 | x2 = -1";
+			opcoes[2] = "x1 = -2/3 | x2 =  1";
+			opcoes[3] = "x1 =  -1  | x2 = 2/3";
+			opcoes[4] = "x1 =  -1  | x2 = -2/3";
+			
+			ProcessoAlternativas_Geral(opcoes,status,"x1 = -2/3 | x2 =  1",enunciado);
+			
 			break;
 			
 		}
-		}while(repete);	
+			
 	
 	}
 	
@@ -1288,81 +1354,60 @@ public class O_Jogo {
 		//Variaveis
 		int r;
 		Random rng = new Random();
-		String opcao, enunciado;
-		boolean repete = true;
+		String enunciado;
+		String[] opcoes = new String[5];
+		
 		//Enunciado
-		System.out.println("TUDO QUE EU JOGO PARA VOCÊ, ESTÁ CONSEGUINDO RESOLVER... Bom...você é bom, faz tempo que não uso todo o meu poder, "
-				+ "agora você conhecerá a minha fúria, dúvido que irá conseguir responder as próximas questões...");
-		do {
+		
 			r = rng.nextInt(3);
 		switch(r) {
 		case 0:
-			Desafio_Frase();
-			enunciado = "Qual é a resolução da seguinte equação do segundo grau x² – 4x – 5 = 0?";
-			System.out.println(enunciado);
-			System.out.println("a) x1 = 1 x2 = 5"
-					+ "b) x1 = -1 x2 = 5\n"
-					+ "c) x1 = -1 x2 = -5\n"
-					+ "d) x1 = -5 x2 = 1\n");
 			
-			opcao = Option();
+			enunciado = "\nQual é a resolução da seguinte equação do segundo grau x² – 4x – 5 = 0?\n";
 			
-			if(opcao.equalsIgnoreCase("b")) {
-				
-				AcertouResposta(status[0]);
-				
-				repete = false;
-			}else {
-				DanoRespostaErrada(status[0]);
-				
-				}
+			
+			opcoes[0] = "x1 =  1  | x2 =  5";
+			opcoes[1] = "x1 = -1  | x2 =  5";
+			opcoes[2] = "x1 = -1  | x2 = -5";
+			opcoes[3] = "x1 = -5  | x2 =  1";
+			opcoes[4] = "x1 = -3  | x2 =  5";
+			
+			ProcessoAlternativas_Geral(opcoes,status,"x1 = -1  | x2 =  5",enunciado);
+			
+			
 			break;
 		case 1:
-			Desafio_Frase();
-			enunciado = "Eu quero que me diga, temos na equação 10x² – 1000 = 0, duas raízes reais e distintas, a e b, que podem ser encontradas. "
-					+ "Mostre a mim que sabe! Determine a² + b²";
-			System.out.println(enunciado);
-			System.out.println("a) 100 \n"
-					+ "b) 50 \n"
-					+ "c) 250\n"
-					+ "d) 200");
 			
-			opcao = Option();	
+			enunciado = "\nTemos na equação 10x² – 1000 = 0, duas raízes reais e distintas, a e b, que podem ser encontradas. Determine a² + b²\n";
 			
-			if(opcao.equalsIgnoreCase("d")) {
-				AcertouResposta(status[0]);
+			
+			opcoes[0] = "100";
+			opcoes[1] = "50";
+			opcoes[2] = "250";
+			opcoes[3] = "200";
+			opcoes[4] = "1000";
+			
+			ProcessoAlternativas_Geral(opcoes,status,"200",enunciado);
 				
-				repete = false;
-				}else {
-					DanoRespostaErrada(status[0]);
-					
-				
-				}
 			break;
 		case 2:
-			Desafio_Frase();
-			enunciado = "Quero que me diga qual será o resultado do produto das duas raízes da equação 5x² - 125 = 0";
-			System.out.println(enunciado);
-			System.out.println("a) -25\n"
-					+ "b) x1 = 20 "
-					+ "c) x1 = 25"
-					+ "d) x1 = 30");
 			
-			opcao = Option();
-			if(opcao.equalsIgnoreCase("a")) {
-				
-				AcertouResposta(status[0]);
-				
-				repete = false;
-				}else {
-					DanoRespostaErrada(status[0]);
-					
-				
-				}
+			enunciado = "\nQual será o resultado do produto das duas raízes da equação 5x² - 125 = 0\n";
+			
+			
+			opcoes[0] = "-25";
+			opcoes[1] = "20";
+			opcoes[2] = "25";
+			opcoes[3] = "30";
+			opcoes[4] = "125";
+			
+			ProcessoAlternativas_Geral(opcoes,status,"-25",enunciado);
+			
+			
 			break;
 			
 		}
-		}while(repete);	
+	
 		
 		
 	}
