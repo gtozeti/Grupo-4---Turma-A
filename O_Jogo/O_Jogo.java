@@ -29,6 +29,7 @@ public class O_Jogo {
 	// NEGRITO DO TEXTO 
 	public static final String RESET_BOLD = "\u001B[0m";
 	public static final String BOLD = "\u001B[1m";
+	public static final String SUB = "\u001B[4m";
 	
 	
 
@@ -70,7 +71,7 @@ public class O_Jogo {
 				ExecutaTemplo1(status);
 				Hist_2();
 				ExecutaTemplo2();
-				//Hist_3();
+				Hist_3();
 				ExecutaTemplo3(status);
 				//Hist_3();
 				
@@ -346,6 +347,85 @@ public class O_Jogo {
 				);
 	
 	}	
+	
+	public static void Hist_3(){
+		
+		System.out.print("\n");
+		
+		Texto_Formatado(
+				
+				Dialogo("Ancelot",WHITE) +  RED + "\n - Como pôde derrotar os meus três feitiços? Eu pensei que você estava fraco! Mas este não é o fim.... Eu irei preparar desafios maiores...Me aguarde!"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - Ancelot deixa o templo após mandar alguns de seus lacaios distrair " + nomeJogador + " por alguns instantes."
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Mas que droga! Da próxima ele não escapa..."
+				
+				+ Dialogo("Narrador",WHITE) + "\n - Com mais incentivo para derrotar Ancelot, "+nomeJogador+" segue para o último templo a fim de recuperar todo seu poder."
+						
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - "+ nomeJogador+", foi uma jornada em tanto!"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Precisamos te preparar para sua próxima batalha."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - O poder deste templo são às"+BOLD(" Conversões de Base",CYAN)+", elas serão a agilidade do seu poder. Para derrotar os desafios à frente, você irá precisar dos "
+				+ "conhecimentos básicos a fim de quebrar os feitiços que serão lançados a ti. Então preste muita atenção..."									
+				
+				
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Conversão de base numérica é a passagem da "+BOLD("representação de um número de uma base numérica para outra",CYAN)+", alterando a simbologia para se adequar à nova base. "
+				+ "A base que normalmente usamos é a "+BOLD("decimal ou base dez",CYAN)+", pois contém dez algarismos "+BOLD("(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)",CYAN)+". Por exemplo, o número inteiro representado em base decimal como "
+				+ BOLD("10",CYAN)+", pode ser escrito como "+ BOLD("'1010' em base binária",CYAN)+" ou "+ BOLD("'A' em base hexadecimal",CYAN)+"."
+						
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - A técnica de "+BOLD("divisões sucessivas",CYAN)+" é utilizada para conversão de números inteiros do sistema "+BOLD("decimal para qualquer outra base",CYAN)
+				+ ". Esta técnica consiste em "+BOLD("dividir o número original pela base 'X'",CYAN)+", o resto da divisão será um dígito e o resultado da divisão é novamente dividido por X. Esta última etapa se repete até que o resultado da "
+				+ "divisão não seja mais divisível."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Por exemplo, vamos converter o número "+BOLD("47 na base (10) em binário que é a base (2)",CYAN)
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + RESET + "\n\n47|"+SUB+" 2 "+RESET_BOLD+"\n "+BLUE+"1"+RESET+"  23|"+SUB+" 2 "+RESET_BOLD+"\n     1  11|"+SUB+" 2 "+RESET_BOLD
+				+ "		\n         1  5 |"+SUB+" 2 "+RESET_BOLD+"\n            1   2 |"+SUB+" 2 "+RESET_BOLD+"\n                0   "+RED+"1 "+RESET 
+						
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - O número em vermelho representa nosso "+BOLD("MSB - Bit mais significativo (Most Significant Bit)",CYAN)+". Já o número em azul representa nosso "+BOLD("LSB - Bit menos "
+				+ "significativo (Least Significant Bit)",CYAN)
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Assim o número 47 em decimal, corresponde a "+BOLD("‘101111’ em binário",CYAN)
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Agora, para a conversão de qualquer base para números decimais é realizada da seguinte forma: É realizada uma somatória dos algarismos da base da direita para a esquerda, onde cada "
+				+ "termo da somatória é multiplicado pelo número da base "+BOLD("(2 - Caso Binário / 8 - Caso Octal / 16 - Caso Hexadecimal)",CYAN)+", elevado a um número sequencial iniciado em 0."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Por exemplo, vamos converter o número "+BOLD("101111 na base (2) em decimal que é a base (10)",CYAN)
+
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n\n"+RESET_BOLD+RED+"  5|  4|  3|  2|  1|  0|"+RESET+SUB+BLUE+"\n 2 | 2 | 2 | 2 | 2 | 2 |"+RESET+
+				"\n 1   0   1   1   1   1  "+RESET+GREEN+"\n\n 32 + 0 + 8 + 4 + 2 + 1 "+RESET+RESET_BOLD+GREEN+"\n\t   47"+RESET
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Os nossos números em vermelho, representam nossas potências no qual o número da base será elevado."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Os nossos números em azul representam o número da base, no qual será transformado para decimal, neste caso a base binária o número 2."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Os nossos números em verde representam o resultado entre a multiplicação de cada elemento do número da base elevado aos expoentes, com cada termo do número em que se deseja converter, que nesse caso é o 101111."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Ao final, somando-se os resultados é obtido o valor convertido em decimal."
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Lembre-se que para cada base, temos uma quantidade de algarismos, e a cada “estouro” da base, devemos seguir a sequência adicionando uma casa à esquerda e repetindo o processo!"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Base Decimal (10) - (0,1,2,3,4,5,6,7,8,9)"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Base Binária (2) - (0,1)"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Base Octal (8) - (0,1,2,3,4,5,6,7)"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Base Hexadecimal (16) - (0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F)"
+				
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Agora você está pronto para o caminho em frente. Espero que triunfe!"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - E com essa despedida, "+ nomeJogador+" saiu de sua viagem mística e já estava em apuros novamente."
+							
+				+ Dialogo("Ancelot",WHITE) +  RED + "\n - Parece que você conseguiu chegar até o último templo, mas dessa vez você não escapa! "
+				+ "Eu peguei três desafios de um dos livros de matemática mais obscuros somente para você HAHAHAHAHA! Vamos ver se você sairá dessas."
+					
+				
+				);
+	
+	}
 	
 	// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-FERRAMENTAS DE TEXTO-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
