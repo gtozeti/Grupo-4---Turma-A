@@ -9,7 +9,7 @@ public class O_Jogo {
 	public static Scanner entrada = new Scanner(System.in);
 	public static String opcao = "";
 	public static int dificuldade = 0;
-	public static String nomeJogador = "";
+	public static String nomeJogador = "Bobbildo";
 	public static int thread1 = 0;
 	public static int thread2 = 0;
 	public static int thread3 = 0;
@@ -73,7 +73,10 @@ public class O_Jogo {
 				ExecutaTemplo2();
 				Hist_3();
 				ExecutaTemplo3(status);
-				//Hist_3();
+				Hist_4();
+				//ExecutaBoss
+				Hist_5();
+				Créditos();
 				
 				
 				break;
@@ -103,7 +106,7 @@ public class O_Jogo {
 	public static void Instruções() {
 
 		System.out.print("\n");
-		Texto_Formatado("\nO objetivo do jogo é auxiliar o jogador em alguns conhecimentos da matemática."
+		Texto_Formatado(Tabula1(6, "---Instruções---\n")+"\nO objetivo do jogo é auxiliar o jogador em alguns conhecimentos da matemática."
 				+ " Ao longo da jornada, serão apresentados conteúdos sobre a matéria em questão e "
 				+ "apresentadas perguntas ao jogador. O mesmo deverá selecionar as opções válidas para que ele possa"
 				+ " avançar no jogo e a cada questão, o jogador sofrerá um dano se errar, diminuindo assim sua vida."
@@ -178,7 +181,7 @@ public class O_Jogo {
 	public static void Créditos() {
 
 		System.out.print("\n");
-		Texto_Formatado(Tabula3(2,"\nGustavo Tozeti",2,"Matheus Cavalcanti",2,"Renan Kesper"));
+		Texto_Formatado(Tabula1(6, "---Créditos---\n")+Tabula3(2,"\n\t\tGustavo Tozeti",3,"Matheus Cavalcanti",2,"Renan Kesper"));
 		System.out.print("\n");
 		Sair();
 
@@ -188,7 +191,7 @@ public class O_Jogo {
 	// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-HISTÓRIA-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 	
 	// PRIMEIRA NARRATIVA DO JOGO
-	public static void Hist_1() {
+	public static void Hist_1(){
 
 		System.out.print("\n");
 		
@@ -258,7 +261,7 @@ public class O_Jogo {
 						
 				+ Dialogo("Narrador",WHITE) + "\n - Os templos possuem feitiços incríveis e fazem com quem adentrar ao local tenha a sabedoria para conquistar o poder armazenado nele. E não foi diferente com esse templo."
 				+ nomeJogador+" após passar por um portal mágico do templo, teve uma viagem mística até onde estavam os desafios para recuperar seu poder. Dentro dessa viagem, uma voz desconhecida lhe passou os seguintes "
-				+ "ensinamentos…"
+				+ "ensinamentos..."
 				
 				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Olá "+ nomeJogador+", que bom te ver aqui!!"
 				
@@ -280,7 +283,7 @@ public class O_Jogo {
 				+ "deve-se "+BOLD("isolar os elementos desconhecidos em um dos lados do sinal de igual e os valores constantes do outro lado",CYAN)+". Contudo, é importante observar que a mudança de posição desses elementos "+BOLD("deve ser feita de forma que a igualdade "
 				+ "continue sendo verdadeira",CYAN)+". Quando um termo da equação mudar de lado do sinal de igual, devemos inverter a operação. Assim, se tiver multiplicando, passará dividindo, se tiver somando, passará subtraindo e vice-versa."
 				
-				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Agora você está pronto para o caminho em frente. Espero te ver logo, adeus…"
+				+ Dialogo("Voz Desconhecida",WHITE) + CYAN + "\n - Agora você está pronto para o caminho em frente. Espero te ver logo, adeus..."
 				
 				+ Dialogo("Narrador",WHITE) + "\n - E com essa despedida, "+ nomeJogador+" saiu de sua viagem mística e já estava em apuros."
 				
@@ -304,7 +307,7 @@ public class O_Jogo {
 				
 				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Onde você estiver, eu estarei lá para te derrotar!"
 				
-				+ Dialogo("Narrador",WHITE) + "\n - E diante de um clarão Ancelot, desapareceu… Mas no local da batalha grandiosa, uma enorme chama, surgia no meio da arena. Era o poder perdido de "+nomeJogador+",  que ao se aproximar, pode absorver novamente seu poder."
+				+ Dialogo("Narrador",WHITE) + "\n - E diante de um clarão Ancelot, desapareceu... Mas no local da batalha grandiosa, uma enorme chama, surgia no meio da arena. Era o poder perdido de "+nomeJogador+",  que ao se aproximar, pode absorver novamente seu poder."
 				
 				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Como é bom ter meus poderes de volta!"
 				
@@ -345,6 +348,8 @@ public class O_Jogo {
 				
 				
 				);
+		
+		System.out.print("\n");
 	
 	}	
 	
@@ -424,9 +429,63 @@ public class O_Jogo {
 					
 				
 				);
-	
+		System.out.print("\n");
 	}
 	
+	public static void Hist_4(){
+		
+System.out.print("\n");
+		
+		Texto_Formatado(
+				
+				Dialogo("Narrador",WHITE) + "\n - Após "+ nomeJogador +" terminar os três desafios e recuperar seus poderes por completo, Ancelot pareceu um pouco preocupado."
+				
+				+ Dialogo("Ancelot",WHITE) +  RED + "\n - Não é possível! Com você derrotando esses desafios você ficou até mais forte que antes! Mas não vai "
+				+ "ficar assim, eu tenho uma carta na manga ainda!"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - Ancelot puxa um livro com uma aura pesada e começa a falar palavras sem sentido em outra língua, parecendo uma magia oculta. "
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - O que está acontecendo!?!?"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - Ancelot então começa a perder controle dos poderes que estava tentando usar e acaba causando uma grande explosão de magia, "
+				+ "fazendo com que o templo comece a desmoronar."
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Eu vou ter que sair do templo da forma mais rápida possível e derrotar Ancelot o quanto antes!"
+				
+				+ Dialogo("Narrador",WHITE) + "\n - Após conseguir sair do templo com os poderes recuperados " + nomeJogador +" se depara com Ancelot lançando um desafio denso em sua direção"
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Vou ter que usar todos meus poderes para conseguir passar dessa!" 
+				
+				);
+		
+		System.out.print("\n");
+		
+	}
+
+	public static void Hist_5(){
+		
+		System.out.print("\n");
+		
+		Texto_Formatado(
+				
+				
+				Dialogo("Ancelot",WHITE) +  RED + "\n - Naaaaaaaão, você conseguiu me derrotar até mesmo com os poderes do Livro Oculto de Matemática."
+						
+				+ Dialogo("Narrador",WHITE) + "\n - Ancelot começa a perder seu poder e a ficar cada vez mais fraco."
+				
+				+ Dialogo("Ancelot",WHITE) +  RED + "\n - " + nomeJogador + ", você conseguiu me derrotar... mas... tenha certeza que... eu farei de tudo para conseguir retornar..."
+				
+				+ Dialogo("Narrador",WHITE) + "\n - Aproveitando o enfraquecimento de Ancelot, "+nomeJogador+" não deixa seu inimigo falar mais nada e joga um feitiço de aprisionamento, deixando Ancelot selado."
+				
+				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Você foi um bom inimigo, Ancelot... Mas eu não deixarei que você saia desta prisão pelo resto da eternidade."
+				
+				+ Dialogo("Narrador",WHITE) + "\n - E mais uma vez na história, Ancelot foi selado por alguém ganancioso que buscou sua redenção. Mas será que ele irá retornar novamente ?."
+
+				
+				);
+
+				
+	}
 	// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-FERRAMENTAS DE TEXTO-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 	// PROCEDIMENTO CRIADO PARA FORMATAR QUALQUER TEXTO, PARA PADRONIZAR O LAYOUT DA
@@ -613,29 +672,6 @@ public class O_Jogo {
 			return frase;
 		}
 	
-	// PROCEDIMENTOS CRIADO PARA MOSTRAR MENSAGEM DE ACORDO COM A VIDA 
-	// DO PERSONAGEM
-	static void AcertouResposta(int healthPoints) {
-		
-		String frase_A = "";
-		
-		if (healthPoints >= 30 && healthPoints < 65) {
-			frase_A = "\nParecia que tinha sido um grande desafio para "+nomeJogador+".";
-		}
-		if (healthPoints < 30) {
-			frase_A = "\nTinha sido por pouco, mas "+nomeJogador+" conseguiu passar!";
-		}
-		
-		String frase =  Dialogo("Narrador",WHITE) + "\n - A resposta estava...\n...\n...\n\n"+GREEN + "Certa :D\n" + RESET + frase_A ;
-		Texto_Formatado(frase);
-	
-		Vitoria_Frase();
-
-		
-
-		
-	}
-	
 	// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-FERRAMENTAS DE INPUT-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 	// FUNÇÃO CRIADA PARA RETONAR UMA OPÇÃO DESEJADA DO USUÁRIO
@@ -710,6 +746,30 @@ public class O_Jogo {
 		return healthPoints;
 	}
 
+	// PROCEDIMENTOS CRIADO PARA MOSTRAR MENSAGEM DE ACORDO COM A VIDA 
+	// DO PERSONAGEM
+	static void AcertouResposta(int healthPoints) {
+			
+			frases++;
+			String frase_A = "";
+			
+			if (healthPoints >= 30 && healthPoints < 65) {
+				frase_A = "\nParecia que tinha sido um grande desafio para "+nomeJogador+".";
+			}
+			if (healthPoints < 30) {
+				frase_A = "\nTinha sido por pouco, mas "+nomeJogador+" conseguiu passar!";
+			}
+			
+			String frase =  Dialogo("Narrador",WHITE) + "\n - A resposta estava...\n...\n...\n\n"+GREEN + "Certa :D\n" + RESET + frase_A ;
+			Texto_Formatado(frase);
+		
+			Vitoria_Frase();
+
+			
+
+			
+		}
+	
 	// PROCEDIMENTO CRIADO PARA DAR GAME-OVER AO JOGO
 	static void GameOver() {
 		System.out.println("Seu HP chegou a 0");
@@ -817,7 +877,7 @@ public class O_Jogo {
 			else {
 				
 				Desafio_Frase();
-				frases++;
+				
 				
 				System.out.printf(enunciado+"\n");
 				Timer2();
@@ -911,7 +971,7 @@ public class O_Jogo {
 				else{
 					status = UsePotion(status[0], status[1]);
 				}
-				frases--;
+				
 					break;
 				
 			default:
@@ -931,6 +991,7 @@ public class O_Jogo {
 		Scanner sc = new Scanner(System.in);
 		boolean condicao = true,condicao2 = true;
 do {
+		frases = 6;
 		do {
 			status = Desafio1_Templo3(status);
 			
@@ -1239,6 +1300,7 @@ do {
 
 		do {
 
+			frases = 3;
 			do {
 
 				Desafio1_Templo2();
@@ -1498,6 +1560,7 @@ do {
 		boolean condicao = true, condicao2 = true;
 
 		do {
+			frases = 0;
 			do {
 				status = Desafio1_Templo1(status);
 				if (status[0] > 0) {
