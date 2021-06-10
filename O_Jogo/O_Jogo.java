@@ -13,7 +13,7 @@ public class O_Jogo {
 	public static int thread1 = 0;
 	public static int thread2 = 0;
 	public static int thread3 = 0;
-	public static int[] status = { 100, 2 };
+	public static int[] status = { 100, 0 };
 	public static int frases = 0;
 
 	// CORES DO TEXTO
@@ -181,7 +181,7 @@ public class O_Jogo {
 	public static void Créditos() {
 
 		System.out.print("\n");
-		Texto_Formatado(Tabula1(6, "---Créditos---\n")+Tabula3(2,"\n\t\tGustavo Tozeti",3,"Matheus Cavalcanti",2,"Renan Kesper"));
+		Texto_Formatado(Tabula1(6, "---Créditos---\n")+Tabula3(2,"\n\t\tGustavo Tozeti",3,"Matheus Cavalcanti",2,"Renan Kesper\n\nAgradecimentos:\nGustavo Takeo\nMarcio Welker"));
 		System.out.print("\n");
 		Sair();
 
@@ -2379,3 +2379,4 @@ do {
         respostaCerta = "X1 = " + raiz1Certa.toUpperCase() + "\n      X2 = " + raiz2Certa.toUpperCase() + "\n     (Na base " + Integer.toString(baseConversao[0]) + ")";
         return respostaCerta;
     }
+}

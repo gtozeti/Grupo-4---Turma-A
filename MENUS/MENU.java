@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class O_Jogo {
+public class MENU {
 
 	public static Scanner entrada = new Scanner(System.in);
 	public static String opcao = "";
@@ -189,7 +189,7 @@ public class O_Jogo {
 	// PROCEDIMENTO CRIADO PARA SAIR DE UMA OPÇÃO DE UM MENU
 	public static void Sair() {
 		System.out.print("\nPressione qualquer tecla para voltar!");
-		String sair = entrada.next();
+		entrada.nextLine();
 	}
 	// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-TEMPLOS-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
