@@ -9,7 +9,7 @@ public class O_Jogo {
 	public static Scanner entrada = new Scanner(System.in);
 	public static String opcao = "";
 	public static int dificuldade = 0;
-	public static String nomeJogador = "Bobbildo";
+	public static String nomeJogador = "";
 	public static int thread1 = 0;
 	public static int thread2 = 0;
 	public static int thread3 = 0;
@@ -74,7 +74,7 @@ public class O_Jogo {
 				Hist_3();
 				ExecutaTemplo3(status);
 				Hist_4();
-				//ExecutaBoss
+				ExecutaFinalBoss(status);
 				Hist_5();
 				Créditos();
 				
@@ -456,6 +456,9 @@ System.out.print("\n");
 				
 				+ Dialogo(nomeJogador,WHITE) +  GREEN + "\n - Vou ter que usar todos meus poderes para conseguir passar dessa!" 
 				
+				+ Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" concluiu o Templo das Conversões. Agora estava próximo do momento para o final"
+				
+				
 				);
 		
 		System.out.print("\n");
@@ -624,7 +627,7 @@ System.out.print("\n");
 		vitoria.add("Acertou novamente, droga droga droga...\n");
 		vitoria.add("Vejo que acertou mais uma...\n");
 		vitoria.add("TUDO QUE EU JOGO PARA VOCÊ, ESTÁ CONSEGUINDO RESOLVER... Bom...você é bom, faz tempo que não uso todo o meu poder," 
-		+ "agora você conhecerá a minha fúria, dúvido que irá conseguir responder as próximas questões...\n");
+		+ "\nagora você conhecerá a minha fúria, dúvido que irá conseguir responder as próximas questões...\n");
 		vitoria.add("Aaaah, sim, vejo que você foi capaz de passar pelo meu desafio! Maravilhoso, vamos apimentar um pouco mais as coisas\n");
 		
 		Collections.shuffle(vitoria);
@@ -742,7 +745,7 @@ System.out.print("\n");
 		}
 		
 		
-		frases--;
+		
 		return healthPoints;
 	}
 
@@ -763,9 +766,10 @@ System.out.print("\n");
 			String frase =  Dialogo("Narrador",WHITE) + "\n - A resposta estava...\n...\n...\n\n"+GREEN + "Certa :D\n" + RESET + frase_A ;
 			Texto_Formatado(frase);
 		
-			Vitoria_Frase();
+			if (frases != 3 && frases != 6 && frases != 9 && frases != 10 ) {
+				Vitoria_Frase();
 
-			
+				}
 
 			
 		}
@@ -1001,7 +1005,7 @@ do {
 				status[1]++;			
 
 			} else {
-				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!!");
+				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 				status[0] = 100;
 				break;
 			}	
@@ -1020,7 +1024,7 @@ do {
 				status[1]++;			
 
 			} else {
-				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!!");
+				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 				status[0] = 100;
 				break;
 			}
@@ -1043,7 +1047,7 @@ do {
 				
 			} else {
 				
-				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!!");
+				Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 				status[0] = 100;
 				break;
 			
@@ -1051,9 +1055,8 @@ do {
 		} while (condicao);
 	}while (condicao2);
 
-		Timer();
-		Texto_Formatado(Dialogo("Narrador",WHITE) + "\n - "+nomeJogador+" concluiu o Templo das Conversões. Agora estava o momento para o final");
-		Timer2();
+		
+		
 		FormataTexto1("Você está preparado para o ");
 		FormataTexto2("F I N A L ");
 		FormataTexto2("B O S S ");
@@ -1310,7 +1313,7 @@ do {
 					status[1]++;
 
 				} else {
-					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 					status[0] = 100;
 					break;
 				}
@@ -1326,7 +1329,7 @@ do {
 					status[1]++;
 
 				} else {
-					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 					status[0] = 100;
 					break;
 				}
@@ -1344,7 +1347,7 @@ do {
 					condicao2 = false;
 
 				} else {
-					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+					Texto_Formatado(Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 					status[0] = 100;
 					break;
 				}
@@ -1569,7 +1572,7 @@ do {
 
 				} else {
 					Texto_Formatado(
-							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 					status[0] = 100;
 					break;
 				}
@@ -1585,7 +1588,7 @@ do {
 
 				} else {
 					Texto_Formatado(
-							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 					status[0] = 100;
 					break;
 				}
@@ -1605,7 +1608,7 @@ do {
 				} else {
 
 					Texto_Formatado(
-							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!!");
+							Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
 					status[0] = 100;
 					break;
 
@@ -1648,11 +1651,11 @@ do {
         String enunciado = "";
        
         if (numeroInicial[1] > 0) {
-           // System.out.printf("Faça a seguinte conta:\n\n%dx + %d = 0\n\n", numeroInicial[0], numeroInicial[1]);
+          
             enunciado = String.valueOf("\nFaça a seguinte conta:\n\n"+numeroInicial[0]+"x + "+numeroInicial[1]+" = 0\n\n");
         } else 
         {
-            System.out.printf("Faça a seguinte conta:\n\n%dx + (%d) = 0\n\n", numeroInicial[0], numeroInicial[1]);
+            
             enunciado = String.valueOf("\nFaça a seguinte conta:\n\n"+numeroInicial[0]+"x + ("+numeroInicial[1]+") = 0\n\n");
         }
         
@@ -2051,5 +2054,328 @@ do {
         return num;
     }
 
+    // BOSS
+    static int[] ExecutaFinalBoss(int[] status) {
+       
+        boolean condicao = true;
 
-}
+        do {
+        	
+            status = FinalBoss_FinalFase(status);
+            if (status[0] > 0) {
+                
+                condicao = false;
+            } else {
+            	Texto_Formatado(
+						Dialogo("Narrador", WHITE) + "\n - " + nomeJogador + " infelizmente foi derrotado!! Mas através de um feitiço, é capaz de recomeçar o desafio");
+				
+                status[0] = 100;
+            }
+        } while (condicao);
+        return status;
+    }
+
+    static int[] FinalBoss_FinalFase(int[] status) {
+        int[] num; // sem X
+        int[] numX; // com X
+        int[] raiz;
+        int[] raiz2;
+        double[] cima = new double[2];
+        double divisor;
+        int x2, x, n; // A, B, C
+        double delta;
+
+        int[] respostaErradaInt_Raiz1;
+        int[] respostaErradaInt_Raiz2;
+        int[] baseConversao = new int[5];
+        
+        String enunciado;
+        String respostaCerta;
+        String[] respostaErrada;
+
+        String[] opcoes = new String[5];
+        ArrayList<String> embaralhador = new ArrayList();
+        ////////////////////////////////////////////////////////////////////////
+        // Determinando os numeros do exercicio e tambem a resolucao
+        do {
+            do {
+                num = DeterminaNumero_FinalBoss(); // Determinando numeros sem X
+                numX = DeterminaNumero_FinalBoss(); // Determinando numeros com X
+
+                // Organizando a equacao
+                x2 = (numX[0] * numX[1]) + (numX[2] * numX[3]); // Ax²
+                x = (numX[0] * num[1]) + (num[0] * numX[1]) + (numX[2] * num[3]) + (num[2] * numX[3]); //Bx
+                n = (num[0] * num[1]) + (num[2] * num[3]); // C
+            } while (x2 == 0);
+            delta = Math.pow(x, 2) - (4 * x2 * n); // Fazendo delta
+
+        } while (Math.sqrt(delta) % 1 != 0);
+
+        divisor = x2 * 2;
+        cima[0] = -x + Math.sqrt(delta);
+        cima[1] = -x - Math.sqrt(delta);
+        
+        // raiz 1
+        if (cima[0] % divisor == 0) { // se a divisão for exata, fazer a divisão
+            raiz = new int[1];
+            raiz[0] = (int) (cima[0] / divisor);
+
+            if (raiz[0] == 0) {
+                raiz[0] = Math.abs(raiz[0]);
+            }
+        } else { // se a divisão não for exata, simplificar a fração
+            raiz = SimplificaFracao_FinalBoss(cima[0], divisor);
+        }
+
+        // raiz 2
+        if (cima[1] % divisor == 0) { // se a divisão for exata, fazer a divisao
+            raiz2 = new int[1];
+            raiz2[0] = (int) (cima[1] / divisor);
+
+            if (raiz[0] == 0) {
+                raiz[0] = Math.abs(raiz[0]);
+            }
+        } else { // se a divisão não for exata, simplificar a fração
+            raiz2 = SimplificaFracao_FinalBoss(cima[1], divisor);
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        // Parte para gerar respostas em String e fazer o desafio
+        // As respostas estarao convertidas em outras bases para que o player faça a conversão
+        //Raiz 1
+        respostaErradaInt_Raiz1 = ProduzRespostaErrada_FinalBoss(raiz);
+
+        //Raiz 2
+        respostaErradaInt_Raiz2 = ProduzRespostaErrada_FinalBoss(raiz2);
+
+        // Fazendo a conversao de todas as respostas para bases
+        for (int i = 0; i < 5; i++) { // Determinar as bases para conversao para cada alternativa
+            baseConversao[i] = DeterminaBase_FinalBoss();
+        }
+
+        respostaCerta = ProduzRespostaCerta_FinalBoss(raiz, raiz2, baseConversao); // Juntando a resposta certa em uma String e tambem informando a base que a resposta foi convertida
+        respostaErrada = ProduzRespostaErradaStr_FinalBoss(respostaErradaInt_Raiz1, respostaErradaInt_Raiz2, baseConversao); // Juntando todas as respostas erradas em Strings parecidas com a resposta certa
+
+        //adicionando as opcoes para embaralhar
+        embaralhador.add(respostaCerta);
+
+        for (int i = 0; i < 4; i++) {
+            embaralhador.add(respostaErrada[i]);
+        }
+
+        Collections.shuffle(embaralhador); // Emabralhando as opcoes
+        Collections.shuffle(embaralhador);
+
+        for (int i = 0; i < 5; i++) { // Adicionando todas as opcoes em String depois de embaralhadas para conseguir fazer o desafio
+            opcoes[i] = embaralhador.get(i);
+        }
+        
+        enunciado = "Ache as raízes da equação, que estão expostas em outra base\n\n" + "(" + numX[0] + "x + " + num[0] + ") " + "(" + numX[1] + "x + " + num[1] + ")" + " + " + "(" + numX[2] + "x + " + num[2] + ") " + "(" + numX[3] + "x + " + num[3] + ") = 0\n";
+        
+       // System.out.println(enunciado);
+        
+        status = ProcessoAlternativas_Geral(opcoes, status, respostaCerta,enunciado);
+
+        return status;
+    }
+
+    // FUNÇÕES DO BOSS
+    static int[] DeterminaNumero_FinalBoss() {
+        Random dado = new Random();
+        int[] num = new int[4];
+        int determinaSinal;
+
+        for (int i = 0; i < 4; i++) {
+            do {
+                num[i] = dado.nextInt(35);
+            } while (num[i] <= 0);
+
+            determinaSinal = dado.nextInt(2);
+
+            if (determinaSinal == 1) {
+                num[i] = num[i] * -1;
+            }
+        }
+
+        return num;
+    }
+
+    static int[] SimplificaFracao_FinalBoss(double a, double b) {
+        double auxA = a, auxB = b;
+        int determinaSinal = 0;
+        int[] resposta = new int[2];
+
+        if ((a < 0 && b < 0)) {
+            determinaSinal = 1;
+        }
+
+        if (a > 0 && b < 0) {
+            determinaSinal = 2;
+        }
+
+        a = Math.abs(a);
+        b = Math.abs(b);
+
+        while (a != b) {
+
+            if (a > b) {
+                a = a - b;
+            } else {
+                b = b - a;
+            }
+        }
+
+        switch (determinaSinal) {
+            case 1:
+            case 2:
+                resposta[0] = (int) ((auxA / a) * -1);
+                resposta[1] = (int) ((auxB / a) * -1);
+                break;
+            default:
+                resposta[0] = (int) (auxA / a);
+                resposta[1] = (int) (auxB / a);
+                break;
+        }
+
+        return resposta;
+    }
+
+    static int[] ProduzRespostaErrada_FinalBoss(int[] raiz) {
+        Random dado = new Random();
+        int[] respostaErrada = null;
+
+        //gerar resposta para as raizes de forma separada
+        switch (raiz.length) {
+            case 1:
+                respostaErrada = new int[4];
+
+                for (int i = 0; i < 4; i++) {
+                    do {
+                        respostaErrada[i] = (raiz[0] + dado.nextInt(28)) - 9;
+                    } while (respostaErrada[i] == raiz[0]);
+                }
+
+                try {
+                    //Checando para ver se nao tem opcao repetida
+                    for (int i = 0; i < respostaErrada.length; i++) {
+                        for (int j = 0; j < respostaErrada.length - 1; j++) {
+                            if (respostaErrada[j] == respostaErrada[j + 1]) {
+                                do {
+                                    //System.out.println("PASSEI AQUI\n");
+                                    respostaErrada[j] = respostaErrada[j] + dado.nextInt(3);
+                                } while (respostaErrada[j] == raiz[0]);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Deu ruim");
+                }
+                break;
+            case 2:
+                respostaErrada = new int[8];
+
+                for (int i = 0; i < 8; i++) {
+                    do {
+                        respostaErrada[i] = (raiz[0] + dado.nextInt(28)) - 9;
+                    } while (respostaErrada[i] == raiz[0]);
+                }
+
+                try {
+                    //Checando para ver se nao tem opcao repetida
+                    for (int i = 0; i < respostaErrada.length; i++) {
+                        for (int j = 0; j < respostaErrada.length - 1; j++) {
+                            if (respostaErrada[j] == respostaErrada[j + 1]) {
+                                do {
+                                    //System.out.println("PASSEI AQUI\n");
+                                    respostaErrada[j] = respostaErrada[j] + dado.nextInt(3);
+                                } while (respostaErrada[j] == raiz[0]);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Deu ruim");
+                }
+                break;
+        }
+        return respostaErrada;
+    }
+
+    static String[] ProduzRespostaErradaStr_FinalBoss(int[] raiz, int[] raiz2, int[] baseConversao) {
+        String[] raiz1Errada = new String[4];
+        String[] raiz2Errada = new String[4];
+        String[] respostaErrada = new String[4];
+        for (int i = 0; i < 4; i++) {
+
+        }
+
+        switch (raiz.length) {
+            case 4:
+                for (int i = 0; i < 4; i++) {
+                    raiz1Errada[i] = Integer.toString(raiz[i], baseConversao[i + 1]);
+                }
+                break;
+            case 8:
+                raiz1Errada[0] = Integer.toString(raiz[0], baseConversao[1]) + " / " + Integer.toString(raiz[1], baseConversao[1]);
+                raiz1Errada[1] = Integer.toString(raiz[2], baseConversao[2]) + " / " + Integer.toString(raiz[3], baseConversao[2]);
+                raiz1Errada[2] = Integer.toString(raiz[4], baseConversao[3]) + " / " + Integer.toString(raiz[5], baseConversao[3]);
+                raiz1Errada[3] = Integer.toString(raiz[6], baseConversao[4]) + " / " + Integer.toString(raiz[7], baseConversao[4]);
+                break;
+        }
+
+        switch (raiz2.length) {
+            case 4:
+                for (int i = 0; i < 4; i++) {
+                    raiz2Errada[i] = Integer.toString(raiz2[i], baseConversao[i + 1]);
+                }
+                break;
+            case 8:
+                raiz2Errada[0] = Integer.toString(raiz2[0], baseConversao[1]) + " / " + Integer.toString(raiz2[1], baseConversao[1]);
+                raiz2Errada[1] = Integer.toString(raiz2[2], baseConversao[2]) + " / " + Integer.toString(raiz2[3], baseConversao[2]);
+                raiz2Errada[2] = Integer.toString(raiz2[4], baseConversao[3]) + " / " + Integer.toString(raiz2[5], baseConversao[3]);
+                raiz2Errada[3] = Integer.toString(raiz2[6], baseConversao[4]) + " / " + Integer.toString(raiz2[7], baseConversao[4]);
+                break;
+        }
+        for (int i = 0; i < 4; i++) {
+            respostaErrada[i] = "X1 = " + raiz1Errada[i].toUpperCase() + "\n      X2 = " + raiz2Errada[i].toUpperCase() + "\n     (Na base " + Integer.toString(baseConversao[i + 1]) + ")";
+        }
+        return respostaErrada;
+    }
+
+    static int DeterminaBase_FinalBoss() {
+
+        ArrayList<Integer> bases = new ArrayList();
+
+        bases.add(2);
+        bases.add(8);
+        bases.add(16);
+
+        Collections.shuffle(bases);
+        Collections.shuffle(bases);
+
+        return bases.get(0);
+    }
+
+    static String ProduzRespostaCerta_FinalBoss(int[] raiz, int[] raiz2, int[] baseConversao) {
+        String raiz1Certa = null, raiz2Certa = null, respostaCerta;
+
+        switch (raiz.length) {
+            case 1:
+                raiz1Certa = Integer.toString(raiz[0], baseConversao[0]);
+                break;
+            case 2:
+                raiz1Certa = Integer.toString(raiz[0], baseConversao[0]) + " / " + Integer.toString(raiz[1], baseConversao[0]);
+                break;
+        }
+
+        switch (raiz2.length) {
+            case 1:
+                raiz2Certa = Integer.toString(raiz2[0], baseConversao[0]);
+                break;
+            case 2:
+                raiz2Certa = Integer.toString(raiz2[0], baseConversao[0]) + " / " + Integer.toString(raiz2[1], baseConversao[0]);
+                break;
+        }
+
+        respostaCerta = "X1 = " + raiz1Certa.toUpperCase() + "\n      X2 = " + raiz2Certa.toUpperCase() + "\n     (Na base " + Integer.toString(baseConversao[0]) + ")";
+        return respostaCerta;
+    }
