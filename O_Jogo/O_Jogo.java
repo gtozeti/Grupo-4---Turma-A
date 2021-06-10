@@ -837,7 +837,7 @@ System.out.print("\n");
 	// PROCEDIMENTOS DE TEMPO PARA IMPRIMIR MENSAGENS
 	static void Timer() {
 		try {
-			Thread.sleep(thread1);
+			Thread.sleep(50);
 		} catch (Exception e) {
 
 		}
@@ -845,7 +845,7 @@ System.out.print("\n");
 
 	static void Timer2() {
 		try {
-			Thread.sleep(thread2);
+			Thread.sleep(100);
 		} catch (Exception e) {
 
 		}
@@ -853,7 +853,7 @@ System.out.print("\n");
 
 	static void Timer3() {
 		try {
-			Thread.sleep(thread3);
+			Thread.sleep(100);
 		} catch (Exception e) {
 
 		}
@@ -897,8 +897,9 @@ System.out.print("\n");
 				Timer2();
 				System.out.printf("[ P ] Caso queira utilizar uma potion.\n\nHP atual: "+GREEN+"%d"+RESET+"\t| Potions: "+RED+"%d\n"+RESET, status[0],status[1]);
 				Timer2();
-				System.out.println("Resposta certa: " + respostaCerta.toUpperCase());
-				Timer2();
+				// Takeo, se você estiver com preguiça de fazer a conta basta tirar o comentário da linha abaixo :D 
+				//System.out.println("Resposta certa: " + respostaCerta.toUpperCase());
+				//Timer2();
 				resposta = Option().toUpperCase();
 
 			switch (resposta.charAt(0)) {
