@@ -680,7 +680,7 @@ System.out.print("\n");
 	// FUNÇÃO CRIADA PARA RETONAR UMA OPÇÃO DESEJADA DO USUÁRIO
 	public static String Option() {
 		System.out.print(BLACK_BACKGROUND + WHITE + "\n***Digite sua opção:" + RESET + RESET_BACKGROUND + " ");
-		opcao = entrada.next();
+		opcao = entrada.nextLine();
 		System.out.print("\n");
 		return opcao;
 	}
@@ -1247,7 +1247,7 @@ do {
 		String baseAconv = null;
 
 		do {
-			numRandom = dado.nextInt(2000);
+			numRandom = dado.nextInt(500);
 		} while (numRandom <= 50);
 
 		switch (baseInicial) {
@@ -2305,9 +2305,6 @@ do {
         String[] raiz1Errada = new String[4];
         String[] raiz2Errada = new String[4];
         String[] respostaErrada = new String[4];
-        for (int i = 0; i < 4; i++) {
-
-        }
 
         switch (raiz.length) {
             case 4:
