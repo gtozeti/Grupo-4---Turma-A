@@ -10,9 +10,9 @@ public class O_Jogo {
 	public static String opcao = "";
 	public static int dificuldade = 0;
 	public static String nomeJogador = "";
-	public static int thread1 = 0;
-	public static int thread2 = 0;
-	public static int thread3 = 0;
+	public static int thread1 = 50;
+	public static int thread2 = 100;
+	public static int thread3 = 100;
 	public static int[] status = { 100, 0 };
 	public static int frases = 0;
 
@@ -837,7 +837,7 @@ System.out.print("\n");
 	// PROCEDIMENTOS DE TEMPO PARA IMPRIMIR MENSAGENS
 	static void Timer() {
 		try {
-			Thread.sleep(50);
+			Thread.sleep(thread1);
 		} catch (Exception e) {
 
 		}
@@ -845,7 +845,7 @@ System.out.print("\n");
 
 	static void Timer2() {
 		try {
-			Thread.sleep(100);
+			Thread.sleep(thread2);
 		} catch (Exception e) {
 
 		}
@@ -853,7 +853,7 @@ System.out.print("\n");
 
 	static void Timer3() {
 		try {
-			Thread.sleep(100);
+			Thread.sleep(thread3);
 		} catch (Exception e) {
 
 		}
