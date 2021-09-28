@@ -12,7 +12,7 @@ public class LeitorDicio {
         linha = leitor.readLine();
         leitor.close();
         
-        palavras = linha.toUpperCase().split(" ");
+        palavras = linha.split(" ");
         return palavras;
     }
 }

@@ -5,6 +5,8 @@ public class ListaDicio {
 
     public void Adiciona(String palavra) {
 
+        palavra = TrataPalavra(palavra);
+
         if (lista.length > 1) {
             boolean condicao = BuscaBinaria(palavra);
 
@@ -43,6 +45,7 @@ public class ListaDicio {
         for (int i = 0; i < lista.length; i++) {
             System.out.println(lista[i]);
         }
+        System.out.println("Total palavras = " + lista.length);
     }
 
     private boolean BuscaBinaria(String palavra) {
@@ -53,8 +56,12 @@ public class ListaDicio {
 
         while (min <= max) {
             mid = (min + max) / 2;
+            
+            if (mid >= lista.length) {
+                return false;
+            }
 
-            if (palavra.equals(lista[mid])) {
+            if (palavra.toLowerCase().equals(lista[mid].toLowerCase())) {
                 return true;
             } else if (palavra.compareToIgnoreCase(lista[mid]) < 0) {
                 max = mid - 1;
@@ -89,4 +96,17 @@ public class ListaDicio {
 
     }
 
+    private String TrataPalavra(String palavra) {
+        if (palavra.endsWith(".")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
+        if (palavra.endsWith(",")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
+        if (palavra.endsWith(";")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
+
+        return palavra;
+    }
 }
