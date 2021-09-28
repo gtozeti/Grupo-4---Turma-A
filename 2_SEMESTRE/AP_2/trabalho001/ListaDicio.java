@@ -6,7 +6,6 @@ public class ListaDicio {
     public void Adiciona(String palavra) {
 
         if (lista.length > 1) {
-            OrganizaLista();
             boolean condicao = BuscaBinaria(palavra);
 
             if (!condicao) {
@@ -32,6 +31,7 @@ public class ListaDicio {
             }
         }
 
+        OrganizaLista();
     }
 
     public void IniciaLista() {
@@ -83,7 +83,7 @@ public class ListaDicio {
             aux = lista[j];
             lista[j] = lista[menorIndex];
             lista[menorIndex] = aux;
-            
+
             j++;
         }
 
