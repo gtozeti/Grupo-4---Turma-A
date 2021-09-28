@@ -4,15 +4,32 @@ public class ListaDicio {
     String[] aux;
 
     public void Adiciona(String palavra) {
-        aux = lista;
 
-        
-        lista = new String[aux.length + 1];
+        if (lista.length > 1) {
+            OrganizaLista();
+            boolean condicao = BuscaBinaria(palavra);
 
-        lista[0] = palavra;
+            if (!condicao) {
+                aux = lista;
 
-        for (int i = 0; i < aux.length; i++) {
-            lista[i + 1] = aux[i];
+                lista = new String[aux.length + 1];
+
+                lista[0] = palavra;
+
+                for (int i = 0; i < aux.length; i++) {
+                    lista[i + 1] = aux[i];
+                }
+            }
+        } else {
+            aux = lista;
+
+            lista = new String[aux.length + 1];
+
+            lista[0] = palavra;
+
+            for (int i = 0; i < aux.length; i++) {
+                lista[i + 1] = aux[i];
+            }
         }
 
     }
@@ -28,5 +45,48 @@ public class ListaDicio {
         }
     }
 
-    
+    private boolean BuscaBinaria(String palavra) {
+        int min, max, mid;
+
+        min = 0;
+        max = lista.length;
+
+        while (min <= max) {
+            mid = (min + max) / 2;
+
+            if (palavra.equals(lista[mid])) {
+                return true;
+            } else if (palavra.compareToIgnoreCase(lista[mid]) < 0) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+
+        return false;
+    }
+
+    private void OrganizaLista() {
+        int menorIndex, j;
+        String aux;
+        j = 0;
+
+        while (j < lista.length) {
+            menorIndex = j;
+
+            for (int i = j + 1; i < lista.length; i++) {
+                if (lista[menorIndex].compareToIgnoreCase(lista[i]) > 0) {
+                    menorIndex = i;
+                }
+            }
+
+            aux = lista[j];
+            lista[j] = lista[menorIndex];
+            lista[menorIndex] = aux;
+            
+            j++;
+        }
+
+    }
+
 }
