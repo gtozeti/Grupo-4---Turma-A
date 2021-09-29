@@ -1,22 +1,30 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+
 public class MainDicio {
-    public static void main(String[] args) {
-        LeitorDicio leitor = new LeitorDicio();
+    public static void main(String[] args) throws Exception {
+        FileReader arquivo = new FileReader("meuarquivo.txt");
+        BufferedReader leitor = new BufferedReader(arquivo);
+
         ListaDicio lista = new ListaDicio();
         String[] palavras;
-        
+        String linha;
+        boolean condicao = true;
+
         lista.IniciaLista();
 
-        try {
-            palavras = leitor.LerArquivo("meuarquivo.txt");
-        } catch (Exception e) {
-            palavras = new String[1];
-            palavras[0] = "Tem nada";
-        }
-        
-        for (int i = 0; i < palavras.length; i++) {
-            lista.Adiciona(palavras[i]);
+        while (condicao) {
+            linha = leitor.readLine();
+
+            if (linha == null) {
+                break;
+            } else {
+                palavras = linha.split(" ");
+                lista.AdicionaVetor(palavras);
+            }
         }
 
+        leitor.close();
         lista.Imprimir();
     }
 }

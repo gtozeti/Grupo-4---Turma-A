@@ -3,7 +3,7 @@ public class ListaDicio {
     String[] lista;
     String[] aux;
 
-    public void Adiciona(String palavra) {
+    private void Adiciona(String palavra) {
 
         palavra = TrataPalavra(palavra);
 
@@ -36,6 +36,13 @@ public class ListaDicio {
         OrganizaLista();
     }
 
+    public void AdicionaVetor(String[] vetor) {
+        
+        for (int i = 0; i < vetor.length; i++) {
+            Adiciona(vetor[i]);
+        }
+    }
+
     public void IniciaLista() {
         lista = new String[0];
         aux = new String[lista.length];
@@ -43,9 +50,9 @@ public class ListaDicio {
 
     public void Imprimir() {
         for (int i = 0; i < lista.length; i++) {
-            System.out.println(lista[i]);
+            System.out.println(lista[i].toLowerCase());
         }
-        System.out.println("Total palavras = " + lista.length);
+        System.out.println("Total palavras = " + (lista.length - 1));
     }
 
     private boolean BuscaBinaria(String palavra) {
@@ -104,6 +111,15 @@ public class ListaDicio {
             palavra = palavra.substring(0, palavra.length() - 1);
         }
         if (palavra.endsWith(";")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
+        if (palavra.endsWith("-")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
+        if (palavra.endsWith(":")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
+        if (palavra.endsWith("–")) {
             palavra = palavra.substring(0, palavra.length() - 1);
         }
 
