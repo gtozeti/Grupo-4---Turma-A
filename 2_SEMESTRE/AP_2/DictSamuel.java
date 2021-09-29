@@ -26,12 +26,12 @@ public class DictSamuel {
 		FileReader arquivo = new FileReader(nomeArquivo);
 		BufferedReader leitor = new BufferedReader(arquivo);
 
-		
-		String linha; 		//Variavél para receber cada palavra de uma frase
-		String frase[];		//Variavél para receber as frases de cada linha do documento
+		boolean cond = true;	//Variavél para controle do total de palavras
+		String linha; 			//Variavél para receber cada palavra de uma frase
+		String frase[];			//Variavél para receber as frases de cada linha do documento
 
 		//Enquanto o documento não retonar null, o laço lê as linhas disponíveis
-		while (true) {
+		while (cond) {
 			linha = leitor.readLine();
 			if (linha == null) {
 				break;
@@ -51,15 +51,17 @@ public class DictSamuel {
 						totalPalavras++;
 					} else {
 						
-						if (totalPalavras == 1000) {
+						//Verifica se o total de palavras já foi preenchido
+						if (totalPalavras == dictSamuel.length) {
+							cond = false;
 							break;
 						}
 						
-						//Caso já exista, é feita a verificação se a apalavra já consta no dicionário, através da busca binária
+						//Verificação se a palavra já consta no dicionário, através da busca binária
 						if (!verificaDict(frase[i])) {
 							
-							dictSamuel[totalPalavras] = frase[i];
-							populaDict(dictSamuel);
+							//Caso a a palavra não conte no dicionário ela é inserida 
+							populaDict(dictSamuel, frase[i]);
 						}
 					}
 
@@ -75,9 +77,6 @@ public class DictSamuel {
 	//Função de busca binária para verificar se a palavra já consta no dicionário
 	public static boolean verificaDict(String palavra) {
 
-		//Utilização da ordenação do bubbleSort para poder realizar a busca binária
-		//bubbleSort(dictSamuel);
-		
 		int inicio = 0;
 		int fim = totalPalavras - 1;
 		int meio;
@@ -101,41 +100,24 @@ public class DictSamuel {
 		return false;
 	}
 
-	public static void populaDict(String[] v) {
+	//Função para fazer a inserção da nova palavra de forma ordenada
+	public static void populaDict(String[] v, String frase) {
 
-		
-		for (int i = 1; i <= totalPalavras; i++) {
-		      int j = i;
-		      String x = v[j];
-		      while (j > 0 && x.compareTo(v[j-1]) < 0) {
-		        v[j] = v[j-1];
-		        j--;
-		      }
-		      v[j] = x;
-		    }
-		  totalPalavras++;
+		//Inserção da nova palavra na última posição
+		dictSamuel[totalPalavras] = frase;
 
-	}
+			//Reacolocação da nova palavra no posição ordenada
+			int j = totalPalavras;
+			String x = v[j];
+			while (j > 0 && x.compareTo(v[j - 1]) < 0) {
+				v[j] = v[j - 1];
+				j--;
 
-	//Função bubbleSort para ordenar o vetor informado
-	static void bubbleSort(String [] v) {
-		
-		String aux = "";		//Variavél auxiliar para manipulação do vetor
-		
-		//Ao invés de utilizar o tamanho do vetor todo (1000), 
-		//foi utilizado a quantidade do total de palavras, para não efetuar passos desnecessários
-		//por conta de elementos nulos no vetor
-		
-		for (int i = 0; i < totalPalavras - 1; i ++) {
-			for (int j = 0; j < totalPalavras - i - 1; j ++) {
-				//Para obter um valor númerico para a questão de ordenação, foi utilizado o método compareTo para identificar qual String 
-				// "é maior" que a outra
-				if (v[j].compareTo(v[j+1]) > 0) {
-					aux = v[j];
-					v[j] = v[j+1];
-					v[j+1] = aux;
-				}
 			}
-		}
+			v[j] = x;
+		
+		totalPalavras++;
+
 	}
+
 }
