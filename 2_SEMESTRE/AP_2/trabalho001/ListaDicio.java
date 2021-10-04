@@ -122,7 +122,12 @@ public class ListaDicio {
         if (palavra.endsWith("–")) {
             palavra = palavra.substring(0, palavra.length() - 1);
         }
-
+        if (palavra.endsWith("?")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
+        if (palavra.endsWith("!")) {
+            palavra = palavra.substring(0, palavra.length() - 1);
+        }
         return palavra;
     }
 }
