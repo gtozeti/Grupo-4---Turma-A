@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Projeto;
+package Telas;
 
 import pi2_ogrupo.Tela_ExcluirOS;
 import pi2_ogrupo.Tela_AdicionarAtualizar_Cliente;
