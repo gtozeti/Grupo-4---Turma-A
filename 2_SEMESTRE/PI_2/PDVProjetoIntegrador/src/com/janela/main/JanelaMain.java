@@ -17,6 +17,7 @@ import com.janela.excluir.JanelaExcluirCliente;
 import com.janela.excluir.JanelaExcluirFuncionario;
 import com.janela.excluir.JanelaExcluirOS;
 import com.janela.excluir.JanelaExcluirProduto;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -629,7 +630,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel9.setText("Data início");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel10.setText("TELA DE RELATÓRIOS");
+        jLabel10.setText("RELATÓRIOS");
 
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel12.setText("Data final");
@@ -857,7 +858,7 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel15.setText("TELA DE PRODUTOS");
+        jLabel15.setText("PRODUTOS");
 
         jButton30.setText("< Voltar");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
@@ -917,7 +918,7 @@ public class JanelaMain extends javax.swing.JFrame {
         ConfigScreen.add(ProdutoScreen, "card3");
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel14.setText("TELA DE FUNCIONÁRIOS");
+        jLabel14.setText("FUNCIONÁRIOS");
 
         jTextField5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jTextField5.setText("Procurar Funcionário");

@@ -20,15 +20,15 @@ import java.util.logging.Logger;
  */
 public class ConnectionFactory {
 
-    private final String SERVER = "remotemysql.com";
-    private final String URL = "jdbc:mysql://remotemysql.com:3306/46DZ2dAfik?zeroDateTimeBehavior=CONVERT_TO_NULL";
-    private final String USER = "46DZ2dAfik";
-    private final String PASS = "BJKFkYX9Lv";
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://remotemysql.com:3306/46DZ2dAfik?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private static final String USER = "46DZ2dAfik";
+    private static final String PASS = "BJKFkYX9Lv";
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
 
         try {
-            Class.forName(SERVER);
+            Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Erro na conexão: ", e);
