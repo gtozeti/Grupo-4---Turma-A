@@ -5,10 +5,21 @@
  */
 package com.janela.main;
 
+import com.janela.adicionar.JanelaAdicionarCliente;
+import com.janela.adicionar.JanelaAdicionarOS;
+import com.janela.adicionar.JanelaAdicionarProduto;
+import com.janela.atualizar.JanelaAtualizarCliente;
+import com.janela.atualizar.JanelaAtualizarOS;
+import com.janela.atualizar.JanelaAtualizarProduto;
+import com.janela.buscar.JanelaBuscarCliente;
+import com.janela.buscar.JanelaBuscarProduto;
+import com.janela.excluir.JanelaExcluirCliente;
+import com.janela.excluir.JanelaExcluirFuncionario;
+import com.janela.excluir.JanelaExcluirOS;
+import com.janela.excluir.JanelaExcluirProduto;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
-
 
 /**
  *
@@ -22,9 +33,6 @@ public class JanelaMain extends javax.swing.JFrame {
     public JanelaMain() {
         initComponents();
     }
-    
-    
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -203,7 +211,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.CardLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("TELA DE VENDA");
+        jLabel1.setText("VENDER");
 
         jTextField1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jTextField1.setText("Adicione um cliente");
@@ -260,7 +268,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jButton9.setText("Concluir");
 
         jButton31.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton31.setText("Adicionar Cliente");
+        jButton31.setText("Buscar Cliente");
         jButton31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton31ActionPerformed(evt);
@@ -348,7 +356,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jPanel3.add(VenderScreen, "card2");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setText("TELA DE ORDEM DE SERVIÇO");
+        jLabel7.setText("ORDEM DE SERVIÇO");
 
         jTextField2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(211, 211, 211));
@@ -481,7 +489,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jPanel3.add(OsScreen, "card3");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel8.setText("TELA DE CLIENTE");
+        jLabel8.setText("CLIENTES");
 
         jTextField3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(211, 211, 211));
@@ -1072,7 +1080,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // BOTÃO PARA ACESSAR A JANELA "VENDER"
-        
+
         TrocaTela(jPanel3, "card2");
         jTextField1.setText("Adicione um cliente");
         jTextField1.setForeground(Color.LIGHT_GRAY);
@@ -1080,16 +1088,16 @@ public class JanelaMain extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // BOTÃO PARA ACESSAR A JANELA "ORDEM DE SERVIÇO
-        
+
         TrocaTela(jPanel3, "card3");
         jTextField2.setText("Procurar Ordem de Serviço");
         jTextField2.setForeground(Color.LIGHT_GRAY);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // BOTÃO PARA ACESSAR A JANELA "CLIENTE"
-        
+
         TrocaTela(jPanel3, "card4");
         jTextField3.setText("Procurar Cliente");
         jTextField3.setForeground(Color.LIGHT_GRAY);
@@ -1097,19 +1105,19 @@ public class JanelaMain extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // BOTÃO PARA ACESSAR A JANELA "RELATÓRIO"
-        
+
         TrocaTela(jPanel3, "card5");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // BOTÃO PARA ACESSAR A JANELA "CONFIGURAÇÃO"
-        
+
         TrocaTela(jPanel3, "card6");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // BOTÃO PARA ACESSAR A JANELA "CONFIGURAÇÃO > PRODUTO"
-        
+
         TrocaTela(ConfigScreen, "card3");
         jTextField4.setText("Procurar Produto");
         jTextField4.setForeground(Color.LIGHT_GRAY);
@@ -1117,7 +1125,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // BOTÃO PARA ACESSAR A JANELA "CONFIGURAÇÃO > FUNCIONÁRIO"
-        
+
         TrocaTela(ConfigScreen, "card4");
         jTextField5.setText("Procurar Funcionário");
         jTextField5.setForeground(Color.LIGHT_GRAY);
@@ -1125,13 +1133,13 @@ public class JanelaMain extends javax.swing.JFrame {
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         // BOTÃO PARA VOLTAR PARA JANELA "CONFIGURAÇÃO" DE "PRODUTO"
-        
+
         TrocaTela(ConfigScreen, "card2");
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         // BOTÃO PARA VOLTAR PARA JANELA "CONFIGURAÇÃO" DE "FUNCIONÁRIO"
-        
+
         TrocaTela(ConfigScreen, "card2");
     }//GEN-LAST:event_jButton29ActionPerformed
 
@@ -1142,24 +1150,18 @@ public class JanelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2FocusGained
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        //new Tela_AdicionarAtualizar_OS().setVisible(true);
-       
-        
-        
+        // BOTÃO @JANELA_ORDEM_DE_SERVIÇO, ATUALIZAR ORDEM SERVIÇO
+        new JanelaAtualizarOS(null, true).setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-        
+        // BOTÃO @JANELA_ORDEM_DE_SERVIÇO, ADICIONAR ORDEM SERVIÇO
+        new JanelaAdicionarOS(null, true).setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-
+        //BOTÃO @JANELA_ORDEM_DE_SERVIÇO, EXCLUIR ORDEM SERVIÇO
+        new JanelaExcluirOS(null, true).setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
@@ -1169,18 +1171,18 @@ public class JanelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3FocusGained
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_CLIENTE, ATUALIZAR CLIENTE
+        new JanelaAtualizarCliente(null, true).setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_CLIENTE, ADICIONAR CLIENTE
+        new JanelaAdicionarCliente(null, true).setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_CLIENTE, EXCLUIR CLIENTE
+        new JanelaExcluirCliente(null, true).setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
@@ -1196,33 +1198,33 @@ public class JanelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4FocusGained
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_PRODUTO, ATUALIZAR PRODUTO
+        new JanelaAtualizarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_PRODUTO, ADICIONAR PRODUTO
+        new JanelaAdicionarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_PRODUTO, EXCLUIR PRODUTO
+        new JanelaExcluirProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_PRODUTO, ATUALIZAR PRODUTO
+        new JanelaAtualizarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_PRODUTO, ADICIONAR PRODUTO
+        new JanelaAdicionarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
-
+        // BOTÃO @JANELA_FUNCIONARIO, EXCLUIR FUNCIONARIO
+        new JanelaExcluirFuncionario(null, true).setVisible(true);
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusGained
@@ -1232,15 +1234,13 @@ public class JanelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5FocusGained
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        //Adicionar produto
-    
+        // BOTÃO @JANELA_VENDA, "ADICIONAR PRODUTO"
+        new JanelaBuscarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        // TODO add your handling code here:
-        //Bota @TelaVenda_AdicionarCliente
-    
+        // BOTÃO @JANELA_VENDA, "BUSCAR CLIENTE"
+        new JanelaBuscarCliente(null, true).setVisible(true);
     }//GEN-LAST:event_jButton31ActionPerformed
 
     /**
@@ -1278,13 +1278,12 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void TrocaTela(JPanel janela, String cardNum) {
         CardLayout c1 = (CardLayout) janela.getLayout();
         c1.show(janela, cardNum);
     }
-    
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ClienteScreen;
