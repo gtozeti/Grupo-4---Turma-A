@@ -8,7 +8,7 @@ package com.janela.adicionar;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.api.buscacep.Endereco;
+import com.api.buscacep.BuscaCEP;
 import javax.swing.JOptionPane;
 
 /**
@@ -204,7 +204,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         Map<String, String> busca = new HashMap<>();
-        busca = Endereco.buscarCep(jFormattedTextField2.getText());
+        busca = BuscaCEP.buscarCep(jFormattedTextField2.getText());
         if (busca != null) {
             if (busca.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Endereço não encontrado com o CEP informado");
