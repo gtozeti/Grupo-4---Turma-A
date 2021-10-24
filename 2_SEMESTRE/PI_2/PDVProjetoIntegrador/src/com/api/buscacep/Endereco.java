@@ -1,4 +1,4 @@
-package com.buscarCEP;
+package com.api.buscacep;
 
 import java.io.BufferedReader;
 import java.io.IOException;

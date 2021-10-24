@@ -8,7 +8,7 @@ package com.janela.adicionar;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.buscarCEP.Endereco;
+import com.api.buscacep.Endereco;
 import javax.swing.JOptionPane;
 
 /**
