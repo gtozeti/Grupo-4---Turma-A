@@ -6,9 +6,11 @@
 package com.teste.database.teste002.janela;
 
 import com.teste.database.teste002.janela.adicionar.TesteJanelaAdicionar;
+import com.teste.database.teste002.janela.atualizar.TesteJanelaAtualizar;
+import com.teste.database.teste002.janela.deletar.TesteJanelaDeletar;
 import com.teste.database.teste002.model.bean.TesteTabelaBean;
 import com.teste.database.teste002.model.dao.TesteTabelaDAO;
-import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +24,7 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
      */
     public TesteJanelaInfos() {
         initComponents();
-        
+
         readTable();
     }
 
@@ -44,8 +46,11 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Teste Janela Infos");
 
         jLabel1.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -74,7 +79,12 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jButton1.setText("Excluir");
+        jButton1.setText("Deletar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jButton2.setText("Adicionar");
@@ -86,6 +96,11 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jButton3.setText("Atualizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setText("Buscar cliente");
 
@@ -94,6 +109,22 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+        jButton5.setText("Get Table Info");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+        jButton6.setText("Update Table");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -111,6 +142,10 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2))
@@ -144,23 +179,25 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public void readTable() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        
+
         modelo.setNumRows(0);
-        
+
         TesteTabelaDAO tdao = new TesteTabelaDAO();
-        
+
         for (TesteTabelaBean t : tdao.read()) {
-            
-            modelo.addRow(new Object[] {
+
+            modelo.addRow(new Object[]{
                 t.getId(),
                 t.getNome(),
                 t.getIdade(),
@@ -169,17 +206,92 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
             });
         }
     }
-    
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // BOTÃO PARA ABRIR A JANELA ADICIONAR
-        
         new TesteJanelaAdicionar(null, false).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // BOTÃO PARA ABRIR A JANELA ATUALIZAR
+
+        TesteJanelaAtualizar j = new TesteJanelaAtualizar(null, false);
+
+        if (jTable1.getSelectedRow() != -1) {
+            j.IdTextField.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString());
+            j.NomeTextField.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
+            j.IdadeTextField.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2).toString());
+            j.SexoComboBox.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3).toString());
+            j.CidadeTextField.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 4).toString());
+
+            j.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // BOTÃO GET TABLE INFO TESTE
+
+        int id;
+        int idade;
+        String nome;
+        String sexo;
+        String cidade;
+
+        if (jTable1.getSelectedRow() != -1) {
+            id = Integer.parseInt(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString());
+            nome = jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString();
+            idade = Integer.parseInt(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2).toString());
+            sexo = jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3).toString();
+            cidade = jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 4).toString();
+
+            System.out.println("ID = " + id);
+            System.out.println("NOME = " + nome);
+            System.out.println("IDADE = " + idade);
+            System.out.println("SEXO = " + sexo);
+            System.out.println("CIDADE = " + cidade);
+            System.out.println("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");
+        }
+
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // BOTÃO PROVISÓRIO PARA ATUALIZAR A TABELA
+        readTable();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // BOTÃO DELETAR
+
+        TesteJanelaDeletar j = new TesteJanelaDeletar(null, false);
+
+        if (jTable1.getSelectedRow() != -1) {
+            j.modelo = (DefaultTableModel) jTable1.getModel();
+            j.modelo.setNumRows(0);
+            j.modelo.addRow(new Object[]{
+                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0),
+                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1),
+                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2),
+                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3),
+                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 4)
+            });
+            
+            j.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada");
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,12 +327,15 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
             }
         });
     }
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

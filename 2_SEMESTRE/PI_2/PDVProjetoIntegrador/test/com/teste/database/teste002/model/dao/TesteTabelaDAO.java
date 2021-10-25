@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author Matheus
  */
 public class TesteTabelaDAO {
-    
+
     // Comando para adicionar valores no Banco de Dados na tabela tabelaTeste
     public void create(TesteTabelaBean t) {
 
@@ -39,7 +39,54 @@ public class TesteTabelaDAO {
             JOptionPane.showMessageDialog(null, "INFO adicionada com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar"); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar/n" + ex); // Mensagem para cada o comando não dê certo
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+        }
+    }
+
+    // Comando para adicionar valores no Banco de Dados na tabela tabelaTeste
+    public void update(TesteTabelaBean t) {
+
+        Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
+        PreparedStatement stmt = null; // Variável utilizada para comando MySQL
+
+        try {
+            stmt = con.prepareStatement("UPDATE tabelaTeste SET nome = ?, idade = ?, sexo = ?, cidade = ? WHERE id = ?"); // Comando MySQL para atualizar valores na tabela "tabelaTeste"
+
+            stmt.setString(1, t.getNome()); // Pegando o valor Nome do objeto TesteTabelaBean e adicionando no primeiro "?"
+            stmt.setInt(2, t.getIdade()); // Pegando o valor Idade do objeto TesteTabelaBean e adicionando no segundo "?"
+            stmt.setString(3, t.getSexo()); // Pegando o valor Sexo do objeto TesteTabelaBean e adicionando no terceiro "?"
+            stmt.setString(4, t.getCidade()); // Pegando o valor Cidade do objeto TesteTabelaBean e adicionando no quarto "?"
+            stmt.setInt(5, t.getId()); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no quinto "?"
+            
+            stmt.executeUpdate(); // Executando atualização do comando
+
+            JOptionPane.showMessageDialog(null, "INFO atualizada com sucesso!"); // Mensagem para caso o comando dê certo
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizar/n" + ex); // Mensagem para cada o comando não dê certo
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+        }
+    }
+    
+    public void delete(TesteTabelaBean t) {
+
+        Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
+        PreparedStatement stmt = null; // Variável utilizada para comando MySQL
+
+        try {
+            stmt = con.prepareStatement("DELETE tabelaTeste WHERE id = ?"); // Comando MySQL para deletar valores na tabela "tabelaTeste"
+
+            stmt.setInt(1, t.getId()); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no "?"
+            
+            stmt.executeUpdate(); // Executando atualização do comando
+
+            JOptionPane.showMessageDialog(null, "INFO deletada com sucesso!"); // Mensagem para caso o comando dê certo
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao tentar deletar/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
@@ -78,5 +125,5 @@ public class TesteTabelaDAO {
 
         return listaProd; // retorna valor da lista.
     }
-    
+
 }

@@ -5,13 +5,11 @@
  */
 package com.teste.database.teste002.model.bean;
 
-import com.teste.database.teste002.model.dao.TesteTabelaDAO;
-
 /**
  *
  * @author Matheus
  */
-public class TesteTabelaBean extends TesteTabelaDAO{
+public class TesteTabelaBean{
 
     private int id;
     private String nome;
