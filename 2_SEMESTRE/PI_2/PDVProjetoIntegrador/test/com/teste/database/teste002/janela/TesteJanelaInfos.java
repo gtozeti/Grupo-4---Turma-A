@@ -47,10 +47,16 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Teste Janela Infos");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,14 +126,6 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jButton6.setText("Update Table");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,8 +140,6 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3)
@@ -180,8 +176,7 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
@@ -264,10 +259,9 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // BOTÃO PROVISÓRIO PARA ATUALIZAR A TABELA
-        readTable();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    public void getValue() {
+        System.out.println(jTable1.getValueAt(0, 0));
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // BOTÃO DELETAR
@@ -275,23 +269,26 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         TesteJanelaDeletar j = new TesteJanelaDeletar(null, false);
 
         if (jTable1.getSelectedRow() != -1) {
-            j.modelo = (DefaultTableModel) jTable1.getModel();
-            j.modelo.setNumRows(0);
-            j.modelo.addRow(new Object[]{
-                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0),
-                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1),
-                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2),
-                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3),
-                jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 4)
-            });
+            
+            
+            j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString(), 0, 0);
+            j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString(), 0, 1);
+            j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString(), 0, 2);
+            j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString(), 0, 3);
+            j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString(), 0, 4);
+            
             
             j.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada");
         }
-
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        readTable();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -335,7 +332,6 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

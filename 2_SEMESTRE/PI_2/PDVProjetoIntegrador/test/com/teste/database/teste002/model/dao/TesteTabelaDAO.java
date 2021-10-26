@@ -77,7 +77,7 @@ public class TesteTabelaDAO {
         PreparedStatement stmt = null; // Variável utilizada para comando MySQL
 
         try {
-            stmt = con.prepareStatement("DELETE tabelaTeste WHERE id = ?"); // Comando MySQL para deletar valores na tabela "tabelaTeste"
+            stmt = con.prepareStatement("DELETE FROM tabelaTeste WHERE id = ?"); // Comando MySQL para deletar valores na tabela "tabelaTeste"
 
             stmt.setInt(1, t.getId()); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no "?"
             

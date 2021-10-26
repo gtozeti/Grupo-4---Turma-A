@@ -5,6 +5,7 @@
  */
 package com.teste.database.teste002.janela.adicionar;
 
+import com.teste.database.teste002.janela.TesteJanelaInfos;
 import com.teste.database.teste002.model.bean.TesteTabelaBean;
 import com.teste.database.teste002.model.dao.TesteTabelaDAO;
 
@@ -143,21 +144,21 @@ public class TesteJanelaAdicionar extends javax.swing.JDialog {
 
         TesteTabelaBean t = new TesteTabelaBean();
         TesteTabelaDAO tdao = new TesteTabelaDAO();
-        
+
         t.setNome(NomeTextField.getText());
         t.setIdade(Integer.parseInt(IdadeTextField.getText()));
         t.setSexo(SexoComboBox.getSelectedItem().toString());
         t.setCidade(CidadeTextField.getText());
 
-        tdao.create(t);     
-        
+        tdao.create(t);
+
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // BOTÃO CANCELAR
-        
+
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -203,8 +204,8 @@ public class TesteJanelaAdicionar extends javax.swing.JDialog {
             }
         });
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CidadeTextField;
     private javax.swing.JTextField IdadeTextField;

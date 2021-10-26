@@ -64,7 +64,7 @@ public class TesteJanelaDeletar extends javax.swing.JDialog {
         jTable1.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null}
             },
             new String [] {
                 "ID", "Nome", "Idade", "Sexo", "Cidade"
@@ -117,7 +117,16 @@ public class TesteJanelaDeletar extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // BOTÃO PARA DELETAR LINHA
-
+        
+        TesteTabelaBean t = new TesteTabelaBean();
+        TesteTabelaDAO tdao = new TesteTabelaDAO();
+        
+        t.setId(Integer.parseInt(jTable1.getValueAt(0, 0).toString()));
+        
+        tdao.delete(t);
+        
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
