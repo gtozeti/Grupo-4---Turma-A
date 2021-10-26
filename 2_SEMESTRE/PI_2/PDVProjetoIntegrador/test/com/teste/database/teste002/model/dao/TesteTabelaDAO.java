@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -91,7 +93,7 @@ public class TesteTabelaDAO {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
     }
-
+    
     // Comando para ler os valores da tabelaTeste em uma JTable
     public ArrayList<TesteTabelaBean> read() {
 
@@ -119,6 +121,41 @@ public class TesteTabelaDAO {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Falha em buscar dados");
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
+        }
+
+        return listaProd; // retorna valor da lista.
+    }
+    
+    public ArrayList<TesteTabelaBean> search(TesteTabelaBean t) {
+
+        Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
+        PreparedStatement stmt = null; // Variável para executar comando MySQL
+        ResultSet rs = null;
+
+        ArrayList<TesteTabelaBean> listaProd = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
+
+        try {
+            stmt = con.prepareStatement("SELECT id, nome, idade, sexo, cidade FROM tabelaTeste where id = ? OR nome = ?");
+            stmt.setInt(1, t.getId());
+            stmt.setString(2, t.getNome());
+            rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
+
+            while (rs.next()) {
+                TesteTabelaBean prod = new TesteTabelaBean(); // Objeto semente iniciado para conseguir ler os dados da variável rs
+
+                prod.setId(rs.getInt("id"));
+                prod.setNome(rs.getString("nome"));
+                prod.setIdade(rs.getInt("idade"));
+                prod.setSexo(rs.getString("sexo"));
+                prod.setCidade(rs.getString("cidade"));
+
+                listaProd.add(prod); // Enviando todos os valores para a lista
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados " + ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
         }

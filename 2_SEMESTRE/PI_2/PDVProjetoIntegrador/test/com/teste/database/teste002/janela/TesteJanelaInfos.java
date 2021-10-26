@@ -109,6 +109,11 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         });
 
         jTextField1.setText("Buscar cliente");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jButton4.setText("Buscar");
@@ -202,8 +207,42 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         }
     }
 
+    private void buscarTable() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        TesteTabelaBean t = new TesteTabelaBean();
+        TesteTabelaDAO tdao = new TesteTabelaDAO();
+
+        
+
+        try {
+            t.setId(Integer.parseInt(jTextField1.getText()));
+        } catch (Exception e) {
+            t.setId(0);
+        }
+        t.setNome(jTextField1.getText());
+
+        if (tdao.search(t).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+        } else {
+            modelo.setNumRows(0);
+            
+            for (TesteTabelaBean ti : tdao.search(t)) {
+
+                modelo.addRow(new Object[]{
+                    ti.getId(),
+                    ti.getNome(),
+                    ti.getIdade(),
+                    ti.getSexo(),
+                    ti.getCidade()
+                });
+            }
+        }
+
+    }
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        buscarTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -269,26 +308,29 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
         TesteJanelaDeletar j = new TesteJanelaDeletar(null, false);
 
         if (jTable1.getSelectedRow() != -1) {
-            
-            
+
             j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString(), 0, 0);
             j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString(), 0, 1);
             j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString(), 0, 2);
             j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString(), 0, 3);
             j.jTable1.setValueAt(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString(), 0, 4);
-            
-            
+
             j.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada");
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         readTable();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        buscarTable();
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
