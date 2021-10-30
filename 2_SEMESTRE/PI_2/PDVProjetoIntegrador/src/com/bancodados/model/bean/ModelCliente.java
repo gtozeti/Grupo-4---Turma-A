@@ -11,7 +11,7 @@ package com.bancodados.model.bean;
  */
 public class ModelCliente {
     private int cod_cs;
-    private int documento;
+    private String documento;
     private String nome;
     private String email;
     private String telefone;
@@ -31,11 +31,11 @@ public class ModelCliente {
         this.cod_cs = cod_cs;
     }
 
-    public int getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(int documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 

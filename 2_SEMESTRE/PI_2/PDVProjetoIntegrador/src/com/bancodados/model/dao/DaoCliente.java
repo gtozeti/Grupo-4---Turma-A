@@ -23,21 +23,19 @@ public class DaoCliente {
         PreparedStatement stmt = null; // Variável utilizada para comando MySQL
         
         try {
-            stmt = con.prepareStatement("INSERT INTO cliente (nome, email, telefone, logradouro, complemento, bairro, logradouro_num, cidade, estado, cep, documento)"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?");
+            stmt = con.prepareStatement("INSERT INTO cliente (nome, email, telefone, cep, logradouro, logradouro_num, complemento, bairro, cidade, documento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             
             stmt.setString(1, cs.getNome());
             stmt.setString(2, cs.getEmail());
             stmt.setString(3, cs.getTelefone());
-            stmt.setString(4, cs.getLogradouro());
-            stmt.setString(5, cs.getComplemento());
-            stmt.setString(6, cs.getBairro());
-            stmt.setString(7, cs.getLogradouro_num());
-            stmt.setString(8, cs.getCidade());
-            stmt.setString(9, cs.getEstado());
-            stmt.setString(10, cs.getCep());
-            stmt.setString(11, Integer.toString(cs.getDocumento()));
-
+            stmt.setString(4, cs.getCep());
+            stmt.setString(5, cs.getLogradouro());
+            stmt.setString(6, cs.getLogradouro_num());
+            stmt.setString(7, cs.getComplemento());
+            stmt.setString(8, cs.getBairro());
+            stmt.setString(9, cs.getCidade());
+            stmt.setString(10, cs.getDocumento());
+            
             stmt.executeUpdate(); // Executando atualização do comando
 
             JOptionPane.showMessageDialog(null, "INFO adicionada com sucesso!"); // Mensagem para caso o comando dê certo
