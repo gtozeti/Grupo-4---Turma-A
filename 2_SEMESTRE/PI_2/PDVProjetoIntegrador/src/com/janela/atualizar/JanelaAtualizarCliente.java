@@ -6,6 +6,8 @@
 package com.janela.atualizar;
 
 import com.api.buscacep.BuscaCEP;
+import com.bancodados.model.bean.ModelCliente;
+import com.bancodados.model.dao.DaoCliente;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -73,6 +75,11 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
         });
 
         jButton2.setText("Atualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         CodCsLabel.setText("auto increment");
 
@@ -217,6 +224,7 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -224,6 +232,34 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
         // CepTextField ação
         pesquisaCep();
     }//GEN-LAST:event_CepTextFieldFocusLost
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // BOTAO ATUALIZAR
+        ModelCliente c = new ModelCliente();
+        DaoCliente cdao = new DaoCliente();
+        
+        String tel = TelefoneTextField.getText();
+        tel = tel.substring(1, 3) + tel.substring(5, 10) + tel.substring(11);
+        String cep = CepTextField.getText();
+        cep = cep.substring(0, 5) + cep.substring(6);
+        
+        c.setCod_cs(Integer.parseInt(CodCsLabel.getText()));
+        c.setNome(NomeTextField.getText());
+        c.setEmail(EmailTextField.getText());
+        c.setTelefone(tel);
+        c.setCep(cep);
+        c.setLogradouro_num(NumTextField.getText());
+        c.setLogradouro(LograTextField.getText());
+        c.setComplemento(ComplementoTextField.getText());
+        c.setBairro(BairroTextField.getText());
+        c.setCidade(CidadeTextField.getText());
+        c.setDocumento(DocumentoTextField.getText());
+        
+        cdao.update(c);
+        
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void pesquisaCep() {
         Map<String, String> busca = new HashMap<>();

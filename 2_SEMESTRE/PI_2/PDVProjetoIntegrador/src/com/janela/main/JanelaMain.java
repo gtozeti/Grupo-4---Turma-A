@@ -22,6 +22,7 @@ import com.janela.excluir.JanelaExcluirProduto;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -1206,14 +1207,24 @@ public class JanelaMain extends javax.swing.JFrame {
         // BOTÃO @JANELA_CLIENTE, ATUALIZAR CLIENTE
 
         JanelaAtualizarCliente updatecs = new JanelaAtualizarCliente(null, true);
-
+        
         if (jTable3.getSelectedRow() != -1) {
+            DaoCliente cdao = new DaoCliente();
+            ArrayList aux;
+            
+            aux = cdao.getAddress(Integer.parseInt(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 0).toString()));
             
             updatecs.CodCsLabel.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 0).toString());
             updatecs.NomeTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 1).toString());
             updatecs.EmailTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 2).toString());
             updatecs.TelefoneTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 3).toString());
             updatecs.DocumentoTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 4).toString());
+            updatecs.LograTextField.setText(aux.get(0).toString());
+            updatecs.ComplementoTextField.setText(aux.get(1).toString());
+            updatecs.BairroTextField.setText(aux.get(2).toString());
+            updatecs.NumTextField.setText(aux.get(3).toString());
+            updatecs.CidadeTextField.setText(aux.get(4).toString());
+            updatecs.CepTextField.setText(aux.get(5).toString());
             
             updatecs.setVisible(true);
         } else {

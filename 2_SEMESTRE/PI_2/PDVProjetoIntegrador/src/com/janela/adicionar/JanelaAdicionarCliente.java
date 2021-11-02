@@ -257,10 +257,15 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
         ModelCliente c = new ModelCliente();
         DaoCliente cdao = new DaoCliente();
         
+        String tel = TelefoneTextField.getText();
+        tel = tel.substring(1, 3) + tel.substring(5, 10) + tel.substring(11);
+        String cep = CepTextField.getText();
+        cep = cep.substring(0, 5) + cep.substring(6);
+        
         c.setNome(NomeTextField.getText());
         c.setEmail(EmailTextField.getText());
-        c.setTelefone(MyUtils.corta(TelefoneTextField.getText(), 1, 2) + MyUtils.corta(TelefoneTextField.getText(), 5, 9) + MyUtils.corta(TelefoneTextField.getText(), 11, 14));
-        c.setCep(MyUtils.corta(CepTextField.getText(), 0, 4) + MyUtils.corta(CepTextField.getText(), 6, 8));
+        c.setTelefone(tel);
+        c.setCep(cep);
         c.setLogradouro(LograTextField.getText());
         c.setLogradouro_num(NumTextField.getText());
         c.setComplemento(ComplementoTextField.getText());
@@ -276,10 +281,16 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        
+        String tel = TelefoneTextField.getText();
+        tel = tel.substring(1, 3) + tel.substring(5, 10) + tel.substring(11);
+        String cep = CepTextField.getText();
+        cep = cep.substring(0, 5) + cep.substring(6);
+        
         System.out.println("Nome: " + NomeTextField.getText());
         System.out.println("E-mail: " + EmailTextField.getText());
-        System.out.println("Telefone: " + MyUtils.corta(TelefoneTextField.getText(), 1, 2) + MyUtils.corta(TelefoneTextField.getText(), 5, 9) + MyUtils.corta(TelefoneTextField.getText(), 11, 14));
-        System.out.println("CEP: " + MyUtils.corta(CepTextField.getText(), 0, 4) + MyUtils.corta(CepTextField.getText(), 6, 8));
+        System.out.println("Telefone: " + tel);
+        System.out.println("CEP: " + cep);
         System.out.println("Logradouro: " + LograTextField.getText());
         System.out.println("Numero: " + NumTextField.getText());
         System.out.println("Complemento: " + ComplementoTextField.getText());

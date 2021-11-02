@@ -89,7 +89,7 @@ public class DaoCliente {
         PreparedStatement stmt = null; // Variável utilizada para comando MySQL
 
         try {
-            stmt = con.prepareStatement("UPDATE cliente SET nome = ?, email = ?, telefone = ?, cep = ?, logradouro = ?, logradouro_num = ?, complemento = ?, bairro = ?, cidade = ?, documento = ? WHERE id = ?"); // Comando MySQL para atualizar valores na tabela "tabelaTeste"
+            stmt = con.prepareStatement("UPDATE cliente SET nome = ?, email = ?, telefone = ?, cep = ?, logradouro = ?, logradouro_num = ?, complemento = ?, bairro = ?, cidade = ?, documento = ? WHERE cod_cs = ?"); // Comando MySQL para atualizar valores na tabela "tabelaTeste"
 
             stmt.setString(1, cs.getNome());
             stmt.setString(2, cs.getEmail());
@@ -113,6 +113,36 @@ public class DaoCliente {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
     }
-    
-    
+
+    public ArrayList<String> getAddress(int id) {
+
+        Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
+        PreparedStatement stmt = null; // Variável para executar comando MySQL
+        ResultSet rs = null;
+
+        ArrayList<String> endereco = new ArrayList();
+
+        try {
+            stmt = con.prepareStatement("SELECT logradouro, complemento, bairro, logradouro_num, cidade, cep from cliente where cod_cs = ?"); // Comando MySQL
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
+
+            if (rs != null && rs.next()) {
+                endereco.add(rs.getString("logradouro"));
+                endereco.add(rs.getString("complemento"));
+                endereco.add(rs.getString("bairro"));
+                endereco.add(rs.getString("logradouro_num"));
+                endereco.add(rs.getString("cidade"));
+                endereco.add(rs.getString("cep"));
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados\n" + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
+        }
+
+        return endereco; // retorna valor da lista.
+    }
+
 }
