@@ -144,7 +144,7 @@ public class DaoCliente {
 
         return endereco; // retorna valor da lista.
     }
-    
+
     public void delete(int id) {
 
         Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
@@ -154,7 +154,7 @@ public class DaoCliente {
             stmt = con.prepareStatement("DELETE FROM cliente WHERE cod_cs = ?"); // Comando MySQL para deletar valores na tabela "tabelaTeste"
 
             stmt.setInt(1, id); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no "?"
-            
+
             stmt.executeUpdate(); // Executando atualização do comando
 
             JOptionPane.showMessageDialog(null, "INFO deletada com sucesso!"); // Mensagem para caso o comando dê certo
@@ -164,5 +164,41 @@ public class DaoCliente {
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
+    }
+
+    public ArrayList<ModelCliente> search(ModelCliente c) {
+
+        Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
+        PreparedStatement stmt = null; // Variável para executar comando MySQL
+        ResultSet rs = null;
+
+        ArrayList<ModelCliente> buscaCliente = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
+
+        try {
+            stmt = con.prepareStatement("SELECT cod_cs, nome, email, telefone, documento FROM cliente where cod_cs = ? OR nome = ? OR email = ? OR telefone = ? OR documento = ?");
+            stmt.setInt(1, c.getCod_cs());
+            stmt.setString(2, c.getNome());
+            stmt.setString(3, c.getEmail());
+            stmt.setString(4, c.getTelefone());
+            stmt.setString(5, c.getDocumento());
+            rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
+
+            while (rs.next()) {
+                ModelCliente cliente = new ModelCliente();
+                
+                cliente.setCod_cs(rs.getInt("cod_cs"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setDocumento(rs.getString("documento"));
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
+        }
+
+        return buscaCliente; // retorna valor da lista.
     }
 }

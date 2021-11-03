@@ -530,12 +530,6 @@ public class JanelaMain extends javax.swing.JFrame {
 
         jPanel3.add(OsScreen, "card3");
 
-        ClienteScreen.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                ClienteScreenFocusGained(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel8.setText("CLIENTES");
 
@@ -555,6 +549,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
         jButton14.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton14.setText("Buscar");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1190,7 +1189,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         new JanelaExcluirOS(null, true).setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
-    
+
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR"
     private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
         jTextField3.setText("");
@@ -1252,7 +1251,6 @@ public class JanelaMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
-   
     // @JANELA_PRODUTO -> ÁREA_TEXTO "BUSCAR"
     private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusGained
         jTextField4.setText("");
@@ -1263,7 +1261,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         new JanelaAtualizarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton24ActionPerformed
-    
+
     // @JANELA_PRODUTO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         new JanelaAdicionarProduto(null, true).setVisible(true);
@@ -1295,7 +1293,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField5.setForeground(Color.black);
     }//GEN-LAST:event_jTextField5FocusGained
-    
+
     // @JANELA_VENDER -> BOTÃO "ADICIONAR PRODUTO" (ABRIR JDIALOG PARA ADICIONAR PRODUTO AO PEDIDO DE VENDA)
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         new JanelaBuscarProduto(null, true).setVisible(true);
@@ -1305,27 +1303,26 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         new JanelaBuscarCliente(null, true).setVisible(true);
     }//GEN-LAST:event_jButton31ActionPerformed
-    
+
     // @JANELA_VENDER -> BOTÃO "BUSCAR FUNCIONÁRIO" (ABRIR JDIALOG PARA ADICIONAR FUNCIONÁRIO AO PEDIDO DE VENDA)
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
 
     }//GEN-LAST:event_jButton32ActionPerformed
-    
-    
-    private void ClienteScreenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ClienteScreenFocusGained
-        // TODO add your handling code here:
-        readTable3();
-    }//GEN-LAST:event_ClienteScreenFocusGained
-    
+
     // @JANELA_CLIENTE -> BOTÃO "ATUALIZAR JTABLE3" (ATUALIZA OS DADOS DA JTABLE3)
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        readTable3();
+        readJTable3();
     }//GEN-LAST:event_jButton33ActionPerformed
+    
+    // @JANELA_CLIENTE -> BOTÃO "BUSCAR" (ATUALIZA JTABLE3 COM OS RESULTADOS DA PESQUISA)
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        searchJTable3();
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     ////////////////////////////////////////////////////////////////////////////
     // FUNÇÕES @JANELA_CLIENTE
     // Função para atualizar os dados da jTable3 @Janela_Cliente
-    private void readTable3() {
+    private void readJTable3() {
         DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
 
         modelo.setNumRows(0);
@@ -1341,6 +1338,40 @@ public class JanelaMain extends javax.swing.JFrame {
                 maskPhone(c.getTelefone()),
                 VerificaDocumento.mask(c.getDocumento())
             });
+        }
+    }
+
+    private void searchJTable3() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
+        ModelCliente c = new ModelCliente();
+        DaoCliente cdao = new DaoCliente();
+
+        try {
+            c.setCod_cs(Integer.parseInt(jTextField3.getText().trim()));
+        } catch (Exception e) {
+            c.setCod_cs(0);
+        }
+        
+        c.setNome(jTextField3.getText().trim());
+        c.setEmail(jTextField3.getText().trim());
+        c.setTelefone(jTextField3.getText().trim());
+        c.setDocumento(jTextField3.getText().trim());
+
+        if (cdao.search(c).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+        } else {
+            modelo.setNumRows(0);
+
+            for (ModelCliente cs : cdao.search(c)) {
+
+                modelo.addRow(new Object[]{
+                    cs.getCod_cs(),
+                    cs.getNome(),
+                    cs.getEmail(),
+                    cs.getTelefone(),
+                    cs.getDocumento()
+                });
+            }
         }
     }
 
