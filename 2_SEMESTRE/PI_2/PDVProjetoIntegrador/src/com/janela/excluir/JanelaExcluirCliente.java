@@ -5,6 +5,8 @@
  */
 package com.janela.excluir;
 
+import com.bancodados.model.dao.DaoCliente;
+
 /**
  *
  * @author PICHAU
@@ -39,14 +41,14 @@ public class JanelaExcluirCliente extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código Cliente", "Nome", "E-mail", "Número"
+                "Código Cliente", "Nome", "E-mail", "Telefone", "Documento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -60,6 +62,11 @@ public class JanelaExcluirCliente extends javax.swing.JDialog {
         jLabel1.setText("Tem certeza que deseja excluir o seguinte cadastro?");
 
         jButton1.setText("SIM");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("NÃO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -102,9 +109,18 @@ public class JanelaExcluirCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // BOTÃO CANCELAR
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // BOTÃO DELETAR
+        DaoCliente cdao = new DaoCliente();
+        
+        cdao.delete(Integer.parseInt(jTable1.getValueAt(0, 0).toString()));
+        
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +170,6 @@ public class JanelaExcluirCliente extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

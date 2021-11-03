@@ -5,6 +5,7 @@
  */
 package com.janela.main;
 
+import com.api.verificadoc.VerificaDocumento;
 import com.bancodados.model.bean.ModelCliente;
 import com.bancodados.model.dao.DaoCliente;
 import com.janela.adicionar.JanelaAdicionarCliente;
@@ -195,7 +196,7 @@ public class JanelaMain extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -228,11 +229,6 @@ public class JanelaMain extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jTextField1.setText("Adicione um cliente");
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("Cliente");
@@ -297,15 +293,10 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel13.setText("Funcionário");
 
         jTextField6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jTextField6.setText("Adicione um cliente");
-        jTextField6.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField6FocusGained(evt);
-            }
-        });
+        jTextField6.setText("Adicione um funcionário");
 
         jButton32.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton32.setText("Buscar Cliente");
+        jButton32.setText("Buscar Funcoinário");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton32ActionPerformed(evt);
@@ -320,17 +311,10 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(382, 382, 382))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
                     .addGroup(VenderScreenLayout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -339,13 +323,6 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addGroup(VenderScreenLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(404, 404, 404))
-                    .addGroup(VenderScreenLayout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
                         .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
@@ -356,29 +333,51 @@ public class JanelaMain extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(VenderScreenLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(553, 553, 553)
+                                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(VenderScreenLayout.createSequentialGroup()
+                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField6)
+                            .addComponent(jTextField1))
+                        .addGap(18, 18, 18)
+                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
+                                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1))
+                            .addComponent(jButton32, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
         );
         VenderScreenLayout.setVerticalGroup(
             VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VenderScreenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(VenderScreenLayout.createSequentialGroup()
+                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(VenderScreenLayout.createSequentialGroup()
+                                .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(VenderScreenLayout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -494,7 +493,7 @@ public class JanelaMain extends javax.swing.JFrame {
             .addGroup(OsScreenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(OsScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                     .addGroup(OsScreenLayout.createSequentialGroup()
                         .addComponent(jTextField2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -521,7 +520,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(OsScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -621,7 +620,7 @@ public class JanelaMain extends javax.swing.JFrame {
             .addGroup(ClienteScreenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ClienteScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                     .addGroup(ClienteScreenLayout.createSequentialGroup()
                         .addComponent(jTextField3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -650,7 +649,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(ClienteScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -734,7 +733,7 @@ public class JanelaMain extends javax.swing.JFrame {
                                 .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton18)))
-                        .addGap(0, 102, Short.MAX_VALUE)))
+                        .addGap(0, 252, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         RelatorioScreenLayout.setVerticalGroup(
@@ -751,7 +750,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jPanel3.add(RelatorioScreen, "card5");
@@ -802,7 +801,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         ConfigScreen.add(jPanel1, "card2");
@@ -911,7 +910,7 @@ public class JanelaMain extends javax.swing.JFrame {
             .addGroup(ProdutoScreenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                     .addGroup(ProdutoScreenLayout.createSequentialGroup()
                         .addComponent(jTextField4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1048,7 +1047,7 @@ public class JanelaMain extends javax.swing.JFrame {
             .addGroup(FuncionarioScreenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                     .addGroup(FuncionarioScreenLayout.createSequentialGroup()
                         .addComponent(jTextField5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1081,7 +1080,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1116,101 +1115,90 @@ public class JanelaMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    // @SIDE_MENU -> BOTÃO "VENDER" (ACESSAR JANELA VENDER)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // BOTÃO PARA ACESSAR A JANELA "VENDER"
-
         TrocaTela(jPanel3, "card2");
         jTextField1.setText("Adicione um cliente");
         jTextField1.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // @SIDE_MENU -> BOTÃO "ORDEM DE SERVIÇO" (ACESSAR JANELA ORDEM DE SERVIÇO)
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // BOTÃO PARA ACESSAR A JANELA "ORDEM DE SERVIÇO
-
         TrocaTela(jPanel3, "card3");
         jTextField2.setText("Procurar Ordem de Serviço");
         jTextField2.setForeground(Color.LIGHT_GRAY);
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    // @SIDE_MENU -> BOTÃO "CLIENTE" (ACESSAR JANELA CLIENTE)
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // BOTÃO PARA ACESSAR A JANELA "CLIENTE"
-
         TrocaTela(jPanel3, "card4");
         jTextField3.setText("Procurar Cliente");
         jTextField3.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    // @SIDE_MENU -> BOTÃO "RELATÓRIO" (ACESSAR JANELA RELATÓRIO)
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // BOTÃO PARA ACESSAR A JANELA "RELATÓRIO"
-
         TrocaTela(jPanel3, "card5");
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    // @SIDE_MENU -> BOTÃO "CONFIGURAÇÃO" (ACESSAR JANELA CONFIGURAÇÃO)
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // BOTÃO PARA ACESSAR A JANELA "CONFIGURAÇÃO"
-
         TrocaTela(jPanel3, "card6");
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    // @JANELA_CONFIGURAÇÃO -> BOTÃO "PRODUTO" (ACESSAR JANELA PRODUTO)
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // BOTÃO PARA ACESSAR A JANELA "CONFIGURAÇÃO > PRODUTO"
-
         TrocaTela(ConfigScreen, "card3");
         jTextField4.setText("Procurar Produto");
         jTextField4.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton19ActionPerformed
 
+    // @JANELA_CONFIGURAÇÃO -> BOTÃO "FUNCIONÁRIO" (ACESSAR JANELA FUNCIONÁRIO)
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // BOTÃO PARA ACESSAR A JANELA "CONFIGURAÇÃO > FUNCIONÁRIO"
-
         TrocaTela(ConfigScreen, "card4");
         jTextField5.setText("Procurar Funcionário");
         jTextField5.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton20ActionPerformed
 
+    // @JANELA_PRODUTO -> BOTÃO "VOLTAR" (VOLTAR PARA JANELA_CONFIGURAÇÃO)
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-        // BOTÃO PARA VOLTAR PARA JANELA "CONFIGURAÇÃO" DE "PRODUTO"
-
         TrocaTela(ConfigScreen, "card2");
     }//GEN-LAST:event_jButton30ActionPerformed
 
+    // @JANELA_FUNCIONÁRIO -> BOTÃO "VOLTAR" (VOLTAR PARA JANELA_CONFIGURAÇÃO)
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // BOTÃO PARA VOLTAR PARA JANELA "CONFIGURAÇÃO" DE "FUNCIONÁRIO"
-
         TrocaTela(ConfigScreen, "card2");
     }//GEN-LAST:event_jButton29ActionPerformed
 
+    // @JANELA_ORDEM_DE_SERVIÇO -> ÁREA_TEXTO "BUSCAR"
     private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
-        // TODO add your handling code here:
         jTextField2.setText("");
         jTextField2.setForeground(Color.black);
     }//GEN-LAST:event_jTextField2FocusGained
 
+    // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ATUALIZAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ATUALIZAR OS)
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // BOTÃO @JANELA_ORDEM_DE_SERVIÇO, ATUALIZAR ORDEM SERVIÇO
         new JanelaAtualizarOS(null, true).setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ADICIONAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ADICIONAR OS)
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // BOTÃO @JANELA_ORDEM_DE_SERVIÇO, ADICIONAR ORDEM SERVIÇO
         new JanelaAdicionarOS(null, true).setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "EXCLUIR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA EXCLUIR OS)
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        //BOTÃO @JANELA_ORDEM_DE_SERVIÇO, EXCLUIR ORDEM SERVIÇO
         new JanelaExcluirOS(null, true).setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
-
+    
+    // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR"
     private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
-        // TODO add your handling code here:
         jTextField3.setText("");
         jTextField3.setForeground(Color.black);
     }//GEN-LAST:event_jTextField3FocusGained
 
+    // @JANELA_CLIENTE -> BOTÃO "ATUALIZAR CLIENTE" (ABRE JDIALOG PARA ATUALIZAR CLIENTE)
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // BOTÃO @JANELA_CLIENTE, ATUALIZAR CLIENTE
-
         JanelaAtualizarCliente updatecs = new JanelaAtualizarCliente(null, true); //Criando objeto da JanelaAtualizarCliente @Janela_Cliente
 
         if (jTable3.getSelectedRow() != -1) { // Condicionlar para checar se foi selecionado um cliente ou nao
@@ -1223,17 +1211,10 @@ public class JanelaMain extends javax.swing.JFrame {
             updatecs.NomeTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 1).toString()); // Adicionando o nome do cliente na JanelaAtualizarCliente
             updatecs.EmailTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 2).toString()); // Adicionando o e-mail do cliente na JanelaAtualizarCliente
             updatecs.TelefoneTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 3).toString()); // Adicionando o telefone do cliente na JanelaAtualizarCliente
-            if (jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 4).toString().length() == 11) { //Condicional para determinar se é CPF ou CNPJ
-                try {
-                    updatecs.DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##"))); // Deixa a máscara como CPF
-                } catch (ParseException ex) {
-                }
+            if (jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 4).toString().length() == 14) { //Condicional para determinar se é CPF ou CNPJ
+                updatecs.jComboBox1.setSelectedIndex(0);
             } else {
                 updatecs.jComboBox1.setSelectedIndex(1);
-                try {
-                    updatecs.DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##"))); //Deixa a máscara como CNPJ
-                } catch (ParseException ex) {
-                }
             }
             updatecs.DocumentoTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 4).toString()); // Adicionando o documento do cliente na JanelaAtualizarCliente
             updatecs.LograTextField.setText(aux.get(0).toString()); //Adicionando o logradouro do cliente na JanelaAtualizarCliente
@@ -1249,96 +1230,102 @@ public class JanelaMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton17ActionPerformed
 
+    // @JANELA_CLIENTE -> BOTÃO "ADICIONAR CLIENTE" (ABRE JDIALOG PARA ADICIONAR CLIENTE)
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // BOTÃO @JANELA_CLIENTE, ADICIONAR CLIENTE
         new JanelaAdicionarCliente(null, true).setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
 
+    // @JANELA_CLIENTE -> BOTÃO "EXCLUIR CLIENTE" (ABRIR JDIALOG PARA EXCLUIR CLIENTE)
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // BOTÃO @JANELA_CLIENTE, EXCLUIR CLIENTE
-        new JanelaExcluirCliente(null, true).setVisible(true);
+        JanelaExcluirCliente j = new JanelaExcluirCliente(null, true);
+
+        if (jTable3.getSelectedRow() != -1) { // Condicionlar para checar se foi selecionado um cliente ou nao
+            j.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 0).toString(), 0, 0);
+            j.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 1).toString(), 0, 1);
+            j.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 2).toString(), 0, 2);
+            j.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 3).toString(), 0, 3);
+            j.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 4).toString(), 0, 4);
+
+            j.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");
+        }
     }//GEN-LAST:event_jButton15ActionPerformed
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        // TODO add your handling code here:
-        jTextField1.setText("");
-        jTextField1.setForeground(Color.black);
-    }//GEN-LAST:event_jTextField1FocusGained
-
+   
+    // @JANELA_PRODUTO -> ÁREA_TEXTO "BUSCAR"
     private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusGained
-        // TODO add your handling code here:
         jTextField4.setText("");
         jTextField4.setForeground(Color.black);
     }//GEN-LAST:event_jTextField4FocusGained
 
+    // @JANELA_PRODUTO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // BOTÃO @JANELA_PRODUTO, ATUALIZAR PRODUTO
         new JanelaAtualizarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton24ActionPerformed
-
+    
+    // @JANELA_PRODUTO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // BOTÃO @JANELA_PRODUTO, ADICIONAR PRODUTO
         new JanelaAdicionarProduto(null, true).setVisible(true);
-        
+
     }//GEN-LAST:event_jButton23ActionPerformed
 
+    // @JANELA_PRODUTO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR PRODUTO"
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // BOTÃO @JANELA_PRODUTO, EXCLUIR PRODUTO
         new JanelaExcluirProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton22ActionPerformed
 
+    // @JANELA_FUNCIONÁRIO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR FUNCIONÁRIO)
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // BOTÃO @JANELA_PRODUTO, ATUALIZAR PRODUTO
         new JanelaAtualizarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton28ActionPerformed
 
+    // @JANELA_FUNCIONÁRIO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR FUNCIONÁRIO)
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        // BOTÃO @JANELA_PRODUTO, ADICIONAR PRODUTO
         new JanelaAdicionarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton27ActionPerformed
 
+    // @JANELA_FUNCIONÁRIO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR FUNCIONÁRIO)
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // BOTÃO @JANELA_FUNCIONARIO, EXCLUIR FUNCIONARIO
         new JanelaExcluirFuncionario(null, true).setVisible(true);
     }//GEN-LAST:event_jButton26ActionPerformed
 
+    // @JANELA_FUNCIONÁRIO -> ÁREA_TEXTO "BUSCAR"
     private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusGained
-        // TODO add your handling code here:
         jTextField5.setText("");
         jTextField5.setForeground(Color.black);
     }//GEN-LAST:event_jTextField5FocusGained
-
+    
+    // @JANELA_VENDER -> BOTÃO "ADICIONAR PRODUTO" (ABRIR JDIALOG PARA ADICIONAR PRODUTO AO PEDIDO DE VENDA)
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // BOTÃO @JANELA_VENDA, "ADICIONAR PRODUTO"
         new JanelaBuscarProduto(null, true).setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    // @JANELA_VENDER -> BOTÃO "BUSCAR CLIENTE" (ABRIR JDIALOG PARA ADICIONAR CLIENTE AO PEDIDO DE VENDA)
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        // BOTÃO @JANELA_VENDA, "BUSCAR CLIENTE"
         new JanelaBuscarCliente(null, true).setVisible(true);
     }//GEN-LAST:event_jButton31ActionPerformed
-
-    private void jTextField6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField6FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6FocusGained
-
+    
+    // @JANELA_VENDER -> BOTÃO "BUSCAR FUNCIONÁRIO" (ABRIR JDIALOG PARA ADICIONAR FUNCIONÁRIO AO PEDIDO DE VENDA)
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton32ActionPerformed
 
+    }//GEN-LAST:event_jButton32ActionPerformed
+    
+    
     private void ClienteScreenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ClienteScreenFocusGained
         // TODO add your handling code here:
         readTable3();
     }//GEN-LAST:event_ClienteScreenFocusGained
-
+    
+    // @JANELA_CLIENTE -> BOTÃO "ATUALIZAR JTABLE3" (ATUALIZA OS DADOS DA JTABLE3)
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        // Bota atualizar tabela3 janela cliente
         readTable3();
     }//GEN-LAST:event_jButton33ActionPerformed
 
-    //Codigos para tabela
+    ////////////////////////////////////////////////////////////////////////////
+    // FUNÇÕES @JANELA_CLIENTE
+    // Função para atualizar os dados da jTable3 @Janela_Cliente
     private void readTable3() {
-        // Atualizar tabela 3 @Janela Cliente
         DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
 
         modelo.setNumRows(0);
@@ -1351,12 +1338,21 @@ public class JanelaMain extends javax.swing.JFrame {
                 c.getCod_cs(),
                 c.getNome(),
                 c.getEmail(),
-                c.getTelefone(),
-                c.getDocumento()
+                maskPhone(c.getTelefone()),
+                VerificaDocumento.mask(c.getDocumento())
             });
         }
     }
 
+    // Função para colocar o padrão "(##) #####-####" na coluna Telefone
+    private String maskPhone(String p) {
+        p = "(" + p.substring(0, 2) + ") " + p.substring(2, 7) + "-" + p.substring(7);
+
+        return p;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * @param args the command line arguments
      */
@@ -1371,16 +1367,21 @@ public class JanelaMain extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JanelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JanelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JanelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JanelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
