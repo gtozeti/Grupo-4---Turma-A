@@ -1085,14 +1085,14 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jTextField4" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton21" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton21" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButton22" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButton24" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Component id="jButton23" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton23" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButton30" min="-2" max="-2" attributes="0"/>
@@ -1118,16 +1118,16 @@
                           </Group>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton21" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jTextField4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jButton21" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="352" max="-2" attributes="0"/>
                           <EmptySpace pref="63" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton24" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jButton23" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jButton22" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jButton24" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jButton23" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jButton22" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1151,7 +1151,10 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Buscar"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/images/Buscar.png"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Buscar Produto"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane5">
@@ -1224,7 +1227,10 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Adicionar Produto"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/images/Adicionar_Prod.png"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Adicionar Produto"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton23ActionPerformed"/>
