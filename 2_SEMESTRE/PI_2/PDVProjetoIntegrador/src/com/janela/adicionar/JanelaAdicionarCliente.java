@@ -9,9 +9,13 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.api.buscacep.BuscaCEP;
+import com.api.verificadoc.VerificaDocumento;
 import com.bancodados.model.bean.ModelCliente;
 import com.bancodados.model.dao.DaoCliente;
 import com.my.utils.MyUtils;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +30,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
     public JanelaAdicionarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        FormatacaoDocumento();
     }
 
     /**
@@ -37,7 +42,6 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DocumentoTextField = new javax.swing.JFormattedTextField();
         NomeTextField = new javax.swing.JTextField();
         EmailTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -57,9 +61,11 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
         BairroTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         CidadeTextField = new javax.swing.JTextField();
-        TelefoneTextField = new javax.swing.JFormattedTextField();
         jButton3 = new javax.swing.JButton();
         NumTextField = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        DocumentoTextField = new javax.swing.JFormattedTextField();
+        TelefoneTextField = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Cliente");
@@ -83,7 +89,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("CPF/CNPJ:");
+        jLabel4.setText("Documento:");
 
         jLabel5.setText("Logradouro:");
 
@@ -110,18 +116,25 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
 
         jLabel12.setText("Cidade:");
 
-        try {
-            TelefoneTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jButton3.setText("GetText");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPF", "CNPJ" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        try {
+            TelefoneTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +143,12 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -143,7 +162,6 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
                             .addComponent(jLabel4))
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DocumentoTextField)
                             .addComponent(EmailTextField)
                             .addComponent(NomeTextField)
                             .addGroup(layout.createSequentialGroup()
@@ -156,13 +174,11 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
                             .addComponent(BairroTextField)
                             .addComponent(CidadeTextField)
                             .addComponent(ComplementoTextField)
-                            .addComponent(TelefoneTextField)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DocumentoTextField))
+                            .addComponent(TelefoneTextField))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -203,9 +219,10 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
                     .addComponent(CidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DocumentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DocumentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,7 +252,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
                 LograTextField.enable(true);
                 BairroTextField.enable(true);
                 CidadeTextField.enable(true);
-                
+
                 LograTextField.setText("");
                 BairroTextField.setText("");
                 CidadeTextField.setText("");
@@ -243,7 +260,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
                 LograTextField.enable(false);
                 BairroTextField.enable(false);
                 CidadeTextField.enable(false);
-                
+
                 LograTextField.setText(busca.get("logradouro"));
                 BairroTextField.setText(busca.get("bairro"));
                 CidadeTextField.setText(busca.get("localidade"));
@@ -253,40 +270,44 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Botão adicionar
-        
+
         ModelCliente c = new ModelCliente();
         DaoCliente cdao = new DaoCliente();
-        
+
         String tel = TelefoneTextField.getText();
         tel = tel.substring(1, 3) + tel.substring(5, 10) + tel.substring(11);
         String cep = CepTextField.getText();
         cep = cep.substring(0, 5) + cep.substring(6);
-        
-        c.setNome(NomeTextField.getText());
-        c.setEmail(EmailTextField.getText());
-        c.setTelefone(tel);
-        c.setCep(cep);
-        c.setLogradouro(LograTextField.getText());
-        c.setLogradouro_num(NumTextField.getText());
-        c.setComplemento(ComplementoTextField.getText());
-        c.setBairro(BairroTextField.getText());
-        c.setCidade(CidadeTextField.getText());
-        c.setDocumento(DocumentoTextField.getText());
-        
-        cdao.create(c);
-        
-        setVisible(false);
-        dispose();
+
+        if (VerificaDocumento.verificar(DocumentoTextField.getText()) == false) {
+            JOptionPane.showMessageDialog(null, jComboBox1.getSelectedItem() + " inválido.\nPor favor, informe um " + jComboBox1.getSelectedItem() + " válido.");
+        } else {
+            c.setNome(NomeTextField.getText());
+            c.setEmail(EmailTextField.getText());
+            c.setTelefone(tel);
+            c.setCep(cep);
+            c.setLogradouro(LograTextField.getText());
+            c.setLogradouro_num(NumTextField.getText());
+            c.setComplemento(ComplementoTextField.getText());
+            c.setBairro(BairroTextField.getText());
+            c.setCidade(CidadeTextField.getText());
+            c.setDocumento(VerificaDocumento.limpar(DocumentoTextField.getText()));
+
+            cdao.create(c);
+
+            setVisible(false);
+            dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+
         String tel = TelefoneTextField.getText();
         tel = tel.substring(1, 3) + tel.substring(5, 10) + tel.substring(11);
         String cep = CepTextField.getText();
         cep = cep.substring(0, 5) + cep.substring(6);
-        
+
         System.out.println("Nome: " + NomeTextField.getText());
         System.out.println("E-mail: " + EmailTextField.getText());
         System.out.println("Telefone: " + tel);
@@ -296,8 +317,31 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
         System.out.println("Complemento: " + ComplementoTextField.getText());
         System.out.println("Bairro: " + BairroTextField.getText());
         System.out.println("Cidade: " + CidadeTextField.getText());
-        System.out.println("Documento: " + DocumentoTextField.getText());
+        System.out.println("Documento: " + VerificaDocumento.limpar(DocumentoTextField.getText()));
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        FormatacaoDocumento();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void FormatacaoDocumento() {
+        if (jComboBox1.getSelectedIndex() == 0) {
+            DocumentoTextField.setValue(null);
+            try {
+                DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            } catch (ParseException ex) {
+                System.out.println(ex);
+            }
+        } else {
+            DocumentoTextField.setValue(null);
+            try {
+                DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            } catch (ParseException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -356,6 +400,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

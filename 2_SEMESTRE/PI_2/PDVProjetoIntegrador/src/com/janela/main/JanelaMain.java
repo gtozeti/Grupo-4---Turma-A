@@ -22,7 +22,10 @@ import com.janela.excluir.JanelaExcluirProduto;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -1206,26 +1209,38 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // BOTÃO @JANELA_CLIENTE, ATUALIZAR CLIENTE
 
-        JanelaAtualizarCliente updatecs = new JanelaAtualizarCliente(null, true);
-        
-        if (jTable3.getSelectedRow() != -1) {
-            DaoCliente cdao = new DaoCliente();
-            ArrayList aux;
-            
-            aux = cdao.getAddress(Integer.parseInt(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 0).toString()));
-            
-            updatecs.CodCsLabel.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 0).toString());
-            updatecs.NomeTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 1).toString());
-            updatecs.EmailTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 2).toString());
-            updatecs.TelefoneTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 3).toString());
-            updatecs.DocumentoTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 4).toString());
-            updatecs.LograTextField.setText(aux.get(0).toString());
-            updatecs.ComplementoTextField.setText(aux.get(1).toString());
-            updatecs.BairroTextField.setText(aux.get(2).toString());
-            updatecs.NumTextField.setText(aux.get(3).toString());
+        JanelaAtualizarCliente updatecs = new JanelaAtualizarCliente(null, true); //Criando objeto da JanelaAtualizarCliente @Janela_Cliente
+
+        if (jTable3.getSelectedRow() != -1) { // Condicionlar para checar se foi selecionado um cliente ou nao
+            DaoCliente cdao = new DaoCliente(); //Objeto criado para a atualização de dados do cliente
+            ArrayList aux; //ArrayList criada para receber algumas informações do cliente direto do banco de dados.
+
+            aux = cdao.getAddress(Integer.parseInt(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 0).toString())); //Recebendo dados do endereço a partir do "cod_cs" e comando SQL dentro do DaoCliente
+
+            updatecs.CodCsLabel.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 0).toString()); //Adicionando o código do cliente (cod_cs) na JanelaAtualizar
+            updatecs.NomeTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 1).toString()); // Adicionando o nome do cliente na JanelaAtualizarCliente
+            updatecs.EmailTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 2).toString()); // Adicionando o e-mail do cliente na JanelaAtualizarCliente
+            updatecs.TelefoneTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 3).toString()); // Adicionando o telefone do cliente na JanelaAtualizarCliente
+            if (jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 4).toString().length() == 11) { //Condicional para determinar se é CPF ou CNPJ
+                try {
+                    updatecs.DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##"))); // Deixa a máscara como CPF
+                } catch (ParseException ex) {
+                }
+            } else {
+                updatecs.jComboBox1.setSelectedIndex(1);
+                try {
+                    updatecs.DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##"))); //Deixa a máscara como CNPJ
+                } catch (ParseException ex) {
+                }
+            }
+            updatecs.DocumentoTextField.setText(jTable3.getModel().getValueAt(jTable3.getSelectedRow(), 4).toString()); // Adicionando o documento do cliente na JanelaAtualizarCliente
+            updatecs.LograTextField.setText(aux.get(0).toString()); //Adicionando o logradouro do cliente na JanelaAtualizarCliente
+            updatecs.ComplementoTextField.setText(aux.get(1).toString()); // Adicionando o complemento do cliente na JanelaAtualizarCliente
+            updatecs.BairroTextField.setText(aux.get(2).toString()); // Adicionando o bairro do cliente na JanelaAtualizarCliente
+            updatecs.NumTextField.setText(aux.get(3).toString()); // Adicionando logradouro_num do cliente na JanelaAtualizarCliente
             updatecs.CidadeTextField.setText(aux.get(4).toString());
             updatecs.CepTextField.setText(aux.get(5).toString());
-            
+
             updatecs.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");

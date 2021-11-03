@@ -6,8 +6,10 @@
 package com.janela.atualizar;
 
 import com.api.buscacep.BuscaCEP;
+import com.api.verificadoc.VerificaDocumento;
 import com.bancodados.model.bean.ModelCliente;
 import com.bancodados.model.dao.DaoCliente;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -60,6 +62,7 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
         CidadeTextField = new javax.swing.JTextField();
         DocumentoTextField = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Cliente");
@@ -120,6 +123,13 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
 
         jLabel4.setText("CPF/CNPJ:");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPF", "CNPJ" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +155,6 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
                             .addComponent(jLabel4))
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DocumentoTextField)
                             .addComponent(EmailTextField)
                             .addComponent(NomeTextField)
                             .addGroup(layout.createSequentialGroup()
@@ -158,7 +167,11 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
                             .addComponent(BairroTextField)
                             .addComponent(CidadeTextField)
                             .addComponent(ComplementoTextField)
-                            .addComponent(TelefoneTextField)))
+                            .addComponent(TelefoneTextField)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DocumentoTextField))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)
@@ -210,8 +223,10 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DocumentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -235,32 +250,59 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // BOTAO ATUALIZAR
-        ModelCliente c = new ModelCliente();
-        DaoCliente cdao = new DaoCliente();
-        
-        String tel = TelefoneTextField.getText();
-        tel = tel.substring(1, 3) + tel.substring(5, 10) + tel.substring(11);
-        String cep = CepTextField.getText();
-        cep = cep.substring(0, 5) + cep.substring(6);
-        
-        c.setCod_cs(Integer.parseInt(CodCsLabel.getText()));
-        c.setNome(NomeTextField.getText());
-        c.setEmail(EmailTextField.getText());
-        c.setTelefone(tel);
-        c.setCep(cep);
-        c.setLogradouro_num(NumTextField.getText());
-        c.setLogradouro(LograTextField.getText());
-        c.setComplemento(ComplementoTextField.getText());
-        c.setBairro(BairroTextField.getText());
-        c.setCidade(CidadeTextField.getText());
-        c.setDocumento(DocumentoTextField.getText());
-        
-        cdao.update(c);
-        
-        setVisible(false);
-        dispose();
+        if (VerificaDocumento.verificar(DocumentoTextField.getText()) == false) {
+            JOptionPane.showMessageDialog(null, jComboBox1.getSelectedItem() + " inválido.\nPor favor, informe um " + jComboBox1.getSelectedItem() + " válido.");
+        } else {
+            ModelCliente c = new ModelCliente();
+            DaoCliente cdao = new DaoCliente();
+
+            String tel = TelefoneTextField.getText();
+            tel = tel.substring(1, 3) + tel.substring(5, 10) + tel.substring(11);
+            String cep = CepTextField.getText();
+            cep = cep.substring(0, 5) + cep.substring(6);
+
+            c.setCod_cs(Integer.parseInt(CodCsLabel.getText()));
+            c.setNome(NomeTextField.getText());
+            c.setEmail(EmailTextField.getText());
+            c.setTelefone(tel);
+            c.setCep(cep);
+            c.setLogradouro_num(NumTextField.getText());
+            c.setLogradouro(LograTextField.getText());
+            c.setComplemento(ComplementoTextField.getText());
+            c.setBairro(BairroTextField.getText());
+            c.setCidade(CidadeTextField.getText());
+            c.setDocumento(VerificaDocumento.limpar(DocumentoTextField.getText()));
+
+            cdao.update(c);
+
+            setVisible(false);
+            dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        FormatacaoDocumento();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+    
+    private void FormatacaoDocumento() {
+        if (jComboBox1.getSelectedIndex() == 0) {
+            DocumentoTextField.setValue(null);
+            try {
+                DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            } catch (ParseException ex) {
+                System.out.println(ex);
+            }
+        } else {
+            DocumentoTextField.setValue(null);
+            try {
+                DocumentoTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            } catch (ParseException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
+    
     private void pesquisaCep() {
         Map<String, String> busca = new HashMap<>();
         busca = BuscaCEP.buscarCep(CepTextField.getText());
@@ -344,6 +386,7 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
     public javax.swing.JFormattedTextField TelefoneTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
