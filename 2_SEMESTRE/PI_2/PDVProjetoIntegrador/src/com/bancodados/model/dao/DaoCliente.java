@@ -166,7 +166,7 @@ public class DaoCliente {
         }
     }
 
-    public ArrayList<ModelCliente> search(ModelCliente c) {
+    public ArrayList<ModelCliente> search(String busca) {
 
         Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
         PreparedStatement stmt = null; // Variável para executar comando MySQL
@@ -176,11 +176,18 @@ public class DaoCliente {
 
         try {
             stmt = con.prepareStatement("SELECT cod_cs, nome, email, telefone, documento FROM cliente where cod_cs = ? OR nome = ? OR email = ? OR telefone = ? OR documento = ?");
-            stmt.setInt(1, c.getCod_cs());
-            stmt.setString(2, c.getNome());
-            stmt.setString(3, c.getEmail());
-            stmt.setString(4, c.getTelefone());
-            stmt.setString(5, c.getDocumento());
+            
+            try {
+                int conv = Integer.parseInt(busca);
+                
+                stmt.setInt(1, conv);
+            } catch (Exception e) {
+                stmt.setInt(1, 0);
+            }
+            stmt.setString(2, busca);
+            stmt.setString(3, busca);
+            stmt.setString(4, busca);
+            stmt.setString(5, busca);
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 
             while (rs.next()) {
@@ -191,6 +198,8 @@ public class DaoCliente {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setDocumento(rs.getString("documento"));
+                
+                buscaCliente.add(cliente);
             }
 
         } catch (SQLException ex) {

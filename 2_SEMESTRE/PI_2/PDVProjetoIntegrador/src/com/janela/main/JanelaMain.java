@@ -11,9 +11,11 @@ import com.bancodados.model.dao.DaoCliente;
 import com.bancodados.model.bean.ModelProduto;
 import com.bancodados.model.dao.DaoProduto;
 import com.janela.adicionar.JanelaAdicionarCliente;
+import com.janela.adicionar.JanelaAdicionarFuncionario;
 import com.janela.adicionar.JanelaAdicionarOS;
 import com.janela.adicionar.JanelaAdicionarProduto;
 import com.janela.atualizar.JanelaAtualizarCliente;
+import com.janela.atualizar.JanelaAtualizarFuncionario;
 import com.janela.atualizar.JanelaAtualizarOS;
 import com.janela.atualizar.JanelaAtualizarProduto;
 import com.janela.buscar.JanelaBuscarCliente;
@@ -1135,9 +1137,9 @@ public class JanelaMain extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE FOI ESCRITO)
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
+        searchJTable3();
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     // @SIDE_MENU -> BOTÃO "VENDER" (ACESSAR JANELA VENDER)
@@ -1159,6 +1161,7 @@ public class JanelaMain extends javax.swing.JFrame {
         TrocaTela(jPanel3, "card4");
         jTextField3.setText("Procurar Cliente");
         jTextField3.setForeground(Color.LIGHT_GRAY);
+        readJTable3();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // @SIDE_MENU -> BOTÃO "RELATÓRIO" (ACESSAR JANELA RELATÓRIO)
@@ -1301,12 +1304,12 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR FUNCIONÁRIO)
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        new JanelaAtualizarProduto(null, true).setVisible(true);
+        new JanelaAtualizarFuncionario(null, true).setVisible(true);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR FUNCIONÁRIO)
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        new JanelaAdicionarProduto(null, true).setVisible(true);
+        new JanelaAdicionarFuncionario(null, true).setVisible(true);
     }//GEN-LAST:event_jButton27ActionPerformed
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR FUNCIONÁRIO)
@@ -1339,7 +1342,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
         readJTable3();
     }//GEN-LAST:event_jButton33ActionPerformed
-    
+
     // @JANELA_CLIENTE -> BOTÃO "BUSCAR" (ATUALIZA JTABLE3 COM OS RESULTADOS DA PESQUISA)
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         searchJTable3();
@@ -1375,33 +1378,22 @@ public class JanelaMain extends javax.swing.JFrame {
 
     private void searchJTable3() {
         DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
-        ModelCliente c = new ModelCliente();
         DaoCliente cdao = new DaoCliente();
-
-        try {
-            c.setCod_cs(Integer.parseInt(jTextField3.getText().trim()));
-        } catch (Exception e) {
-            c.setCod_cs(0);
-        }
         
-        c.setNome(jTextField3.getText().trim());
-        c.setEmail(jTextField3.getText().trim());
-        c.setTelefone(jTextField3.getText().trim());
-        c.setDocumento(jTextField3.getText().trim());
-
-        if (cdao.search(c).isEmpty()) {
+        if (cdao.search(jTextField3.getText()).isEmpty()) {
+            readJTable3();
             JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
         } else {
             modelo.setNumRows(0);
 
-            for (ModelCliente cs : cdao.search(c)) {
+            for (ModelCliente cs : cdao.search(jTextField3.getText())) {
 
                 modelo.addRow(new Object[]{
                     cs.getCod_cs(),
                     cs.getNome(),
                     cs.getEmail(),
-                    cs.getTelefone(),
-                    cs.getDocumento()
+                    maskPhone(cs.getTelefone()),
+                    VerificaDocumento.mask(cs.getDocumento())
                 });
             }
         }
@@ -1411,7 +1403,6 @@ public class JanelaMain extends javax.swing.JFrame {
     // Função para colocar o padrão "(##) #####-####" na coluna Telefone
     private String maskPhone(String p) {
         p = "(" + p.substring(0, 2) + ") " + p.substring(2, 7) + "-" + p.substring(7);
-
         return p;
     }
 
@@ -1527,8 +1518,8 @@ public class JanelaMain extends javax.swing.JFrame {
         CardLayout c1 = (CardLayout) janela.getLayout();
         c1.show(janela, cardNum);
     }
-
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ClienteScreen;
     private javax.swing.JPanel ConfigScreen;
