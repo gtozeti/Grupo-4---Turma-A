@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 /**
  *
@@ -91,12 +92,43 @@ public class DaoProduto {
          }
     }
      
-     //Função para validar as informações dos campos
-     public static boolean campo(String frase){
-         
-         String palavra = frase.strip();
-         
-        return (palavra.isBlank() || palavra.isEmpty());
-             
-     }
+     
+     public ArrayList<ModelProduto> search(ModelProduto c) {
+
+        Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
+        PreparedStatement stmt = null; // Variável para executar comando MySQL
+        ResultSet rs = null;
+
+        ArrayList<ModelProduto> buscaProduto = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
+
+        
+        
+        try {
+            stmt = con.prepareStatement("SELECT cod_prod, categoria, nome, valor_unit, quantidade FROM produto where cod_prod = ? OR nome LIKE ? OR categoria LIKE ?");
+            stmt.setInt(1, c.getCod_prod());
+            stmt.setString(2, "%" + c.getNome() + "%");
+            stmt.setString(3, c.getCategoria() + "%");
+            rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
+
+            while (rs.next()) {
+                ModelProduto cliente = new ModelProduto();
+                
+                cliente.setCod_prod(rs.getInt("cod_prod"));
+                cliente.setCategoria(rs.getString("categoria"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setValor_unit(rs.getDouble("valor_unit"));
+                cliente.setQuantidade(rs.getInt("quantidade"));
+                
+                buscaProduto.add(cliente);
+                
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados\n" + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
+        }
+
+        return buscaProduto; // retorna valor da lista.
+    }
 }

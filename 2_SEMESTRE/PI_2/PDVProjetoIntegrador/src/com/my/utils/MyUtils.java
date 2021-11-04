@@ -21,4 +21,13 @@ public class MyUtils {
 
         return s;
     }
+    
+    //Função para validar as informações dos campos
+    public static boolean campo(String frase){
+         
+         String palavra = frase.strip();
+         
+        return (palavra.isBlank() || palavra.isEmpty());
+             
+     }
 }

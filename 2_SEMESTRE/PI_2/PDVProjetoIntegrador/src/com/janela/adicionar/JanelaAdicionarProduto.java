@@ -7,6 +7,9 @@ package com.janela.adicionar;
 
 import com.bancodados.model.bean.ModelProduto;
 import com.bancodados.model.dao.DaoProduto;
+import com.my.utils.MyUtils;
+     
+
 import java.awt.Color;
 import java.nio.channels.AsynchronousFileChannel;
 import java.util.ArrayList;
@@ -188,12 +191,13 @@ public class JanelaAdicionarProduto extends javax.swing.JDialog {
         
         ModelProduto c = new ModelProduto();
         DaoProduto cdao = new DaoProduto();
+        MyUtils u = new MyUtils();
         
        // Validação dos campos 
-       if (cdao.campo(CategoriaComboBox.getSelectedItem().toString()) ||
-               cdao.campo(NomeTextField.getText()) ||
-               cdao.campo(ValorFormattedTextField.getText()) ||
-               cdao.campo(QuantidadeFormattedTextField.getText())){
+       if (u.campo(CategoriaComboBox.getSelectedItem().toString()) ||
+               u.campo(NomeTextField.getText()) ||
+               u.campo(ValorFormattedTextField.getText()) ||
+               u.campo(QuantidadeFormattedTextField.getText())){
            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
        }
        else{

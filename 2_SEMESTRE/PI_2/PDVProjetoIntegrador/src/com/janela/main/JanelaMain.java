@@ -8,6 +8,8 @@ package com.janela.main;
 import com.api.verificadoc.VerificaDocumento;
 import com.bancodados.model.bean.ModelCliente;
 import com.bancodados.model.dao.DaoCliente;
+import com.bancodados.model.bean.ModelProduto;
+import com.bancodados.model.dao.DaoProduto;
 import com.janela.adicionar.JanelaAdicionarCliente;
 import com.janela.adicionar.JanelaAdicionarOS;
 import com.janela.adicionar.JanelaAdicionarProduto;
@@ -23,13 +25,17 @@ import com.janela.excluir.JanelaExcluirProduto;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -378,7 +384,6 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -807,6 +812,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
         jTextField4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jTextField4.setText("Procurar Produto");
+        jTextField4.setBorder(jTextField3.getBorder());
         jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField4FocusGained(evt);
@@ -816,6 +822,11 @@ public class JanelaMain extends javax.swing.JFrame {
         jButton21.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
         jButton21.setToolTipText("Buscar Produto");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -864,8 +875,22 @@ public class JanelaMain extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable5.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable5.setShowGrid(false);
+        jTable5.setShowHorizontalLines(false);
+        jTable5.setSurrendersFocusOnKeystroke(true);
         jTable5.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable5);
+        if (jTable5.getColumnModel().getColumnCount() > 0) {
+            jTable5.getColumnModel().getColumn(0).setMinWidth(50);
+            jTable5.getColumnModel().getColumn(0).setMaxWidth(50);
+            jTable5.getColumnModel().getColumn(1).setMinWidth(80);
+            jTable5.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTable5.getColumnModel().getColumn(3).setMinWidth(100);
+            jTable5.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTable5.getColumnModel().getColumn(4).setMinWidth(80);
+            jTable5.getColumnModel().getColumn(4).setMaxWidth(80);
+        }
 
         jButton22.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton22.setText("Excluir Produto");
@@ -885,7 +910,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton24.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton24.setText("Atualizar Produto");
+        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Atualizar_Prod.png"))); // NOI18N
+        jButton24.setToolTipText("Atualizar Produto");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton24ActionPerformed(evt);
@@ -917,7 +943,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProdutoScreenLayout.createSequentialGroup()
                         .addComponent(jButton22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton24)
+                        .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProdutoScreenLayout.createSequentialGroup()
@@ -938,14 +964,14 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19)
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -1200,7 +1226,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         JanelaAtualizarCliente updatecs = new JanelaAtualizarCliente(null, true); //Criando objeto da JanelaAtualizarCliente @Janela_Cliente
 
-        if (jTable3.getSelectedRow() != -1) { // Condicionlar para checar se foi selecionado um cliente ou nao
+        if (jTable3.getSelectedRow() != -1) { // Condicionar para checar se foi selecionado um cliente ou nao
             DaoCliente cdao = new DaoCliente(); //Objeto criado para a atualização de dados do cliente
             ArrayList aux; //ArrayList criada para receber algumas informações do cliente direto do banco de dados.
 
@@ -1319,6 +1345,12 @@ public class JanelaMain extends javax.swing.JFrame {
         searchJTable3();
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    // @JANELA_PRODUTO -> BOTÃO "BUSCAR" (ATUALIZA JTABLE5 COM OS RESULTADOS DA PESQUISA)
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+        searchJTable5();
+    }//GEN-LAST:event_jButton21ActionPerformed
+
     ////////////////////////////////////////////////////////////////////////////
     // FUNÇÕES @JANELA_CLIENTE
     // Função para atualizar os dados da jTable3 @Janela_Cliente
@@ -1374,7 +1406,8 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         }
     }
-
+   
+    
     // Função para colocar o padrão "(##) #####-####" na coluna Telefone
     private String maskPhone(String p) {
         p = "(" + p.substring(0, 2) + ") " + p.substring(2, 7) + "-" + p.substring(7);
@@ -1384,6 +1417,71 @@ public class JanelaMain extends javax.swing.JFrame {
 
     ////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // FUNÇÕES @JANELA_PRODUTO
+    // Função para atualizar os dados da jTable5 @Janela_Produto
+    private void searchJTable5(){
+        
+        //Trecho para centralizar o conteúdo das células
+        DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
+        alinhamento.setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableModel modelo = (DefaultTableModel) jTable5.getModel();
+        
+         
+        
+        for (int coluna = 0; coluna < modelo.getColumnCount(); coluna++)
+        {
+                    
+            
+            if (coluna != 2 || coluna != 3){
+                
+              
+                jTable5.getColumnModel().getColumn(coluna).setCellRenderer(alinhamento);
+               
+                
+            }
+        }
+        
+
+        
+        ModelProduto c = new ModelProduto();
+        DaoProduto cdao = new DaoProduto();
+
+        try {
+            c.setCod_prod(Integer.parseInt(jTextField4.getText().trim()));
+        } catch (Exception e) {
+            c.setCod_prod(0);
+        }
+        
+        c.setNome(jTextField4.getText().trim());
+        c.setCategoria(jTextField4.getText().trim());
+        
+
+        if (cdao.search(c).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+        } else {
+            modelo.setNumRows(0);
+
+            for (ModelProduto cs : cdao.search(c)) {
+                
+                
+
+                modelo.addRow(new Object[]{
+                    cs.getCod_prod(),
+                    cs.getCategoria(),
+                    cs.getNome(),
+                    DecimalFormat.getCurrencyInstance().format(cs.getValor_unit()),
+                    cs.getQuantidade(),
+                });
+            }
+        }
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
