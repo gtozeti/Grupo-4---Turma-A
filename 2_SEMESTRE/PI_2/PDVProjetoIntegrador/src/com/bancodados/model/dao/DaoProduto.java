@@ -131,4 +131,31 @@ public class DaoProduto {
 
         return buscaProduto; // retorna valor da lista.
     }
+     
+     
+     public void update(ModelProduto cs) {
+
+        Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
+        PreparedStatement stmt = null; // Variável utilizada para comando MySQL
+
+        try {
+            stmt = con.prepareStatement("UPDATE produto SET nome = ?, categoria = ?, valor_unit= ?, quantidade = ? WHERE cod_prod = ?"); // Comando MySQL para atualizar valores na tabela "tabelaTeste"
+
+            stmt.setString(1, cs.getNome());
+            stmt.setString(2, cs.getCategoria());
+            stmt.setString(3, Double.toString(cs.getValor_unit()));
+            stmt.setString(4, Integer.toString(cs.getQuantidade()));
+            stmt.setString(5, Integer.toString(cs.getCod_prod()));
+
+            stmt.executeUpdate(); // Executando atualização do comando
+
+            JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!"); // Mensagem para caso o comando dê certo
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizaro produto\n" + ex); // Mensagem para cada o comando não dê certo
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+        }
+    }
+     
 }

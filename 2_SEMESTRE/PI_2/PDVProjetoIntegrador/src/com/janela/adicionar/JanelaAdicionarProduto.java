@@ -86,7 +86,7 @@ public class JanelaAdicionarProduto extends javax.swing.JDialog {
 
         jLabel3.setText("Nome:");
 
-        jLabel6.setText("Valor unidade:");
+        jLabel6.setText("Valor unidade: (R$)");
 
         ValorFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
@@ -211,9 +211,9 @@ public class JanelaAdicionarProduto extends javax.swing.JDialog {
         //System.out.println(c.getCategoria() + "\n" + c.getNome()+ "\n" + c.getValor_unit() + "\n" + c.getQuantidade());
         
         cdao.create(c);
-        
         setVisible(false);
         dispose();
+        
        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
