@@ -860,7 +860,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Categoria", "Nome", "Valor Unidade", "Quantidade"
+                "Código", "Categoria", "Nome", "Valor Unidade (R$)", "Quantidade"
             }
         ) {
             Class[] types = new Class [] {
@@ -888,8 +888,8 @@ public class JanelaMain extends javax.swing.JFrame {
             jTable5.getColumnModel().getColumn(0).setMaxWidth(50);
             jTable5.getColumnModel().getColumn(1).setMinWidth(80);
             jTable5.getColumnModel().getColumn(1).setMaxWidth(80);
-            jTable5.getColumnModel().getColumn(3).setMinWidth(100);
-            jTable5.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTable5.getColumnModel().getColumn(3).setMinWidth(120);
+            jTable5.getColumnModel().getColumn(3).setMaxWidth(120);
             jTable5.getColumnModel().getColumn(4).setMinWidth(80);
             jTable5.getColumnModel().getColumn(4).setMaxWidth(80);
         }
@@ -1288,7 +1288,25 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_PRODUTO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        new JanelaAtualizarProduto(null, true).setVisible(true);
+        
+        JanelaAtualizarProduto j = new JanelaAtualizarProduto(null, true);
+        
+        try{
+        if (jTable5.getSelectedRow() != -1) {
+            j.jLabel5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString());
+            j.jTextField4.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString());
+            j.jTextField5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString());
+            j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString());
+            j.jFormattedTextField2.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString());
+
+            j.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
+        }
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
+        }
+        
     }//GEN-LAST:event_jButton24ActionPerformed
 
     // @JANELA_PRODUTO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
@@ -1352,6 +1370,8 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
         searchJTable5();
+        jTextField4.setText("Procurar Produto");
+        jTextField4.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton21ActionPerformed
 
     ////////////////////////////////////////////////////////////////////////////
@@ -1417,30 +1437,26 @@ public class JanelaMain extends javax.swing.JFrame {
     ////////////////////////////////////////////////////////////////////////////
     // FUNÇÕES @JANELA_PRODUTO
     // Função para atualizar os dados da jTable5 @Janela_Produto
-    private void searchJTable5(){
-        
+    public void searchJTable5(){
+
+        String busca = jTextField4.getText();
+        if (busca.equals("Procurar Produto")){
+            jTextField4.setText("");
+        }
         //Trecho para centralizar o conteúdo das células
         DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
         alinhamento.setHorizontalAlignment(SwingConstants.CENTER);
         DefaultTableModel modelo = (DefaultTableModel) jTable5.getModel();
-        
-         
-        
-        for (int coluna = 0; coluna < modelo.getColumnCount(); coluna++)
-        {
-                    
-            
-            if (coluna != 2 || coluna != 3){
-                
-              
+
+        for (int coluna = 0; coluna < modelo.getColumnCount(); coluna++) {
+
+            if (coluna != 2) {
+
                 jTable5.getColumnModel().getColumn(coluna).setCellRenderer(alinhamento);
-               
-                
+
             }
         }
-        
 
-        
         ModelProduto c = new ModelProduto();
         DaoProduto cdao = new DaoProduto();
 
@@ -1449,10 +1465,9 @@ public class JanelaMain extends javax.swing.JFrame {
         } catch (Exception e) {
             c.setCod_prod(0);
         }
-        
+
         c.setNome(jTextField4.getText().trim());
         c.setCategoria(jTextField4.getText().trim());
-        
 
         if (cdao.search(c).isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
@@ -1460,19 +1475,16 @@ public class JanelaMain extends javax.swing.JFrame {
             modelo.setNumRows(0);
 
             for (ModelProduto cs : cdao.search(c)) {
-                
-                
 
                 modelo.addRow(new Object[]{
                     cs.getCod_prod(),
                     cs.getCategoria(),
                     cs.getNome(),
-                    DecimalFormat.getCurrencyInstance().format(cs.getValor_unit()),
-                    cs.getQuantidade(),
-                });
+                    new DecimalFormat("#0.00").format(cs.getValor_unit()),
+                    cs.getQuantidade(),});
             }
         }
-        
+
     }
     
     
