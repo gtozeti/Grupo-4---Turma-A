@@ -270,7 +270,8 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Botão adicionar
-
+        
+        
         ModelCliente c = new ModelCliente();
         DaoCliente cdao = new DaoCliente();
 
@@ -294,10 +295,12 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
             c.setDocumento(VerificaDocumento.limpar(DocumentoTextField.getText()));
 
             cdao.create(c);
-
+            
             setVisible(false);
             dispose();
         }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -22,9 +22,10 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
     /**
      * Creates new form TesteJanelaInfos
      */
+    
     public TesteJanelaInfos() {
         initComponents();
-
+        
         readTable();
     }
 
@@ -195,14 +196,14 @@ public class TesteJanelaInfos extends javax.swing.JFrame {
 
         TesteTabelaDAO tdao = new TesteTabelaDAO();
 
-        for (TesteTabelaBean t : tdao.read()) {
+        for (String[] s : tdao.ler()) {
 
             modelo.addRow(new Object[]{
-                t.getId(),
-                t.getNome(),
-                t.getIdade(),
-                t.getSexo(),
-                t.getCidade()
+                s[0],
+                s[1],
+                s[2],
+                s[3],
+                s[4],
             });
         }
     }

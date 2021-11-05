@@ -59,7 +59,7 @@ public class TesteTabelaDAO {
             stmt.setString(3, t.getSexo()); // Pegando o valor Sexo do objeto TesteTabelaBean e adicionando no terceiro "?"
             stmt.setString(4, t.getCidade()); // Pegando o valor Cidade do objeto TesteTabelaBean e adicionando no quarto "?"
             stmt.setInt(5, t.getId()); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no quinto "?"
-            
+
             stmt.executeUpdate(); // Executando atualização do comando
 
             JOptionPane.showMessageDialog(null, "INFO atualizada com sucesso!"); // Mensagem para caso o comando dê certo
@@ -70,7 +70,7 @@ public class TesteTabelaDAO {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
     }
-    
+
     public void delete(TesteTabelaBean t) {
 
         Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
@@ -80,7 +80,7 @@ public class TesteTabelaDAO {
             stmt = con.prepareStatement("DELETE FROM tabelaTeste WHERE id = ?"); // Comando MySQL para deletar valores na tabela "tabelaTeste"
 
             stmt.setInt(1, t.getId()); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no "?"
-            
+
             stmt.executeUpdate(); // Executando atualização do comando
 
             JOptionPane.showMessageDialog(null, "INFO deletada com sucesso!"); // Mensagem para caso o comando dê certo
@@ -91,7 +91,7 @@ public class TesteTabelaDAO {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
     }
-    
+
     // Comando para ler os valores da tabelaTeste em uma JTable
     public ArrayList<TesteTabelaBean> read() {
 
@@ -125,7 +125,38 @@ public class TesteTabelaDAO {
 
         return listaProd; // retorna valor da lista.
     }
-    
+
+    public ArrayList<String[]> ler() {
+        Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
+        PreparedStatement stmt = null; // Variável para executar comando MySQL
+        ResultSet rs = null;
+
+        ArrayList<String[]> lista = new ArrayList();
+
+        try {
+            stmt = con.prepareStatement("SELECT id, nome, idade, sexo, cidade FROM tabelaTeste"); // Comando MySQL
+            rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
+
+            while (rs.next()) {
+                String resultado = "";
+
+                resultado += Integer.toString(rs.getInt("id")) + ",";
+                resultado += rs.getString("nome") + ",";
+                resultado += Integer.toString(rs.getInt("idade")) + ",";
+                resultado += rs.getString("sexo") + ",";
+                resultado += rs.getString("cidade") + ",";
+
+                lista.add(resultado.split(",")); // Enviando todos os valores para a lista
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados");
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
+        }
+
+        return lista;
+    }
+
     public ArrayList<TesteTabelaBean> search(TesteTabelaBean t) {
 
         Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados

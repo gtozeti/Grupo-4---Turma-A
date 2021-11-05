@@ -10,24 +10,11 @@ package com.my.utils;
  * @author Matheus
  */
 public class MyUtils {
-    public static String corta(String s, int inicio, int fim) {
-        String[] aux = s.split("");
 
-        s = "";
-
-        for (int i = inicio; i <= fim; i++) {
-            s += aux[i];
-        }
-
-        return s;
-    }
-    
     //Função para validar as informações dos campos
-    public static boolean campo(String frase){
-         
-         String palavra = frase.strip();
-         
+    public static boolean campo(String frase) {
+        
+        String palavra = frase.strip();
         return (palavra.isBlank() || palavra.isEmpty());
-             
-     }
+    }
 }

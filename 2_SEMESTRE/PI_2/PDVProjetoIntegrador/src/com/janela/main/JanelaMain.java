@@ -24,6 +24,7 @@ import com.janela.excluir.JanelaExcluirCliente;
 import com.janela.excluir.JanelaExcluirFuncionario;
 import com.janela.excluir.JanelaExcluirOS;
 import com.janela.excluir.JanelaExcluirProduto;
+import com.my.utils.MyUtils;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -879,7 +880,6 @@ public class JanelaMain extends javax.swing.JFrame {
         });
         jTable5.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable5.setShowGrid(false);
-        jTable5.setShowHorizontalLines(false);
         jTable5.setSurrendersFocusOnKeystroke(true);
         jTable5.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable5);
@@ -1355,18 +1355,21 @@ public class JanelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     ////////////////////////////////////////////////////////////////////////////
+    // VARIAVEIS PARA JTABLE3
+    public DefaultTableModel jTable3Model;
+    
     // FUNÇÕES @JANELA_CLIENTE
     // Função para atualizar os dados da jTable3 @Janela_Cliente
     private void readJTable3() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
+        jTable3Model = (DefaultTableModel) jTable3.getModel();
 
-        modelo.setNumRows(0);
+        jTable3Model.setNumRows(0);
 
         DaoCliente cdao = new DaoCliente();
 
         for (ModelCliente c : cdao.read()) {
 
-            modelo.addRow(new Object[]{
+            jTable3Model.addRow(new Object[]{
                 c.getCod_cs(),
                 c.getNome(),
                 c.getEmail(),
@@ -1377,18 +1380,18 @@ public class JanelaMain extends javax.swing.JFrame {
     }
 
     private void searchJTable3() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
+        jTable3Model = (DefaultTableModel) jTable3.getModel();
         DaoCliente cdao = new DaoCliente();
         
         if (cdao.search(jTextField3.getText()).isEmpty()) {
             readJTable3();
             JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
         } else {
-            modelo.setNumRows(0);
+            jTable3Model.setNumRows(0);
 
             for (ModelCliente cs : cdao.search(jTextField3.getText())) {
 
-                modelo.addRow(new Object[]{
+                jTable3Model.addRow(new Object[]{
                     cs.getCod_cs(),
                     cs.getNome(),
                     cs.getEmail(),
@@ -1401,7 +1404,7 @@ public class JanelaMain extends javax.swing.JFrame {
    
     
     // Função para colocar o padrão "(##) #####-####" na coluna Telefone
-    private String maskPhone(String p) {
+    public String maskPhone(String p) {
         p = "(" + p.substring(0, 2) + ") " + p.substring(2, 7) + "-" + p.substring(7);
         return p;
     }
@@ -1590,7 +1593,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    public javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
