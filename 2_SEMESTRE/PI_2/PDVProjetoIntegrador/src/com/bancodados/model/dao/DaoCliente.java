@@ -5,6 +5,7 @@
  */
 package com.bancodados.model.dao;
 
+import com.api.verificadoc.VerificaDocumento;
 import com.bancodados.connection.ConnectionFactory;
 import com.bancodados.model.bean.ModelCliente;
 
@@ -50,28 +51,28 @@ public class DaoCliente {
         }
     }
 
-    public ArrayList<ModelCliente> read() {
+    public ArrayList<String[]> read() {
 
         Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
         PreparedStatement stmt = null; // Variável para executar comando MySQL
         ResultSet rs = null;
 
-        ArrayList<ModelCliente> listaCliente = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
+        ArrayList<String[]> cliente = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
 
         try {
             stmt = con.prepareStatement("SELECT cod_cs, nome, email, telefone, documento from cliente"); // Comando MySQL
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 
             while (rs.next()) {
-                ModelCliente c = new ModelCliente(); // Objeto semente iniciado para conseguir ler os dados da variável rs
+                String resultado = "";
 
-                c.setCod_cs(rs.getInt("cod_cs"));
-                c.setNome(rs.getString("nome"));
-                c.setEmail(rs.getString("email"));
-                c.setTelefone(rs.getString("telefone"));
-                c.setDocumento(rs.getString("documento"));
+                resultado += Integer.toString(rs.getInt("cod_cs")) + ",";
+                resultado += rs.getString("nome") + ",";
+                resultado += rs.getString("email") + ",";
+                resultado += maskPhone(rs.getString("telefone")) + ",";
+                resultado += VerificaDocumento.mask(rs.getString("documento"));
 
-                listaCliente.add(c); // Enviando todos os valores para a lista
+                cliente.add(resultado.split(","));
             }
 
         } catch (SQLException ex) {
@@ -80,7 +81,7 @@ public class DaoCliente {
             ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
         }
 
-        return listaCliente; // retorna valor da lista.
+        return cliente; // retorna valor da lista.
     }
 
     public void update(ModelCliente cs) {
@@ -166,40 +167,39 @@ public class DaoCliente {
         }
     }
 
-    public ArrayList<ModelCliente> search(String busca) {
+    public ArrayList<String[]> search(String input) {
 
         Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
         PreparedStatement stmt = null; // Variável para executar comando MySQL
         ResultSet rs = null;
 
-        ArrayList<ModelCliente> buscaCliente = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
+        ArrayList<String[]> cliente = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
 
         try {
             stmt = con.prepareStatement("SELECT cod_cs, nome, email, telefone, documento FROM cliente where cod_cs = ? OR nome = ? OR email = ? OR telefone = ? OR documento = ?");
-            
+
             try {
-                int conv = Integer.parseInt(busca);
-                
-                stmt.setInt(1, conv);
+                stmt.setInt(1, Integer.parseInt(input));
             } catch (Exception e) {
                 stmt.setInt(1, 0);
             }
-            stmt.setString(2, busca);
-            stmt.setString(3, busca);
-            stmt.setString(4, busca);
-            stmt.setString(5, busca);
+            stmt.setString(2, input);
+            stmt.setString(3, input);
+            stmt.setString(4, input);
+            stmt.setString(5, input);
+
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 
             while (rs.next()) {
-                ModelCliente cliente = new ModelCliente();
-                
-                cliente.setCod_cs(rs.getInt("cod_cs"));
-                cliente.setNome(rs.getString("nome"));
-                cliente.setEmail(rs.getString("email"));
-                cliente.setTelefone(rs.getString("telefone"));
-                cliente.setDocumento(rs.getString("documento"));
-                
-                buscaCliente.add(cliente);
+                String resultado = "";
+
+                resultado += Integer.toString(rs.getInt("cod_cs")) + ",";
+                resultado += rs.getString("nome") + ",";
+                resultado += rs.getString("email") + ",";
+                resultado += maskPhone(rs.getString("telefone")) + ",";
+                resultado += VerificaDocumento.mask(rs.getString("documento"));
+
+                cliente.add(resultado.split(","));
             }
 
         } catch (SQLException ex) {
@@ -208,6 +208,11 @@ public class DaoCliente {
             ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
         }
 
-        return buscaCliente; // retorna valor da lista.
+        return cliente; // retorna valor da lista.
+    }
+    
+    private String maskPhone(String p) {
+        p = "(" + p.substring(0, 2) + ") " + p.substring(2, 7) + "-" + p.substring(7);
+        return p;
     }
 }

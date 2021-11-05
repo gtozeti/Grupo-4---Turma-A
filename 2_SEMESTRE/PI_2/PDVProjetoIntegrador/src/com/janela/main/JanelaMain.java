@@ -9,6 +9,7 @@ import com.api.verificadoc.VerificaDocumento;
 import com.bancodados.model.bean.ModelCliente;
 import com.bancodados.model.dao.DaoCliente;
 import com.bancodados.model.bean.ModelProduto;
+import com.bancodados.model.dao.DaoFuncionario;
 import com.bancodados.model.dao.DaoProduto;
 import com.janela.adicionar.JanelaAdicionarCliente;
 import com.janela.adicionar.JanelaAdicionarFuncionario;
@@ -35,6 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -993,34 +995,15 @@ public class JanelaMain extends javax.swing.JFrame {
 
         jButton25.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton25.setText("Buscar");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "E-mail", "Cargo"
@@ -1139,7 +1122,7 @@ public class JanelaMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE FOI ESCRITO)
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        searchJTable3();
+        readTable(jTable3, daoCliente.search(jTextField3.getText()));
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     // @SIDE_MENU -> BOTÃO "VENDER" (ACESSAR JANELA VENDER)
@@ -1161,7 +1144,7 @@ public class JanelaMain extends javax.swing.JFrame {
         TrocaTela(jPanel3, "card4");
         jTextField3.setText("Procurar Cliente");
         jTextField3.setForeground(Color.LIGHT_GRAY);
-        readJTable3();
+        readTable(jTable3, daoCliente.read());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // @SIDE_MENU -> BOTÃO "RELATÓRIO" (ACESSAR JANELA RELATÓRIO)
@@ -1186,6 +1169,7 @@ public class JanelaMain extends javax.swing.JFrame {
         TrocaTela(ConfigScreen, "card4");
         jTextField5.setText("Procurar Funcionário");
         jTextField5.setForeground(Color.LIGHT_GRAY);
+        readTable(jTable6, daoFuncionario.read());
     }//GEN-LAST:event_jButton20ActionPerformed
 
     // @JANELA_PRODUTO -> BOTÃO "VOLTAR" (VOLTAR PARA JANELA_CONFIGURAÇÃO)
@@ -1288,25 +1272,25 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_PRODUTO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        
-        JanelaAtualizarProduto j = new JanelaAtualizarProduto(null, true);
-        
-        try{
-        if (jTable5.getSelectedRow() != -1) {
-            j.jLabel5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString());
-            j.jTextField4.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString());
-            j.jTextField5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString());
-            j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString());
-            j.jFormattedTextField2.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString());
 
-            j.setVisible(true);
-        } else {
+        JanelaAtualizarProduto j = new JanelaAtualizarProduto(null, true);
+
+        try {
+            if (jTable5.getSelectedRow() != -1) {
+                j.jLabel5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString());
+                j.jTextField4.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString());
+                j.jTextField5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString());
+                j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString());
+                j.jFormattedTextField2.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString());
+
+                j.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
+            }
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
         }
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
-        }
-        
+
     }//GEN-LAST:event_jButton24ActionPerformed
 
     // @JANELA_PRODUTO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
@@ -1358,12 +1342,16 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_CLIENTE -> BOTÃO "ATUALIZAR JTABLE3" (ATUALIZA OS DADOS DA JTABLE3)
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        readJTable3();
+        readTable(jTable3, daoCliente.read());
     }//GEN-LAST:event_jButton33ActionPerformed
 
     // @JANELA_CLIENTE -> BOTÃO "BUSCAR" (ATUALIZA JTABLE3 COM OS RESULTADOS DA PESQUISA)
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        searchJTable3();
+        if (searchTable(jTable3, daoCliente.search(jTextField3.getText()))) {
+            readTable(jTable3, daoCliente.read());
+        } else {
+            searchTable(jTable3, daoCliente.search(jTextField3.getText()));
+        }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     // @JANELA_PRODUTO -> BOTÃO "BUSCAR" (ATUALIZA JTABLE5 COM OS RESULTADOS DA PESQUISA)
@@ -1374,85 +1362,103 @@ public class JanelaMain extends javax.swing.JFrame {
         jTextField4.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton21ActionPerformed
 
+    // @JANELA_FUNCIONARO -> BOTÃO "BUSCAR" (ATUALIZA JTABLE6 COM OS RESULTADOS DA PESQUISA)
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+
+    }//GEN-LAST:event_jButton25ActionPerformed
+
     ////////////////////////////////////////////////////////////////////////////
-    // VARIAVEIS PARA JTABLE3
-    public DefaultTableModel jTable3Model;
-    
-    // FUNÇÕES @JANELA_CLIENTE
-    // Função para atualizar os dados da jTable3 @Janela_Cliente
-    private void readJTable3() {
-        jTable3Model = (DefaultTableModel) jTable3.getModel();
+    // VARIAVEIS FINAIS
+    private final DaoCliente daoCliente = new DaoCliente();
+    private final DaoFuncionario daoFuncionario = new DaoFuncionario();
 
-        jTable3Model.setNumRows(0);
+    // FUNÇÕES GERAIS 
+    private void TrocaTela(JPanel janela, String cardNum) {
+        CardLayout c1 = (CardLayout) janela.getLayout();
+        c1.show(janela, cardNum);
+    }
 
-        DaoCliente cdao = new DaoCliente();
+    private void AlinhaCelula(DefaultTableModel m, JTable t) {
+        DefaultTableCellRenderer a = new DefaultTableCellRenderer();
+        a.setHorizontalAlignment(SwingConstants.CENTER);
 
-        for (ModelCliente c : cdao.read()) {
-
-            jTable3Model.addRow(new Object[]{
-                c.getCod_cs(),
-                c.getNome(),
-                c.getEmail(),
-                maskPhone(c.getTelefone()),
-                VerificaDocumento.mask(c.getDocumento())
-            });
+        for (int i = 0; i < m.getColumnCount(); i++) {
+            t.getColumnModel().getColumn(i).setCellRenderer(a);
         }
     }
 
-    private void searchJTable3() {
-        jTable3Model = (DefaultTableModel) jTable3.getModel();
-        DaoCliente cdao = new DaoCliente();
-        
-        if (cdao.search(jTextField3.getText()).isEmpty()) {
-            readJTable3();
+    private void readTable(JTable t, ArrayList<String[]> s) {
+
+        DefaultTableModel m = (DefaultTableModel) t.getModel();
+
+        AlinhaCelula(m, t);
+
+        m.setNumRows(0);
+
+        switch (t.getColumnCount()) {
+            case 3:
+                for (String[] i : s) {
+                    m.addRow(new Object[]{
+                        i[0],
+                        i[1],
+                        i[2]
+                    });
+                }
+                break;
+            case 4:
+                for (String[] i : s) {
+                    m.addRow(new Object[]{
+                        i[0],
+                        i[1],
+                        i[2],
+                        i[3]
+                    });
+                }
+                break;
+            case 5:
+                for (String[] i : s) {
+                    m.addRow(new Object[]{
+                        i[0],
+                        i[1],
+                        i[2],
+                        i[3],
+                        i[4]
+                    });
+                }
+                break;
+        }
+    }
+
+    private boolean searchTable(JTable t, ArrayList<String[]> s) {
+
+        if (s.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+            return true;
         } else {
-            jTable3Model.setNumRows(0);
-
-            for (ModelCliente cs : cdao.search(jTextField3.getText())) {
-
-                jTable3Model.addRow(new Object[]{
-                    cs.getCod_cs(),
-                    cs.getNome(),
-                    cs.getEmail(),
-                    maskPhone(cs.getTelefone()),
-                    VerificaDocumento.mask(cs.getDocumento())
-                });
-            }
+            readTable(t, s);
+            return false;
         }
     }
-   
-    
-    // Função para colocar o padrão "(##) #####-####" na coluna Telefone
-    public String maskPhone(String p) {
-        p = "(" + p.substring(0, 2) + ") " + p.substring(2, 7) + "-" + p.substring(7);
-        return p;
-    }
 
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    
-    
-    
     ////////////////////////////////////////////////////////////////////////////
     // FUNÇÕES @JANELA_PRODUTO
     // Função para atualizar os dados da jTable5 @Janela_Produto
-    public void searchJTable5(){
+    public void searchJTable5() {
 
         String busca = jTextField4.getText();
-        if (busca.equals("Procurar Produto")){
+        if (busca.equals("Procurar Produto")) {
             jTextField4.setText("");
         }
         //Trecho para centralizar o conteúdo das células
-        DefaultTableCellRenderer alinhamento = new DefaultTableCellRenderer();
-        alinhamento.setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer a = new DefaultTableCellRenderer();
+        a.setHorizontalAlignment(SwingConstants.CENTER);
         DefaultTableModel modelo = (DefaultTableModel) jTable5.getModel();
 
-        for (int coluna = 0; coluna < modelo.getColumnCount(); coluna++) {
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
 
-            if (coluna != 2) {
+            if (i != 2) {
 
-                jTable5.getColumnModel().getColumn(coluna).setCellRenderer(alinhamento);
+                jTable5.getColumnModel().getColumn(i).setCellRenderer(a);
 
             }
         }
@@ -1486,8 +1492,7 @@ public class JanelaMain extends javax.swing.JFrame {
         }
 
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1528,13 +1533,8 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         });
     }
+    
 
-    private void TrocaTela(JPanel janela, String cardNum) {
-        CardLayout c1 = (CardLayout) janela.getLayout();
-        c1.show(janela, cardNum);
-    }
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ClienteScreen;
     private javax.swing.JPanel ConfigScreen;
