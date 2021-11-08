@@ -186,9 +186,9 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    public javax.swing.JLabel jLabel7;
+    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
