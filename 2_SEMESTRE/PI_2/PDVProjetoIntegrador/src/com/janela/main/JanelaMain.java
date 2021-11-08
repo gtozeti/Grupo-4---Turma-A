@@ -133,6 +133,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jButton30 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         FuncionarioScreen = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
@@ -932,6 +933,13 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("(TESTE) ATUALIZA TABELA");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ProdutoScreenLayout = new javax.swing.GroupLayout(ProdutoScreen);
         ProdutoScreen.setLayout(ProdutoScreenLayout);
         ProdutoScreenLayout.setHorizontalGroup(
@@ -946,6 +954,8 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProdutoScreenLayout.createSequentialGroup()
                         .addComponent(jButton22)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
@@ -976,7 +986,8 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6))
                 .addContainerGap())
         );
 
@@ -1280,7 +1291,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 j.jLabel5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString());
                 j.jTextField4.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString());
                 j.jTextField5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString());
-                j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString());
+                j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString().substring(3));
                 j.jFormattedTextField2.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString());
 
                 j.setVisible(true);
@@ -1324,7 +1335,20 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR FUNCIONÁRIO)
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        new JanelaAtualizarFuncionario(null, true).setVisible(true);
+        JanelaAtualizarFuncionario j = new JanelaAtualizarFuncionario(null, true);
+
+        if (jTable6.getSelectedRow() != -1) { // Condicionlar para checar se foi selecionado um cliente ou nao
+            // codigo, nome, email, cargo
+
+            j.jLabel7.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 0).toString());
+            j.jTextField4.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 1).toString());
+            j.jTextField5.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 1).toString());
+            j.jTextField2.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 1).toString());
+
+            j.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");
+        }
     }//GEN-LAST:event_jButton28ActionPerformed
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR FUNCIONÁRIO)
@@ -1375,7 +1399,12 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_PRODUTO -> BOTÃO "BUSCAR" (ATUALIZA JTABLE5 COM OS RESULTADOS DA PESQUISA)
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
-        searchJTable5();
+        if (searchTable(jTable5, daoProduto.search(jTextField4.getText()))) {
+            readTable(jTable5, daoProduto.read());
+        } else {
+            searchTable(jTable5, daoProduto.search(jTextField4.getText()));
+        }
+
         jTextField4.setText("Procurar Produto");
         jTextField4.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton21ActionPerformed
@@ -1385,17 +1414,25 @@ public class JanelaMain extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton25ActionPerformed
 
+    // @JANELA_PRODUTO -> BOTÃO "ATUALIZAR TABELA) (ATUALIZA JTABLE5 COM TODAS AS LINHAS DA TABELA)  
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        readTable(jTable5, daoProduto.read());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     ////////////////////////////////////////////////////////////////////////////
     // VARIAVEIS FINAIS
     private final DaoCliente daoCliente = new DaoCliente();
     private final DaoFuncionario daoFuncionario = new DaoFuncionario();
+    private final DaoProduto daoProduto = new DaoProduto();
 
     // FUNÇÕES GERAIS 
+    //FUNÇÃO PARA ABRIR UMA UM JDIALOG 
     private void TrocaTela(JPanel janela, String cardNum) {
         CardLayout c1 = (CardLayout) janela.getLayout();
         c1.show(janela, cardNum);
     }
 
+    // FUNÇÃO PARA DEIXAR OS VALORES CENTRALIZADOS NA TABELA
     private void AlinhaCelula(DefaultTableModel m, JTable t) {
         DefaultTableCellRenderer a = new DefaultTableCellRenderer();
         a.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1405,6 +1442,7 @@ public class JanelaMain extends javax.swing.JFrame {
         }
     }
 
+    // FUNÇÃO GERAL PARA BUSCAR TODOS OS VALORES NA TABELA
     private void readTable(JTable t, ArrayList<String[]> s) {
 
         DefaultTableModel m = (DefaultTableModel) t.getModel();
@@ -1447,6 +1485,7 @@ public class JanelaMain extends javax.swing.JFrame {
         }
     }
 
+    // FUNÇÃO GERAL PARA BUSCA DE UM VALOR ESPECÍFICO NA TABELA
     private boolean searchTable(JTable t, ArrayList<String[]> s) {
 
         if (s.isEmpty()) {
@@ -1458,62 +1497,6 @@ public class JanelaMain extends javax.swing.JFrame {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // FUNÇÕES @JANELA_PRODUTO
-    // Função para atualizar os dados da jTable5 @Janela_Produto
-    public void searchJTable5() {
-
-        String busca = jTextField4.getText();
-        if (busca.equals("Procurar Produto")) {
-            jTextField4.setText("");
-        }
-        //Trecho para centralizar o conteúdo das células
-        DefaultTableCellRenderer a = new DefaultTableCellRenderer();
-        a.setHorizontalAlignment(SwingConstants.CENTER);
-        DefaultTableModel modelo = (DefaultTableModel) jTable5.getModel();
-
-        for (int i = 0; i < modelo.getColumnCount(); i++) {
-
-            if (i != 2) {
-
-                jTable5.getColumnModel().getColumn(i).setCellRenderer(a);
-
-            }
-        }
-
-        ModelProduto c = new ModelProduto();
-        DaoProduto cdao = new DaoProduto();
-
-        try {
-            c.setCod_prod(Integer.parseInt(jTextField4.getText().trim()));
-        } catch (Exception e) {
-            c.setCod_prod(0);
-        }
-
-        c.setNome(jTextField4.getText().trim());
-        c.setCategoria(jTextField4.getText().trim());
-
-        if (cdao.search(c).isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
-        } else {
-            modelo.setNumRows(0);
-
-            for (ModelProduto cs : cdao.search(c)) {
-
-                modelo.addRow(new Object[]{
-                    cs.getCod_prod(),
-                    cs.getCategoria(),
-                    cs.getNome(),
-                    new DecimalFormat("#0.00").format(cs.getValor_unit()),
-                    cs.getQuantidade(),});
-            }
-        }
-
-    }
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1551,7 +1534,7 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ClienteScreen;
@@ -1590,6 +1573,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
