@@ -1301,7 +1301,25 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_PRODUTO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR PRODUTO"
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        new JanelaExcluirProduto(null, true).setVisible(true);
+        
+        
+        JanelaExcluirProduto j = new JanelaExcluirProduto(null, true);
+        
+        
+        
+        if (jTable5.getSelectedRow() != -1) {
+            
+                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString(), 0, 0);
+                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString(), 0, 1);
+                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString(), 0, 2);
+                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString(), 0, 3);
+                
+                j.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
+            }
+        
+        
     }//GEN-LAST:event_jButton22ActionPerformed
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR FUNCIONÁRIO)
