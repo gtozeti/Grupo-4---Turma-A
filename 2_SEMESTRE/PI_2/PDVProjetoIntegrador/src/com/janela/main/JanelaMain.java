@@ -34,6 +34,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -862,7 +863,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Categoria", "Nome", "Valor Unidade (R$)", "Quantidade"
+                "Código", "Categoria", "Nome", "Valor Unidade", "Quantidade"
             }
         ) {
             Class[] types = new Class [] {
@@ -886,14 +887,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jTable5.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable5);
         if (jTable5.getColumnModel().getColumnCount() > 0) {
-            jTable5.getColumnModel().getColumn(0).setMinWidth(50);
-            jTable5.getColumnModel().getColumn(0).setMaxWidth(50);
-            jTable5.getColumnModel().getColumn(1).setMinWidth(80);
-            jTable5.getColumnModel().getColumn(1).setMaxWidth(80);
-            jTable5.getColumnModel().getColumn(3).setMinWidth(120);
-            jTable5.getColumnModel().getColumn(3).setMaxWidth(120);
-            jTable5.getColumnModel().getColumn(4).setMinWidth(80);
-            jTable5.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTable5.getColumnModel().getColumn(4).setCellRenderer(null);
         }
 
         jButton22.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -1275,12 +1269,19 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_PRODUTO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
 
+        DaoProduto cdao = new DaoProduto();
         JanelaAtualizarProduto j = new JanelaAtualizarProduto(null, true);
+        JComboBox cb = new JComboBox(cdao.categoria().toArray()); //Chamando a função para buscar os valores distintos de categoria
+        
+        cb.insertItemAt("-- Adicione uma categoria --", 0); //Definindo na primeira posição para adicionar um novo produto
+        cb.insertItemAt("", 1); 
+        j.jComboBox1.setModel(cb.getModel()); //Passando todos os valores para a tela no momento em que a tela é aberta
+        j.jComboBox1.setSelectedItem(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString());
+        
 
         try {
             if (jTable5.getSelectedRow() != -1) {
                 j.jLabel5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString());
-                j.jTextField4.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString());
                 j.jTextField5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString());
                 j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString().substring(3).replace(".", ","));
                 j.jFormattedTextField2.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString());
@@ -1292,6 +1293,8 @@ public class JanelaMain extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
         }
+        
+       
 
     }//GEN-LAST:event_jButton24ActionPerformed
 
@@ -1399,7 +1402,7 @@ public class JanelaMain extends javax.swing.JFrame {
             // Informa na tabela o resultado da busca
             readTable(jTable5, daoProduto.search(jTextField4.getText()));
         }
-
+        
         jTextField4.setText("Procurar Produto");
         jTextField4.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_jButton21ActionPerformed
@@ -1430,6 +1433,8 @@ public class JanelaMain extends javax.swing.JFrame {
         for (int i = 0; i < m.getColumnCount(); i++) {
             t.getColumnModel().getColumn(i).setCellRenderer(a);
         }
+        
+        
     }
 
     // FUNÇÃO GERAL PARA BUSCAR TODOS OS VALORES NA TABELA
