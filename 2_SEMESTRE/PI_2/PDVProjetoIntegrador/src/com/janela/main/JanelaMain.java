@@ -133,7 +133,6 @@ public class JanelaMain extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jButton30 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         FuncionarioScreen = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
@@ -933,13 +932,6 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("(TESTE) ATUALIZA TABELA");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout ProdutoScreenLayout = new javax.swing.GroupLayout(ProdutoScreen);
         ProdutoScreen.setLayout(ProdutoScreenLayout);
         ProdutoScreenLayout.setHorizontalGroup(
@@ -954,8 +946,6 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProdutoScreenLayout.createSequentialGroup()
                         .addComponent(jButton22)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
@@ -986,8 +976,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
+                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1170,6 +1159,8 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_CONFIGURAÇÃO -> BOTÃO "PRODUTO" (ACESSAR JANELA PRODUTO)
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        readTable(jTable5, daoProduto.read());
+        
         TrocaTela(ConfigScreen, "card3");
         jTextField4.setText("Procurar Produto");
         jTextField4.setForeground(Color.LIGHT_GRAY);
@@ -1291,7 +1282,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 j.jLabel5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString());
                 j.jTextField4.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString());
                 j.jTextField5.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString());
-                j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString().substring(3));
+                j.jFormattedTextField1.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 3).toString().substring(3).replace(".", ","));
                 j.jFormattedTextField2.setText(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString());
 
                 j.setVisible(true);
@@ -1389,20 +1380,24 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_CLIENTE -> BOTÃO "BUSCAR" (ATUALIZA JTABLE3 COM OS RESULTADOS DA PESQUISA)
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        if (searchTable(jTable3, daoCliente.search(jTextField3.getText()))) {
+        if (daoCliente.search(jTextField3.getText()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
             readTable(jTable3, daoCliente.read());
         } else {
-            searchTable(jTable3, daoCliente.search(jTextField3.getText()));
+            readTable(jTable3, daoCliente.search(jTextField3.getText()));
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     // @JANELA_PRODUTO -> BOTÃO "BUSCAR" (ATUALIZA JTABLE5 COM OS RESULTADOS DA PESQUISA)
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-        if (searchTable(jTable5, daoProduto.search(jTextField4.getText()))) {
+        
+        if (daoProduto.search(jTextField4.getText()).isEmpty()) {
+            // Informa que nao encontrou um resultado para busca e mostra todas as informacoes
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
             readTable(jTable5, daoProduto.read());
         } else {
-            searchTable(jTable5, daoProduto.search(jTextField4.getText()));
+            // Informa na tabela o resultado da busca
+            readTable(jTable5, daoProduto.search(jTextField4.getText()));
         }
 
         jTextField4.setText("Procurar Produto");
@@ -1413,11 +1408,6 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
 
     }//GEN-LAST:event_jButton25ActionPerformed
-
-    // @JANELA_PRODUTO -> BOTÃO "ATUALIZAR TABELA) (ATUALIZA JTABLE5 COM TODAS AS LINHAS DA TABELA)  
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        readTable(jTable5, daoProduto.read());
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     ////////////////////////////////////////////////////////////////////////////
     // VARIAVEIS FINAIS
@@ -1450,7 +1440,7 @@ public class JanelaMain extends javax.swing.JFrame {
         AlinhaCelula(m, t);
 
         m.setNumRows(0);
-
+        
         switch (t.getColumnCount()) {
             case 3:
                 for (String[] i : s) {
@@ -1486,16 +1476,6 @@ public class JanelaMain extends javax.swing.JFrame {
     }
 
     // FUNÇÃO GERAL PARA BUSCA DE UM VALOR ESPECÍFICO NA TABELA
-    private boolean searchTable(JTable t, ArrayList<String[]> s) {
-
-        if (s.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
-            return true;
-        } else {
-            readTable(t, s);
-            return false;
-        }
-    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1573,7 +1553,6 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
