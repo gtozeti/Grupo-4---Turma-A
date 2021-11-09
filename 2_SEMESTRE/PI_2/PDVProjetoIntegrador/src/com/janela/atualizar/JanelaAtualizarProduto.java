@@ -37,7 +37,6 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -50,6 +49,7 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Produto");
@@ -85,6 +85,17 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
+        jComboBox1.setToolTipText("");
+        jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,9 +123,9 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jFormattedTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)
@@ -127,14 +138,14 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -173,7 +184,7 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
         MyUtils u = new MyUtils();
 
         // Validação dos campos 
-        if (u.campo(jTextField4.getText())
+        if (u.campo(jComboBox1.getSelectedItem().toString())
                 || u.campo(jTextField5.getText())
                 || u.campo(jFormattedTextField1.getText())
                 || u.campo(jFormattedTextField2.getText())) {
@@ -181,7 +192,7 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
         } else {
 
             c.setCod_prod(Integer.parseInt(jLabel5.getText()));
-            c.setCategoria(jTextField4.getText());
+            c.setCategoria(jComboBox1.getSelectedItem().toString());
             c.setNome(jTextField5.getText());
             c.setValor_unit(Double.valueOf(jFormattedTextField1.getText().replace(',', '.')));
             c.setQuantidade(Integer.valueOf(jFormattedTextField2.getText()));
@@ -189,8 +200,22 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
             cdao.update(c);
             setVisible(false);
             dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
     }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
+        
+          // Caso seja selecionada a opção "-- Adicione uma categoria --", é liberado para adicionar uma nova
+        if (jComboBox1.getSelectedIndex() == 0){
+            jComboBox1.setEditable(true);
+            jComboBox1.setSelectedItem("");
+        }
+        else {
+            jComboBox1.setEditable(false);
+        }
+        
+    }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
+    
         
     
     
@@ -243,6 +268,7 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
     public javax.swing.JFormattedTextField jFormattedTextField1;
     public javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
@@ -252,7 +278,6 @@ public class JanelaAtualizarProduto extends javax.swing.JDialog {
     public javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    public javax.swing.JTextField jTextField4;
     public javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

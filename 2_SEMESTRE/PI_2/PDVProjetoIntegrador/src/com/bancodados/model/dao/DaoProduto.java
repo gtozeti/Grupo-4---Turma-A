@@ -172,19 +172,21 @@ public class DaoProduto {
             stmt = con.prepareStatement("SELECT cod_prod, nome, categoria, valor_unit, quantidade FROM produto"); // Comando MySQL
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 
-            DecimalFormat format = new DecimalFormat("R$ 0,00");
+            DecimalFormat format = new DecimalFormat("R$ 0.00");
 
             while (rs.next()) {
                 String resultado = "";
 
                 resultado += Integer.toString(rs.getInt("cod_prod")) + ",";
-                resultado += rs.getString("nome") + ",";
                 resultado += rs.getString("categoria") + ",";
-                resultado += format.format(rs.getDouble("valor_unit")) + ",";
+                resultado += rs.getString("nome") + ",";
+                resultado += format.format(rs.getDouble("valor_unit")).replace(",", ".") + ",";
                 resultado += rs.getString("quantidade");
-
+                
                 produto.add(resultado.split(","));
             }
+            
+            
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Falha em buscar dados\n" + ex);
