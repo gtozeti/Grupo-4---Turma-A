@@ -12,6 +12,7 @@ import com.api.buscacep.BuscaCEP;
 import com.api.verificadoc.VerificaDocumento;
 import com.bancodados.model.bean.ModelCliente;
 import com.bancodados.model.dao.DaoCliente;
+import com.janela.main.JanelaMain;
 import com.my.utils.MyUtils;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -295,7 +296,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
             c.setDocumento(VerificaDocumento.limpar(DocumentoTextField.getText()));
 
             cdao.create(c);
-            
+
             setVisible(false);
             dispose();
         }

@@ -5,7 +5,12 @@
  */
 package com.janela.atualizar;
 
+import com.bancodados.model.bean.ModelFuncionario;
+import com.bancodados.model.dao.DaoFuncionario;
 import com.janela.adicionar.*;
+import com.my.utils.MyUtils;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +25,6 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,8 +43,8 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Funcionário");
@@ -60,17 +64,32 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
         jLabel3.setText("E-mail:");
 
         jButton2.setText("Atualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Cargo:");
 
         jLabel7.setText("auto increment");
+
+        jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(153, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -91,7 +110,7 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                             .addComponent(jTextField5)
-                            .addComponent(jTextField2))))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,8 +131,8 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))))
+                            .addComponent(jLabel6)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -125,14 +144,53 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // BOTAO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    // BOTAO ATUALIZAR
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (verificaBlankCampos()) {
+            ModelFuncionario f = new ModelFuncionario();
+            DaoFuncionario fdao = new DaoFuncionario();
+            
+            f.setCod_fun(Integer.parseInt(jLabel7.getText()));
+            f.setNome(jTextField4.getText());
+            f.setEmail(jTextField5.getText());
+            f.setCargo(jComboBox1.getSelectedItem().toString());
+
+            fdao.update(f);
+
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    // FUNÇÃO PARA QUANDO SELECIONA UMA OPÇÃO DO "CARGO_COMBO_BOX"
+    private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
+        if (jComboBox1.getSelectedIndex() == 2) {
+            jComboBox1.setEditable(true);
+            jComboBox1.setSelectedItem("");
+        } else {
+            jComboBox1.setEditable(false);
+        }
+    }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
+
+    // FUNÇÃO PARA VERIFICAR SE TODOS OS CAMPOS ESTÃO PREENCHIDOS
+    private boolean verificaBlankCampos() {
+        if (MyUtils.campo(jComboBox1.getSelectedItem().toString())
+                || MyUtils.campo(jTextField4.getText())
+                || MyUtils.campo(jTextField5.getText())) {
+
+            return false;
+        }
+
+        return true;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -182,12 +240,12 @@ public class JanelaAtualizarFuncionario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     public javax.swing.JLabel jLabel7;
-    public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField4;
     public javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables

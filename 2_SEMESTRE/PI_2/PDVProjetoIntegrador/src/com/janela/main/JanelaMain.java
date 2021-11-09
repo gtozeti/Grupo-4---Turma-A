@@ -5,10 +5,7 @@
  */
 package com.janela.main;
 
-import com.api.verificadoc.VerificaDocumento;
-import com.bancodados.model.bean.ModelCliente;
 import com.bancodados.model.dao.DaoCliente;
-import com.bancodados.model.bean.ModelProduto;
 import com.bancodados.model.dao.DaoFuncionario;
 import com.bancodados.model.dao.DaoProduto;
 import com.janela.adicionar.JanelaAdicionarCliente;
@@ -25,22 +22,17 @@ import com.janela.excluir.JanelaExcluirCliente;
 import com.janela.excluir.JanelaExcluirFuncionario;
 import com.janela.excluir.JanelaExcluirOS;
 import com.janela.excluir.JanelaExcluirProduto;
-import com.my.utils.MyUtils;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -1160,7 +1152,7 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_CONFIGURAÇÃO -> BOTÃO "PRODUTO" (ACESSAR JANELA PRODUTO)
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         readTable(jTable5, daoProduto.read());
-        
+
         TrocaTela(ConfigScreen, "card3");
         jTextField4.setText("Procurar Produto");
         jTextField4.setForeground(Color.LIGHT_GRAY);
@@ -1303,25 +1295,24 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_PRODUTO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR PRODUTO"
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        
-        
+
         JanelaExcluirProduto j = new JanelaExcluirProduto(null, true);
-        
-        
-        
+
         if (jTable5.getSelectedRow() != -1) {
-            
-                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString(), 0, 0);
-                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString(), 0, 1);
-                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString(), 0, 2);
-                j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString(), 0, 3);
-                
-                j.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
-            }
-        
-        
+
+            j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 0).toString(), 0, 0);
+            j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 1).toString(), 0, 1);
+            j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 2).toString(), 0, 2);
+            j.jTable1.setValueAt(jTable5.getModel().getValueAt(jTable5.getSelectedRow(), 4).toString(), 0, 3);
+
+            AlinhaCelula(j.jTable1);
+
+            j.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
+        }
+
+
     }//GEN-LAST:event_jButton22ActionPerformed
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR FUNCIONÁRIO)
@@ -1330,11 +1321,10 @@ public class JanelaMain extends javax.swing.JFrame {
 
         if (jTable6.getSelectedRow() != -1) { // Condicionlar para checar se foi selecionado um cliente ou nao
             // codigo, nome, email, cargo
-
             j.jLabel7.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 0).toString());
             j.jTextField4.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 1).toString());
-            j.jTextField5.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 1).toString());
-            j.jTextField2.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 1).toString());
+            j.jTextField5.setText(jTable6.getValueAt(jTable6.getSelectedRow(), 2).toString());
+            insertComboBox(j.jComboBox1, jTable6.getValueAt(jTable6.getSelectedRow(), 3).toString(), daoFuncionario.buscaCargo());
 
             j.setVisible(true);
         } else {
@@ -1349,7 +1339,20 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_FUNCIONÁRIO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR FUNCIONÁRIO)
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        new JanelaExcluirFuncionario(null, true).setVisible(true);
+        JanelaExcluirFuncionario j = new JanelaExcluirFuncionario(null, true);
+
+        if (jTable6.getSelectedRow() != -1) {
+            AlinhaCelula(j.jTable1);
+
+            j.jTable1.setValueAt(jTable6.getValueAt(jTable6.getSelectedRow(), 0), 0, 0);
+            j.jTable1.setValueAt(jTable6.getValueAt(jTable6.getSelectedRow(), 1), 0, 1);
+            j.jTable1.setValueAt(jTable6.getValueAt(jTable6.getSelectedRow(), 2), 0, 2);
+            j.jTable1.setValueAt(jTable6.getValueAt(jTable6.getSelectedRow(), 3), 0, 3);
+
+            j.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");
+        }
     }//GEN-LAST:event_jButton26ActionPerformed
 
     // @JANELA_FUNCIONÁRIO -> ÁREA_TEXTO "BUSCAR"
@@ -1390,7 +1393,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_PRODUTO -> BOTÃO "BUSCAR" (ATUALIZA JTABLE5 COM OS RESULTADOS DA PESQUISA)
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        
+
         if (daoProduto.search(jTextField4.getText()).isEmpty()) {
             // Informa que nao encontrou um resultado para busca e mostra todas as informacoes
             JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
@@ -1411,9 +1414,9 @@ public class JanelaMain extends javax.swing.JFrame {
 
     ////////////////////////////////////////////////////////////////////////////
     // VARIAVEIS FINAIS
-    private final DaoCliente daoCliente = new DaoCliente();
-    private final DaoFuncionario daoFuncionario = new DaoFuncionario();
-    private final DaoProduto daoProduto = new DaoProduto();
+    public final DaoCliente daoCliente = new DaoCliente();
+    public final DaoFuncionario daoFuncionario = new DaoFuncionario();
+    public final DaoProduto daoProduto = new DaoProduto();
 
     // FUNÇÕES GERAIS 
     //FUNÇÃO PARA ABRIR UMA UM JDIALOG 
@@ -1423,7 +1426,8 @@ public class JanelaMain extends javax.swing.JFrame {
     }
 
     // FUNÇÃO PARA DEIXAR OS VALORES CENTRALIZADOS NA TABELA
-    private void AlinhaCelula(DefaultTableModel m, JTable t) {
+    public static void AlinhaCelula(JTable t) {
+        DefaultTableModel m = (DefaultTableModel) t.getModel();
         DefaultTableCellRenderer a = new DefaultTableCellRenderer();
         a.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -1433,14 +1437,14 @@ public class JanelaMain extends javax.swing.JFrame {
     }
 
     // FUNÇÃO GERAL PARA BUSCAR TODOS OS VALORES NA TABELA
-    private void readTable(JTable t, ArrayList<String[]> s) {
+    public static void readTable(JTable t, ArrayList<String[]> s) {
 
         DefaultTableModel m = (DefaultTableModel) t.getModel();
 
-        AlinhaCelula(m, t);
+        AlinhaCelula(t);
 
         m.setNumRows(0);
-        
+
         switch (t.getColumnCount()) {
             case 3:
                 for (String[] i : s) {
@@ -1475,7 +1479,16 @@ public class JanelaMain extends javax.swing.JFrame {
         }
     }
 
-    // FUNÇÃO GERAL PARA BUSCA DE UM VALOR ESPECÍFICO NA TABELA
+    // FUNÇÃO PARA INSERIR VALOR NO JCOMBOBOX DO JDIALOG
+    public void insertComboBox(JComboBox j, String s, ArrayList<String> l) {
+        JComboBox cb = new JComboBox(l.toArray());
+        j.setModel(cb.getModel());
+        cb.insertItemAt(s, 0);
+        cb.insertItemAt("-------------", 1);
+        cb.insertItemAt("-- Adicione uma categoria --", 2);
+        cb.insertItemAt("-------------", 3);
+        j.setSelectedIndex(0);
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
