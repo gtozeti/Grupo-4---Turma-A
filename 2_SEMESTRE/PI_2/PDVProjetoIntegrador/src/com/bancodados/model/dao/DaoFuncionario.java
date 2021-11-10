@@ -165,8 +165,10 @@ public class DaoFuncionario {
 
                 if (i == 1) {
                     try {
-                        stmt.setInt(1, Integer.parseInt(input));
-                    } catch (Exception e) {}
+                        stmt.setInt(i, Integer.parseInt(input));
+                    } catch (Exception e) {
+                        stmt.setInt(i, 0);
+                    }
                 } else {
                     stmt.setString(i, input);
                 }
