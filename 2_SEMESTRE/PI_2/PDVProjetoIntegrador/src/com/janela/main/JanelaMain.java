@@ -36,6 +36,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.nimbus.NimbusStyle;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -889,8 +890,21 @@ public class JanelaMain extends javax.swing.JFrame {
         jTable5.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTable5);
 
+        if (jTable5.getColumnModel().getColumnCount() > 0) {
+            jTable5.getColumnModel().getColumn(0).setMinWidth(80);
+            jTable5.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTable5.getColumnModel().getColumn(1).setMinWidth(80);
+            jTable5.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTable5.getColumnModel().getColumn(2).setResizable(false);
+            jTable5.getColumnModel().getColumn(3).setMinWidth(140);
+            jTable5.getColumnModel().getColumn(3).setMaxWidth(140);
+            jTable5.getColumnModel().getColumn(4).setMaxWidth(110);
+        }
+
+
         jButton22.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton22.setText("Excluir Produto");
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Excluir.png"))); // NOI18N
+        jButton22.setToolTipText("Excluir Produto");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton22ActionPerformed(evt);
@@ -939,6 +953,7 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProdutoScreenLayout.createSequentialGroup()
                         .addComponent(jButton22)
+                        .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
@@ -970,8 +985,9 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+
+                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap());
 
         ConfigScreen.add(ProdutoScreen, "card3");
 
@@ -1512,14 +1528,22 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // FUNÇÃO PARA DEIXAR OS VALORES CENTRALIZADOS NA TABELA
     public static void AlinhaCelula(JTable t) {
+        
+              
         DefaultTableModel m = (DefaultTableModel) t.getModel();
         DefaultTableCellRenderer a = new DefaultTableCellRenderer();
+        
         a.setHorizontalAlignment(SwingConstants.CENTER);
-
+        
+        
         for (int i = 0; i < m.getColumnCount(); i++) {
             t.getColumnModel().getColumn(i).setCellRenderer(a);
+            t.getColumnModel().getColumn(i).setHeaderRenderer(a);
+        
+            
         }
-
+                
+        
     }
 
     // FUNÇÃO GERAL PARA BUSCAR TODOS OS VALORES NA TABELA
