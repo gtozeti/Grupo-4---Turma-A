@@ -1102,7 +1102,7 @@
                                   <Component id="jButton21" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton22" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton22" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButton24" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -1141,7 +1141,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton24" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jButton23" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jButton22" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jButton22" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1198,32 +1198,30 @@
                         <Property name="autoResizeMode" type="int" value="4"/>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="80" minWidth="80" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="80" minWidth="80" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="140" minWidth="140" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="110" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
-                              <Renderer editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                <ComponentRef name="null"/>
-                              </Renderer>
+                              <Renderer/>
                             </Column>
                           </TableColumnModel>
                         </Property>
@@ -1241,7 +1239,10 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Excluir Produto"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/images/Excluir.png"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Excluir Produto"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton22ActionPerformed"/>

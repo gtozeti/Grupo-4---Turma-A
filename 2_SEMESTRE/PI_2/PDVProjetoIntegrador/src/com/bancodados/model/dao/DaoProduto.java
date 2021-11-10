@@ -196,5 +196,26 @@ public class DaoProduto {
 
         return produto; // retorna valor da lista.
     }
+    
+    public void delete(int id) {
+
+        Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
+        PreparedStatement stmt = null; // Variável utilizada para comando MySQL
+
+        try {
+            stmt = con.prepareStatement("DELETE FROM produto WHERE cod_prod = ?"); // Comando MySQL para deletar valores na tabela "tabelaTeste"
+
+            stmt.setInt(1, id); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no "?"
+
+            stmt.executeUpdate(); // Executando atualização do comando
+
+            JOptionPane.showMessageDialog(null, "Produto deletado com sucesso!"); // Mensagem para caso o comando dê certo
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao tentar deletar\n" + ex); // Mensagem para cada o comando não dê certo
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+        }
+    }
 
 }
