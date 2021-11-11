@@ -33,7 +33,9 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
         initComponents();
         FormatacaoDocumento();
     }
-
+    
+    public boolean att;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -239,6 +241,7 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Botão cancelar
+        att = false;
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -296,7 +299,9 @@ public class JanelaAdicionarCliente extends javax.swing.JDialog {
             c.setDocumento(VerificaDocumento.limpar(DocumentoTextField.getText()));
 
             cdao.create(c);
-
+            
+            att = true;
+            
             setVisible(false);
             dispose();
         }

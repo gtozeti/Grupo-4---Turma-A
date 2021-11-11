@@ -26,7 +26,6 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
     public JanelaAtualizarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        pesquisaCep();
     }
 
     /**
@@ -67,6 +66,11 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Cliente");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Código Cliente");
 
@@ -284,6 +288,10 @@ public class JanelaAtualizarCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         FormatacaoDocumento();
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        pesquisaCep();
+    }//GEN-LAST:event_formWindowOpened
     
     private void FormatacaoDocumento() {
         if (jComboBox1.getSelectedIndex() == 0) {
