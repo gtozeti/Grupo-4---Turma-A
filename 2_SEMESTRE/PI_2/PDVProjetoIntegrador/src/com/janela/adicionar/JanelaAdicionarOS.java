@@ -77,7 +77,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("Produtos Uitlizados:");
+        jLabel6.setText("Serviços Uitlizados:");
 
         jLabel2.setText("Cliente:");
 
