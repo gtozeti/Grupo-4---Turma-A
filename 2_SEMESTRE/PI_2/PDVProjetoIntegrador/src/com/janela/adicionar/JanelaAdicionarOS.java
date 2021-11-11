@@ -113,7 +113,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
         jButton11.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
-        jButton11.setToolTipText("Buscar Cliente");
+        jButton11.setToolTipText("Buscar Funcionário");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -219,7 +219,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        new JanelaBuscarCliente(null, true).setVisible(true);
+        new JanelaBuscarCliente(this, true).setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -229,6 +229,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         JanelaBuscarFuncionario j = new JanelaBuscarFuncionario(this, true);
         j.setVisible(true);
         jTextField6.setText(j.resposta);
+        jTextField6.setEditable(false);
         
     }//GEN-LAST:event_jButton11ActionPerformed
 

@@ -5,6 +5,11 @@
  */
 package com.janela.buscar;
 
+import com.bancodados.model.dao.DaoCliente;
+import com.janela.main.JanelaMain;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Matheus
@@ -14,9 +19,20 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
     /**
      * Creates new form Tela_AdicionarCliente_dialog
      */
+    public String resposta;
+     
     public JanelaBuscarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        JanelaMain.readTable(jTable1, daoCliente.read());
+    }
+    
+    public JanelaBuscarCliente(java.awt.Dialog parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        
+        JanelaMain.readTable(jTable1, daoCliente.read());
     }
 
     /**
@@ -37,6 +53,11 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Cliente");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +95,11 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jButton1MouseMoved(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -122,9 +148,12 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private final DaoCliente daoCliente = new DaoCliente();
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         // BOTAO CANCELAR
+        resposta = "";
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -132,7 +161,13 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         //BOTAO ADICIONAR Cliente
         //Alguma acao antes
-        dispose();
+        if (jTable1.getSelectedRow() != -1) {
+            resposta = jTable1.getValueAt(jTable1.getSelectedRow(), 0) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Cliente não selecionado.\nPor favor, selecione um cliente.");
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseMoved
@@ -143,9 +178,32 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (jTextField1.getText().equals("Buscar Cliente")) {
             jTextField1.setText("");
+            jTextField1.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jTextField1MouseClicked
 
+    // BOTÃO BUSCAR
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Buscar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jTextField1.setForeground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_formWindowOpened
+
+    // FUNÇÃO DE BUSCA PARA O BOTÃO E ÁREA TEXTO
+     private void Buscar() {
+        if (daoCliente.search(jTextField1.getText()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+            JanelaMain.readTable(jTable1, daoCliente.read());
+        } else {
+            JanelaMain.readTable(jTable1, daoCliente.search(jTextField1.getText()));
+        }
+        
+        jTextField1.setText("Buscar Cliente");
+        jTextField1.setForeground(Color.LIGHT_GRAY);
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -7,6 +7,7 @@ package com.janela.buscar;
 
 import com.bancodados.model.dao.DaoFuncionario;
 import com.janela.main.JanelaMain;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,6 +53,11 @@ public class JanelaBuscarFuncionario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Funcionário");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +89,7 @@ public class JanelaBuscarFuncionario extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Buscar");
@@ -167,6 +174,7 @@ public class JanelaBuscarFuncionario extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (jTextField1.getText().equals("Buscar Funcionário")) {
             jTextField1.setText("");
+            jTextField1.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jTextField1MouseClicked
     
@@ -180,13 +188,22 @@ public class JanelaBuscarFuncionario extends javax.swing.JDialog {
         Buscar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        jTextField1.setForeground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_formWindowOpened
+
     // FUNÇÃO DE BUSCA PARA O BOTÃO E ÁREA TEXTO
     private void Buscar() {
         if (daoFuncionario.search(jTextField1.getText()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
             JanelaMain.readTable(jTable1, daoFuncionario.read());
         } else {
             JanelaMain.readTable(jTable1, daoFuncionario.search(jTextField1.getText()));
         }
+        
+        jTextField1.setText("Buscar Funcionário");
+        jTextField1.setForeground(Color.LIGHT_GRAY);
     }
     
     /**

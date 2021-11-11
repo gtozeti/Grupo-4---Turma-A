@@ -1431,13 +1431,13 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_VENDER -> BOTÃO "ADICIONAR PRODUTO" (ABRIR JDIALOG PARA ADICIONAR
     // PRODUTO AO PEDIDO DE VENDA)
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton7ActionPerformed
-        new JanelaBuscarProduto(null, true).setVisible(true);
+        new JanelaBuscarProduto(this, true).setVisible(true);
     }// GEN-LAST:event_jButton7ActionPerformed
 
     // @JANELA_VENDER -> BOTÃO "BUSCAR CLIENTE" (ABRIR JDIALOG PARA ADICIONAR
     // CLIENTE AO PEDIDO DE VENDA)
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton31ActionPerformed
-        new JanelaBuscarCliente(null, true).setVisible(true);
+        new JanelaBuscarCliente(this, true).setVisible(true);
     }// GEN-LAST:event_jButton31ActionPerformed
 
     // @JANELA_VENDER -> BOTÃO "BUSCAR FUNCIONÁRIO" (ABRIR JDIALOG PARA ADICIONAR

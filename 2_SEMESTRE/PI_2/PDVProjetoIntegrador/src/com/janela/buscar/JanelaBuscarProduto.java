@@ -5,6 +5,11 @@
  */
 package com.janela.buscar;
 
+import com.bancodados.model.dao.DaoProduto;
+import com.janela.main.JanelaMain;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Matheus
@@ -14,9 +19,21 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
     /**
      * Creates new form Tela_AdicionarProduto_dialog
      */
+    
+    public String resposta;
+    
     public JanelaBuscarProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        JanelaMain.readTable(jTable1, daoProduto.read());
+    }
+    
+    public JanelaBuscarProduto(java.awt.Dialog parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        
+        JanelaMain.readTable(jTable1, daoProduto.read());
     }
 
     /**
@@ -37,6 +54,11 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Produto");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTextField1.setText("Buscar Produto");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -46,9 +68,9 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
         });
 
         jButton1.setText("Buscar");
-        jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jButton1MouseMoved(evt);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -122,20 +144,20 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private final DaoProduto daoProduto = new DaoProduto();
+    
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         // TODO add your handling code here:
         if (jTextField1.getText().equals("Buscar Produto")) {
             jTextField1.setText("");
+            jTextField1.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void jButton1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseMoved
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         // BOTAO CANCELAR
+         resposta = "";
         dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -144,9 +166,36 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
         //BOTAO ADICIONAR PRODUTO
         //Alguma acao antes
-        dispose();
+         if (jTable1.getSelectedRow() != -1) {
+            resposta = jTable1.getValueAt(jTable1.getSelectedRow(), 0) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Produto não selecionado.\nPor favor, selecione um produto.");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    // BOTÃO BUSCAR
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Buscar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jTextField1.setForeground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_formWindowOpened
+
+    // FUNÇÃO DE BUSCA PARA O BOTÃO E ÁREA TEXTO
+    private void Buscar() {
+        if (daoProduto.search(jTextField1.getText()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+            JanelaMain.readTable(jTable1, daoProduto.read());
+        } else {
+            JanelaMain.readTable(jTable1, daoProduto.search(jTextField1.getText()));
+        }
+        
+        jTextField1.setText("Buscar Funcionário");
+        jTextField1.setForeground(Color.LIGHT_GRAY);
+    }
+    
     /**
      * @param args the command line arguments
      */

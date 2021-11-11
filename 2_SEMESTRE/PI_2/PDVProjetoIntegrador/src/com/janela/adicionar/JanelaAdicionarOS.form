@@ -261,7 +261,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/images/Buscar.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Buscar Cliente"/>
+        <Property name="toolTipText" type="java.lang.String" value="Buscar Funcion&#xe1;rio"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
