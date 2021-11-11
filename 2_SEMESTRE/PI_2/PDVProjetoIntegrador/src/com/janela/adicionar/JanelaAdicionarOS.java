@@ -8,6 +8,7 @@ package com.janela.adicionar;
 import com.bancodados.model.dao.DaoOS;
 import com.janela.buscar.JanelaBuscarCliente;
 import com.janela.buscar.JanelaBuscarFuncionario;
+import com.janela.buscar.JanelaBuscarProduto;
 
 /**
  *
@@ -22,6 +23,10 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         
         super(parent, modal);
         initComponents();
+        jTextField4.setEnabled(false);
+        jTextField6.setEnabled(false);
+        jTextField4.setEditable(false);
+        jTextField6.setEditable(false);
     }
     
     /**
@@ -50,6 +55,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Ordem de Serviço");
@@ -85,7 +91,15 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
             new String [] {
                 "Código", "Categoria", "Nome", "Quantidade", "Valor Unidade"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
@@ -120,6 +134,15 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
             }
         });
 
+        jButton12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton12.setToolTipText("Adicionar Produto");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,12 +150,6 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -141,7 +158,6 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField4))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
                                 .addComponent(jLabel3)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4)
@@ -158,7 +174,17 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -182,8 +208,10 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,20 +246,49 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         jLabel7.setText(cdao.totalOS());
     }//GEN-LAST:event_formWindowOpened
 
+     //BOTAO DE BUSCA PARA ADICIONAR UM CLIENTE
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        new JanelaBuscarCliente(this, true).setVisible(true);
+        JanelaBuscarCliente j = new JanelaBuscarCliente(this, true);
+        j.setVisible(true);
+        jTextField4.setText(j.resposta);
+        if (!j.resposta.equals("")){
+            jTextField4.setEnabled(true);
+        }
+        else{
+            jTextField4.setEnabled(false);
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    //BOTAO DE BUSCA PARA ADICIONAR UM FUNCIONÁRIO
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
        
-      
-        
         JanelaBuscarFuncionario j = new JanelaBuscarFuncionario(this, true);
         j.setVisible(true);
         jTextField6.setText(j.resposta);
-        jTextField6.setEditable(false);
+        if (!j.resposta.equals("")){
+            jTextField6.setEnabled(true);
+        }
+        else{
+            jTextField6.setEnabled(false);
+        }
+        
+        
         
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    //BOTAO DE BUSCA PARA ADICIONAR UM SERVIÇO
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+         
+//        JanelaBuscarProduto j = new JanelaBuscarProduto(this, true);
+//        j.setVisible(true);
+//        jTextField6.setText(j.resposta);
+//        if (!j.resposta.equals("")){
+//            jTextField6.setEnabled(true);
+//        }
+//        else{
+//            jTextField6.setEnabled(false);
+//        }
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,6 +351,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
