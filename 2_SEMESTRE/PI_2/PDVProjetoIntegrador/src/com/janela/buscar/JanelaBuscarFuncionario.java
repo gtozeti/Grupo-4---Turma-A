@@ -7,6 +7,7 @@ package com.janela.buscar;
 
 import com.bancodados.model.dao.DaoFuncionario;
 import com.janela.main.JanelaMain;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +18,7 @@ public class JanelaBuscarFuncionario extends javax.swing.JDialog {
     /**
      * Creates new form Tela_AdicionarCliente_dialog
      */
-    public interface returnValue{
-        void getResponse(String result);
-    }
+    public String resposta;
     
     public JanelaBuscarFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -143,15 +142,18 @@ public class JanelaBuscarFuncionario extends javax.swing.JDialog {
     
     // BOTÃO CANCELAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        resposta = "";
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
     
     // BOTÃO ADICIONAR FUNCIONÁRIO
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JanelaMain j = new JanelaMain();
-        
-        j.jTextField1.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
-        dispose();
+        if (jTable1.getSelectedRow() != -1) {
+            resposta = jTable1.getValueAt(jTable1.getSelectedRow(), 0) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Funcionário não selecionado.\nPor favor, selecione um funcionário.");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked

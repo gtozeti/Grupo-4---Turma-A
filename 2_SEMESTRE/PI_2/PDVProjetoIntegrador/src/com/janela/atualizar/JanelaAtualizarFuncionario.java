@@ -7,9 +7,7 @@ package com.janela.atualizar;
 
 import com.bancodados.model.bean.ModelFuncionario;
 import com.bancodados.model.dao.DaoFuncionario;
-import com.janela.adicionar.*;
 import com.my.utils.MyUtils;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
