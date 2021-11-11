@@ -26,6 +26,13 @@ public class JanelaBuscarFuncionario extends javax.swing.JDialog {
         
         JanelaMain.readTable(jTable1, daoFuncionario.read());
     }
+    
+    public JanelaBuscarFuncionario(java.awt.Dialog parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        
+        JanelaMain.readTable(jTable1, daoFuncionario.read());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
