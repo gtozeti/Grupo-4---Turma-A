@@ -85,7 +85,7 @@ public class DaoProduto {
                 total = Integer.valueOf(resultado.getString("max(cod_prod)")) + 1; // Retorno do código da última OS cadastrada + 1
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar buscar as OS cadastradas\n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar buscar os produtos cadastrados\n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
             return String.valueOf(total);
