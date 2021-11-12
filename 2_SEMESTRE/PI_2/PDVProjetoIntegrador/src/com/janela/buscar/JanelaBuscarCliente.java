@@ -2,11 +2,12 @@ package com.janela.buscar;
 
 import com.bancodados.model.dao.DaoCliente;
 import com.janela.main.JanelaMain;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class JanelaBuscarCliente extends javax.swing.JDialog {
-
-    public JanelaBuscarCliente(java.awt.Frame parent, boolean modal) {
+  
+    public JanelaBuscarCliente(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -26,6 +27,11 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Cliente");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +66,11 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -152,6 +163,7 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
         if (jTextField1.getText().equals("Buscar Cliente")) {
             jTextField1.setText("");
+            jTextField1.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jTextField1FocusGained
 
@@ -164,6 +176,13 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         }
     }
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jTextField1.setForeground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_formWindowOpened
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

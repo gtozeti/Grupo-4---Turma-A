@@ -154,7 +154,7 @@ public class DaoProduto {
             JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizaro produto\n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizar o produto\n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }

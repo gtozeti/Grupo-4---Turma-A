@@ -29,6 +29,11 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Produto");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTextField1.setText("Buscar Produto");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,13 +138,14 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     // VARIÁVEIS
-    private DaoProduto daoProduto = new DaoProduto();
+    private final DaoProduto daoProduto = new DaoProduto();
     public ArrayList<String[]> produto = new ArrayList();
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         // TODO add your handling code here:
         if (jTextField1.getText().equals("Buscar Produto")) {
             jTextField1.setText("");
+            jTextField1.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jTextField1MouseClicked
 
