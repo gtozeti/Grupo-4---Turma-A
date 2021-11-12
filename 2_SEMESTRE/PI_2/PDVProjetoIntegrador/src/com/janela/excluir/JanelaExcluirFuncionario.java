@@ -93,6 +93,8 @@ public class JanelaExcluirFuncionario extends javax.swing.JDialog {
     
     // BOTÃO CANCELAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        att = false;
+        setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
     
@@ -102,10 +104,14 @@ public class JanelaExcluirFuncionario extends javax.swing.JDialog {
         
         daoFuncionario.delete(Integer.parseInt(jTable1.getValueAt(0, 0).toString()));
         
+        att = true;
+        setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
+    // VARIAVEIS
+    public boolean att;
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
