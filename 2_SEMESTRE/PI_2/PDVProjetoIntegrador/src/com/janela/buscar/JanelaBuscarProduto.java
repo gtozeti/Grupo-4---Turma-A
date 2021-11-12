@@ -2,6 +2,7 @@ package com.janela.buscar;
 
 import com.bancodados.model.dao.DaoProduto;
 import com.janela.main.JanelaMain;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -29,11 +30,6 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Produto");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         jTextField1.setText("Buscar Produto");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
