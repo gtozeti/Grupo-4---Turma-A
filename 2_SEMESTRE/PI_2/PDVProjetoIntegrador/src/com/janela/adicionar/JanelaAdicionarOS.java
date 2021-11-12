@@ -9,6 +9,11 @@ import com.bancodados.model.dao.DaoOS;
 import com.janela.buscar.JanelaBuscarCliente;
 import com.janela.buscar.JanelaBuscarFuncionario;
 import com.janela.buscar.JanelaBuscarProduto;
+import com.janela.buscar.JanelaBuscarServico;
+import com.janela.main.JanelaMain;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -83,17 +88,14 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Código", "Categoria", "Nome", "Quantidade", "Valor Unidade"
+                "Código", "Nome", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -102,6 +104,10 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(80);
+        }
 
         jLabel4.setText("Valor total: R$");
 
@@ -112,7 +118,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
             }
         });
 
-        jLabel8.setText("xxxx,xxx");
+        jLabel8.setText("0.00");
 
         jButton10.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
@@ -279,15 +285,27 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     //BOTAO DE BUSCA PARA ADICIONAR UM SERVIÇO
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
          
-//        JanelaBuscarProduto j = new JanelaBuscarProduto(this, true);
-//        j.setVisible(true);
-//        jTextField6.setText(j.resposta);
-//        if (!j.resposta.equals("")){
-//            jTextField6.setEnabled(true);
-//        }
-//        else{
-//            jTextField6.setEnabled(false);
-//        }
+        JanelaBuscarServico j = new JanelaBuscarServico(this, true);
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        ArrayList<String[]> listaInfo = new ArrayList();
+        DecimalFormat format = new DecimalFormat("0.00");
+        
+        j.setVisible(true);
+        
+        // Recebendo as informações do serviço selecionado e repassando para um array
+        listaInfo.add(j.resposta.split("-"));
+        
+        //Variavél de controle para o valor total da OS
+        double soma = Double.valueOf(jLabel8.getText());
+        
+       // Loop para adicionar uma nova linha e preencher com as informações do 
+       // serviço escolhido
+        for (String[] i : listaInfo) {
+                    m.addRow(new Object[]{i[0], i[1], i[2]});
+                    soma += Double.valueOf(i[2].replace("R$", ""));
+            }
+        JanelaMain.AlinhaCelula(jTable1);
+        jLabel8.setText(String.valueOf(format.format(soma)).replace(",", "."));
     }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
