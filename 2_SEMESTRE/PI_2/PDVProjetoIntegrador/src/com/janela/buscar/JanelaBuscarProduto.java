@@ -2,6 +2,7 @@ package com.janela.buscar;
 
 import com.bancodados.model.dao.DaoProduto;
 import com.janela.main.JanelaMain;
+import com.my.utils.MyUtils;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -11,7 +12,7 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
     public JanelaBuscarProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         JanelaMain.readTable(jTable1, daoProduto.read());
     }
 
@@ -32,9 +33,12 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
         setTitle("Buscar Produto");
 
         jTextField1.setText("Buscar Produto");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
             }
         });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -137,14 +141,6 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
     private final DaoProduto daoProduto = new DaoProduto();
     public ArrayList<String[]> produto = new ArrayList();
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        // TODO add your handling code here:
-        if (jTextField1.getText().equals("Buscar Produto")) {
-            jTextField1.setText("");
-            jTextField1.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_jTextField1MouseClicked
-
     // BOTÃO CANCELAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
@@ -154,41 +150,46 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (jTable1.getSelectedRow() != -1) {
             String[] p = new String[4];
-            
+
             p[0] = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
             p[1] = jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString();
             p[2] = jSpinner1.getValue().toString();
             p[3] = jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString();
-            
-            
-            if (produto.lastIndexOf(p) != -1) {
-                
-                String aux[] = produto.get(produto.lastIndexOf(p));
-                
-                p[2] = Integer.toString(Integer.parseInt(aux[2] + jSpinner1.getValue()));
-                
-                produto.remove(p);
-            }
-            
-            produto.add(p);
-            
+
+            MyUtils.verificaLista(produto, p);
+
             setVisible(false);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Funcionário não selecionado.\nPor favor, selecione um funcionário.");
+            JOptionPane.showMessageDialog(this, "Produto não selecionado.\nPor favor, selecione um produto.");
         }
-        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    // ÁREA TEXTO -> AÇÃO BUSCAR
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        Buscar();
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // BOTÃO BUSCAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Buscar();
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    // AÇÃO PARA QUANDO A ÁREA TEXTO GANHA FOCO
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        if (jTextField1.getText().equals("Buscar Produto")) {
+            jTextField1.setText("");
+            jTextField1.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+    
+    // AÇÃO PARA QUANDO A ÁREA TEXTO PERDE FOCO
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        if (jTextField1.getText().isBlank()) {
+            jTextField1.setText("Buscar Produto");
+            jTextField1.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+    
+    // BUSCAR ÁREA TEXTO
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        Buscar();
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // FUNÇÕES
     private void Buscar() {
@@ -197,6 +198,14 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
         } else {
             JanelaMain.readTable(jTable1, daoProduto.search(jTextField1.getText()));
         }
+    }
+    
+    // QUANDO ENCERRAR A JANELA É NECESSÁRIO VOLTAR TODOS OS CAMPOS PARA O ESTILO PADRÃO
+    public void limpaCampos() {
+        jTextField1.setText("Buscar Produto");
+        jTextField1.setForeground(Color.LIGHT_GRAY);
+        
+        jSpinner1.setValue(1);
     }
 
     public static void main(String args[]) {

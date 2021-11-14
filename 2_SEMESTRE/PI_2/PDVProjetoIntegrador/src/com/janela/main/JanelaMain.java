@@ -25,13 +25,14 @@ import com.janela.excluir.JanelaExcluirFuncionario;
 import com.janela.excluir.JanelaExcluirOS;
 import com.janela.excluir.JanelaExcluirProduto;
 import com.janela.excluir.JanelaExcluirServico;
+import com.my.utils.MyUtils;
 
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.JButton;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -44,6 +45,9 @@ public class JanelaMain extends javax.swing.JFrame {
 
     public JanelaMain() {
         initComponents();
+
+        readTable(jTable1, janelaBuscarProduto.produto);
+        jFormattedTextField3.setValue(0);
         setTextDefault(jTextField1, "Adicione um cliente");
         setTextDefault(jTextField6, "Adicione um funcionário");
     }
@@ -78,6 +82,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jButton32 = new javax.swing.JButton();
+        jButton33 = new javax.swing.JButton();
         OsScreen = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -284,6 +289,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton8.setText("Cancelar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton9.setText("Concluir");
@@ -317,6 +327,14 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         });
 
+        jButton33.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton33.setText("Remover Produto");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout VenderScreenLayout = new javax.swing.GroupLayout(VenderScreen);
         VenderScreen.setLayout(VenderScreenLayout);
         VenderScreenLayout.setHorizontalGroup(
@@ -330,11 +348,6 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(382, 382, 382))
                     .addGroup(VenderScreenLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(VenderScreenLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(404, 404, 404))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
@@ -347,8 +360,7 @@ public class JanelaMain extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(VenderScreenLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(553, 553, 553)
-                                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(VenderScreenLayout.createSequentialGroup()
                         .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -364,13 +376,21 @@ public class JanelaMain extends javax.swing.JFrame {
                                 .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1))
                             .addComponent(jButton32, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(VenderScreenLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(VenderScreenLayout.createSequentialGroup()
+                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton7))))
         );
         VenderScreenLayout.setVerticalGroup(
             VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VenderScreenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VenderScreenLayout.createSequentialGroup()
@@ -382,26 +402,28 @@ public class JanelaMain extends javax.swing.JFrame {
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(VenderScreenLayout.createSequentialGroup()
                                 .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 13, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                        .addComponent(jLabel4))
                     .addGroup(VenderScreenLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(16, 16, 16)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1297,7 +1319,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE FOI ESCRITO)
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        
+
         if (daoOS.search(jTextField2.getText()).isEmpty()) {
             // Informa que nao encontrou um resultado para busca e mostra todas as
             // informacoes
@@ -1313,11 +1335,11 @@ public class JanelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
-        
+
     }//GEN-LAST:event_jTextField2FocusLost
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
-        // TODO add your handling code here:
+        TrocaTela(ConfigScreen, "card5");
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
@@ -1325,10 +1347,10 @@ public class JanelaMain extends javax.swing.JFrame {
         jTextField7.setForeground(Color.black);
     }//GEN-LAST:event_jTextField7FocusGained
 
-     // @JANELA_SERIVIÇOS -> BOTÃO "BUSCAR" (ATUALIZA JTABLE7 COM OS RESULTADOS DA
+    // @JANELA_SERIVIÇOS -> BOTÃO "BUSCAR" (ATUALIZA JTABLE7 COM OS RESULTADOS DA
     // PESQUISA)
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        
+
         if (daoServico.search(jTextField7.getText()).isEmpty()) {
             // Informa que nao encontrou um resultado para busca e mostra todas as
             // informacoes
@@ -1345,33 +1367,33 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_SERVIÇO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR SERVIÇO"
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-       
-         JanelaExcluirServico j = new JanelaExcluirServico(null, true);
+
+        JanelaExcluirServico j = new JanelaExcluirServico(null, true);
 
         if (jTable7.getSelectedRow() != -1) {
 
             j.jTable1.setValueAt(jTable7.getModel().getValueAt(jTable7.getSelectedRow(), 0).toString(), 0, 0);
             j.jTable1.setValueAt(jTable7.getModel().getValueAt(jTable7.getSelectedRow(), 1).toString(), 0, 1);
-           AlinhaCelula(j.jTable1);
+            AlinhaCelula(j.jTable1);
 
             j.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
         }
-        
+
     }//GEN-LAST:event_jButton36ActionPerformed
 
     // @JANELA_SERVIÇOS -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR PRODUTO)
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        
-         new JanelaAdicionarServico(null, true).setVisible(true);
+
+        new JanelaAdicionarServico(null, true).setVisible(true);
     }//GEN-LAST:event_jButton37ActionPerformed
 
     // @JANELA_SERVIÇO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR SERVIÇO)
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-       
+
         JanelaAtualizarServico j = new JanelaAtualizarServico(null, true);
-        
+
         // Adicionando os valores no Jdialog
         try {
             if (jTable7.getSelectedRow() != -1) {
@@ -1386,12 +1408,39 @@ public class JanelaMain extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
         }
-        
+
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-        // TODO add your handling code here:
+        TrocaTela(ConfigScreen, "card2");
     }//GEN-LAST:event_jButton39ActionPerformed
+
+    // @JANELA_VENDER -> BOTÃO REMOVER PRODUTO
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        if (jTable1.getSelectedRow() != -1) {
+            String[] s = {jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString(),
+                jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString(),
+                jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString(),
+                jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString()};
+
+            MyUtils.removeItem(janelaBuscarProduto.produto, s);
+
+            readTable(jTable1, janelaBuscarProduto.produto);
+            calculaValor(jTable1, jFormattedTextField3);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
+        }
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    // @JANELA_VENDER -> BOTÃO CANCELAR
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        janelaBuscarProduto.produto.clear();
+        readTable(jTable1, janelaBuscarProduto.produto);
+        jFormattedTextField3.setValue(0);
+        jComboBox1.setSelectedIndex(0);
+        setTextDefault(jTextField1, "Adicione um cliente");
+        setTextDefault(jTextField6, "Adicione um funcionário");
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
     // FOI ESCRITO)
@@ -1666,11 +1715,13 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_VENDER -> BOTÃO "ADICIONAR PRODUTO" (ABRIR JDIALOG PARA ADICIONAR PRODUTO AO PEDIDO DE VENDA)
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton7ActionPerformed
         janelaBuscarProduto.setVisible(true);
-        
+
+        janelaBuscarProduto.limpaCampos();
         if (!janelaBuscarProduto.produto.isEmpty()) {
             readTable(jTable1, janelaBuscarProduto.produto);
+            calculaValor(jTable1, jFormattedTextField3);
         }
-        
+
     }// GEN-LAST:event_jButton7ActionPerformed
 
     // @JANELA_VENDER -> BOTÃO "BUSCAR CLIENTE" (ABRIR JDIALOG PARA ADICIONAR CLIENTE AO PEDIDO DE VENDA)
@@ -1738,7 +1789,6 @@ public class JanelaMain extends javax.swing.JFrame {
     public final DaoProduto daoProduto = new DaoProduto();
     public final DaoVenda daoVenda = new DaoVenda();
     public final DaoServico daoServico = new DaoServico();
-
 
     // OBJETOS JANELA
     public final JanelaAdicionarCliente janelaAdicionarCliente = new JanelaAdicionarCliente(this, true);
@@ -1827,6 +1877,18 @@ public class JanelaMain extends javax.swing.JFrame {
         j.setForeground(Color.LIGHT_GRAY);
     }
 
+    private void calculaValor(JTable j, JFormattedTextField t) {
+        double valor = 0;
+
+        for (int i = 0; i < j.getRowCount(); i++) {
+            valor += Double.parseDouble(j.getValueAt(i, 2).toString()) * Double.parseDouble(j.getValueAt(i, 3).toString().substring(3).replace(",", "."));
+        }
+
+        System.out.println(valor);
+
+        t.setValue(valor);
+    }
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1892,6 +1954,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;

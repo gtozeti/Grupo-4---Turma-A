@@ -8,7 +8,6 @@ package com.janela.adicionar;
 import com.bancodados.model.dao.DaoOS;
 import com.janela.buscar.JanelaBuscarCliente;
 import com.janela.buscar.JanelaBuscarFuncionario;
-import com.janela.buscar.JanelaBuscarProduto;
 import com.janela.buscar.JanelaBuscarServico;
 import com.janela.main.JanelaMain;
 import java.text.DecimalFormat;
