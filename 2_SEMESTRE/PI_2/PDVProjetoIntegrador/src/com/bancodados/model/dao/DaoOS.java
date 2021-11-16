@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bancodados.model.dao;
 
 import com.bancodados.connection.ConnectionFactory;
@@ -10,14 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Matheus
- */
 public class DaoOS {
    
   public ArrayList<String[]> search(String input) {
@@ -115,7 +105,8 @@ public class DaoOS {
             JOptionPane.showMessageDialog(null, "Falha ao tentar buscar as OS cadastradas\n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
-            return String.valueOf(total);
         }
+        
+        return String.valueOf(total);
     }
 }
