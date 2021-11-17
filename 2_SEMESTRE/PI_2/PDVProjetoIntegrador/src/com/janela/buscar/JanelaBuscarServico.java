@@ -61,9 +61,12 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
         });
 
         jTextField1.setText("Buscar Serviço");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
             }
         });
 
@@ -104,7 +107,7 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setText("Adicionar Produto");
+        jButton3.setText("Adicionar Serviço");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -151,18 +154,10 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
 
     private final DaoServico daoServico = new DaoServico();
     
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        // TODO add your handling code here:
-        if (jTextField1.getText().equals("Buscar Serviço")) {
-            jTextField1.setText("");
-            jTextField1.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_jTextField1MouseClicked
-
+    // BOTAO CANCELAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        // BOTAO CANCELAR
-         resposta = "";
+        resposta = "";
         dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -185,8 +180,23 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        jTextField1.setForeground(Color.LIGHT_GRAY);
+        jTextField1.setRequestFocusEnabled(true);
+        
     }//GEN-LAST:event_formWindowOpened
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        if (jTextField1.getText().isBlank()) {
+            jTextField1.setText("Buscar Serviço");
+            jTextField1.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+       if (jTextField1.getText().equals("Buscar Serviço")) {
+            jTextField1.setText("");
+            jTextField1.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
 
     // FUNÇÃO DE BUSCA PARA O BOTÃO E ÁREA TEXTO
     private void Buscar() {

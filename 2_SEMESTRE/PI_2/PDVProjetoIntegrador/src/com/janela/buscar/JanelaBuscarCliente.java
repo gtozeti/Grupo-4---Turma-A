@@ -33,7 +33,7 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar Funcionário");
+        setTitle("Buscar Cliente");
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -42,7 +42,7 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setText("Adicionar Funcionário");
+        jButton3.setText("Adicionar Cliente");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -54,11 +54,11 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nome", "E-mail", "Cargo"
+                "Código", "Nome", "E-mail"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -67,6 +67,10 @@ public class JanelaBuscarCliente extends javax.swing.JDialog {
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(80);
+        }
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

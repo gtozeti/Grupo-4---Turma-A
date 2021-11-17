@@ -29,6 +29,7 @@ import com.my.utils.MyUtils;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -40,6 +41,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
 
 public class JanelaMain extends javax.swing.JFrame {
 
@@ -1531,6 +1533,7 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ADICIONAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ADICIONAR OS)
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton12ActionPerformed
         janelaAdicionarOS.setVisible(true);
+        janelaAdicionarOS.limpaCampos();
     }// GEN-LAST:event_jButton12ActionPerformed
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "EXCLUIR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA EXCLUIR OS)
