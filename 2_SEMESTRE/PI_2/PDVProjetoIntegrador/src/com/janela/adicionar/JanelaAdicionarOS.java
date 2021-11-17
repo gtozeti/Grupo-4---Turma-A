@@ -16,7 +16,9 @@ import com.janela.main.JanelaMain;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -68,6 +70,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         jButton33 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Ordem de Serviço");
@@ -98,11 +101,11 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nome", "Valor"
+                "Código", "Nome", "Valor", "Quantidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -114,6 +117,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setMinWidth(80);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(80);
         }
 
         jLabel4.setText("Valor total: R$");
@@ -169,6 +174,11 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Débito", "Crédito", "Crédito (x2)", "Crédito (x3)", "Crédito (x4)", "Crédito (x5)", "Crédito (x6)", "Crédito (x7)", "Crédito (x8)", "Crédito (x9)", "Crédito (x10)", "Crédito (x11)", "Crédito (x12)" }));
 
+        jFormattedTextField3.setEditable(false);
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jFormattedTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField3.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,7 +187,9 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
@@ -213,9 +225,9 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(182, 182, 182))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(116, 116, 116))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,6 +259,14 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)
+                            .addComponent(jLabel8))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -259,15 +279,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel8))
-                        .addGap(28, 28, 28))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
+                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59))))
         );
 
         pack();
@@ -282,24 +295,36 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
      
         
        // Validação dos campos 
-//       if (MyUtils.campo(jTextField4.getText()) ||
-//               MyUtils.campo(jTextField5.getText()) || 
-//               MyUtils.campo(jTextField6.getText()) ||
-//               jTable1.getRowCount() == 0) {
-//           
-//           JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-//       }
-//       else {
+       if (MyUtils.campo(jTextField4.getText()) ||
+               MyUtils.campo(jTextField5.getText()) || 
+               MyUtils.campo(jTextField6.getText()) ||
+               jTable1.getRowCount() == 0) {
            
-           System.out.println();
+           JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+       }
+       else {
            
-           System.out.println(jTextField4.getText().substring(0, 1)); // Cod cliente
-           System.out.println(jTextField6.getText().substring(0, 1)); // Cod func
-           System.out.println(jTextField5.getText().strip()); // Problema
-           System.out.println(jComboBox1.getSelectedItem().toString()); //Forma pagamento
-           System.out.println(Double.valueOf(jLabel8.getText())); //Valor total
+           // Validação do campo "Problema", para não ultrapassar a quantidade de caracteres permitidos de registro 
+           if (jTextField5.getText().length() > 100){
+               
+               JOptionPane.showMessageDialog(null, "Preencha o campo 'Problema', como no máximo 100 caracteres!");
+           }else{
            
-//       }
+           o.setFk_cliente_cod_cs(Integer.valueOf(jTextField4.getText().substring(0, 1))); // Cod cliente
+           o.setFk_funcionario_cod_fun(Integer.valueOf(jTextField6.getText().substring(0, 1))); // Cod func
+           o.setProblema(jTextField5.getText().strip()); // Problema
+           o.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); //Forma pagamento
+           o.setValor_total(Double.valueOf(jLabel8.getText())); //Valor total
+           
+           odao.create(o);
+           setVisible(false);
+           limpaCampos();
+           dispose();
+           
+           }           
+          
+           
+      }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -359,47 +384,36 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         ArrayList<String[]> listaInfo = new ArrayList();
         DecimalFormat format = new DecimalFormat("0.00");
         j.setVisible(true);
-        
         boolean cond = true;
-        
+
         // Recebendo as informações do serviço selecionado e repassando para um array
         listaInfo.add(j.resposta.split("-"));
-        
-        //Variavél de controle para o valor total da OS
-        double soma = Double.valueOf(jLabel8.getText());
-        
-   
-        
+
         // Loop para analisar se já existe um serviço adicionado 
-        for(int i = 0; i < jTable1.getRowCount(); i++){
-            
-            if (jTable1.getRowCount() == 0){
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+            if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.substring(0, 1).strip())) {
+                cond = false;
+                jTable1.setValueAt(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()) + 1, i, 3);
                 break;
-                
-            }else{
-               
-                if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.substring(0, 1).strip())){
-                    cond = false;
-                    JOptionPane.showMessageDialog(null, "Serviço já adicionado");
-                    break;
-                    
-                }
-                
+
             }
-            
 
         }
-        
-        if (cond){
-       // Loop para adicionar uma nova linha e preencher com as informações do 
-       // serviço escolhido
-        for (String[] i : listaInfo) {
-                    m.addRow(new Object[]{i[0], i[1], i[2]});
-                    soma += Double.valueOf(i[2].replace("R$", ""));
+
+        if (cond) {
+            // Loop para adicionar uma nova linha e preencher com as informações do 
+            // serviço escolhido
+            for (String[] i : listaInfo) {
+                m.addRow(new Object[]{i[0], i[1], i[2], i[3]});
+
             }
-        JanelaMain.AlinhaCelula(jTable1);
-        jLabel8.setText(String.valueOf(format.format(soma)).replace(",", "."));
         }
+
+        jFormattedTextField3.setValue(0);
+        jLabel8.setText(String.valueOf(format.format(valorOS(jTable1))).replace(",", "."));
+
+        JanelaMain.AlinhaCelula(jTable1);
         
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -407,14 +421,12 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
         
         DecimalFormat format = new DecimalFormat("0.00");
-        double soma = Double.valueOf(jLabel8.getText());
         
         if (jTable1.getSelectedRow() != -1) {
                         
-            soma -= Double.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString().replace("R$", ""));
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.removeRow(jTable1.getSelectedRow());
-            jLabel8.setText(String.valueOf(format.format(soma)).replace(",", "."));
+            jLabel8.setText(String.valueOf(format.format(valorOS(jTable1))).replace(",", "."));
             
         } else {
             JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
@@ -436,6 +448,21 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         
         
         
+    }
+    
+    
+    public double valorOS(JTable j){
+        
+        double soma = 0;
+        
+        for(int i = 0; i < j.getRowCount(); i++){
+            
+                soma += Double.valueOf(j.getValueAt(i, 2).toString().strip().replace("R$", "")) * Integer.valueOf(j.getValueAt(i, 3).toString().strip());               
+                
+                
+            }
+        
+        return soma;
     }
     
 
@@ -504,6 +531,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton33;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

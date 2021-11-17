@@ -13,7 +13,7 @@ public class ModelOS {
     private int cod_os;
     private String date;
     private String problema;
-    private int valor_total;
+    private double valor_total;
     private String metodo_pagamento;
     private int fk_cliente_cod_cs;
     private int fk_funcionario_cod_fun;
@@ -42,11 +42,11 @@ public class ModelOS {
         this.problema = problema;
     }
 
-    public int getValor_total() {
+    public double getValor_total() {
         return valor_total;
     }
 
-    public void setValor_total(int valor_total) {
+    public void setValor_total(double valor_total) {
         this.valor_total = valor_total;
     }
 

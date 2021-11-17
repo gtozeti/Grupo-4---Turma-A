@@ -167,7 +167,7 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
         //BOTAO ADICIONAR PRODUTO
         //Alguma acao antes
          if (jTable1.getSelectedRow() != -1) {
-            resposta = jTable1.getValueAt(jTable1.getSelectedRow(), 0) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 1) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+            resposta = jTable1.getValueAt(jTable1.getSelectedRow(), 0) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 1) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 2) + " - " + "1";
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Serviço não selecionado.\nPor favor, selecione um serviço.");
