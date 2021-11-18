@@ -60,7 +60,7 @@ public class DaoOS {
         ArrayList<String[]> produto = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
 
         try {
-            stmt = con.prepareStatement("SELECT os.cod_os, cl.nome, cl.email, os.dia FROM ordem_servico AS os JOIN cliente AS cl on cl.cod_cs = fk_cliente_cod_cs "); // Comando MySQL
+            stmt = con.prepareStatement("SELECT os.cod_os, cl.nome, cl.email, os.dia FROM ordem_servico AS os JOIN cliente AS cl ON cl.cod_cs = fk_cliente_cod_cs "); // Comando MySQL
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 
 
