@@ -1,6 +1,7 @@
 package com.bancodados.model.dao;
 
 import com.bancodados.connection.ConnectionFactory;
+import com.bancodados.model.bean.ModelOS;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,30 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class DaoOS {
+    
+      public void create(ModelOS cs) {
+        Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
+        PreparedStatement stmt = null; // Variável utilizada para comando MySQL
+
+        try {
+            stmt = con.prepareStatement("INSERT INTO ordem_servico(dia, problema, valor_total, metodo_pagamento, fk_cliente_cod_cs, fk_funcionario_cod_fun) VALUES (curdate(), ?, ?, ?, ?, ?)");
+
+            stmt.setString(1, cs.getProblema());
+            stmt.setString(2, Double.toString(cs.getValor_total()));
+            stmt.setString(3, cs.getMetodo_pagamento());
+            stmt.setString(4, Integer.toString(cs.getFk_cliente_cod_cs()));
+            stmt.setString(5, Integer.toString(cs.getFk_funcionario_cod_fun()));
+
+            stmt.executeUpdate(); // Executando atualização do comando
+
+            JOptionPane.showMessageDialog(null, "OS adicionado com sucesso!"); // Mensagem para caso o comando dê certo
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar a OS\n" + ex); // Mensagem para cada o comando não dê certo
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+        }
+    }
    
   public ArrayList<String[]> search(String input) {
 
