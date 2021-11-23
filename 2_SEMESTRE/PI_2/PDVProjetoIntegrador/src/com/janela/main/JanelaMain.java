@@ -31,6 +31,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -1527,7 +1528,43 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ATUALIZAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ATUALIZAR OS)
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
-        janelaAtualizarOS.setVisible(true);
+       
+        // Adicionando os valores no Jdialog
+        try {
+            if (jTable2.getSelectedRow() != -1) {
+                
+                ArrayList<String[]> listaInfo = new ArrayList();
+                listaInfo = DaoOS.infoOS(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
+                
+                int index = 0;
+                for (String[] i : listaInfo) {
+                    if (index == 0){
+                    System.out.println(Arrays.toString(i));
+                    System.out.println(i[0]);
+                    
+                    janelaAtualizarOS.jLabel7.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
+                    janelaAtualizarOS.jTextField4.setText(i[3]);
+                    janelaAtualizarOS.jTextField6.setText(i[4]);
+                    janelaAtualizarOS.jTextField5.setText(i[0]);
+                    janelaAtualizarOS.jComboBox1.setSelectedItem(i[2]);
+                    }
+                    else{
+                        listaInfo.remove(0);
+                        readTable(janelaAtualizarOS.jTable1, listaInfo);
+                    }
+                    index ++;
+                }
+               janelaAtualizarOS.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada");
+        }
+
+        if (janelaAtualizarProduto.att) {
+            readTable(jTable5, daoOS.read());
+        }
     }// GEN-LAST:event_jButton13ActionPerformed
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ADICIONAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ADICIONAR OS)
