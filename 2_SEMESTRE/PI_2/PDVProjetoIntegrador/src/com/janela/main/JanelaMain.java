@@ -1,5 +1,6 @@
 package com.janela.main;
 
+import com.bancodados.model.bean.ModelVenda;
 import com.bancodados.model.dao.DaoCliente;
 import com.bancodados.model.dao.DaoFuncionario;
 import com.bancodados.model.dao.DaoOS;
@@ -29,7 +30,6 @@ import com.my.utils.MyUtils;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -41,7 +41,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableModel;
 
 public class JanelaMain extends javax.swing.JFrame {
 
@@ -1455,7 +1454,8 @@ public class JanelaMain extends javax.swing.JFrame {
     
     // @JANELA_VENDER -> BOTÃO CONCLUIR
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        
+        adicionaVenda();
+        jButton8ActionPerformed(evt);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
@@ -1894,7 +1894,8 @@ public class JanelaMain extends javax.swing.JFrame {
         j.setText(s);
         j.setForeground(Color.LIGHT_GRAY);
     }
-
+    
+    // FUNÇÃO PARA CALCULAR O VALOR TOTAL DAS TABELAS
     private void calculaValor(JTable j, JFormattedTextField t) {
         double valor = 0;
 
@@ -1906,7 +1907,23 @@ public class JanelaMain extends javax.swing.JFrame {
 
         t.setValue(valor);
     }
-
+    
+    // FUNÇÃO PARA ADICIONAR VENDA NA TABELA
+    private void adicionaVenda() {
+        ModelVenda v = new ModelVenda();
+        
+        String[] aux = jTextField1.getText().split("-");
+        v.setFk_cliente_cod_cs(Integer.parseInt(aux[0].trim()));
+        
+        aux = jTextField6.getText().split("-");
+        v.setFk_funcionario_cod_fun(Integer.parseInt(aux[0].trim()));
+        
+        v.setValor_total(Double.parseDouble(jFormattedTextField3.getValue().toString()));
+        v.setMetodo_pagamento(jComboBox1.getSelectedItem().toString());
+        
+        daoVenda.create(v);
+    }
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
