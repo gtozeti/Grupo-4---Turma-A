@@ -149,6 +149,7 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        att = false;
         dispose();
              
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -173,6 +174,7 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
        
         cdao.create(c);
         setVisible(false);
+        att = true;
         dispose();
         
        }
@@ -188,10 +190,8 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
         
     }//GEN-LAST:event_formWindowOpened
 
-    /**
-     * @param args the command line arguments
-     */
-    
+    // VARIÁVEIS
+    public boolean att;
     
     
     public static void main(String args[]) {

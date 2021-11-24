@@ -132,6 +132,12 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(80);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(80);
+        }
 
         jLabel9.setText("Método de Pagamento");
 
@@ -151,7 +157,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Adicionar");
+        jButton2.setText("Atualizar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -166,7 +172,6 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
@@ -262,6 +267,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // BOTÃO BUSCAR CLIENTE
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
         JanelaBuscarCliente j = new JanelaBuscarCliente(this, true);
@@ -277,6 +283,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
+   // BOTÃO BUSCAR FUNCIONÁRIO
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 
         JanelaBuscarFuncionario j = new JanelaBuscarFuncionario(this, true);
@@ -292,6 +299,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    // BOTÃO REMOVER SERVIÇO
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
 
         if (jTable1.getSelectedRow() != -1) {
@@ -305,6 +313,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton33ActionPerformed
 
+    // BOTÃO ADICIONAR SERVIÇO
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
 
         JanelaBuscarServico j = new JanelaBuscarServico(this, true);
@@ -313,6 +322,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         j.setVisible(true);
         boolean cond = true;
 
+        
         // Recebendo as informações do serviço selecionado e repassando para um array
         listaInfo.add(j.resposta.split("-"));
 
@@ -339,14 +349,22 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         jFormattedTextField3.setValue(valorOS(jTable1));
         JanelaMain.AlinhaCelula(jTable1);
-
+        
+          
+        
+        
+        
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    // BOTÃO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        att = false;
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // BOTÃO ATUALIZAR OS
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         ModelOS o = new ModelOS();
@@ -355,9 +373,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         ModelIntegra m = new ModelIntegra();
         DaoIntegra mdao = new DaoIntegra();
 
-        DaoOS cdao = new DaoOS();
-
-        // Validação dos campos
+       // Validação dos campos
         if (MyUtils.campo(jTextField4.getText()) ||
             MyUtils.campo(jTextField5.getText()) ||
             MyUtils.campo(jTextField6.getText()) ||
@@ -378,10 +394,14 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
                 o.setProblema(jTextField5.getText().strip()); // Problema
                 o.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); //Forma pagamento
                 o.setValor_total(valorOS(jTable1)); //Valor total
-
-                m.setFk_ordem_servico_cod_os(Integer.valueOf(cdao.totalOS()));
-
-                odao.create(o);
+                o.setCod_os(Integer.valueOf(jLabel7.getText())); //Código OS
+                 
+                m.setFk_ordem_servico_cod_os(Integer.valueOf(jLabel7.getText())); //Código OS
+                mdao.delete(Integer.valueOf(jLabel7.getText()));
+                
+                odao.update(o);
+                
+                
 
                 for (int i = 0; i < jTable1.getRowCount(); i ++){
 
@@ -391,11 +411,11 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
                     mdao.create(m);
 
                 }
-
-                setVisible(false);
-                limpaCampos();
+                
+                System.out.println(o.getCod_os());
+                att = true;
                 dispose();
-
+                              
             }
 
         }
@@ -429,6 +449,9 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         return soma;
     }
+    
+    // VARIÁVEIS
+    public boolean att;
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

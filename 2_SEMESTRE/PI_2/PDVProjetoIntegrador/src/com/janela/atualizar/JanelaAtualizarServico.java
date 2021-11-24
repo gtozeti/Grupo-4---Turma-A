@@ -144,7 +144,7 @@ public class JanelaAtualizarServico extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        att = false;
         dispose();
              
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -169,15 +169,14 @@ public class JanelaAtualizarServico extends javax.swing.JDialog {
        
         cdao.update(c);
         setVisible(false);
+        att = true;
         dispose();
         
        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+    // VARIÁVEIS
+    public boolean att;
     
     
     public static void main(String args[]) {

@@ -1396,7 +1396,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_SERVIÇOS -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR PRODUTO)
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-
+        
         new JanelaAdicionarServico(null, true).setVisible(true);
     }//GEN-LAST:event_jButton37ActionPerformed
 
@@ -1528,7 +1528,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ATUALIZAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ATUALIZAR OS)
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
-       
+       janelaAtualizarOS.limpaCampos();
         // Adicionando os valores no Jdialog
         try {
             if (jTable2.getSelectedRow() != -1) {
@@ -1539,43 +1539,66 @@ public class JanelaMain extends javax.swing.JFrame {
                 int index = 0;
                 for (String[] i : listaInfo) {
                     if (index == 0){
-                    System.out.println(Arrays.toString(i));
-                    System.out.println(i[0]);
-                    
+                                        
                     janelaAtualizarOS.jLabel7.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
                     janelaAtualizarOS.jTextField4.setText(i[3]);
                     janelaAtualizarOS.jTextField6.setText(i[4]);
                     janelaAtualizarOS.jTextField5.setText(i[0]);
                     janelaAtualizarOS.jComboBox1.setSelectedItem(i[2]);
                     }
-                    else{
-                        listaInfo.remove(0);
-                        readTable(janelaAtualizarOS.jTable1, listaInfo);
-                    }
                     index ++;
                 }
+                
+                listaInfo.remove(0);
+                readTable(janelaAtualizarOS.jTable1, listaInfo);
+                janelaAtualizarOS.jFormattedTextField3.setValue(janelaAtualizarOS.valorOS(janelaAtualizarOS.jTable1));
+        
                janelaAtualizarOS.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada");
+                JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada\n");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada");
+            JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada\n" + ex);
         }
 
-        if (janelaAtualizarProduto.att) {
-            readTable(jTable5, daoOS.read());
+        if (janelaAdicionarOS.att) {
+            readTable(jTable2, daoOS.read());
         }
     }// GEN-LAST:event_jButton13ActionPerformed
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ADICIONAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ADICIONAR OS)
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton12ActionPerformed
+        AlinhaCelula(janelaAdicionarOS.jTable1);
         janelaAdicionarOS.setVisible(true);
-        janelaAdicionarOS.limpaCampos();
+        if (janelaAdicionarOS.att) {
+            readTable(jTable2, daoOS.read());
+        }
+        
     }// GEN-LAST:event_jButton12ActionPerformed
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "EXCLUIR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA EXCLUIR OS)
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton11ActionPerformed
-        janelaExcluirOS.setVisible(true);
+        
+         
+
+        if (jTable2.getSelectedRow() != -1) {
+
+            janelaExcluirOS.jTable1.setValueAt(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString(), 0, 0);
+            janelaExcluirOS.jTable1.setValueAt(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString(), 0, 1);
+            janelaExcluirOS.jTable1.setValueAt(jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString(), 0, 2);
+            janelaExcluirOS.jTable1.setValueAt(jTable2.getValueAt(jTable2.getSelectedRow(), 3).toString(), 0, 3);
+            
+            AlinhaCelula(janelaExcluirOS.jTable1);
+
+            janelaExcluirOS.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada");
+        }
+        
+        if(janelaExcluirOS.att){
+            readTable(jTable2, daoOS.read());
+        }
+        
     }// GEN-LAST:event_jButton11ActionPerformed
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR"

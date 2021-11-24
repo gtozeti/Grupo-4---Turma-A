@@ -290,7 +290,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         ModelIntegra m = new ModelIntegra();
         DaoIntegra mdao = new DaoIntegra();
         
-        DaoOS cdao = new DaoOS();
+        
      
         
        // Validação dos campos 
@@ -315,7 +315,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
            o.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); //Forma pagamento
            o.setValor_total(valorOS(jTable1)); //Valor total
            
-           m.setFk_ordem_servico_cod_os(Integer.valueOf(cdao.totalOS()));
+           m.setFk_ordem_servico_cod_os(Integer.valueOf(odao.totalOS()));
                       
            odao.create(o);
            
@@ -330,6 +330,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
            
            
            
+           att = true;
            setVisible(false);
            limpaCampos();
            dispose();
@@ -341,8 +342,11 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    // BOTÃO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        att = false;
+        setVisible(false);
+        limpaCampos();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -398,6 +402,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         j.setVisible(true);
         boolean cond = true;
 
+        if (!"".equals(j.resposta)){
         // Recebendo as informações do serviço selecionado e repassando para um array
         listaInfo.add(j.resposta.split("-"));
 
@@ -425,7 +430,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         
         jFormattedTextField3.setValue(valorOS(jTable1));
         JanelaMain.AlinhaCelula(jTable1);
-        
+        }
         
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -477,7 +482,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     }
     
 
-    
+    // VARIÁVEIS
+    public boolean att;
     
     
     public static void main(String args[]) {
