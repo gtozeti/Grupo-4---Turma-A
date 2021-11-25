@@ -800,7 +800,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel11.setText("TELA DE CONFIGURAÇÕES");
 
-        jButton19.setText("PRODUTO");
+        jButton19.setText("PRODUTOS");
         jButton19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton19.setInheritsPopupMenu(true);
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -818,7 +818,7 @@ public class JanelaMain extends javax.swing.JFrame {
             }
         });
 
-        jButton34.setText("SERVIÇO");
+        jButton34.setText("SERVIÇOS");
         jButton34.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton34.setInheritsPopupMenu(true);
         jButton34.addActionListener(new java.awt.event.ActionListener() {
@@ -1150,6 +1150,9 @@ public class JanelaMain extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField7FocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField7FocusLost(evt);
+            }
         });
 
         jButton35.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -1219,8 +1222,8 @@ public class JanelaMain extends javax.swing.JFrame {
         }
 
         jButton36.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton36.setText("Excluir Serviço");
-        jButton36.setToolTipText("");
+        jButton36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Excluir.png"))); // NOI18N
+        jButton36.setToolTipText("Excluir Serviço");
         jButton36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton36ActionPerformed(evt);
@@ -1228,8 +1231,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton37.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton37.setText("Adicionar Serviço");
-        jButton37.setToolTipText("");
+        jButton37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar_Serv.png"))); // NOI18N
+        jButton37.setToolTipText("Adicionar Serviço");
         jButton37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton37ActionPerformed(evt);
@@ -1237,8 +1240,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton38.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton38.setText("Atualizar Serviço");
-        jButton38.setToolTipText("");
+        jButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Atualizar_Serv.png"))); // NOI18N
+        jButton38.setToolTipText("Atualizar Serviço");
         jButton38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton38ActionPerformed(evt);
@@ -1248,7 +1251,8 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel16.setText("SERVIÇOS");
 
-        jButton39.setText("< Voltar");
+        jButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Voltar.png"))); // NOI18N
+        jButton39.setToolTipText("Voltar");
         jButton39.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton39ActionPerformed(evt);
@@ -1274,8 +1278,8 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ServicoScreenLayout.createSequentialGroup()
-                        .addComponent(jButton39)
-                        .addGap(2, 2, 2)
+                        .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel16)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -1283,13 +1287,11 @@ public class JanelaMain extends javax.swing.JFrame {
         ServicoScreenLayout.setVerticalGroup(
             ServicoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ServicoScreenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ServicoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addGroup(ServicoScreenLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                .addGap(14, 14, 14)
+                .addGroup(ServicoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(ServicoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1351,11 +1353,16 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         TrocaTela(ConfigScreen, "card5");
         readTable(jTable7, daoServico.read());
+        setTextDefault(jTextField7, "Procurar Serviços");
     }//GEN-LAST:event_jButton34ActionPerformed
 
+    // @JANELA_SERVIÇOS -> ÁREA_TEXTO "BUSCAR" (AO GANHAR FOCUS, DEFINE O TEXTO 
+    // PADRÃO)
     private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
-        jTextField7.setText("");
-        jTextField7.setForeground(Color.black);
+        if (jTextField7.getText().equals("Procurar Serviços")) {
+            jTextField7.setText("");
+            jTextField7.setForeground(Color.black);
+        }
     }//GEN-LAST:event_jTextField7FocusGained
 
     // @JANELA_SERIVIÇOS -> BOTÃO "BUSCAR" (ATUALIZA JTABLE7 COM OS RESULTADOS DA
@@ -1372,24 +1379,26 @@ public class JanelaMain extends javax.swing.JFrame {
             readTable(jTable7, daoServico.search(jTextField7.getText()));
         }
 
-        jTextField7.setText("Procurar Serviços");
-        jTextField7.setForeground(Color.LIGHT_GRAY);
+        
     }//GEN-LAST:event_jButton35ActionPerformed
 
-    // @JANELA_SERVIÇO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR SERVIÇO"
+    // @JANELA_SERVIÇO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR SERVIÇO)
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
 
-        JanelaExcluirServico j = new JanelaExcluirServico(null, true);
-
+        
         if (jTable7.getSelectedRow() != -1) {
 
-            j.jTable1.setValueAt(jTable7.getModel().getValueAt(jTable7.getSelectedRow(), 0).toString(), 0, 0);
-            j.jTable1.setValueAt(jTable7.getModel().getValueAt(jTable7.getSelectedRow(), 1).toString(), 0, 1);
-            AlinhaCelula(j.jTable1);
+            janelaExcluirServico.jTable1.setValueAt(jTable7.getModel().getValueAt(jTable7.getSelectedRow(), 0).toString(), 0, 0);
+            janelaExcluirServico.jTable1.setValueAt(jTable7.getModel().getValueAt(jTable7.getSelectedRow(), 1).toString(), 0, 1);
+            AlinhaCelula(janelaExcluirServico.jTable1);
 
-            j.setVisible(true);
+            janelaExcluirServico.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Nenhum produto selecionado");
+            JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
+        }
+        
+        if (janelaExcluirServico.att) {
+            readTable(jTable7, daoServico.read());
         }
 
     }//GEN-LAST:event_jButton36ActionPerformed
@@ -1397,27 +1406,35 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_SERVIÇOS -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR PRODUTO)
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
         
-        new JanelaAdicionarServico(null, true).setVisible(true);
+        janelaAdicionarServico.jLabel5.setText(DaoServico.totalOS());
+        janelaAdicionarServico.setVisible(true);
+        janelaAdicionarServico.limpaCampos();
+        
+        if (janelaAdicionarServico.att) {
+            readTable(jTable7, daoServico.read());
+        }
     }//GEN-LAST:event_jButton37ActionPerformed
 
     // @JANELA_SERVIÇO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR SERVIÇO)
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
 
-        JanelaAtualizarServico j = new JanelaAtualizarServico(null, true);
-
+               
         // Adicionando os valores no Jdialog
         try {
             if (jTable7.getSelectedRow() != -1) {
-                j.jLabel5.setText(jTable7.getValueAt(jTable7.getSelectedRow(), 0).toString());
-                j.NomeTextField.setText(jTable7.getValueAt(jTable7.getSelectedRow(), 1).toString());
-                j.ValorFormattedTextField.setText(jTable7.getValueAt(jTable7.getSelectedRow(), 2).toString().substring(3).replace(".", ","));
-
-                j.setVisible(true);
+                janelaAtualizarServico.jLabel5.setText(jTable7.getValueAt(jTable7.getSelectedRow(), 0).toString());
+                janelaAtualizarServico.NomeTextField.setText(jTable7.getValueAt(jTable7.getSelectedRow(), 1).toString());
+                janelaAtualizarServico.ValorFormattedTextField.setText(jTable7.getValueAt(jTable7.getSelectedRow(), 2).toString().substring(3).replace(".", ","));
+                janelaAtualizarServico.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
+        }
+        
+         if (janelaAtualizarServico.att) {
+            readTable(jTable7, daoServico.read());
         }
 
     }//GEN-LAST:event_jButton38ActionPerformed
@@ -1459,6 +1476,15 @@ public class JanelaMain extends javax.swing.JFrame {
         jButton8ActionPerformed(evt);
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    // @JANELA_SERVIÇOS -> ÁREA_TEXTO "BUSCAR" (AO PERDER FOCUS, VOLTA AO PADRÃO
+    // O VALOR DO CAMPO)
+    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
+        if (jTextField7.getText().isEmpty()){
+           setTextDefault(jTextField7, "Procurar Serviços");
+        }
+        
+    }//GEN-LAST:event_jTextField7FocusLost
+
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
     // FOI ESCRITO)
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField3ActionPerformed
@@ -1494,6 +1520,7 @@ public class JanelaMain extends javax.swing.JFrame {
     // @SIDE_MENU -> BOTÃO "CONFIGURAÇÃO" (ACESSAR JANELA CONFIGURAÇÃO)
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
         TrocaTela(jPanel3, "card6");
+        jButton30.doClick();
     }// GEN-LAST:event_jButton5ActionPerformed
 
     // @JANELA_CONFIGURAÇÃO -> BOTÃO "PRODUTO" (ACESSAR JANELA PRODUTO)
@@ -1873,12 +1900,14 @@ public class JanelaMain extends javax.swing.JFrame {
     public final JanelaAdicionarFuncionario janelaAdicionarFuncionario = new JanelaAdicionarFuncionario(this, true);
     public final JanelaAdicionarOS janelaAdicionarOS = new JanelaAdicionarOS(this, true);
     public final JanelaAdicionarProduto janelaAdicionarProduto = new JanelaAdicionarProduto(this, true);
+    public final JanelaAdicionarServico janelaAdicionarServico = new JanelaAdicionarServico(this, true);
 
     public final JanelaAtualizarCliente janelaAtualizarCliente = new JanelaAtualizarCliente(this, true);
     public final JanelaAtualizarFuncionario janelaAtualizarFuncionario = new JanelaAtualizarFuncionario(this, true);
     public final JanelaAtualizarOS janelaAtualizarOS = new JanelaAtualizarOS(this, true);
     public final JanelaAtualizarProduto janelaAtualizarProduto = new JanelaAtualizarProduto(this, true);
-
+    public final JanelaAtualizarServico janelaAtualizarServico = new JanelaAtualizarServico(this, true);
+        
     public final JanelaBuscarCliente janelaBuscarCliente = new JanelaBuscarCliente(this, true);
     public final JanelaBuscarFuncionario janelaBuscarFuncionario = new JanelaBuscarFuncionario(this, true);
     public final JanelaBuscarProduto janelaBuscarProduto = new JanelaBuscarProduto(this, true);
@@ -1887,6 +1916,7 @@ public class JanelaMain extends javax.swing.JFrame {
     public final JanelaExcluirFuncionario janelaExcluirFuncionario = new JanelaExcluirFuncionario(this, true);
     public final JanelaExcluirOS janelaExcluirOS = new JanelaExcluirOS(this, true);
     public final JanelaExcluirProduto janelaExcluirProduto = new JanelaExcluirProduto(this, true);
+    public final JanelaExcluirServico janelaExcluirServico = new JanelaExcluirServico(this, true);
 
     ////////////////////////////////////////////////////////////////////////////
     // FUNÇÕES GERAIS

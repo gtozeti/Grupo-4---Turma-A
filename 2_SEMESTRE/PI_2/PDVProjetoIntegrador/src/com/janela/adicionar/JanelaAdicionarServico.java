@@ -5,17 +5,15 @@
  */
 package com.janela.adicionar;
 
+//FERRAMENTAS - SERVIÇO
 import com.bancodados.model.bean.ModelServico;
 import com.bancodados.model.dao.DaoServico;
+
+//FERRAMENTAS - UTIL
 import com.my.utils.MyUtils;
-     
 
-import java.awt.Color;
-import java.nio.channels.AsynchronousFileChannel;
-import java.util.ArrayList;
-import javax.swing.JComboBox;
+//UTILITÁRIOS 
 import javax.swing.JOptionPane;
-
 
 public class JanelaAdicionarServico extends javax.swing.JDialog {
 
@@ -26,7 +24,6 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +92,7 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,28 +101,25 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ValorFormattedTextField)
-                            .addComponent(NomeTextField))
-                        .addContainerGap())
+                            .addComponent(NomeTextField)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(17, 17, 17))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 80, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -147,53 +141,58 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //BOTÃO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         att = false;
         dispose();
-             
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //BOTÃO ADICIONAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // Botão adicionar
-        
+
+        //OBJETOS - SERVIÇO
         ModelServico c = new ModelServico();
         DaoServico cdao = new DaoServico();
-        MyUtils u = new MyUtils();
-        
-       // Validação dos campos 
-       if (u.campo(NomeTextField.getText()) ||
-               u.campo(ValorFormattedTextField.getText())){
-           JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-       }
-       else{
-           
-                   
-        c.setNome(NomeTextField.getText().strip());
-        c.setValor(Double.valueOf(ValorFormattedTextField.getText().replace(',', '.')));
-       
-        cdao.create(c);
-        setVisible(false);
-        att = true;
-        dispose();
-        
-       }
+
+        // --- CÓDIGO --- 
+        //* Validação dos campos, para identificar que todos estão preenchidos
+        if (MyUtils.campo(NomeTextField.getText())
+                || MyUtils.campo(ValorFormattedTextField.getText())) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        } else {
+
+            //* Set na classe ModelServico           
+            c.setNome(NomeTextField.getText().strip());
+            c.setValor(Double.valueOf(ValorFormattedTextField.getText().replace(',', '.')));
+
+            //* Execução do insert do novo serviço
+            cdao.create(c);
+
+            //* Fechando a janela e atualizando a váriavel de controle de refresh
+            att = true;
+            setVisible(false);
+            dispose();
+
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    // Ação para quando a janela é exibida
+    //EVENTO DA JANELA PARA INDICAR QUAL CÓDIGO DO SERVIÇO SERÁ ATRIBUÍDO
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        
-        
-        DaoServico cdao = new DaoServico();
-        jLabel5.setText(cdao.totalOS());        
-        
+
+        jLabel5.setText(DaoServico.totalOS());
+
     }//GEN-LAST:event_formWindowOpened
 
+    public void limpaCampos() {
+        NomeTextField.setText("");
+        ValorFormattedTextField.setValue(null);
+        jLabel5.setText("");
+    }
+    
     // VARIÁVEIS
     public boolean att;
-    
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -243,7 +242,7 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
