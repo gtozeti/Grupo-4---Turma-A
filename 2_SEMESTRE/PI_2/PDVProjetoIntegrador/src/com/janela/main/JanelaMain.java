@@ -31,6 +31,7 @@ import com.janela.excluir.JanelaExcluirFuncionario;
 import com.janela.excluir.JanelaExcluirOS;
 import com.janela.excluir.JanelaExcluirProduto;
 import com.janela.excluir.JanelaExcluirServico;
+import com.my.utils.DateUtils;
 
 import com.my.utils.MyUtils;
 
@@ -120,6 +121,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jTable4 = new javax.swing.JTable();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        jButton6 = new javax.swing.JButton();
         ConfigScreen = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -747,6 +749,8 @@ public class JanelaMain extends javax.swing.JFrame {
 
         jDateChooser3.setDateFormatString("dd-MM-yyyy");
 
+        jButton6.setText(" Detalhes");
+
         javax.swing.GroupLayout RelatorioScreenLayout = new javax.swing.GroupLayout(RelatorioScreen);
         RelatorioScreen.setLayout(RelatorioScreenLayout);
         RelatorioScreenLayout.setHorizontalGroup(
@@ -756,39 +760,44 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                     .addGroup(RelatorioScreenLayout.createSequentialGroup()
-                        .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addGroup(RelatorioScreenLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton18)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel10)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(RelatorioScreenLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RelatorioScreenLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton6)))
                 .addContainerGap())
         );
         RelatorioScreenLayout.setVerticalGroup(
             RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RelatorioScreenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(RelatorioScreenLayout.createSequentialGroup()
-                        .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel9)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel12)
-                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(262, Short.MAX_VALUE))
+                                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         jPanel3.add(RelatorioScreen, "card5");
@@ -1142,7 +1151,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1388,13 +1397,12 @@ public class JanelaMain extends javax.swing.JFrame {
             readTable(jTable7, daoServico.search(jTextField7.getText()));
         }
 
-        
+
     }//GEN-LAST:event_jButton35ActionPerformed
 
     // @JANELA_SERVIÇO -> BOTÃO "EXCLUIR" (ABRIR JDIALOG PARA EXCLUIR SERVIÇO)
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
 
-        
         if (jTable7.getSelectedRow() != -1) {
 
             janelaExcluirServico.jTable1.setValueAt(jTable7.getModel().getValueAt(jTable7.getSelectedRow(), 0).toString(), 0, 0);
@@ -1405,7 +1413,7 @@ public class JanelaMain extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
         }
-        
+
         if (janelaExcluirServico.att) {
             readTable(jTable7, daoServico.read());
         }
@@ -1414,11 +1422,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_SERVIÇOS -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR SERVIÇO)
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        
+
         janelaAdicionarServico.jLabel5.setText(DaoServico.totalOS());
         janelaAdicionarServico.setVisible(true);
         janelaAdicionarServico.limpaCampos();
-        
+
         if (janelaAdicionarServico.att) {
             readTable(jTable7, daoServico.read());
         }
@@ -1427,7 +1435,6 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_SERVIÇO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR SERVIÇO)
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
 
-               
         // Adicionando os valores no Jdialog
         try {
             if (jTable7.getSelectedRow() != -1) {
@@ -1441,8 +1448,8 @@ public class JanelaMain extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
         }
-        
-         if (janelaAtualizarServico.att) {
+
+        if (janelaAtualizarServico.att) {
             readTable(jTable7, daoServico.read());
         }
 
@@ -1487,18 +1494,21 @@ public class JanelaMain extends javax.swing.JFrame {
 
     //@JANELA_RELATORIO -> BOTÃO BUSCAR
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        
-        System.out.println(sdf.format(jDateChooser2.getDate()));
-        System.out.println(sdf.format(jDateChooser3.getDate()));
+        DateUtils dateInicio = new DateUtils(jDateChooser2.getDate().toString().split(" "));
+        DateUtils dateFim = new DateUtils(jDateChooser3.getDate().toString().split(" "));
+
+        if (DateUtils.condicoes(dateInicio, dateFim)) {
+            readTable(jTable4, daoRelatorio.search(dateInicio.date, dateFim.date));
+        }
     }//GEN-LAST:event_jButton18ActionPerformed
-    // @JANELA_SERVIÇOS -> ÁREA_TEXTO "BUSCAR" (AO PERDER FOCUS, VOLTA AO PADRÃO
+
+// @JANELA_SERVIÇOS -> ÁREA_TEXTO "BUSCAR" (AO PERDER FOCUS, VOLTA AO PADRÃO
     // O VALOR DO CAMPO)
     private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
-        if (jTextField7.getText().isEmpty()){
-           setTextDefault(jTextField7, "Procurar Serviços");
+        if (jTextField7.getText().isEmpty()) {
+            setTextDefault(jTextField7, "Procurar Serviços");
         }
-        
+
     }//GEN-LAST:event_jTextField7FocusLost
 
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
@@ -1540,8 +1550,18 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @SIDE_MENU -> BOTÃO "RELATÓRIO" (ACESSAR JANELA RELATÓRIO)
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
+        DateUtils dateInicio;
+        DateUtils dateFim;
+
         TrocaTela(jPanel3, "card5");
-        readTable(jTable4, daoRelatorio.read());
+
+        dateFim = new DateUtils();
+        dateInicio = new DateUtils(dateFim);
+
+        jDateChooser3.setDate(dateFim.agora());
+        jDateChooser2.setDate(dateInicio.agora());
+
+        readTable(jTable4, daoRelatorio.search(dateInicio.date, dateFim.date));
     }// GEN-LAST:event_jButton4ActionPerformed
 
     // @SIDE_MENU -> BOTÃO "CONFIGURAÇÃO" (ACESSAR JANELA CONFIGURAÇÃO)
@@ -1582,7 +1602,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ATUALIZAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ATUALIZAR OS)
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
-       janelaAtualizarOS.limpaCampos();
+        janelaAtualizarOS.limpaCampos();
         // Adicionando os valores no Jdialog
         try {
             if (jTable2.getSelectedRow() != -1) {
@@ -1627,13 +1647,11 @@ public class JanelaMain extends javax.swing.JFrame {
         if (janelaAdicionarOS.att) {
             readTable(jTable2, daoOS.read());
         }
-        
+
     }// GEN-LAST:event_jButton12ActionPerformed
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "EXCLUIR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA EXCLUIR OS)
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton11ActionPerformed
-        
-         
 
         if (jTable2.getSelectedRow() != -1) {
 
@@ -1641,18 +1659,18 @@ public class JanelaMain extends javax.swing.JFrame {
             janelaExcluirOS.jTable1.setValueAt(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString(), 0, 1);
             janelaExcluirOS.jTable1.setValueAt(jTable2.getValueAt(jTable2.getSelectedRow(), 2).toString(), 0, 2);
             janelaExcluirOS.jTable1.setValueAt(jTable2.getValueAt(jTable2.getSelectedRow(), 3).toString(), 0, 3);
-            
+
             AlinhaCelula(janelaExcluirOS.jTable1);
 
             janelaExcluirOS.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada");
         }
-        
-        if(janelaExcluirOS.att){
+
+        if (janelaExcluirOS.att) {
             readTable(jTable2, daoOS.read());
         }
-        
+
     }// GEN-LAST:event_jButton11ActionPerformed
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR"
@@ -1918,7 +1936,7 @@ public class JanelaMain extends javax.swing.JFrame {
     }// GEN-LAST:event_jButton25ActionPerformed
 
     ////////////////////////////////////////////////////////////////////////////
-    // OBJETOS SQL
+// OBJETOS SQL
     public final DaoCliente daoCliente = new DaoCliente();
     public final DaoFuncionario daoFuncionario = new DaoFuncionario();
     public final DaoOS daoOS = new DaoOS();
@@ -1927,7 +1945,7 @@ public class JanelaMain extends javax.swing.JFrame {
     public final DaoServico daoServico = new DaoServico();
     public final DaoParticipa daoParticipa = new DaoParticipa();
     public final DaoRelatorio daoRelatorio = new DaoRelatorio();
-    
+
     // OBJETOS JANELA
     public final JanelaAdicionarCliente janelaAdicionarCliente = new JanelaAdicionarCliente(this, true);
     public final JanelaAdicionarFuncionario janelaAdicionarFuncionario = new JanelaAdicionarFuncionario(this, true);
@@ -1940,7 +1958,7 @@ public class JanelaMain extends javax.swing.JFrame {
     public final JanelaAtualizarOS janelaAtualizarOS = new JanelaAtualizarOS(this, true);
     public final JanelaAtualizarProduto janelaAtualizarProduto = new JanelaAtualizarProduto(this, true);
     public final JanelaAtualizarServico janelaAtualizarServico = new JanelaAtualizarServico(this, true);
-        
+
     public final JanelaBuscarCliente janelaBuscarCliente = new JanelaBuscarCliente(this, true);
     public final JanelaBuscarFuncionario janelaBuscarFuncionario = new JanelaBuscarFuncionario(this, true);
     public final JanelaBuscarProduto janelaBuscarProduto = new JanelaBuscarProduto(this, true);
@@ -1982,7 +2000,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
         AlinhaCelula(t);
         t.setAutoCreateRowSorter(true);
-        
+
         m.setNumRows(0);
 
         switch (t.getColumnCount()) {
@@ -2149,6 +2167,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
