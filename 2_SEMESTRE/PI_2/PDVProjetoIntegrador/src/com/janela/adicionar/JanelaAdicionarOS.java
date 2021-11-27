@@ -79,7 +79,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
         jLabel1.setText("Código OS:");
 
-        jButton2.setText("Adicionar");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Confirmar.png"))); // NOI18N
+        jButton2.setToolTipText("Adicionar OS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -117,7 +118,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
         jLabel4.setText("Valor total:");
 
-        jButton1.setText("Cancelar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Cancelar.png"))); // NOI18N
+        jButton1.setToolTipText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -154,7 +156,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         });
 
         jButton33.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton33.setText("Remover Serviço");
+        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Remover.png"))); // NOI18N
+        jButton33.setToolTipText("Remover Serviço");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton33ActionPerformed(evt);
@@ -177,11 +180,6 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(23, 351, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
                     .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -207,7 +205,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -220,7 +218,11 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,10 +254,10 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                             .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -263,13 +265,12 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(8, 8, 8))
         );
 
         pack();
@@ -296,8 +297,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                 String num = criarOS();
                 adicionarServico(num);
 
-                setVisible(false);
                 limpaCampos();
+                setVisible(false);
                 dispose();
             }
         }
@@ -351,8 +352,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     // BOTÃO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         att = false;
-        setVisible(false);
         limpaCampos();
+        setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -404,13 +405,16 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         if (!"".equals(j.resposta)) {
             // Recebendo as informações do serviço selecionado e repassando para um array
             listaInfo.add(j.resposta.split("-"));
-
+            
             // Loop para analisar se já existe um serviço adicionado 
             for (int i = 0; i < jTable1.getRowCount(); i++) {
 
-                if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.substring(0, 1).strip())) {
+                System.out.println(j.resposta.split("-")[0]);
+                   System.out.println(jTable1.getValueAt(i, 0).toString().strip());
+                
+                if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.split("-")[0])) {
                     cond = false;
-                    jTable1.setValueAt(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()) + 1, i, 3);
+                    jTable1.setValueAt(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()) + Integer.valueOf(j.resposta.split("-")[3]), i, 3);
                     break;
 
                 }
@@ -425,7 +429,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
                 }
             }
-
+            
+            
             jFormattedTextField3.setValue(valorOS(jTable1));
             JanelaMain.AlinhaCelula(jTable1);
 
@@ -460,6 +465,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         jTextField6.setEnabled(false);
         jFormattedTextField3.setValue(valorOS(jTable1));
         jComboBox1.setSelectedIndex(0);
+        jLabel7.setText("");
     }
 
     // Função para cálculo dos itens adicionados e/ou removidos

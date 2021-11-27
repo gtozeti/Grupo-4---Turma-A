@@ -46,7 +46,7 @@ public class DaoProduto {
     }
 
     //Função para buscar os valores disponíveis das categorias
-    public static ArrayList categoria() {
+    public ArrayList categoria() {
         Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
         PreparedStatement stmt = null; // Variável utilizada para comando MySQL
 
@@ -74,21 +74,21 @@ public class DaoProduto {
 
         Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
         PreparedStatement stmt = null; // Variável utilizada para comando MySQL
-        int total = 0;
+        String total = "";
 
         try {
-            stmt = con.prepareStatement("SELECT MAX(cod_prod) FROM produto"); // Executa a busca do código da última OS cadastrada
+            stmt = con.prepareStatement(" SELECT if(MAX(cod_prod) IS null, 0, MAX(cod_prod)) as total FROM produto"); // Executa a busca do código da última OS cadastrada
             ResultSet resultado = stmt.executeQuery(); // Executando atualização do comando
 
             if (resultado.next()) {
 
-                total = Integer.valueOf(resultado.getString("max(cod_prod)")) + 1; // Retorno do código da última OS cadastrada + 1
+                total = Integer.toString(resultado.getInt("total") + 1); // Retorno do código da última OS cadastrada + 1
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Falha ao tentar buscar os produtos cadastrados\n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
-            return String.valueOf(total);
+            return total;
         }
     }
 

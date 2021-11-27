@@ -35,10 +35,10 @@ public class DaoFuncionario {
 
             stmt.executeUpdate(); // Executando atualização do comando
 
-            JOptionPane.showMessageDialog(null, "INFO adicionada com sucesso!"); // Mensagem para caso o comando dê certo
+            JOptionPane.showMessageDialog(null, "Funcionário(a) adicionado(a) com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar funcionário(a)/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
@@ -61,7 +61,7 @@ public class DaoFuncionario {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar buscar cargos dos funcionários/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs); // Fechando a conexão com o banco independendo do que aconteça
         }
@@ -94,7 +94,7 @@ public class DaoFuncionario {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha em buscar dados\n" + ex);
+            JOptionPane.showMessageDialog(null, "Falha ao tentar buscar os funcionários\n" + ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
         }
@@ -118,10 +118,10 @@ public class DaoFuncionario {
 
             stmt.executeUpdate(); // Executando atualização do comando
 
-            JOptionPane.showMessageDialog(null, "INFO atualizada com sucesso!"); // Mensagem para caso o comando dê certo
+            JOptionPane.showMessageDialog(null, "Funcionário(a) atualizado(a) com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizar o(a) funcionário(a)/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
@@ -140,10 +140,10 @@ public class DaoFuncionario {
 
             stmt.executeUpdate(); // Executando atualização do comando
 
-            JOptionPane.showMessageDialog(null, "INFO deletada com sucesso!"); // Mensagem para caso o comando dê certo
+            JOptionPane.showMessageDialog(null, "Funcionário(a) deletado(a) com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar deletar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar deletar funcionário(a)/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }

@@ -260,7 +260,7 @@ public class JanelaAdicionarProduto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CategoriaComboBox;
+    public javax.swing.JComboBox<String> CategoriaComboBox;
     private javax.swing.JTextField NomeTextField;
     private javax.swing.JFormattedTextField QuantidadeFormattedTextField;
     private javax.swing.JFormattedTextField ValorFormattedTextField;
@@ -270,7 +270,7 @@ public class JanelaAdicionarProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
