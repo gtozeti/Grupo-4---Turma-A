@@ -5,7 +5,6 @@
  */
 package com.janela.atualizar;
 
-
 import com.janela.buscar.JanelaBuscarCliente;
 import com.janela.buscar.JanelaBuscarFuncionario;
 import com.janela.buscar.JanelaBuscarServico;
@@ -33,7 +32,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -274,26 +273,24 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         j.setVisible(true);
         jTextField4.setText(j.resposta);
-        if (!j.resposta.equals("")){
+        if (!j.resposta.equals("")) {
             jTextField4.setEnabled(true);
-        }
-        else{
+        } else {
             jTextField4.setEnabled(false);
         }
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
-   // BOTÃO BUSCAR FUNCIONÁRIO
+    // BOTÃO BUSCAR FUNCIONÁRIO
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 
         JanelaBuscarFuncionario j = new JanelaBuscarFuncionario(this, true);
 
         j.setVisible(true);
         jTextField6.setText(j.resposta);
-        if (!j.resposta.equals("")){
+        if (!j.resposta.equals("")) {
             jTextField6.setEnabled(true);
-        }
-        else{
+        } else {
             jTextField6.setEnabled(false);
         }
 
@@ -322,7 +319,6 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         j.setVisible(true);
         boolean cond = true;
 
-        
         // Recebendo as informações do serviço selecionado e repassando para um array
         listaInfo.add(j.resposta.split("-"));
 
@@ -349,17 +345,11 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         jFormattedTextField3.setValue(valorOS(jTable1));
         JanelaMain.AlinhaCelula(jTable1);
-        
-          
-        
-        
-        
-        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     // BOTÃO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         att = false;
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -367,60 +357,68 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
     // BOTÃO ATUALIZAR OS
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        ModelOS o = new ModelOS();
+        ModelOS os = new ModelOS();
         DaoOS odao = new DaoOS();
 
         ModelIntegra m = new ModelIntegra();
         DaoIntegra mdao = new DaoIntegra();
 
-       // Validação dos campos
-        if (MyUtils.campo(jTextField4.getText()) ||
-            MyUtils.campo(jTextField5.getText()) ||
-            MyUtils.campo(jTextField6.getText()) ||
-            jTable1.getRowCount() == 0) {
+        // Validação dos campos
+        if (MyUtils.campo(jTextField4.getText())
+                || MyUtils.campo(jTextField5.getText())
+                || MyUtils.campo(jTextField6.getText())
+                || jTable1.getRowCount() == 0) {
 
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-        }
-        else {
+        } else {
 
             // Validação do campo "Problema", para não ultrapassar a quantidade de caracteres permitidos de registro
-            if (jTextField5.getText().length() > 100){
+            if (jTextField5.getText().length() > 100) {
 
                 JOptionPane.showMessageDialog(null, "Preencha o campo 'Problema', com no máximo 100 caracteres!");
-            }else{
+            } else {
 
-                o.setFk_cliente_cod_cs(Integer.valueOf(jTextField4.getText().substring(0, 1))); // Cod cliente
-                o.setFk_funcionario_cod_fun(Integer.valueOf(jTextField6.getText().substring(0, 1))); // Cod func
-                o.setProblema(jTextField5.getText().strip()); // Problema
-                o.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); //Forma pagamento
-                o.setValor_total(valorOS(jTable1)); //Valor total
-                o.setCod_os(Integer.valueOf(jLabel7.getText())); //Código OS
-                 
+                String[] aux = jTextField4.getText().split(" - ");
+                os.setFk_cliente_cod_cs(Integer.parseInt(aux[0].trim())); // Codigo cliente
+                aux = jTextField6.getText().split(" - ");
+                os.setFk_funcionario_cod_fun(Integer.parseInt(aux[0].trim())); // Codigo funcionario
+                os.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); // Campo metodo de pagamento
+                os.setProblema(jTextField5.getText().trim()); // Campo problema
+                os.setValor_total(Double.parseDouble(jFormattedTextField3.getValue().toString())); // Campo valor total
+                os.setCod_os(Integer.valueOf(jLabel7.getText())); // Código OS
+
                 m.setFk_ordem_servico_cod_os(Integer.valueOf(jLabel7.getText())); //Código OS
                 mdao.delete(Integer.valueOf(jLabel7.getText()));
-                
-                odao.update(o);
-                
-                
 
-                for (int i = 0; i < jTable1.getRowCount(); i ++){
+                odao.update(os);
 
-                    m.setFk_servico_cod_serv(Integer.valueOf(jTable1.getValueAt(i, 0).toString().strip()));
-                    m.setQuantidade_serv(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()));
+                adicionarServico(jLabel7.getText());
 
-                    mdao.create(m);
-
-                }
-                
-                System.out.println(o.getCod_os());
+                System.out.println(os.getCod_os());
                 att = true;
                 dispose();
-                              
+
             }
 
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void adicionarServico(String cod_os) {
+        ArrayList<String[]> servicos = new ArrayList();
+        DaoIntegra daoIntegra = new DaoIntegra();
+
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            String[] aux = new String[3];
+
+            aux[0] = cod_os;
+            aux[1] = jTable1.getValueAt(i, 0).toString();
+            aux[2] = jTable1.getValueAt(i, 3).toString();
+
+            servicos.add(aux);
+        }
+    }
+
     public void limpaCampos() {
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -449,10 +447,10 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         return soma;
     }
-    
+
     // VARIÁVEIS
     public boolean att;
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

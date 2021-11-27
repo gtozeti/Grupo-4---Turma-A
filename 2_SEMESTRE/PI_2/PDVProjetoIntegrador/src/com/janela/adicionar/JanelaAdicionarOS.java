@@ -295,7 +295,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
                 String num = criarOS();
                 adicionarServico(num);
-                
+
                 setVisible(false);
                 limpaCampos();
                 dispose();
@@ -314,13 +314,13 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         os.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); // Campo metodo de pagamento
         os.setProblema(jTextField5.getText().trim()); // Campo problema
         os.setValor_total(Double.parseDouble(jFormattedTextField3.getValue().toString())); // Campo valor total
-        
+
         System.out.println("Campo cliente: " + os.getFk_cliente_cod_cs());
         System.out.println("Campo funcionario: " + os.getFk_funcionario_cod_fun());
         System.out.println("Campo problema: " + os.getProblema());
         System.out.println("Campo metodo de pagamento: " + os.getMetodo_pagamento());
         System.out.println("Campo valor total: " + os.getValor_total());
-        
+
         return daoOS.create(os);
     }
 
@@ -337,9 +337,9 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
             servicos.add(aux);
         }
-        
+
         daoIntegra.create(servicos);
-        
+
         for (String[] a : servicos) {
             for (String b : a) {
                 System.out.print(b + " ");
@@ -357,11 +357,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
         DaoOS cdao = new DaoOS();
         jLabel7.setText(cdao.totalOS());
-
-
     }//GEN-LAST:event_formWindowOpened
 
     //BOTAO DE BUSCA PARA ADICIONAR UM CLIENTE
@@ -404,37 +401,36 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         j.setVisible(true);
         boolean cond = true;
 
-        if (!"".equals(j.resposta)){
-        // Recebendo as informações do serviço selecionado e repassando para um array
-        listaInfo.add(j.resposta.split("-"));
+        if (!"".equals(j.resposta)) {
+            // Recebendo as informações do serviço selecionado e repassando para um array
+            listaInfo.add(j.resposta.split("-"));
 
-        // Loop para analisar se já existe um serviço adicionado 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            // Loop para analisar se já existe um serviço adicionado 
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
 
-            if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.substring(0, 1).strip())) {
-                cond = false;
-                jTable1.setValueAt(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()) + 1, i, 3);
-                break;
+                if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.substring(0, 1).strip())) {
+                    cond = false;
+                    jTable1.setValueAt(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()) + 1, i, 3);
+                    break;
 
-            }
-
-        }
-
-        if (cond) {
-            // Loop para adicionar uma nova linha e preencher com as informações do 
-            // serviço escolhido
-            for (String[] i : listaInfo) {
-                m.addRow(new Object[]{i[0], i[1], i[2], i[3]});
+                }
 
             }
+
+            if (cond) {
+                // Loop para adicionar uma nova linha e preencher com as informações do 
+                // serviço escolhido
+                for (String[] i : listaInfo) {
+                    m.addRow(new Object[]{i[0], i[1], i[2], i[3]});
+
+                }
+            }
+
+            jFormattedTextField3.setValue(valorOS(jTable1));
+            JanelaMain.AlinhaCelula(jTable1);
+
         }
 
-        jFormattedTextField3.setValue(valorOS(jTable1));
-        JanelaMain.AlinhaCelula(jTable1);
-
-
-        }
-        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     //BOTAO DE EXCLUSÃO DE UM SERVIÇO SELECIONADO
@@ -482,8 +478,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
     // VARIÁVEIS
     public boolean att;
-    
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

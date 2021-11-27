@@ -153,15 +153,7 @@ public static String totalOS() {
             ResultSet resultado = stmt.executeQuery(); // Executando atualização do comando
 
             if (resultado.next()) {
-
-                total = Integer.toString(resultado.getInt("total") + 1); // Retorno do código da última OS cadastrada + 1
-                if (resultado.getString("max(cod_os)") == null){
-                total = 1;
-                }
-                else {
-                    total = Integer.valueOf(resultado.getString("max(cod_os)")) + 1; // Retorno do código da última OS cadastrada + 1
-                 
-                }
+                total = Integer.toString(resultado.getInt(total + 1));
             }
         } catch (Exception ex) {
             
