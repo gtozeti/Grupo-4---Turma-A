@@ -135,7 +135,7 @@ public class JanelaMain extends javax.swing.JFrame {
         jButton23 = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jButton30 = new javax.swing.JButton();
+        jButton40 = new javax.swing.JButton();
         FuncionarioScreen = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
@@ -407,7 +407,7 @@ public class JanelaMain extends javax.swing.JFrame {
             VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VenderScreenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VenderScreenLayout.createSequentialGroup()
@@ -419,7 +419,7 @@ public class JanelaMain extends javax.swing.JFrame {
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(VenderScreenLayout.createSequentialGroup()
                                 .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 13, Short.MAX_VALUE)))
+                                .addGap(0, 18, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4))
                     .addGroup(VenderScreenLayout.createSequentialGroup()
@@ -580,7 +580,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(OsScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -698,7 +698,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(ClienteScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -851,7 +851,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addComponent(jButton34, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addContainerGap(367, Short.MAX_VALUE))
         );
 
         ConfigScreen.add(jPanel1, "card2");
@@ -931,9 +931,7 @@ public class JanelaMain extends javax.swing.JFrame {
             jTable5.getColumnModel().getColumn(0).setMaxWidth(80);
             jTable5.getColumnModel().getColumn(1).setMinWidth(80);
             jTable5.getColumnModel().getColumn(1).setMaxWidth(80);
-            jTable5.getColumnModel().getColumn(1).setHeaderValue("Categoria");
             jTable5.getColumnModel().getColumn(4).setMaxWidth(110);
-            jTable5.getColumnModel().getColumn(4).setHeaderValue("Quantidade");
         }
 
         jButton22.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -966,10 +964,11 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel15.setText("PRODUTOS");
 
-        jButton30.setText("< Voltar");
-        jButton30.addActionListener(new java.awt.event.ActionListener() {
+        jButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Voltar.png"))); // NOI18N
+        jButton40.setToolTipText("Voltar");
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton30ActionPerformed(evt);
+                jButton40ActionPerformed(evt);
             }
         });
 
@@ -992,8 +991,8 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProdutoScreenLayout.createSequentialGroup()
-                        .addComponent(jButton30)
-                        .addGap(2, 2, 2)
+                        .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel15)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -1002,18 +1001,16 @@ public class JanelaMain extends javax.swing.JFrame {
             ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProdutoScreenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addGroup(ProdutoScreenLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1032,10 +1029,14 @@ public class JanelaMain extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField5FocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField5FocusLost(evt);
+            }
         });
 
         jButton25.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton25.setText("Buscar");
+        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton25.setToolTipText("Buscar Funcionário");
         jButton25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton25ActionPerformed(evt);
@@ -1053,15 +1054,24 @@ public class JanelaMain extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        jTable6.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(jTable6);
 
         jButton26.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton26.setText("Excluir Funcionário");
+        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Excluir.png"))); // NOI18N
+        jButton26.setToolTipText("Excluir Funcionário");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton26ActionPerformed(evt);
@@ -1069,7 +1079,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton27.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton27.setText("Adicionar Funcionário");
+        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar_Func.png"))); // NOI18N
+        jButton27.setToolTipText("Adicionar Funcionário");
         jButton27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton27ActionPerformed(evt);
@@ -1077,14 +1088,16 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton28.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton28.setText("Atualizar Funcionário");
+        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Atualizar_Func.png"))); // NOI18N
+        jButton28.setToolTipText("Atualizar Funcionário");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
             }
         });
 
-        jButton29.setText("< Voltar");
+        jButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Voltar.png"))); // NOI18N
+        jButton29.setToolTipText("Voltar");
         jButton29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton29ActionPerformed(evt);
@@ -1102,16 +1115,16 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addGroup(FuncionarioScreenLayout.createSequentialGroup()
                         .addComponent(jTextField5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton25))
+                        .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FuncionarioScreenLayout.createSequentialGroup()
-                        .addComponent(jButton26)
+                        .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton28)
+                        .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jButton27))
+                        .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(FuncionarioScreenLayout.createSequentialGroup()
-                        .addComponent(jButton29)
-                        .addGap(2, 2, 2)
+                        .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -1119,23 +1132,21 @@ public class JanelaMain extends javax.swing.JFrame {
         FuncionarioScreenLayout.setVerticalGroup(
             FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FuncionarioScreenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addGroup(FuncionarioScreenLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(13, 13, 13)
+                .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1401,7 +1412,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton36ActionPerformed
 
-    // @JANELA_SERVIÇOS -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR PRODUTO)
+    // @JANELA_SERVIÇOS -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ADICIONAR SERVIÇO)
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
         
         janelaAdicionarServico.jLabel5.setText(DaoServico.totalOS());
@@ -1490,6 +1501,16 @@ public class JanelaMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTextField7FocusLost
 
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+         TrocaTela(ConfigScreen, "card2");
+    }//GEN-LAST:event_jButton40ActionPerformed
+
+    private void jTextField5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusLost
+         if (jTextField5.getText().isEmpty()){
+           setTextDefault(jTextField5, "Procurar Funcionário");
+        }
+    }//GEN-LAST:event_jTextField5FocusLost
+
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
     // FOI ESCRITO)
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField3ActionPerformed
@@ -1526,7 +1547,7 @@ public class JanelaMain extends javax.swing.JFrame {
     // @SIDE_MENU -> BOTÃO "CONFIGURAÇÃO" (ACESSAR JANELA CONFIGURAÇÃO)
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
         TrocaTela(jPanel3, "card6");
-        jButton30.doClick();
+        jButton39.doClick();
     }// GEN-LAST:event_jButton5ActionPerformed
 
     // @JANELA_CONFIGURAÇÃO -> BOTÃO "PRODUTO" (ACESSAR JANELA PRODUTO)
@@ -1819,8 +1840,10 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_FUNCIONÁRIO -> ÁREA_TEXTO "BUSCAR"
     private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField5FocusGained
-        jTextField5.setText("");
-        jTextField5.setForeground(Color.black);
+        if (jTextField5.getText().equals("Procurar Funcionário")) {
+            jTextField5.setText("");
+            jTextField5.setForeground(Color.black);
+        }
     }// GEN-LAST:event_jTextField5FocusGained
 
     // @JANELA_VENDER -> BOTÃO "ADICIONAR PRODUTO" (ABRIR JDIALOG PARA ADICIONAR PRODUTO AO PEDIDO DE VENDA)
@@ -1886,10 +1909,12 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_FUNCIONARO -> BOTÃO "BUSCAR" (ATUALIZA JTABLE6 COM OS RESULTADOS DA PESQUISA)
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton25ActionPerformed
         if (daoFuncionario.search(jTextField5.getText()).isEmpty()) {
-            readTable(jTable5, daoFuncionario.read());
+            JOptionPane.showMessageDialog(null, "Nenhum resultado encontrado");
+            readTable(jTable6, daoFuncionario.read());
         } else {
-            readTable(jTable5, daoFuncionario.search(jTextField5.getText()));
+            readTable(jTable6, daoFuncionario.search(jTextField5.getText()));
         }
+                
     }// GEN-LAST:event_jButton25ActionPerformed
 
     ////////////////////////////////////////////////////////////////////////////
@@ -2112,7 +2137,6 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
@@ -2123,6 +2147,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;

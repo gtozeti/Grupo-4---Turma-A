@@ -159,20 +159,31 @@ public class DaoFuncionario {
         ArrayList<String[]> result = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
 
         try {
-            stmt = con.prepareStatement("SELECT cod_fun, nome, email, cargo FROM funcionario WHERE cod_fun = ? OR nome = ? OR email = ? OR cargo = ?;");
+            stmt = con.prepareStatement("SELECT cod_fun, nome, email, cargo FROM funcionario WHERE cod_fun = ? OR nome LIKE ? OR email LIKE ? OR cargo LIKE ?;");
 
-            for (int i = 1; i < 5; i++) {
-
-                if (i == 1) {
-                    try {
-                        stmt.setInt(i, Integer.parseInt(input));
-                    } catch (Exception e) {
-                        stmt.setInt(i, 0);
-                    }
-                } else {
-                    stmt.setString(i, input);
-                }
+//            for (int i = 1; i < 5; i++) {
+//
+//                if (i == 1) {
+//                    try {
+//                        stmt.setInt(i, Integer.parseInt(input));
+//                    } catch (Exception e) {
+//                        stmt.setInt(i, 0);
+//                    }
+//                } else {
+//                    stmt.setString(i, input);
+//                }
+//            }
+            
+             try {
+                stmt.setInt(1, Integer.parseInt(input));
+            } catch (Exception e) {
+                stmt.setInt(1, -1);
             }
+            stmt.setString(2, "%" + input + "%");
+            stmt.setString(3, "%" + input + "%");
+            stmt.setString(4, "%" + input + "%");
+         
+
 
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 

@@ -146,7 +146,7 @@ public static String totalOS() {
 
         Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
         PreparedStatement stmt = null; // Variável utilizada para comando MySQL
-        String total = "";
+        int total = 0;
 
         try {
             stmt = con.prepareStatement("SELECT if(MAX(cod_os) IS null, 0, MAX(cod_os)) as total FROM ordem_servico"); // Executa a busca do código da última OS cadastrada
@@ -154,14 +154,10 @@ public static String totalOS() {
 
             if (resultado.next()) {
 
-                total = Integer.toString(resultado.getInt("total") + 1); // Retorno do código da última OS cadastrada + 1
-                if (resultado.getString("max(cod_os)") == null){
-                total = 1;
-                }
-                else {
-                    total = Integer.valueOf(resultado.getString("max(cod_os)")) + 1; // Retorno do código da última OS cadastrada + 1
-                 
-                }
+                total = resultado.getInt("total") + 1; // Retorno do código da última OS cadastrada + 1
+                
+                
+                
             }
         } catch (Exception ex) {
             
@@ -170,7 +166,7 @@ public static String totalOS() {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
 
-        return total;
+        return String.valueOf(total);
     }
   
 public void update(ModelOS cs) {

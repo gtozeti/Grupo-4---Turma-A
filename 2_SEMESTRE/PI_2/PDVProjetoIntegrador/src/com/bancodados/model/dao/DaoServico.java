@@ -93,17 +93,18 @@ public class DaoServico {
         int total = 0;
 
         try {
-            stmt = con.prepareStatement("SELECT MAX(cod_serv) FROM servico"); // Executa a busca do código do último serviço cadastrado
+            stmt = con.prepareStatement("SELECT IF (MAX(cod_serv) IS NULL, 0, MAX(cod_serv)) AS total FROM servico"); // Executa a busca do código do último serviço cadastrado
             ResultSet resultado = stmt.executeQuery(); // Executando atualização do comando
 
             if (resultado.next()) {
 
-                total = Integer.valueOf(resultado.getString("max(cod_serv)")) + 1; // Retorno do código da última OS cadastrada + 1
+                total = resultado.getInt("total") + 1; // Retorno do código da última OS cadastrada + 1
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Falha ao tentar buscar os serviços cadastrados\n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+           
             return String.valueOf(total);
         }
     }

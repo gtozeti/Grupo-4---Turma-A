@@ -56,11 +56,6 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Serviço");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabel1.setText("Código Serviço:");
@@ -129,7 +124,7 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
                     .addComponent(jLabel6)
                     .addComponent(ValorFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
@@ -176,13 +171,6 @@ public class JanelaAdicionarServico extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    //EVENTO DA JANELA PARA INDICAR QUAL CÓDIGO DO SERVIÇO SERÁ ATRIBUÍDO
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
-        jLabel5.setText(DaoServico.totalOS());
-
-    }//GEN-LAST:event_formWindowOpened
 
     public void limpaCampos() {
         NomeTextField.setText("");
