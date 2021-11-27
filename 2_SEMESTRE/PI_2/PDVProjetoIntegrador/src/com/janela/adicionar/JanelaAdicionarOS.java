@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.janela.adicionar;
 
 import com.bancodados.model.bean.ModelIntegra;
@@ -16,9 +11,7 @@ import com.janela.buscar.JanelaBuscarFuncionario;
 import com.janela.buscar.JanelaBuscarServico;
 import com.janela.main.JanelaMain;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +26,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
      * Creates new form NewJDialog
      */
     public JanelaAdicionarOS(java.awt.Frame parent, boolean modal) {
-        
+
         super(parent, modal);
         initComponents();
         jTextField4.setEnabled(false);
@@ -41,7 +34,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         jTextField4.setEditable(false);
         jTextField6.setEditable(false);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,16 +210,16 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                         .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -254,18 +247,14 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,7 +263,13 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56))))
+                        .addGap(56, 56, 56))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addContainerGap())))
         );
 
         pack();
@@ -283,63 +278,75 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
     //BOTAO PARA ADICIONAR UMA OS
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
-        ModelOS o = new ModelOS();
-        DaoOS odao = new DaoOS();
-        
-        ModelIntegra m = new ModelIntegra();
-        DaoIntegra mdao = new DaoIntegra();
-        
-        DaoOS cdao = new DaoOS();
-     
-        
-       // Validação dos campos 
-       if (MyUtils.campo(jTextField4.getText()) ||
-               MyUtils.campo(jTextField5.getText()) || 
-               MyUtils.campo(jTextField6.getText()) ||
-               jTable1.getRowCount() == 0) {
-           
-           JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-       }
-       else {
-           
-           // Validação do campo "Problema", para não ultrapassar a quantidade de caracteres permitidos de registro 
-           if (jTextField5.getText().length() > 100){
-               
-               JOptionPane.showMessageDialog(null, "Preencha o campo 'Problema', com no máximo 100 caracteres!");
-           }else{
-           
-           o.setFk_cliente_cod_cs(Integer.valueOf(jTextField4.getText().substring(0, 1))); // Cod cliente
-           o.setFk_funcionario_cod_fun(Integer.valueOf(jTextField6.getText().substring(0, 1))); // Cod func
-           o.setProblema(jTextField5.getText().strip()); // Problema
-           o.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); //Forma pagamento
-           o.setValor_total(valorOS(jTable1)); //Valor total
-           
-           m.setFk_ordem_servico_cod_os(Integer.valueOf(cdao.totalOS()));
-                      
-           odao.create(o);
-           
-           for (int i = 0; i < jTable1.getRowCount(); i ++){
-               
-               m.setFk_servico_cod_serv(Integer.valueOf(jTable1.getValueAt(i, 0).toString().strip()));
-               m.setQuantidade_serv(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()));
-               
-               mdao.create(m);
-               
-           }
-           
-           
-           
-           setVisible(false);
-           limpaCampos();
-           dispose();
-           
-           }           
-          
-           
-      }
-        
+        // Validação dos campos 
+        if (MyUtils.campo(jTextField4.getText())
+                || MyUtils.campo(jTextField5.getText())
+                || MyUtils.campo(jTextField6.getText())
+                || jTable1.getRowCount() == 0) {
+
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        } else {
+
+            // Validação do campo "Problema", para não ultrapassar a quantidade de caracteres permitidos de registro 
+            if (jTextField5.getText().length() > 100) {
+
+                JOptionPane.showMessageDialog(null, "Preencha o campo 'Problema', com no máximo 100 caracteres!");
+            } else {
+
+                String num = criarOS();
+                adicionarServico(num);
+                
+                setVisible(false);
+                limpaCampos();
+                dispose();
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private String criarOS() {
+        ModelOS os = new ModelOS();
+        DaoOS daoOS = new DaoOS();
+
+        String[] aux = jTextField4.getText().split(" - ");
+        os.setFk_cliente_cod_cs(Integer.parseInt(aux[0].trim())); // Codigo cliente
+        aux = jTextField6.getText().split(" - ");
+        os.setFk_funcionario_cod_fun(Integer.parseInt(aux[0].trim())); // Codigo funcionario
+        os.setMetodo_pagamento(jComboBox1.getSelectedItem().toString()); // Campo metodo de pagamento
+        os.setProblema(jTextField5.getText().trim()); // Campo problema
+        os.setValor_total(Double.parseDouble(jFormattedTextField3.getValue().toString())); // Campo valor total
+        
+        System.out.println("Campo cliente: " + os.getFk_cliente_cod_cs());
+        System.out.println("Campo funcionario: " + os.getFk_funcionario_cod_fun());
+        System.out.println("Campo problema: " + os.getProblema());
+        System.out.println("Campo metodo de pagamento: " + os.getMetodo_pagamento());
+        System.out.println("Campo valor total: " + os.getValor_total());
+        
+        return daoOS.create(os);
+    }
+
+    private void adicionarServico(String cod_os) {
+        ArrayList<String[]> servicos = new ArrayList();
+        DaoIntegra daoIntegra = new DaoIntegra();
+
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            String[] aux = new String[3];
+
+            aux[0] = cod_os;
+            aux[1] = jTable1.getValueAt(i, 0).toString();
+            aux[2] = jTable1.getValueAt(i, 3).toString();
+
+            servicos.add(aux);
+        }
+        
+        daoIntegra.create(servicos);
+        
+        for (String[] a : servicos) {
+            for (String b : a) {
+                System.out.print(b + " ");
+            }
+            System.out.println("");
+        }
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -347,51 +354,47 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       
+
         DaoOS cdao = new DaoOS();
         jLabel7.setText(cdao.totalOS());
-                
-        
-        
+
+
     }//GEN-LAST:event_formWindowOpened
 
-     //BOTAO DE BUSCA PARA ADICIONAR UM CLIENTE
+    //BOTAO DE BUSCA PARA ADICIONAR UM CLIENTE
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        
+
         JanelaBuscarCliente j = new JanelaBuscarCliente(this, true);
-        
+
         j.setVisible(true);
         jTextField4.setText(j.resposta);
-        if (!j.resposta.equals("")){
+        if (!j.resposta.equals("")) {
             jTextField4.setEnabled(true);
-        }
-        else{
+        } else {
             jTextField4.setEnabled(false);
         }
-        
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     //BOTAO DE BUSCA PARA ADICIONAR UM FUNCIONÁRIO
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       
+
         JanelaBuscarFuncionario j = new JanelaBuscarFuncionario(this, true);
-        
+
         j.setVisible(true);
         jTextField6.setText(j.resposta);
-        if (!j.resposta.equals("")){
+        if (!j.resposta.equals("")) {
             jTextField6.setEnabled(true);
-        }
-        else{
+        } else {
             jTextField6.setEnabled(false);
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton11ActionPerformed
 
     //BOTAO DE BUSCA PARA ADICIONAR UM SERVIÇO
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-         
+
         JanelaBuscarServico j = new JanelaBuscarServico(this, true);
         DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
         ArrayList<String[]> listaInfo = new ArrayList();
@@ -422,23 +425,21 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
             }
         }
 
-        
         jFormattedTextField3.setValue(valorOS(jTable1));
         JanelaMain.AlinhaCelula(jTable1);
-        
-        
+
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     //BOTAO DE EXCLUSÃO DE UM SERVIÇO SELECIONADO
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        
-               
+
         if (jTable1.getSelectedRow() != -1) {
-                        
+
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.removeRow(jTable1.getSelectedRow());
             jFormattedTextField3.setValue(valorOS(jTable1));
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
         }
@@ -446,10 +447,10 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
     // Limpeza de todos os campos
     public void limpaCampos() {
-        
+
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        
+
         jTextField4.setText("");
         jTextField4.setEnabled(false);
         jTextField5.setText("");
@@ -457,11 +458,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         jTextField6.setEnabled(false);
         jFormattedTextField3.setValue(valorOS(jTable1));
         jComboBox1.setSelectedIndex(0);
-        
-        
-        
     }
-    
+
     // Função para cálculo dos itens adicionados e/ou removidos
     public double valorOS(JTable j) {
 
@@ -475,11 +473,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
         return soma;
     }
-    
 
-    
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -531,7 +525,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                 });
                 dialog.setVisible(true);
             }
-        });        
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

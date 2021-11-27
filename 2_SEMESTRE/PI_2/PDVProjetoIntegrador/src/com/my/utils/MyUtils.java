@@ -29,15 +29,15 @@ public class MyUtils {
             for (int j = 0; j < s.length; j++) {
                 String[] aux = l.get(i);
 
-                if (s[0].equals(aux[0]) && s[1].equals(aux[1]) && s[3].equals(aux[3])) {
+                if (s[0].equals(aux[0]) && s[2].equals(aux[2]) && s[4].equals(aux[4])) {
                     int temp = 0;
 
-                    temp += Integer.parseInt(aux[2]);
+                    temp += Integer.parseInt(aux[3]);
                     System.out.println(temp);
-                    temp += Integer.parseInt(s[2]);
+                    temp += Integer.parseInt(s[3]);
                     System.out.println(temp);
 
-                    aux[2] = Integer.toString(temp);
+                    aux[3] = Integer.toString(temp);
 
                     condicao = false;
                     break;
@@ -58,8 +58,7 @@ public class MyUtils {
                 String[] aux = l.get(i);
 
                 if (s[0].equals(aux[0]) && s[1].equals(aux[1]) && s[3].equals(aux[3])) {
-                    int temp = 0;
-
+                   
                     l.remove(l.get(i));
                     break;
                 }

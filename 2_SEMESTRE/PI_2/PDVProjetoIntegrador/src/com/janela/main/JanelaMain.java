@@ -4,7 +4,9 @@ import com.bancodados.model.bean.ModelVenda;
 import com.bancodados.model.dao.DaoCliente;
 import com.bancodados.model.dao.DaoFuncionario;
 import com.bancodados.model.dao.DaoOS;
+import com.bancodados.model.dao.DaoParticipa;
 import com.bancodados.model.dao.DaoProduto;
+import com.bancodados.model.dao.DaoRelatorio;
 import com.bancodados.model.dao.DaoVenda;
 import com.bancodados.model.dao.DaoServico;
 
@@ -13,23 +15,29 @@ import com.janela.adicionar.JanelaAdicionarFuncionario;
 import com.janela.adicionar.JanelaAdicionarOS;
 import com.janela.adicionar.JanelaAdicionarProduto;
 import com.janela.adicionar.JanelaAdicionarServico;
+
 import com.janela.atualizar.JanelaAtualizarCliente;
 import com.janela.atualizar.JanelaAtualizarFuncionario;
 import com.janela.atualizar.JanelaAtualizarOS;
 import com.janela.atualizar.JanelaAtualizarProduto;
 import com.janela.atualizar.JanelaAtualizarServico;
+
 import com.janela.buscar.JanelaBuscarCliente;
 import com.janela.buscar.JanelaBuscarFuncionario;
 import com.janela.buscar.JanelaBuscarProduto;
+
 import com.janela.excluir.JanelaExcluirCliente;
 import com.janela.excluir.JanelaExcluirFuncionario;
 import com.janela.excluir.JanelaExcluirOS;
 import com.janela.excluir.JanelaExcluirProduto;
 import com.janela.excluir.JanelaExcluirServico;
+
 import com.my.utils.MyUtils;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -107,11 +115,11 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jButton18 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
         ConfigScreen = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -257,11 +265,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Categoria", "Nome", "Quantidade", "Valor unidade"
+                "Código Produto", "Categoria", "Nome", "Quantidade", "Valor unidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -393,7 +401,7 @@ public class JanelaMain extends javax.swing.JFrame {
                                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 334, Short.MAX_VALUE))))
         );
         VenderScreenLayout.setVerticalGroup(
             VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -709,48 +717,35 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel12.setText("Data final");
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jButton18.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton18.setText("Buscar");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Código Venda", "Data", "Cliente", "Método de Pagamento", "Valor"
+                "Categoria", "Código", "Data", "Funcionario", "Cliente", "Método de Pagamento", "Valor"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane4.setViewportView(jTable4);
+
+        jDateChooser2.setDateFormatString("dd-MM-yyyy");
+
+        jDateChooser3.setDateFormatString("dd-MM-yyyy");
 
         javax.swing.GroupLayout RelatorioScreenLayout = new javax.swing.GroupLayout(RelatorioScreen);
         RelatorioScreen.setLayout(RelatorioScreenLayout);
@@ -759,21 +754,21 @@ public class JanelaMain extends javax.swing.JFrame {
             .addGroup(RelatorioScreenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                     .addGroup(RelatorioScreenLayout.createSequentialGroup()
                         .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addGroup(RelatorioScreenLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addGap(4, 4, 4)
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel12)
-                                .addGap(4, 4, 4)
-                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton18)))
-                        .addGap(0, 252, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         RelatorioScreenLayout.setVerticalGroup(
@@ -782,15 +777,18 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RelatorioScreenLayout.createSequentialGroup()
+                        .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel12)
+                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         jPanel3.add(RelatorioScreen, "card5");
@@ -1346,7 +1344,7 @@ public class JanelaMain extends javax.swing.JFrame {
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
 
     }//GEN-LAST:event_jTextField2FocusLost
-    
+
     // @JANELA_SERVIÇOS -> BOTÃO "SERVIÇOS" (ACESSAR JANELA DE SERVIÇOS)
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         TrocaTela(ConfigScreen, "card5");
@@ -1452,12 +1450,20 @@ public class JanelaMain extends javax.swing.JFrame {
         setTextDefault(jTextField1, "Adicione um cliente");
         setTextDefault(jTextField6, "Adicione um funcionário");
     }//GEN-LAST:event_jButton8ActionPerformed
-    
+
     // @JANELA_VENDER -> BOTÃO CONCLUIR
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         adicionaVenda();
         jButton8ActionPerformed(evt);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    //@JANELA_RELATORIO -> BOTÃO BUSCAR
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        
+        System.out.println(sdf.format(jDateChooser2.getDate()));
+        System.out.println(sdf.format(jDateChooser3.getDate()));
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
     // FOI ESCRITO)
@@ -1489,6 +1495,7 @@ public class JanelaMain extends javax.swing.JFrame {
     // @SIDE_MENU -> BOTÃO "RELATÓRIO" (ACESSAR JANELA RELATÓRIO)
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
         TrocaTela(jPanel3, "card5");
+        readTable(jTable4, daoRelatorio.read());
     }// GEN-LAST:event_jButton4ActionPerformed
 
     // @SIDE_MENU -> BOTÃO "CONFIGURAÇÃO" (ACESSAR JANELA CONFIGURAÇÃO)
@@ -1528,33 +1535,32 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ATUALIZAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ATUALIZAR OS)
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
-       
+
         // Adicionando os valores no Jdialog
         try {
             if (jTable2.getSelectedRow() != -1) {
-                
+
                 ArrayList<String[]> listaInfo = new ArrayList();
                 listaInfo = DaoOS.infoOS(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
-                
+
                 int index = 0;
                 for (String[] i : listaInfo) {
-                    if (index == 0){
-                    System.out.println(Arrays.toString(i));
-                    System.out.println(i[0]);
-                    
-                    janelaAtualizarOS.jLabel7.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
-                    janelaAtualizarOS.jTextField4.setText(i[3]);
-                    janelaAtualizarOS.jTextField6.setText(i[4]);
-                    janelaAtualizarOS.jTextField5.setText(i[0]);
-                    janelaAtualizarOS.jComboBox1.setSelectedItem(i[2]);
-                    }
-                    else{
+                    if (index == 0) {
+                        System.out.println(Arrays.toString(i));
+                        System.out.println(i[0]);
+
+                        janelaAtualizarOS.jLabel7.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
+                        janelaAtualizarOS.jTextField4.setText(i[3]);
+                        janelaAtualizarOS.jTextField6.setText(i[4]);
+                        janelaAtualizarOS.jTextField5.setText(i[0]);
+                        janelaAtualizarOS.jComboBox1.setSelectedItem(i[2]);
+                    } else {
                         listaInfo.remove(0);
                         readTable(janelaAtualizarOS.jTable1, listaInfo);
                     }
-                    index ++;
+                    index++;
                 }
-               janelaAtualizarOS.setVisible(true);
+                janelaAtualizarOS.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada");
             }
@@ -1844,7 +1850,9 @@ public class JanelaMain extends javax.swing.JFrame {
     public final DaoProduto daoProduto = new DaoProduto();
     public final DaoVenda daoVenda = new DaoVenda();
     public final DaoServico daoServico = new DaoServico();
-
+    public final DaoParticipa daoParticipa = new DaoParticipa();
+    public final DaoRelatorio daoRelatorio = new DaoRelatorio();
+    
     // OBJETOS JANELA
     public final JanelaAdicionarCliente janelaAdicionarCliente = new JanelaAdicionarCliente(this, true);
     public final JanelaAdicionarFuncionario janelaAdicionarFuncionario = new JanelaAdicionarFuncionario(this, true);
@@ -1895,7 +1903,8 @@ public class JanelaMain extends javax.swing.JFrame {
         DefaultTableModel m = (DefaultTableModel) t.getModel();
 
         AlinhaCelula(t);
-
+        t.setAutoCreateRowSorter(true);
+        
         m.setNumRows(0);
 
         switch (t.getColumnCount()) {
@@ -1912,6 +1921,16 @@ public class JanelaMain extends javax.swing.JFrame {
             case 5:
                 for (String[] i : s) {
                     m.addRow(new Object[]{i[0], i[1], i[2], i[3], i[4]});
+                }
+                break;
+            case 6:
+                for (String[] i : s) {
+                    m.addRow(new Object[]{i[0], i[1], i[2], i[3], i[4], i[5]});
+                }
+                break;
+            case 7:
+                for (String[] i : s) {
+                    m.addRow(new Object[]{i[0], i[1], i[2], i[3], i[4], i[5], i[6]});
                 }
                 break;
         }
@@ -1931,36 +1950,53 @@ public class JanelaMain extends javax.swing.JFrame {
         j.setText(s);
         j.setForeground(Color.LIGHT_GRAY);
     }
-    
+
     // FUNÇÃO PARA CALCULAR O VALOR TOTAL DAS TABELAS
     private void calculaValor(JTable j, JFormattedTextField t) {
         double valor = 0;
 
         for (int i = 0; i < j.getRowCount(); i++) {
-            valor += Double.parseDouble(j.getValueAt(i, 2).toString()) * Double.parseDouble(j.getValueAt(i, 3).toString().substring(3).replace(",", "."));
+            valor += Double.parseDouble(j.getValueAt(i, 3).toString()) * Double.parseDouble(j.getValueAt(i, 4).toString().substring(3).replace(",", "."));
         }
 
         System.out.println(valor);
 
         t.setValue(valor);
     }
-    
+
     // FUNÇÃO PARA ADICIONAR VENDA NA TABELA
     private void adicionaVenda() {
         ModelVenda v = new ModelVenda();
-        
+
         String[] aux = jTextField1.getText().split("-");
         v.setFk_cliente_cod_cs(Integer.parseInt(aux[0].trim()));
-        
+
         aux = jTextField6.getText().split("-");
         v.setFk_funcionario_cod_fun(Integer.parseInt(aux[0].trim()));
-        
+
         v.setValor_total(Double.parseDouble(jFormattedTextField3.getValue().toString()));
         v.setMetodo_pagamento(jComboBox1.getSelectedItem().toString());
-        
+
         daoVenda.create(v);
+
+        adicionaParticipa();
     }
-    
+
+    private void adicionaParticipa() {
+        ArrayList<String[]> lista = new ArrayList();
+
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            String[] l = new String[3];
+            l[0] = jTable1.getValueAt(i, 0).toString();
+            l[1] = Integer.toString(daoVenda.getCodigoVenda());
+            l[2] = jTable1.getValueAt(i, 3).toString();
+
+            lista.add(l);
+        }
+
+        daoParticipa.create(lista);
+    }
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -2039,9 +2075,9 @@ public class JanelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

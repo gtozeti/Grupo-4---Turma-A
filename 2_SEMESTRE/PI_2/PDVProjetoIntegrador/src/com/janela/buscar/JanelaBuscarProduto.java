@@ -149,13 +149,14 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
     // BOTÃO ADICIONAR PRODUTO
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (jTable1.getSelectedRow() != -1) {
-            String[] p = new String[4];
-
-            p[0] = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
-            p[1] = jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString();
-            p[2] = jSpinner1.getValue().toString();
-            p[3] = jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString();
-
+            String[] p = new String[5];
+            
+            p[0] = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+            p[1] = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+            p[2] = jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString();
+            p[3] = jSpinner1.getValue().toString();
+            p[4] = jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString();
+            
             MyUtils.verificaLista(produto, p);
 
             setVisible(false);
