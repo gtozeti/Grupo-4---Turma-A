@@ -4,6 +4,8 @@ import com.bancodados.connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class DaoIntegra {
@@ -30,5 +32,25 @@ public class DaoIntegra {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
     }
+      
+      public void delete(int id) {
 
+        Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
+        PreparedStatement stmt = null; // Variável utilizada para comando MySQL
+
+        try {
+            stmt = con.prepareStatement("DELETE FROM integra WHERE fk_ordem_servico_cod_os = ?"); // Comando MySQL para deletar valores na tabela "tabelaTeste"
+
+            stmt.setString(1, String.valueOf(id)); // Pegando o valor de ID do objeto TesteTabelaBean e adicionando no "?"
+
+            stmt.executeUpdate(); // Executando atualização do comando
+
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizar as informações de INTEGRA\n" + ex); // Mensagem para cada o comando não dê certo
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+        }
+    }
+    
 }

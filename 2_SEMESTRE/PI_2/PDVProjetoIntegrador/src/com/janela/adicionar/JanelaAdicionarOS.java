@@ -348,8 +348,11 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         }
     }
 
+    // BOTÃO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        att = false;
+        setVisible(false);
+        limpaCampos();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -401,6 +404,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         j.setVisible(true);
         boolean cond = true;
 
+        if (!"".equals(j.resposta)){
         // Recebendo as informações do serviço selecionado e repassando para um array
         listaInfo.add(j.resposta.split("-"));
 
@@ -429,6 +433,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         JanelaMain.AlinhaCelula(jTable1);
 
 
+        }
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     //BOTAO DE EXCLUSÃO DE UM SERVIÇO SELECIONADO
@@ -474,6 +480,10 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         return soma;
     }
 
+    // VARIÁVEIS
+    public boolean att;
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

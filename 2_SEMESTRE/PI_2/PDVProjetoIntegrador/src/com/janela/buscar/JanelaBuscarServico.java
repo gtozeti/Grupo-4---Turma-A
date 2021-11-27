@@ -5,8 +5,13 @@
  */
 package com.janela.buscar;
 
+//FERRAMENTAS - SERVIÇO
 import com.bancodados.model.dao.DaoServico;
+
+//FERRAMENTAS - MAIN
 import com.janela.main.JanelaMain;
+
+//UTILITÁRIOS 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -19,20 +24,20 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
     /**
      * Creates new form Tela_AdicionarProduto_dialog
      */
-    
+    // VARIÁVEL DE CONTROLE DE REFRESH DE TABELA
     public String resposta;
-    
+
     public JanelaBuscarServico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         JanelaMain.readTable(jTable1, daoServico.read());
     }
-    
+
     public JanelaBuscarServico(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         JanelaMain.readTable(jTable1, daoServico.read());
     }
 
@@ -54,6 +59,7 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Serviço");
+        setIconImage(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -70,7 +76,8 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Buscar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton1.setToolTipText("Buscar Serviços");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -125,7 +132,7 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,10 +144,10 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -153,20 +160,20 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private final DaoServico daoServico = new DaoServico();
-    
-    // BOTAO CANCELAR
+
+    //BOTAO CANCELAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         resposta = "";
         dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //BOTAO ADICIONAR SERVIÇO
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        //BOTAO ADICIONAR PRODUTO
-        //Alguma acao antes
-         if (jTable1.getSelectedRow() != -1) {
+
+        // --- CÓDIGO --- 
+        //* Retorno do serviço selecionado, caso seja seja selecionado algum 
+        if (jTable1.getSelectedRow() != -1) {
             resposta = jTable1.getValueAt(jTable1.getSelectedRow(), 0) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 1) + " - " + jTable1.getValueAt(jTable1.getSelectedRow(), 2) + " - " + "1";
             dispose();
         } else {
@@ -174,16 +181,18 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    // BOTÃO BUSCAR
+    //BOTÃO BUSCAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Buscar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //EVENTO DA JANELA PARA FOCAR NO CAMPO DE BUSCA
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         jTextField1.setRequestFocusEnabled(true);
-        
+
     }//GEN-LAST:event_formWindowOpened
 
+    //EVENTO DO CAMPO DE BUSCA PARA SET DE PADRÃO DE FONTE QUANDO DESFOCADO
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         if (jTextField1.getText().isBlank()) {
             jTextField1.setText("Buscar Serviço");
@@ -191,8 +200,9 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextField1FocusLost
 
+    //EVENTO DO CAMPO DE BUSCA PARA SET DE PADRÃO DE FONTE QUANDO FOCADO
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-       if (jTextField1.getText().equals("Buscar Serviço")) {
+        if (jTextField1.getText().equals("Buscar Serviço")) {
             jTextField1.setText("");
             jTextField1.setForeground(Color.BLACK);
         }
@@ -206,11 +216,11 @@ public class JanelaBuscarServico extends javax.swing.JDialog {
         } else {
             JanelaMain.readTable(jTable1, daoServico.search(jTextField1.getText()));
         }
-        
+
         jTextField1.setText("Buscar Serviço");
         jTextField1.setForeground(Color.LIGHT_GRAY);
     }
-    
+
     /**
      * @param args the command line arguments
      */

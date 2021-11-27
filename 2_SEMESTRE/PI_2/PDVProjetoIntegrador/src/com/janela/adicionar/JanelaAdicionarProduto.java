@@ -49,11 +49,6 @@ public class JanelaAdicionarProduto extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Produto");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabel1.setText("Código Produto:");
@@ -202,20 +197,6 @@ public class JanelaAdicionarProduto extends javax.swing.JDialog {
         dispose();  
        }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    // Ação para quando a janela é exibida
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        DaoProduto pdao = new DaoProduto();
-        jLabel5.setText(pdao.totalOS());
-                       
-        JComboBox cb = new JComboBox(pdao.categoria().toArray()); //Chamando a função para buscar os valores distintos de categoria
-        CategoriaComboBox.setModel(cb.getModel()); //Passando todos os valores para a tela no momento em que a tela é aberta
-        cb.insertItemAt("-- Adicione uma categoria --", 0); //Definindo na primeira posição para adicionar um novo produto
-        cb.insertItemAt("", 1); 
-        CategoriaComboBox.setSelectedIndex(1);
-        
-        
-    }//GEN-LAST:event_formWindowOpened
 
     // Ação para quando o combo box é exibido
     private void CategoriaComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_CategoriaComboBoxPopupMenuWillBecomeInvisible

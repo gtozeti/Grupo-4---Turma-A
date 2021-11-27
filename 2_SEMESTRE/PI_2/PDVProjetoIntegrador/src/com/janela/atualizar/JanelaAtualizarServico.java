@@ -5,18 +5,15 @@
  */
 package com.janela.atualizar;
 
-
+//FERRAMENTAS - SERVIÇO
 import com.bancodados.model.bean.ModelServico;
 import com.bancodados.model.dao.DaoServico;
-import com.my.utils.MyUtils;
-     
 
-import java.awt.Color;
-import java.nio.channels.AsynchronousFileChannel;
-import java.util.ArrayList;
-import javax.swing.JComboBox;
+//FERRAMENTAS - UTIL
+import com.my.utils.MyUtils;  
+
+//UTILITÁRIOS 
 import javax.swing.JOptionPane;
-
 
 public class JanelaAtualizarServico extends javax.swing.JDialog {
 
@@ -27,7 +24,6 @@ public class JanelaAtualizarServico extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +87,7 @@ public class JanelaAtualizarServico extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,25 +96,21 @@ public class JanelaAtualizarServico extends javax.swing.JDialog {
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ValorFormattedTextField)
-                            .addComponent(NomeTextField))
-                        .addContainerGap())
+                            .addComponent(NomeTextField)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(17, 17, 17))))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5))
@@ -143,43 +135,46 @@ public class JanelaAtualizarServico extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //BOTÃO CANCELAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        att = false;
         dispose();
-             
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //BOTÃO ATUALIZAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // Botão atualizar
-        
+
+        //OBJETOS - SERVIÇO
         ModelServico c = new ModelServico();
         DaoServico cdao = new DaoServico();
-        MyUtils u = new MyUtils();
-        
-       // Validação dos campos 
-       if (u.campo(NomeTextField.getText()) ||
-               u.campo(ValorFormattedTextField.getText())){
-           JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-       }
-       else{
-           
-        c.setCod_serv(Integer.parseInt(jLabel5.getText()));
-        c.setNome(NomeTextField.getText().strip());
-        c.setValor(Double.valueOf(ValorFormattedTextField.getText().replace(',', '.')));
-       
-        cdao.update(c);
-        setVisible(false);
-        dispose();
-        
-       }
+
+        // --- CÓDIGO --- 
+        //* Validação dos campos, para identificar que todos estão preenchidos
+        if (MyUtils.campo(NomeTextField.getText())
+                || MyUtils.campo(ValorFormattedTextField.getText())) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        } else {
+
+            //* Set na classe ModelServico
+            c.setCod_serv(Integer.parseInt(jLabel5.getText()));
+            c.setNome(NomeTextField.getText().strip());
+            c.setValor(Double.valueOf(ValorFormattedTextField.getText().replace(',', '.')));
+
+            //* Execução do update do serviço selecionado
+            cdao.update(c);
+
+            //* Fechando a janela e atualizando a váriavel de controle de refresh
+            att = true;
+            setVisible(false);
+            dispose();
+
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    
-    
+    // VARIÁVEL DE CONTROLE DE REFRESH DE TABELA
+    public boolean att;
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
