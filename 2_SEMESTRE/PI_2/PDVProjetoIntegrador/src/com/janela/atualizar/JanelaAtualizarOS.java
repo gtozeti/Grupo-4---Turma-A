@@ -31,6 +31,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
     public JanelaAtualizarOS(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jFormattedTextField3.setValue(valorOS(jTable1));
     }
 
     /**
@@ -170,10 +171,6 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
                     .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -202,17 +199,19 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
                         .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextField3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -240,11 +239,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -252,107 +247,21 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56))))
+                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    // BOTÃO BUSCAR CLIENTE
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-
-        JanelaBuscarCliente j = new JanelaBuscarCliente(this, true);
-
-        j.setVisible(true);
-        jTextField4.setText(j.resposta);
-        if (!j.resposta.equals("")) {
-            jTextField4.setEnabled(true);
-        } else {
-            jTextField4.setEnabled(false);
-        }
-
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    // BOTÃO BUSCAR FUNCIONÁRIO
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-        JanelaBuscarFuncionario j = new JanelaBuscarFuncionario(this, true);
-
-        j.setVisible(true);
-        jTextField6.setText(j.resposta);
-        if (!j.resposta.equals("")) {
-            jTextField6.setEnabled(true);
-        } else {
-            jTextField6.setEnabled(false);
-        }
-
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    // BOTÃO REMOVER SERVIÇO
-    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-
-        if (jTable1.getSelectedRow() != -1) {
-
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.removeRow(jTable1.getSelectedRow());
-            jFormattedTextField3.setValue(valorOS(jTable1));
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
-        }
-    }//GEN-LAST:event_jButton33ActionPerformed
-
-    // BOTÃO ADICIONAR SERVIÇO
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-
-        JanelaBuscarServico j = new JanelaBuscarServico(this, true);
-        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
-        ArrayList<String[]> listaInfo = new ArrayList();
-        j.setVisible(true);
-        boolean cond = true;
-
-        // Recebendo as informações do serviço selecionado e repassando para um array
-        listaInfo.add(j.resposta.split("-"));
-
-        // Loop para analisar se já existe um serviço adicionado
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-
-            if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.substring(0, 1).strip())) {
-                cond = false;
-                jTable1.setValueAt(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()) + 1, i, 3);
-                break;
-
-            }
-
-        }
-
-        if (cond) {
-            // Loop para adicionar uma nova linha e preencher com as informações do
-            // serviço escolhido
-            for (String[] i : listaInfo) {
-                m.addRow(new Object[]{i[0], i[1], i[2], i[3]});
-
-            }
-        }
-
-        jFormattedTextField3.setValue(valorOS(jTable1));
-        JanelaMain.AlinhaCelula(jTable1);
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    // BOTÃO CANCELAR
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        att = false;
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     // BOTÃO ATUALIZAR OS
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -404,6 +313,92 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    // BOTÃO CANCELAR
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        att = false;
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    // BOTÃO BUSCAR CLIENTE
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+
+        JanelaBuscarCliente j = new JanelaBuscarCliente(this, true);
+
+        j.setVisible(true);
+        jTextField4.setText(j.resposta);
+        if (!j.resposta.equals("")) {
+            jTextField4.setEnabled(true);
+        } else {
+            jTextField4.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    // BOTÃO BUSCAR FUNCIONÁRIO
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+        JanelaBuscarFuncionario j = new JanelaBuscarFuncionario(this, true);
+
+        j.setVisible(true);
+        jTextField6.setText(j.resposta);
+        if (!j.resposta.equals("")) {
+            jTextField6.setEnabled(true);
+        } else {
+            jTextField6.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    // BOTÃO ADICIONAR SERVIÇO
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+
+        JanelaBuscarServico j = new JanelaBuscarServico(this, true);
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        ArrayList<String[]> listaInfo = new ArrayList();
+        j.setVisible(true);
+        boolean cond = true;
+
+        // Recebendo as informações do serviço selecionado e repassando para um array
+        listaInfo.add(j.resposta.split("-"));
+
+        // Loop para analisar se já existe um serviço adicionado
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+            if (jTable1.getValueAt(i, 0).toString().strip().equals(j.resposta.substring(0, 1).strip())) {
+                cond = false;
+                jTable1.setValueAt(Integer.valueOf(jTable1.getValueAt(i, 3).toString().strip()) + 1, i, 3);
+                break;
+
+            }
+
+        }
+
+        if (cond) {
+            // Loop para adicionar uma nova linha e preencher com as informações do
+            // serviço escolhido
+            for (String[] i : listaInfo) {
+                m.addRow(new Object[]{i[0], i[1], i[2], i[3]});
+
+            }
+        }
+
+        jFormattedTextField3.setValue(valorOS(jTable1));
+        JanelaMain.AlinhaCelula(jTable1);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    // BOTÃO REMOVER SERVIÇO
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+
+        if (jTable1.getSelectedRow() != -1) {
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.removeRow(jTable1.getSelectedRow());
+            jFormattedTextField3.setValue(valorOS(jTable1));
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum serviço selecionado");
+        }
+    }//GEN-LAST:event_jButton33ActionPerformed
+
     private void adicionarServico(String cod_os) {
         ArrayList<String[]> servicos = new ArrayList();
         DaoIntegra daoIntegra = new DaoIntegra();
@@ -417,6 +412,8 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
             servicos.add(aux);
         }
+        
+        daoIntegra.create(servicos);
     }
 
     public void limpaCampos() {
@@ -473,6 +470,102 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JanelaAtualizarOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
