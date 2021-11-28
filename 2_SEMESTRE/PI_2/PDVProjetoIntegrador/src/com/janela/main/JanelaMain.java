@@ -298,7 +298,8 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel4.setText("Produtos");
 
         jButton7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton7.setText("Adicionar Produto");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar.png"))); // NOI18N
+        jButton7.setToolTipText("Adicionar Produto");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -314,7 +315,8 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel6.setText("Valor Total");
 
         jButton8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton8.setText("Cancelar");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Cancelar.png"))); // NOI18N
+        jButton8.setToolTipText("Cancelar");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -322,7 +324,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton9.setText("Concluir");
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Confirmar.png"))); // NOI18N
+        jButton9.setToolTipText("Concluir");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -330,7 +333,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton31.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton31.setText("Buscar Cliente");
+        jButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton31.setToolTipText("Buscar Cliente");
         jButton31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton31ActionPerformed(evt);
@@ -351,7 +355,8 @@ public class JanelaMain extends javax.swing.JFrame {
         jTextField6.setFocusable(false);
 
         jButton32.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton32.setText("Buscar Funcoinário");
+        jButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton32.setToolTipText("Buscar Funcionário");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton32ActionPerformed(evt);
@@ -359,7 +364,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton33.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton33.setText("Remover Produto");
+        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Remover.png"))); // NOI18N
+        jButton33.setToolTipText("Remover Produto");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton33ActionPerformed(evt);
@@ -380,9 +386,9 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton8)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton9))
+                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1)
                             .addGroup(VenderScreenLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -412,40 +418,50 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderScreenLayout.createSequentialGroup()
-                                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1))
-                            .addComponent(jButton32, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
+                            .addComponent(jButton32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(VenderScreenLayout.createSequentialGroup()
+                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(VenderScreenLayout.createSequentialGroup()
+                                .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(VenderScreenLayout.createSequentialGroup()
+                                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 334, Short.MAX_VALUE))))
         );
         VenderScreenLayout.setVerticalGroup(
             VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VenderScreenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(VenderScreenLayout.createSequentialGroup()
-                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(VenderScreenLayout.createSequentialGroup()
-                                .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 21, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
-                    .addGroup(VenderScreenLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 43, Short.MAX_VALUE)
+                .addComponent(jLabel4)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -455,8 +471,8 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41)
                 .addGroup(VenderScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -476,9 +492,15 @@ public class JanelaMain extends javax.swing.JFrame {
                 jTextField2FocusLost(evt);
             }
         });
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jButton10.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton10.setText("Buscar");
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton10.setToolTipText("Buscar Ordem de Serviço");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -536,7 +558,8 @@ public class JanelaMain extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jButton11.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton11.setText("Excluir OS");
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Excluir.png"))); // NOI18N
+        jButton11.setToolTipText("Excluir OS");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -544,7 +567,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton12.setText("Adicionar OS");
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar_OS.png"))); // NOI18N
+        jButton12.setToolTipText("Adicionar OS");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -552,7 +576,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton13.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton13.setText("Atualizar OS");
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Atualizar_OS.png"))); // NOI18N
+        jButton13.setToolTipText("Atualizar OS");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -570,16 +595,16 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addGroup(OsScreenLayout.createSequentialGroup()
                         .addComponent(jTextField2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10))
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(OsScreenLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OsScreenLayout.createSequentialGroup()
-                        .addComponent(jButton11)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton13)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jButton12)))
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         OsScreenLayout.setVerticalGroup(
@@ -588,16 +613,16 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addGroup(OsScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(OsScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addGroup(OsScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -613,6 +638,9 @@ public class JanelaMain extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField3FocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField3FocusLost(evt);
+            }
         });
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -621,7 +649,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton14.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton14.setText("Buscar");
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton14.setToolTipText("Buscar Cliente");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -660,7 +689,8 @@ public class JanelaMain extends javax.swing.JFrame {
         }
 
         jButton15.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton15.setText("Excluir Cliente");
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Excluir.png"))); // NOI18N
+        jButton15.setToolTipText("Excluir Cliente");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
@@ -668,7 +698,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton16.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton16.setText("Adicionar Cliente");
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar_Func.png"))); // NOI18N
+        jButton16.setToolTipText("Adicionar Cliente");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -676,7 +707,8 @@ public class JanelaMain extends javax.swing.JFrame {
         });
 
         jButton17.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton17.setText("Atualizar Cliente");
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Atualizar_Func.png"))); // NOI18N
+        jButton17.setToolTipText("Atualizar Cliente");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17ActionPerformed(evt);
@@ -694,16 +726,16 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addGroup(ClienteScreenLayout.createSequentialGroup()
                         .addComponent(jTextField3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton14))
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ClienteScreenLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClienteScreenLayout.createSequentialGroup()
-                        .addComponent(jButton15)
+                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton17)
+                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jButton16)))
+                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         ClienteScreenLayout.setVerticalGroup(
@@ -712,16 +744,16 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addGroup(ClienteScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ClienteScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addGroup(ClienteScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -737,7 +769,8 @@ public class JanelaMain extends javax.swing.JFrame {
         jLabel12.setText("Data final");
 
         jButton18.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton18.setText("Buscar");
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton18.setToolTipText("Buscar");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
@@ -777,15 +810,14 @@ public class JanelaMain extends javax.swing.JFrame {
         }
 
         jDateChooser2.setDateFormatString("dd-MM-yyyy");
+        jDateChooser2.setMinSelectableDate(new java.util.Date(1609470000000L));
+        jDateChooser2.setOpaque(false);
 
         jDateChooser3.setDateFormatString("dd-MM-yyyy");
+        jDateChooser3.setOpaque(false);
 
-        jButton6.setText(" Detalhes");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Detalhes.png"))); // NOI18N
+        jButton6.setToolTipText(" Detalhes");
 
         javax.swing.GroupLayout RelatorioScreenLayout = new javax.swing.GroupLayout(RelatorioScreen);
         RelatorioScreen.setLayout(RelatorioScreenLayout);
@@ -807,10 +839,10 @@ public class JanelaMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton18))
+                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RelatorioScreenLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton6)))
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         RelatorioScreenLayout.setVerticalGroup(
@@ -828,12 +860,12 @@ public class JanelaMain extends javax.swing.JFrame {
                             .addGroup(RelatorioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel12)
                                 .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(294, Short.MAX_VALUE))
         );
 
         jPanel3.add(RelatorioScreen, "card5");
@@ -896,7 +928,7 @@ public class JanelaMain extends javax.swing.JFrame {
                 .addComponent(jButton34, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(424, Short.MAX_VALUE))
         );
 
         ConfigScreen.add(jPanel1, "card2");
@@ -907,6 +939,14 @@ public class JanelaMain extends javax.swing.JFrame {
         jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField4FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField4FocusLost(evt);
+            }
+        });
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
             }
         });
 
@@ -1055,7 +1095,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addGroup(ProdutoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1076,6 +1116,11 @@ public class JanelaMain extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField5FocusLost(evt);
+            }
+        });
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
             }
         });
 
@@ -1187,7 +1232,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addGroup(FuncionarioScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1206,6 +1251,11 @@ public class JanelaMain extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField7FocusLost(evt);
+            }
+        });
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
             }
         });
 
@@ -1351,7 +1401,7 @@ public class JanelaMain extends javax.swing.JFrame {
                     .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addGroup(ServicoScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1524,8 +1574,15 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_VENDER -> BOTÃO CONCLUIR
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        adicionaVenda();
-        jButton8ActionPerformed(evt);
+        if (jTextField1.getText().equals("Adicione um cliente")
+                || jTextField6.getText().equals("Adicione um funcionário")
+                || jTable1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        } else {
+            adicionaVenda();
+            jButton8ActionPerformed(evt);
+        }
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     //@JANELA_RELATORIO -> BOTÃO BUSCAR
@@ -1573,6 +1630,39 @@ public class JanelaMain extends javax.swing.JFrame {
 
         janelaDetalheOS.limpaCampos();
     }//GEN-LAST:event_jButton6ActionPerformed
+    private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
+        if (jTextField4.getText().isEmpty()){
+           setTextDefault(jTextField4, "Procurar Produto");
+        }
+    }//GEN-LAST:event_jTextField4FocusLost
+
+    // @JANELA_SERVIÇO -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
+    // FOI ESCRITO)
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+         readTable(jTable7, daoServico.search(jTextField7.getText()));
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    // @JANELA_FUNCIONÁRIO -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
+    // FOI ESCRITO)
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        readTable(jTable6, daoFuncionario.search(jTextField5.getText()));
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+       readTable(jTable5, daoProduto.search(jTextField4.getText()));
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
+        if (jTextField3.getText().isEmpty()){
+           setTextDefault(jTextField3, "Procurar Cliente");
+        }
+    }//GEN-LAST:event_jTextField3FocusLost
+
+    // @JANELA_OS -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
+    // FOI ESCRITO)
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        readTable(jTable2, daoOS.search(jTextField2.getText()));
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR" (AO APERTAR ENTER FARÁ BUSCA DO QUE
     // FOI ESCRITO)
@@ -1597,7 +1687,7 @@ public class JanelaMain extends javax.swing.JFrame {
     // @SIDE_MENU -> BOTÃO "CLIENTE" (ACESSAR JANELA CLIENTE)
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
         TrocaTela(jPanel3, "card4");
-        setTextDefault(jTextField3, "Buscar Cliente");
+        setTextDefault(jTextField3, "Procurar Cliente");
         readTable(jTable3, daoCliente.read());
     }// GEN-LAST:event_jButton3ActionPerformed
 
@@ -1649,8 +1739,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_ORDEM_DE_SERVIÇO -> ÁREA_TEXTO "BUSCAR"
     private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField2FocusGained
-        jTextField2.setText("");
-        jTextField2.setForeground(Color.black);
+        
+         if (jTextField2.getText().equals("Procurar Ordem de Serviço")) {
+            jTextField2.setText("");
+            jTextField2.setForeground(Color.black);
+        }
     }// GEN-LAST:event_jTextField2FocusGained
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ATUALIZAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ATUALIZAR OS)
@@ -1660,26 +1753,28 @@ public class JanelaMain extends javax.swing.JFrame {
         try {
             if (jTable2.getSelectedRow() != -1) {
 
-                ArrayList<String[]> listaInfo = new ArrayList();
+                ArrayList<String[]> listaInfo, listaAux = new ArrayList();
                 listaInfo = DaoOS.infoOS(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
 
                 int index = 0;
                 for (String[] i : listaInfo) {
                     if (index == 0) {
-                        System.out.println(Arrays.toString(i));
-                        System.out.println(i[0]);
+                        
 
                         janelaAtualizarOS.jLabel7.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
                         janelaAtualizarOS.jTextField4.setText(i[3]);
                         janelaAtualizarOS.jTextField6.setText(i[4]);
                         janelaAtualizarOS.jTextField5.setText(i[0]);
                         janelaAtualizarOS.jComboBox1.setSelectedItem(i[2]);
-                    } else {
-                        listaInfo.remove(0);
-                        readTable(janelaAtualizarOS.jTable1, listaInfo);
                     }
                     index++;
                 }
+                 
+                    for (int j = 1; j < listaInfo.size(); j++){
+                        listaAux.add(listaInfo.get(j));
+                    }
+                    readTable(janelaAtualizarOS.jTable1, listaAux);
+                   janelaAtualizarOS.jFormattedTextField3.setValue(janelaAtualizarOS.valorOS(janelaAtualizarOS.jTable1));
                 janelaAtualizarOS.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhuma OS selecionada\n");
@@ -1695,11 +1790,18 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_ORDEM_DE_SERVIÇO -> BOTÃO "ADICIONAR ORDEM DE SERVIÇO" (ABRE JDIALOG PARA ADICIONAR OS)
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton12ActionPerformed
+        
+        
+        janelaAdicionarOS.jLabel7.setText(DaoOS.totalOS());
         AlinhaCelula(janelaAdicionarOS.jTable1);
         janelaAdicionarOS.setVisible(true);
+        janelaAdicionarOS.limpaCampos();
+        
+         
         if (janelaAdicionarOS.att) {
             readTable(jTable2, daoOS.read());
         }
+        
 
     }// GEN-LAST:event_jButton12ActionPerformed
 
@@ -1728,8 +1830,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_CLIENTE -> ÁREA_TEXTO "BUSCAR"
     private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField3FocusGained
-        jTextField3.setText("");
-        jTextField3.setForeground(Color.black);
+       
+         if (jTextField3.getText().equals("Procurar Cliente")) {
+            jTextField3.setText("");
+            jTextField3.setForeground(Color.black);
+        }
     }// GEN-LAST:event_jTextField3FocusGained
 
     // @JANELA_CLIENTE -> BOTÃO "ATUALIZAR CLIENTE" (ABRE JDIALOG PARA ATUALIZAR CLIENTE)
@@ -1781,7 +1886,9 @@ public class JanelaMain extends javax.swing.JFrame {
     // @JANELA_CLIENTE -> BOTÃO "EXCLUIR CLIENTE" (ABRIR JDIALOG PARA EXCLUIR CLIENTE)
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton15ActionPerformed
 
-        if (jTable3.getSelectedRow() != -1) { // Condicionlar para checar se foi selecionado um cliente ou nao
+        if (jTable3.getSelectedRow() != -1) { 
+// Condicionlar para checar se foi selecionado um cliente ou nao
+            AlinhaCelula(janelaExcluirCliente.jTable1);
             janelaExcluirCliente.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 0).toString(), 0, 0);
             janelaExcluirCliente.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 1).toString(), 0, 1);
             janelaExcluirCliente.jTable1.setValueAt(jTable3.getValueAt(jTable3.getSelectedRow(), 2).toString(), 0, 2);
@@ -1800,8 +1907,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_PRODUTO -> ÁREA_TEXTO "BUSCAR"
     private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField4FocusGained
-        jTextField4.setText("");
-        jTextField4.setForeground(Color.black);
+                
+         if (jTextField4.getText().equals("Procurar Produto")) {
+            jTextField4.setText("");
+            jTextField4.setForeground(Color.black);
+        }
     }// GEN-LAST:event_jTextField4FocusGained
 
     // @JANELA_PRODUTO -> BOTÃO "ATUALIZAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
@@ -1831,9 +1941,11 @@ public class JanelaMain extends javax.swing.JFrame {
 
     // @JANELA_PRODUTO -> BOTÃO "ADICIONAR" (ABRIR JDIALOG PARA ATUALIZAR PRODUTO)
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton23ActionPerformed
+        janelaAdicionarProduto.jLabel5.setText(DaoProduto.totalOS());
+        insertComboBox(janelaAdicionarProduto.CategoriaComboBox, "", daoProduto.categoria());
         janelaAdicionarProduto.setVisible(true);
-
         janelaAdicionarProduto.limpaCampos();
+        
         if (janelaAdicionarProduto.att) {
             readTable(jTable5, daoProduto.read());
         }
@@ -1871,7 +1983,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
             janelaAtualizarFuncionario.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");
+            JOptionPane.showMessageDialog(null, "Nenhum(a) funcionário(a) selecionado(a)");
         }
 
         if (janelaAtualizarFuncionario.att) {
@@ -1901,7 +2013,7 @@ public class JanelaMain extends javax.swing.JFrame {
 
             janelaExcluirFuncionario.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado");
+            JOptionPane.showMessageDialog(null, "Nenhum(a) funcionário(a) selecionado(a)");
         }
 
         if (janelaExcluirFuncionario.att) {

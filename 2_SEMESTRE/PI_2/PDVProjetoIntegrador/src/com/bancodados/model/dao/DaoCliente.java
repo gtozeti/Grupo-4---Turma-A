@@ -33,10 +33,10 @@ public class DaoCliente {
 
             stmt.executeUpdate(); // Executando atualização do comando
 
-            JOptionPane.showMessageDialog(null, "INFO adicionada com sucesso!"); // Mensagem para caso o comando dê certo
+            JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar o cliente/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
@@ -67,7 +67,7 @@ public class DaoCliente {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha em buscar dados\n" + ex);
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados do cliente\n" + ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
         }
@@ -97,10 +97,10 @@ public class DaoCliente {
 
             stmt.executeUpdate(); // Executando atualização do comando
 
-            JOptionPane.showMessageDialog(null, "INFO atualizada com sucesso!"); // Mensagem para caso o comando dê certo
+            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar atualizar dados do cliente/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
@@ -129,7 +129,7 @@ public class DaoCliente {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha em buscar dados\n" + ex);
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados do cliente\n" + ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
         }
@@ -149,10 +149,10 @@ public class DaoCliente {
 
             stmt.executeUpdate(); // Executando atualização do comando
 
-            JOptionPane.showMessageDialog(null, "INFO deletada com sucesso!"); // Mensagem para caso o comando dê certo
+            JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar deletar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar deletar dados do cliente/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }

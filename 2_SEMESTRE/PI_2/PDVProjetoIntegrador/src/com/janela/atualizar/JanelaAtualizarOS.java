@@ -98,7 +98,8 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         jLabel6.setText("Serviços Uitlizados:");
 
         jButton33.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton33.setText("Remover Serviço");
+        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Remover.png"))); // NOI18N
+        jButton33.setToolTipText("Remover Serviço");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton33ActionPerformed(evt);
@@ -106,7 +107,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         });
 
         jButton12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar.png"))); // NOI18N
         jButton12.setToolTipText("Adicionar Produto");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,14 +151,16 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Débito", "Crédito", "Crédito (x2)", "Crédito (x3)", "Crédito (x4)", "Crédito (x5)", "Crédito (x6)", "Crédito (x7)", "Crédito (x8)", "Crédito (x9)", "Crédito (x10)", "Crédito (x11)", "Crédito (x12)" }));
 
-        jButton1.setText("Cancelar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Cancelar.png"))); // NOI18N
+        jButton1.setToolTipText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Atualizar");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Confirmar.png"))); // NOI18N
+        jButton2.setToolTipText("Atualizar OS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -196,7 +199,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -358,6 +361,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         boolean cond = true;
 
         // Recebendo as informações do serviço selecionado e repassando para um array
+        if (!j.resposta.equals("")){
         listaInfo.add(j.resposta.split("-"));
 
         // Loop para analisar se já existe um serviço adicionado
@@ -383,6 +387,8 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         jFormattedTextField3.setValue(valorOS(jTable1));
         JanelaMain.AlinhaCelula(jTable1);
+        }
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     // BOTÃO REMOVER SERVIÇO

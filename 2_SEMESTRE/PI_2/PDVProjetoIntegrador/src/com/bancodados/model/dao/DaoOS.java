@@ -153,7 +153,7 @@ public static String totalOS() {
             ResultSet resultado = stmt.executeQuery(); // Executando atualização do comando
 
             if (resultado.next()) {
-                total = Integer.toString(resultado.getInt(total + 1));
+                total = Integer.toString(resultado.getInt("total") + 1 );
             }
         } catch (Exception ex) {
             
