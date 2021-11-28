@@ -240,7 +240,7 @@
           <Font name="Dialog" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/images/Buscar.png"/>
+          <Image iconType="3" name="/com/images/Adicionar.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Adicionar Produto"/>
       </Properties>

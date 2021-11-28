@@ -106,7 +106,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         });
 
         jButton12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar.png"))); // NOI18N
         jButton12.setToolTipText("Adicionar Produto");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,6 +323,7 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
         boolean cond = true;
 
         // Recebendo as informações do serviço selecionado e repassando para um array
+        if (!j.resposta.equals("")){
         listaInfo.add(j.resposta.split("-"));
 
         // Loop para analisar se já existe um serviço adicionado
@@ -348,6 +349,8 @@ public class JanelaAtualizarOS extends javax.swing.JDialog {
 
         jFormattedTextField3.setValue(valorOS(jTable1));
         JanelaMain.AlinhaCelula(jTable1);
+        }
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     // BOTÃO CANCELAR

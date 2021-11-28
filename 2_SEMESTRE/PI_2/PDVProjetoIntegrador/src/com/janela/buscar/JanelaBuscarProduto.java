@@ -31,6 +31,7 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Produto");
+        setResizable(false);
 
         jTextField1.setText("Buscar Produto");
         jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -74,8 +75,8 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTable1.getColumnModel().getColumn(0).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(120);
         }
 
         jButton2.setText("Cancelar");

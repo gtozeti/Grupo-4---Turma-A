@@ -147,7 +147,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         });
 
         jButton12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Buscar.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Adicionar.png"))); // NOI18N
         jButton12.setToolTipText("Adicionar Produto");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
