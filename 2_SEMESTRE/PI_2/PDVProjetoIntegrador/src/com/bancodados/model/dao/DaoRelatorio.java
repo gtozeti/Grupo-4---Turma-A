@@ -229,7 +229,7 @@ public class DaoRelatorio {
     }
 
     public ArrayList<String[]> listaProdutos(int cod_vend) {
-        
+
         Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
         PreparedStatement stmt = null; // Variável para executar comando MySQL
         ResultSet rs = null;
@@ -249,7 +249,7 @@ public class DaoRelatorio {
                 resultado += format.format(rs.getInt("cod_prod")) + ",,";
                 resultado += rs.getString("categoria") + ",,";
                 resultado += rs.getString("nome") + ",,";
-                resultado += Integer.toString(rs.getInt("quantidade_total"))  + ",,";
+                resultado += Integer.toString(rs.getInt("quantidade_total")) + ",,";
                 resultado += Double.toString(rs.getDouble("valor_unit"));
 
                 relatorio.add(resultado.split(",,"));
@@ -262,5 +262,83 @@ public class DaoRelatorio {
         }
 
         return relatorio; // retorna valor da lista.
+    }
+
+    public ArrayList<String[]> getGraph(LocalDate inicio, LocalDate fim) {
+        Connection con = ConnectionFactory.getConnection(); // Iniciando a conexão com o Banco de Dados
+        PreparedStatement stmt = null; // Variável para executar comando MySQL
+        ResultSet rs = null;
+
+        ArrayList<String[]> relatorio = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
+
+        try {
+
+            stmt = con.prepareStatement("SELECT SUM(o.valor_total) AS valor_total, o.dia FROM ordem_servico AS o WHERE o.dia BETWEEN CAST(? AS DATE) AND CAST(? AS DATE) GROUP BY o.dia"); // Comando MySQL
+            stmt.setString(1, inicio.toString());
+            stmt.setString(2, fim.toString());
+            rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
+
+            while (rs.next()) {
+                String resultado = "";
+                String a = rs.getString("dia");
+
+                resultado += a.substring(8) + "/" + a.substring(5, 7) + "/" + a.substring(0, 4) + ",,";
+                resultado += "Ordem Serviço,,";
+                resultado += Double.toString(rs.getDouble("valor_total"));
+
+                relatorio.add(resultado.split(",,"));
+            }
+
+            stmt = con.prepareStatement("SELECT SUM(v.valor_total) AS valor_total, v.dia FROM venda AS v WHERE v.dia BETWEEN CAST(? AS DATE) AND CAST(? AS DATE) GROUP BY v.dia"); // Comando MySQL
+            stmt.setString(1, inicio.toString());
+            stmt.setString(2, fim.toString());
+            rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
+
+            while (rs.next()) {
+                String resultado = "";
+                String a = rs.getString("dia");
+
+                resultado += a.substring(8) + "/" + a.substring(5, 7) + "/" + a.substring(0, 4) + ",,";
+                resultado += "Venda,,";
+                resultado += Double.toString(rs.getDouble("valor_total"));
+
+                relatorio.add(resultado.split(",,"));
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha em buscar dados\n" + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs); // fechando conexão com o banco de dados inependente do que acontecer
+        }
+
+        return OrganizaLista(relatorio); // retorna valor da lista.
+    }
+
+    private  ArrayList<String[]> OrganizaLista(ArrayList<String[]> lista) {
+        int menorIndex, j;
+        String[] aux;
+        j = 0;
+
+        while (j < lista.size()) {
+            menorIndex = j;
+
+            for (int i = j + 1; i < lista.size(); i++) {
+                String[] a = lista.get(menorIndex);
+                String[] b = lista.get(i);
+                if (a[0].compareToIgnoreCase(b[0]) > 0) {
+                    menorIndex = i;
+                }
+            }
+
+            aux = lista.get(j);
+            lista.add(j, lista.get(menorIndex));
+            lista.remove(menorIndex + 1);
+            lista.add(menorIndex, aux);
+            lista.remove(j + 1);
+
+            j++;
+        }
+
+        return lista;
     }
 }
