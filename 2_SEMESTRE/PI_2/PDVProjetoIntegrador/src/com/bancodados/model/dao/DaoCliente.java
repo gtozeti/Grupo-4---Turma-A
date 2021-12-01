@@ -173,17 +173,17 @@ public class DaoCliente {
         ArrayList<String[]> cliente = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
 
         try {
-            stmt = con.prepareStatement("SELECT cod_cs, nome, email, telefone, documento FROM cliente where cod_cs = ? OR nome = ? OR email = ? OR telefone = ? OR documento = ?");
+            stmt = con.prepareStatement("SELECT cod_cs, nome, email, telefone, documento FROM cliente where cod_cs = ? OR nome LIKE ? OR email LIKE ? OR telefone LIKE ? OR documento LIKE ?");
 
             try {
                 stmt.setInt(1, Integer.parseInt(input));
             } catch (Exception e) {
                 stmt.setInt(1, 0);
             }
-            stmt.setString(2, input);
-            stmt.setString(3, input);
-            stmt.setString(4, input);
-            stmt.setString(5, input);
+            stmt.setString(2, "%" + input + "%");
+            stmt.setString(3, "%" + input + "%");
+            stmt.setString(4, "%" + input + "%");
+            stmt.setString(5, "%" + input + "%");
 
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 

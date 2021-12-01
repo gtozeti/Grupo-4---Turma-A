@@ -87,7 +87,7 @@ public ArrayList<String[]> search(String input) {
                 stmt.setInt(1, -1);
             }
             stmt.setString(2, "%" + input + "%");
-            stmt.setString(3, input + "%");
+            stmt.setString(3, "%" + input + "%");
             rs = stmt.executeQuery(); // Adicionando os valores coletados no comando MySQL na varáivel
 
             while (rs.next()) {

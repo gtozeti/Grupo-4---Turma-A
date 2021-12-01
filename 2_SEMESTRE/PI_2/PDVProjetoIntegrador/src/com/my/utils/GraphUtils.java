@@ -7,6 +7,9 @@ package com.my.utils;
 
 import com.bancodados.model.dao.DaoRelatorio;
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+
+import com.janela.main.JanelaMain;
 
 import java.awt.Color;
 import java.time.LocalDate;
@@ -39,10 +42,11 @@ public class GraphUtils {
             dataset.addValue(Double.parseDouble(i[2]), i[1], i[0]);
         }
 
-        JFreeChart chart = ChartFactory.createLineChart("Relatório", "Data (dd/mm/aaaa)", "Valor (R$)", dataset);
+        JFreeChart chart = ChartFactory.createLineChart("Relatório Sintético", "Data (dd/mm/aaaa)", "Valor (R$)", dataset);
 
         customizeChart(chart);
-
+        
+       
         return new ChartPanel(chart);
     }
 
