@@ -218,9 +218,9 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                         .addComponent(jFormattedTextField3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -261,8 +261,8 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
                     .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -289,7 +289,7 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
                 String num = criarOS();
                 adicionarServico(num);
-
+                att= true;
                 limpaCampos();
                 setVisible(false);
                 dispose();
@@ -309,11 +309,11 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
         os.setProblema(jTextField5.getText().trim()); // Campo problema
         os.setValor_total(Double.parseDouble(jFormattedTextField3.getValue().toString())); // Campo valor total
 
-        System.out.println("Campo cliente: " + os.getFk_cliente_cod_cs());
-        System.out.println("Campo funcionario: " + os.getFk_funcionario_cod_fun());
-        System.out.println("Campo problema: " + os.getProblema());
-        System.out.println("Campo metodo de pagamento: " + os.getMetodo_pagamento());
-        System.out.println("Campo valor total: " + os.getValor_total());
+//        System.out.println("Campo cliente: " + os.getFk_cliente_cod_cs());
+//        System.out.println("Campo funcionario: " + os.getFk_funcionario_cod_fun());
+//        System.out.println("Campo problema: " + os.getProblema());
+//        System.out.println("Campo metodo de pagamento: " + os.getMetodo_pagamento());
+//        System.out.println("Campo valor total: " + os.getValor_total());
 
         return daoOS.create(os);
     }
@@ -336,9 +336,9 @@ public class JanelaAdicionarOS extends javax.swing.JDialog {
 
         for (String[] a : servicos) {
             for (String b : a) {
-                System.out.print(b + " ");
+//                System.out.print(b + " ");
             }
-            System.out.println("");
+//            System.out.println("");
         }
     }
 

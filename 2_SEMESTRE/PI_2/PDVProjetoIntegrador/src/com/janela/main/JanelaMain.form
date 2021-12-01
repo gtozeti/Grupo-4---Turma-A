@@ -96,7 +96,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Courier New" size="18" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="VENDER"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -109,7 +109,7 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Courier New" size="18" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CRIAR O.S."/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -122,7 +122,7 @@
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Courier New" size="18" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CLIENTES"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -135,7 +135,7 @@
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Courier New" size="18" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="RELAT&#xd3;RIO"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -148,7 +148,7 @@
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Courier New" size="18" style="1"/>
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CONFIGURA&#xc7;&#xd5;ES"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -164,7 +164,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Courier New" size="36" style="1"/>
+              <Font name="Arial" size="36" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="PDV.SYS"/>
@@ -204,7 +204,7 @@
                               <Component id="jButton32" min="-2" pref="73" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="439" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="425" max="32767" attributes="0"/>
                               <Component id="jButton8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton9" min="-2" max="-2" attributes="0"/>
@@ -274,7 +274,7 @@
                           <Component id="jLabel6" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jFormattedTextField3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="85" max="32767" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jButton9" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jButton8" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
@@ -301,7 +301,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="1"/>
+                  <Font name="Arial" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="VENDER"/>
               </Properties>
@@ -562,7 +562,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="778" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="761" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jTextField2" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -596,7 +596,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="352" max="-2" attributes="0"/>
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
+                      <EmptySpace pref="178" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton13" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jButton12" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -611,7 +611,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="1"/>
+                  <Font name="Arial" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="ORDEM DE SERVI&#xc7;O"/>
               </Properties>
@@ -665,7 +665,7 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="120" minWidth="120" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -751,7 +751,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" alignment="0" pref="778" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" alignment="0" pref="761" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jTextField3" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -785,7 +785,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="352" max="-2" attributes="0"/>
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
+                      <EmptySpace pref="178" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton17" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jButton16" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -800,7 +800,7 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="1"/>
+                  <Font name="Arial" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CLIENTES"/>
               </Properties>
@@ -950,7 +950,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanel4" max="32767" attributes="0"/>
-                          <Component id="jScrollPane4" alignment="0" pref="778" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="0" pref="761" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1147,7 +1147,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="342" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="345" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1176,13 +1176,10 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="537" max="32767" attributes="0"/>
-                              </Group>
                               <Component id="jButton19" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jButton20" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jButton20" alignment="0" pref="761" max="32767" attributes="0"/>
                               <Component id="jButton34" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1199,7 +1196,7 @@
                           <Component id="jButton34" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton20" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace pref="439" max="32767" attributes="0"/>
+                          <EmptySpace pref="443" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1208,8 +1205,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Dialog" size="18" style="1"/>
+                      <Font name="Arial" size="18" style="1"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="TELA DE CONFIGURA&#xc7;&#xd5;ES"/>
                   </Properties>
                 </Component>
@@ -1258,7 +1256,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane5" alignment="0" pref="778" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="761" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jTextField4" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1273,9 +1271,8 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButton40" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1290,14 +1287,14 @@
                               <Component id="jButton40" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jLabel15" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextField4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jButton21" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="352" max="-2" attributes="0"/>
-                          <EmptySpace pref="168" max="32767" attributes="0"/>
+                          <EmptySpace pref="184" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton24" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jButton23" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -1365,7 +1362,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="80" minWidth="80" prefWidth="-1" resizable="true">
+                            <Column maxWidth="120" minWidth="120" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -1441,7 +1438,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Dialog" size="18" style="1"/>
+                      <Font name="Arial" size="18" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="PRODUTOS"/>
                   </Properties>
@@ -1472,7 +1469,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane6" alignment="0" pref="778" max="32767" attributes="0"/>
+                              <Component id="jScrollPane6" alignment="0" pref="761" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jTextField5" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1488,8 +1485,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jButton29" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel14" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1511,7 +1507,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane6" min="-2" pref="352" max="-2" attributes="0"/>
-                          <EmptySpace pref="180" max="32767" attributes="0"/>
+                          <EmptySpace pref="182" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton28" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jButton27" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -1526,8 +1522,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Dialog" size="18" style="1"/>
+                      <Font name="Arial" size="18" style="1"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="text" type="java.lang.String" value="FUNCION&#xc1;RIOS"/>
                   </Properties>
                 </Component>
@@ -1577,7 +1574,7 @@
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="80" minWidth="80" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -1674,7 +1671,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane7" alignment="0" pref="778" max="32767" attributes="0"/>
+                              <Component id="jScrollPane7" alignment="0" pref="761" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jTextField7" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1689,9 +1686,8 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButton39" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel16" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1706,14 +1702,14 @@
                               <Component id="jButton39" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jLabel16" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextField7" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jButton35" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane7" min="-2" pref="352" max="-2" attributes="0"/>
-                          <EmptySpace pref="161" max="32767" attributes="0"/>
+                          <EmptySpace pref="181" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton38" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jButton37" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -1845,7 +1841,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Dialog" size="18" style="1"/>
+                      <Font name="Arial" size="18" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="SERVI&#xc7;OS"/>
                   </Properties>

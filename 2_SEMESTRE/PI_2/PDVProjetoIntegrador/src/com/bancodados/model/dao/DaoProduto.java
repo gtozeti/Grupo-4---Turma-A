@@ -100,7 +100,7 @@ public class DaoProduto {
 
         ArrayList<String[]> listaProduto = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
 
-        DecimalFormat format = new DecimalFormat("R$ 0,00");
+        DecimalFormat format = new DecimalFormat("R$ 0.00");
 
         try {
             stmt = con.prepareStatement("SELECT cod_prod, categoria, nome, valor_unit, quantidade FROM produto where cod_prod = ? OR nome LIKE ? OR categoria LIKE ?");
@@ -120,7 +120,7 @@ public class DaoProduto {
                 resultado += Integer.toString(rs.getInt("cod_prod")) + ",";
                 resultado += rs.getString("categoria") + ",";
                 resultado += rs.getString("nome") + ",";
-                resultado += format.format(rs.getDouble("valor_unit")) + ",";
+                resultado += format.format(rs.getDouble("valor_unit")).replace(",", ".") + ",";
                 resultado += Integer.toString(rs.getInt("quantidade"));
 
                 listaProduto.add(resultado.split(","));

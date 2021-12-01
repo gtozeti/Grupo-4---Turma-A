@@ -138,7 +138,7 @@ public class DaoServico {
                 resultado += Integer.toString(rs.getInt("cod_serv")) + ",";
                 resultado += rs.getString("nome") + ",";
                 resultado += format.format(rs.getDouble("valor")).replace(",", ".");
-                System.out.println(resultado);
+                
                 listaProduto.add(resultado.split(","));
             }
 
