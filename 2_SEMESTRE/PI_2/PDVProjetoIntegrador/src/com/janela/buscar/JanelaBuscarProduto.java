@@ -156,6 +156,8 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
     // BOTÃO ADICIONAR PRODUTO
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (jTable1.getSelectedRow() != -1) {
+            
+            if (Integer.valueOf(jSpinner1.getValue().toString()) <= DaoProduto.totalProd(Integer.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()))){
             String[] p = new String[5];
             
             p[0] = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
@@ -168,6 +170,10 @@ public class JanelaBuscarProduto extends javax.swing.JDialog {
 
             setVisible(false);
             dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Quantidade selecionada a mais do que em estoque.");
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Produto não selecionado.\nPor favor, selecione um produto.");
         }

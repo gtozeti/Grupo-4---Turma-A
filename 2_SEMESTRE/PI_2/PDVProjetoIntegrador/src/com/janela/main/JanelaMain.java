@@ -1613,7 +1613,7 @@ public class JanelaMain extends javax.swing.JFrame {
             atualizaGrafico(dateInicio.date, dateFim.date);
         }
     }//GEN-LAST:event_jButton18ActionPerformed
-
+//GEN-LAST:event_jButton18ActionPerformed
 // @JANELA_SERVIÇOS -> ÁREA_TEXTO "BUSCAR" (AO PERDER FOCUS, VOLTA AO PADRÃO
     // O VALOR DO CAMPO)
     private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
@@ -2308,6 +2308,7 @@ public class JanelaMain extends javax.swing.JFrame {
     }
     
     private void atualizaGrafico(LocalDate inicio, LocalDate fim) {
+        System.out.println(inicio + " " + fim);
         JPanel p = GraphUtils.createChartPanel(inicio, fim);
         p.setSize(jPanel4.getSize());
         p.setVisible(true);
