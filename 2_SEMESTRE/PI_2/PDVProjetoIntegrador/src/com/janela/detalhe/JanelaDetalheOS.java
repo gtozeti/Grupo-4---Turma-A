@@ -46,7 +46,7 @@ public class JanelaDetalheOS extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Atualizar Ordem de Serviço");
+        setTitle("Detalhes Ordem de Serviço");
         setResizable(false);
 
         jLabel1.setText("Código OS:");

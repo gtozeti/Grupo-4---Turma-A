@@ -91,6 +91,30 @@ public class DaoProduto {
             return total;
         }
     }
+    
+    //Função para buscar a quantidade de produtos em estoque
+    public static int totalProd(int cod_produto) {
+
+        Connection con = ConnectionFactory.getConnection(); // Inicia conexão com o banco de dados
+        PreparedStatement stmt = null; // Variável utilizada para comando MySQL
+        int total = 0;
+
+        try {
+            stmt = con.prepareStatement(" SELECT quantidade FROM produto WHERE cod_prod = ?");
+            stmt.setString(1, String.valueOf(cod_produto));
+            ResultSet resultado = stmt.executeQuery(); // Executando atualização do comando
+
+            if (resultado.next()) {
+
+                total = resultado.getInt("quantidade"); // Retorno do código da última OS cadastrada + 1
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao tentar buscar os produtos cadastrados\n" + ex); // Mensagem para cada o comando não dê certo
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
+            return total;
+        }
+    }
 
     public ArrayList<String[]> search(String input) {
 
@@ -100,7 +124,7 @@ public class DaoProduto {
 
         ArrayList<String[]> listaProduto = new ArrayList(); // Lista do tipo objeto para alocar os valores da tabelaTeste
 
-        DecimalFormat format = new DecimalFormat("R$ 0,00");
+        DecimalFormat format = new DecimalFormat("R$ 0.00");
 
         try {
             stmt = con.prepareStatement("SELECT cod_prod, categoria, nome, valor_unit, quantidade FROM produto where cod_prod = ? OR nome LIKE ? OR categoria LIKE ?");
@@ -120,7 +144,7 @@ public class DaoProduto {
                 resultado += Integer.toString(rs.getInt("cod_prod")) + ",";
                 resultado += rs.getString("categoria") + ",";
                 resultado += rs.getString("nome") + ",";
-                resultado += format.format(rs.getDouble("valor_unit")) + ",";
+                resultado += format.format(rs.getDouble("valor_unit")).replace(",", ".") + ",";
                 resultado += Integer.toString(rs.getInt("quantidade"));
 
                 listaProduto.add(resultado.split(","));

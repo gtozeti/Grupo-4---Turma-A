@@ -35,10 +35,10 @@ public class DaoParticipa {
             
             // INSERIR OS PRODUTOS DA LISTA E SUAS RESPECTIVAS QUANTIDADES
             
-            JOptionPane.showMessageDialog(null, "INFO adicionada com sucesso!"); // Mensagem para caso o comando dê certo
+            //JOptionPane.showMessageDialog(null, "INFO adicionada com sucesso!"); // Mensagem para caso o comando dê certo
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar/n" + ex); // Mensagem para cada o comando não dê certo
+            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar PARTICIPA/n" + ex); // Mensagem para cada o comando não dê certo
         } finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }

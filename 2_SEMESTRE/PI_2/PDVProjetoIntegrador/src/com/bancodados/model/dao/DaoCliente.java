@@ -35,9 +35,15 @@ public class DaoCliente {
 
             JOptionPane.showMessageDialog(null, "Cliente adicionado com sucesso!"); // Mensagem para caso o comando dê certo
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar o cliente/n" + ex); // Mensagem para cada o comando não dê certo
-        } finally {
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1062){
+                JOptionPane.showMessageDialog(null, "Documento já cadastrado na base de dados"); // Mensagem para cada o comando não dê certo
+            }else{
+                JOptionPane.showMessageDialog(null, "Falha ao tentar adicionar o cliente\n" + ex);
+            } // Mensagem para cada o comando não dê certo
+        }
+
+        finally {
             ConnectionFactory.closeConnection(con, stmt); // Fechando a conexão com o banco independendo do que aconteça
         }
     }
