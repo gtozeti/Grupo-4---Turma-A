@@ -46,9 +46,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -1600,9 +1598,10 @@ public class JanelaMain extends javax.swing.JFrame {
 
     //@JANELA_RELATORIO -> BOTÃO BUSCAR
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+  
         DateUtils dateInicio = new DateUtils(jDateChooser2.getDate().toString().split(" "));
         DateUtils dateFim = new DateUtils(jDateChooser3.getDate().toString().split(" "));
-
+        
         if (DateUtils.condicoes(dateInicio, dateFim)) {
             readTable(jTable4, daoRelatorio.search(dateInicio.date, dateFim.date));
             atualizaGrafico(dateInicio.date, dateFim.date);
@@ -2303,10 +2302,18 @@ public class JanelaMain extends javax.swing.JFrame {
     }
     
     private void atualizaGrafico(LocalDate inicio, LocalDate fim) {
+        System.out.println(inicio);
+        System.out.println(fim);
+        
         JPanel p = GraphUtils.createChartPanel(inicio, fim);
         p.setSize(jPanel4.getSize());
         p.setVisible(true);
         jPanel4.add(p, BorderLayout.CENTER);
+        jPanel4.setVisible(true);
+    }
+    
+    private void tiraGrafico() {
+        jPanel4.setVisible(false);
     }
 
     public static void main(String args[]) {

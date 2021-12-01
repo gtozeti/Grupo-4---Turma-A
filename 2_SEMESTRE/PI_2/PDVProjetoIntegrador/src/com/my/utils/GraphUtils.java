@@ -28,15 +28,22 @@ public class GraphUtils {
     public static JPanel createChartPanel(LocalDate inicio, LocalDate fim) { // this method will create the chart panel containin the graph 
         DaoRelatorio daoRelatorio = new DaoRelatorio();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        LocalDate d = LocalDate.now();
 
         ArrayList<String[]> list = daoRelatorio.getGraph(inicio, fim);
-
-        System.out.println(d);
-        System.out.println(d.minusDays(30));
-
+        
         for (String[] i : list) {
-            dataset.addValue(Double.parseDouble(i[2]), i[1], i[0]);
+            for (String j : i) {
+                System.out.print(j + " ");
+            }
+            System.out.println("");
+        }
+        
+        if (list.isEmpty()) {
+
+        } else {
+            for (String[] i : list) {
+                dataset.addValue(Double.parseDouble(i[2]), i[1], i[0]);
+            }
         }
 
         JFreeChart chart = ChartFactory.createLineChart("Relatório", "Data (dd/mm/aaaa)", "Valor (R$)", dataset);
@@ -49,11 +56,11 @@ public class GraphUtils {
     private static void customizeChart(JFreeChart chart) {   // here we make some customization
         CategoryPlot plot = chart.getCategoryPlot();
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
-        
+
         Color c = new Color(214, 217, 223);
-        
+
         chart.setBackgroundPaint(c);
-        
+
         // sets paint color for each series
         renderer.setSeriesPaint(0, Color.YELLOW);
         renderer.setSeriesPaint(1, Color.GREEN);
