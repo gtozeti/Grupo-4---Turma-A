@@ -20,15 +20,15 @@ import java.util.logging.Logger;
  */
 public class ConnectionFactory {
 
-//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://remotemysql.com:3306/46DZ2dAfik?zeroDateTimeBehavior=CONVERT_TO_NULL";
-//    private static final String USER = "46DZ2dAfik";
-//    private static final String PASS = "BJKFkYX9Lv";
-    
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/pdv";
-    private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String URL = "jdbc:mysql://remotemysql.com:3306/46DZ2dAfik?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private static final String USER = "46DZ2dAfik";
+    private static final String PASS = "BJKFkYX9Lv";
+    
+//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//    private static final String URL = "jdbc:mysql://localhost:3306/pdv";
+//    private static final String USER = "root";
+//    private static final String PASS = "";
 
     public static Connection getConnection() {
 

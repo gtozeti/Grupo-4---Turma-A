@@ -2313,9 +2313,11 @@ public class JanelaMain extends javax.swing.JFrame {
         JPanel p = GraphUtils.createChartPanel(inicio, fim);
         p.setSize(jPanel4.getSize());
         p.setVisible(true);
+        
         jPanel4.removeAll();
+        jPanel4.revalidate();
+        jPanel4.repaint();
         jPanel4.add(p, BorderLayout.CENTER);
-       
     }
 
     public static void main(String args[]) {
