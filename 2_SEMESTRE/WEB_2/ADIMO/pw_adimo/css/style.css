@@ -1,6 +1,5 @@
 * {
     background-color: #24252A;
-
 }
 
 header {
@@ -37,20 +36,9 @@ height: 100px;
     color: #0088A9;
 }
 
-.nav_btn {
-    margin-left: 30px;
-    margin-right:30px;
-    background-color: antiquewhite;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
+.espaco {
+    margin-right: 30px;
 }
-
-.nav_btn:hover {
-    background-color: aliceblue;
-}
-
 .search_section {
     max-width: 600px;
     margin: auto;
@@ -64,6 +52,7 @@ height: 100px;
     padding-left: 40px;
     display: inline-block;
     padding: 10px;
+    background-color: #24252A;
 }
 
 #search_bar {
@@ -95,7 +84,6 @@ height: 100px;
 .painel_casa {
     margin: auto;
     padding: 10px;
-    /* min-width: 900; */
 }
 
 .painel_casa li {
@@ -140,4 +128,64 @@ height: 100px;
 
 section {
   border: 5px solid red;
+}
+
+.lable_check {
+    height: 40px;
+    width: 300px;
+    background-color: grey;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    margin-right: 15px;
+    font-size: 16px;
+    font-style: inherit;
+    font-weight: bold;
+}
+
+/* AREA PARA FORMS CADASTRO */
+
+.form_section {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.div_input {
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.form_section ul {
+    list-style: none;
+    margin: auto;
+}
+
+.form_section li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input_cadastro {
+    background-color: white;
+    width: 400px;
+    height: 30px;
+}
+
+.btn_submit {
+    height: 40px;
+    width: 300px;
+    background-color: grey;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-size: 16px;
+    font-style: inherit;
+    font-weight: bold;
+}
+
+.btn_submit:hover {
+    background-color: darkgray;
 }
