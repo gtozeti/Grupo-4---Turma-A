@@ -1,0 +1,141 @@
+body, ul, li, p {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    font-family: Arial;
+}
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* CABEÇALHO */
+
+.header {
+    background-color: #0076de;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header a:hover {
+    color: #d5dfe8;
+}
+
+.menu {
+    display: flex;
+    margin-right: 50%;
+}
+
+.menu li {
+    margin-left: 10px;
+}
+
+.menu li a {
+    display: block;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+/* FIM CABEÇALHO */
+
+/* ÁREA FOOTER */
+
+.footer { 
+     margin-top: 20px;
+    background-color: #0076de;
+}
+
+.arranjo_footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rede_social img {
+    height: 50px;
+    width: 50px;
+}
+
+/* FIM ÁREA FOOTER */
+
+/* ÁREA DE BUSCA  */
+.campo_buscar {
+    /* border: solid red; */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+.campo_buscar input {
+    width: 500px;
+    min-width: 50%;
+    height: 30px;
+}
+
+.campo_buscar button {
+    height: 35px;
+}
+
+.conjunto_busca {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.conjunto_busca li {
+    margin-left: 10px;
+}
+
+/* FIM ÁREA DE BUSCA */
+
+/* ÁREA MOSTRAR CASAS */
+
+.mostrar_casas {
+    /* border: solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+.mostrar_casas > div {
+    margin: 10px;
+    /* border: solid red; */
+}
+
+.mostrar_casas img {
+    height: 250px;
+    width: 250px;
+
+    min-height: 250px;
+    min-width: 250px;
+
+    max-width: 250px;
+    max-height: 250px;
+
+    margin-bottom: 5px;
+}
+
+.mostrar_casas button {
+    margin-top: 5px;
+
+    height: 25px;
+    width: 250px;
+    min-width: 250px;
+    max-height: 250px;
+
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #0076de;
+    color: #FFFFFF;
+}
+
+.mostrar_casas button:hover {
+    background-color: #2f8fe2;
+}
+
+/* FIM ÁREA MOSTRAR CASAS */
